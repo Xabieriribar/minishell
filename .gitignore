@@ -1,0 +1,7 @@
+minishell
+*.o
+*.a
+.dSYM/
+.vscode/
+gmon.out
+.DS_Store
