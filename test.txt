@@ -1,0 +1,20 @@
+TESTS
+RE = RESULTADO ESPERADO
+TEST 1
+echo hola
+RE = WORD WORD
+TEST 2
+echo hola > outfile
+RE = WORD WORD RED_OUT WORD
+TEST 3
+< infile cat
+RE =  RED_IN WORD WORD
+TEST 4
+< infile grep "adios mundo" | grep "adios" > outfile
+RE = RED_IN WORD WORD WORD PIPE WORD WORD RED_OUT WORD
+TEST 5
+< infile grep 'adios mundo' | cat hostname >> outfile
+RE = RED_IN WORD WORD WORD PIPE WORD WORD APPEND WORD
+TEST 6
+<< hola
+RE = HEREDOC WORD
