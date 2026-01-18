@@ -1,0 +1,50 @@
+CC       = cc
+CFLAGS   = -Wall -Wextra -Werror
+INCLUDES = ./includes ./libs/libft ./libs/gnl
+
+# ---------------- LIBRARY ----------------
+LIBFT_DIR = libs/libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
+GNL_DIR = libs/gnl
+GNL = $(GNL_DIR)/gnl.a
+
+# ---------------- SOURCE ----------------
+SRCS = \
+	main.c \
+
+# ------------- COMPILING ----------------
+
+OBJS = $(SRCS:.c=.o)
+
+NAME = minishell
+
+all: $(LIBFT) $(GNL) $(NAME) 
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(GNL):
+	$(MAKE) -C $(GNL_DIR)
+
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) $(LIBFT) $(GNL) -o $(NAME)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(addprefix -I, $(INCLUDES)) $(LFLAGS) -c $< -o $@
+
+# ------------ CLEAN RULES --------------
+
+clean:
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(GNL_DIR) clean
+	rm -f $(OBJS)
+
+fclean: clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(GNL_DIR) fclean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
