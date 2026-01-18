@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/18 13:00:45 by marvin           ###   ########.fr       */
+/*   Updated: 2026/01/18 14:22:31 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef enum e_type
 	T_REDIR_IN,
 	T_REDIR_OUT,
 	T_REDIR_APPEND,
-	T_HEREDOC
+	T_HEREDOC,
+	T_INIT
 }	t_type;
 
 typedef struct s_token
@@ -35,12 +36,14 @@ typedef struct s_token
 	t_token *next;
 }	t_token;
 
-init_token
-ft_lstclear
-ft_lstadd_back
-ft_lstnew
-ft_strchr
+// ----------- TOKENIZER ---------- //
 
-perror / strerror
+int init_add_token(t_token **head, char *str, int i);
+t_token	**init_list(char *str);
+
+void	lst_add_back_token(t_token **lst, t_token *new);
+t_token	*lstlast_token(t_token *lst);
+void	free_tokens(t_token **head);
+void	free_split(char **split);
 
 #endif
