@@ -3,19 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_tokens.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 18:19:45 by rick              #+#    #+#             */
-/*   Updated: 2026/01/18 12:03:31 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/18 13:00:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* 
-poanteg_to_head* init_token(char *str)at
-
-* bool quotes = false
-
-* while (*str)
-* skip_whitespace()
-* 
-*/

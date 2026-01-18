@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/18 12:55:48 by marvin           ###   ########.fr       */
+/*   Updated: 2026/01/18 13:00:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,13 @@ typedef struct s_token
 	int		index;
 	t_token *next;
 }	t_token;
+
+init_token
+ft_lstclear
+ft_lstadd_back
+ft_lstnew
+ft_strchr
+
+perror / strerror
 
 #endif
