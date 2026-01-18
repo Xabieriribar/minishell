@@ -1,5 +1,5 @@
 CC       = cc
-CFLAGS   = -Wall -Wextra -Werror
+CFLAGS   = -Wall -Wextra -Werror -g
 INCLUDES = ./includes ./libs/libft ./libs/gnl
 
 # ---------------- LIBRARY ----------------
@@ -12,6 +12,9 @@ GNL = $(GNL_DIR)/gnl.a
 # ---------------- SOURCE ----------------
 SRCS = \
 	main.c \
+	tokenizer/init_tokens.c \
+	tokenizer/token_test.c \
+	tokenizer/token_utils.c \
 
 # ------------- COMPILING ----------------
 

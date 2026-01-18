@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 18:19:45 by rick              #+#    #+#             */
-/*   Updated: 2026/01/18 14:32:27 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/18 15:43:08 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int init_add_token(t_token **head, char *str, int i)
 /* 
 * This function creates the linked list of tokens
 * also setting up their indexes and value.
-+ The return value is a pointer to the head of the list */
-t_token	**init_list(char *str)
++ The return value is a pointer to the first element of the list */
+t_token	*init_list(char *str)
 {
-	t_token	**head;
+	t_token	*head;
 	char	**split;
 	int		i;
 
@@ -48,14 +48,15 @@ t_token	**init_list(char *str)
 	split = ft_split(str, ' ');
 	if (!split)
 		return (NULL);
-	*head = init_token(split[i], i);
-	if (!*head)
+	head = NULL;
+	init_add_token(&head, split[i], i);
+	if (!head)
 		return (NULL);
 	i++;
 	while (split[i])
 	{
-		if (init_add_token(head, split[i], i) == 0)
-			return (free_split(split), free_tokens(head), NULL);
+		if (init_add_token(&head, split[i], i) == 0)
+			return (free_split(split), free_tokens(&head), NULL);
 		i++;
 	}
 	return (free_split(split), head);
@@ -63,5 +64,6 @@ t_token	**init_list(char *str)
 
 void	set_types(t_token **head)
 {
-	
+	(void)head;
+	return ;
 }

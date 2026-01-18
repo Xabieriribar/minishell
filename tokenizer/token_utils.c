@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:20:03 by rick              #+#    #+#             */
-/*   Updated: 2026/01/18 14:22:37 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/18 15:41:40 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	lst_add_back_token(t_token **lst, t_token *new)
 {
 	t_token	*ptr;
 
-	ptr = ft_lstlast(*lst);
+	ptr = lstlast_token(*lst);
 	if (!ptr)
 		*lst = new;
 	else
@@ -44,18 +44,15 @@ t_token	*lstlast_token(t_token *lst)
 * from each node. */
 void	free_tokens(t_token **head)
 {
-	t_token	*poanteg;
+	t_token	*tmp;
 
-	poanteg = *head;
-	while (poanteg->next)
+	while (*head)
 	{
-		poanteg = lstlast_token(*head);
-		free(poanteg->value);
-		free(poanteg);
-		poanteg = *head;
+		tmp = (*head)->next;
+		free((*head)->value);
+		free(*head);
+		*head = tmp;
 	}
-	free(poanteg->value);
-	free(poanteg);
 }
 
 void	free_split(char **split)

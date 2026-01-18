@@ -6,14 +6,14 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:26:09 by rick              #+#    #+#             */
-/*   Updated: 2026/01/18 14:27:28 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/18 16:00:05 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // Function to print a single token
-void print_token(t_token *token)
+static void print_token(t_token *token)
 {
     if (!token)
         return;
@@ -21,7 +21,7 @@ void print_token(t_token *token)
 }
 
 // Function to print the entire linked list
-void print_token_list(t_token *head)
+static void print_token_list(t_token *head)
 {
     t_token *current = head;
 
@@ -35,8 +35,8 @@ void print_token_list(t_token *head)
 // Test function
 void test_init_list()
 {
-    char *line = "echo hello_world";
-    t_token **head;
+    char *line = "echo hello world";
+    t_token *head;
 
     head = init_list(line);
     if (!head)
@@ -45,6 +45,6 @@ void test_init_list()
         return;
     }
     printf("Token list:\n");
-    print_token_list(*head);
-    free_tokens(head);
+    print_token_list(head);
+    free_tokens(&head);
 }
