@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/01/18 15:14:45 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/18 17:32:42 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	main(void)
 {
-	test_init_list();
+	test_init_list("< infile grep 'adios mundo' | cat hostname >> outfile");
 	return (0);
 }

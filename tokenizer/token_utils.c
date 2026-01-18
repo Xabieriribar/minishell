@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:20:03 by rick              #+#    #+#             */
-/*   Updated: 2026/01/18 15:41:40 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/18 17:30:58 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ void	free_tokens(t_token **head)
 	}
 }
 
+/* 
+* Function to free the allocated array of strings.*/
 void	free_split(char **split)
 {
 	int	i;
 
 	i = 0;
-
 	if (!split)
-		return;
-
+		return ;
 	while (split[i])
 	{
 		free(split[i]);

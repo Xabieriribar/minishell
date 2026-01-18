@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 18:19:45 by rick              #+#    #+#             */
-/*   Updated: 2026/01/18 15:43:08 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/18 17:28:12 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 * end of the list.
 * Allocates memory and sets its index and value.
 + Return 1 on succes or 0 on error.*/
-int init_add_token(t_token **head, char *str, int i)
+int	init_add_token(t_token **head, char *str, int i)
 {
-    t_token	*token;
+	t_token	*token;
 
 	token = ft_calloc(sizeof(t_token), 1);
 	if (!token)
@@ -28,7 +28,7 @@ int init_add_token(t_token **head, char *str, int i)
 	if (!token->value)
 		return (0);
 	token->index = i;
-	token->type = T_INIT;
+	token->type = T_WORD;
 	token->next = NULL;
 	lst_add_back_token(head, token);
 	return (1);
@@ -59,11 +59,36 @@ t_token	*init_list(char *str)
 			return (free_split(split), free_tokens(&head), NULL);
 		i++;
 	}
+	set_types(&head);
 	return (free_split(split), head);
 }
 
+/* 
+* Funtion to set the enum types for each token in the list.
++ T_PIPE → |
++ T_REDIR_IN → <
++ T_REDIR_OUT → >
++ T_REDIR_APPEND → >>
++ T_HEREDOC → << */
 void	set_types(t_token **head)
 {
-	(void)head;
-	return ;
+	t_token	*poanteg;
+	char	*str;
+
+	poanteg = *head;
+	while (poanteg)
+	{
+		str = poanteg->value;
+		if (!ft_strncmp(str, "|", 1))
+			poanteg->type = T_PIPE;
+		if (!ft_strncmp(str, "<", 1))
+			poanteg->type = T_REDIR_IN;
+		if (!ft_strncmp(str, ">", 1))
+			poanteg->type = T_REDIR_OUT;
+		if (!ft_strncmp(str, ">>", 2))
+			poanteg->type = T_REDIR_APPEND;
+		if (!ft_strncmp(str, "<<", 2))
+			poanteg->type = T_HEREDOC;
+		poanteg = poanteg->next;
+	}
 }
