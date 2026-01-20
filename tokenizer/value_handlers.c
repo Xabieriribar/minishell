@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   value_handlers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/01/19 13:03:25 by rick             ###   ########.fr       */
+/*   Created: 2026/01/20 11:40:25 by rick              #+#    #+#             */
+/*   Updated: 2026/01/20 11:46:00 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
-{
-	test_init_list("< infile grep 'adios        mundo' | cat hostname >> outfile");
-	return (0);
-}
+/*
+- All this functions will create a string according to the string
+- recieved, separating like this all the different cases.
+
+* - Words (normal characters)
+* - Single quotes '...' (literal text)
+* - Double quotes "..." (literal text, allows $ later)
+* - Pipes |
+* - Input redirection <
+* - Output redirection >
+* - Heredoc <<
+* - Append redirection >>
+* - Syntax error on unclosed quotes
+*/

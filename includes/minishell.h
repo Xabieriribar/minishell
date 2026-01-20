@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/18 17:31:51 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/20 11:50:32 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,15 @@ struct s_token
 	t_type	type;
 	char	*value;
 	int		index;
+	bool	dolar;
 	t_token	*next;
 };
 
 // ----------- TOKENIZER ---------- //
 
-int		init_add_token(t_token **head, char *str, int i);
-t_token	*init_list(char *str);
-void	set_types(t_token **head);
-
 void	lst_add_back_token(t_token **lst, t_token *new);
 t_token	*lstlast_token(t_token *lst);
 void	free_tokens(t_token **head);
-void	free_split(char **split);
 
 void	test_init_list(char *line);
 
