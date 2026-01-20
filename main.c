@@ -14,6 +14,9 @@
 
 int	main(void)
 {
+	char **tokens= ft_split("ls -la", ' ');
+	char **args;
+	args = create_args(tokens);
 	printf("Hello World");
 	return (0);
 }

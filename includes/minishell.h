@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include <stdbool.h>
+# include <stdlib.h>
 
 typedef enum e_type
 {
@@ -32,15 +33,31 @@ typedef struct s_token
 	t_type	type;
 	char	*value;
 	int		index;
-	t_token *next;
+	struct s_token *next;
 }	t_token;
 
-init_token
-ft_lstclear
-ft_lstadd_back
-ft_lstnew
-ft_strchr
+typedef enum e_node_type
+{
+	NODE_CMD,
+	NODE_PIPE,
+	// NODE_AND;
+	// NODE_OR;
+	// NODE_SUBSHELL;
+} t_node_type;
 
-perror / strerror
+typedef struct s_redir
+{
+	t_type			redir_type;
+	char			*filename;
+	struct s_redir	*next;
+} t_redir;
+
+typedef struct s_node {
+	t_node_type node_type;
+	struct s_node *left_child;
+	struct s_node *right_child;
+	// t_node *child ONLY FOR BONUS
+	t_redir *redir;
+} t_node;
 
 #endif

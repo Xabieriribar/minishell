@@ -12,7 +12,7 @@ GNL = $(GNL_DIR)/gnl.a
 # ---------------- SOURCE ----------------
 SRCS = \
 	main.c \
-
+	parser/parser.c
 # ------------- COMPILING ----------------
 
 OBJS = $(SRCS:.c=.o)
