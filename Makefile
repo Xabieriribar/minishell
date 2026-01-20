@@ -12,9 +12,11 @@ GNL = $(GNL_DIR)/gnl.a
 # ---------------- SOURCE ----------------
 SRCS = \
 	main.c \
-	tokenizer/init_tokens.c \
+	tokenizer/token_init.c \
 	tokenizer/token_test.c \
 	tokenizer/token_utils.c \
+	tokenizer/token_bool.c \
+	tokenizer/token_handler.c \
 
 # ------------- COMPILING ----------------
 

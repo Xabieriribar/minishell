@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:20:03 by rick              #+#    #+#             */
-/*   Updated: 2026/01/18 17:30:58 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/20 15:06:02 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,52 @@ void	free_tokens(t_token **head)
 }
 
 /* 
-* Function to free the allocated array of strings.*/
-void	free_split(char **split)
+* Funtion to set the enum types for each token in the list.
++ T_PIPE → |
++ T_REDIR_IN → <
++ T_REDIR_OUT → >
++ T_REDIR_APPEND → >>
++ T_HEREDOC → << */
+void	set_types(t_token **head)
 {
-	int	i;
+	t_token	*ptr;
 
-	i = 0;
-	if (!split)
-		return ;
-	while (split[i])
+	ptr = *head;
+	while (ptr)
 	{
-		free(split[i]);
-		i++;
+		if (!ft_strncmp(ptr->value, ">>", 2))
+			ptr->type = T_REDIR_APPEND;
+		else if (!ft_strncmp(ptr->value, "<<", 2))
+			ptr->type = T_HEREDOC;
+		else if (!ft_strncmp(ptr->value, "|", 1))
+			ptr->type = T_PIPE;
+		else if (!ft_strncmp(ptr->value, "<", 1))
+			ptr->type = T_REDIR_IN;
+		else if (!ft_strncmp(ptr->value, ">", 1))
+			ptr->type = T_REDIR_OUT;
+		ptr = ptr->next;
 	}
-	free(split);
+}
+
+/* 
+* Funtion to set the int dolar on tokens.
++ In function token_single(), the dolar value will be set inmediatly
++ to -1, so we never mark it as true in that case.
++ Otherwise the value will be 1 for true, and 0 for false.*/
+void	set_dolar(t_token **head)
+{
+	t_token	*ptr;
+
+	ptr = *head;
+	while (ptr)
+	{
+		if (ptr->type == T_WORD
+			&& ft_strchr(ptr->value, '$') != NULL
+			&& ft_strlen(ptr->value) > 1
+			&& ptr->dolar != -1)
+			ptr->dolar = 1;
+		else
+			ptr->dolar = 0;
+		ptr = ptr->next;
+	}
 }
