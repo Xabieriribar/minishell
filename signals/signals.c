@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:40:04 by rick              #+#    #+#             */
-/*   Updated: 2026/01/21 16:43:59 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/21 17:59:52 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,10 @@
 
 + 1. During the main loop or "waiting for the user prompt"
 + 2. During execution or "fork()", "execve()" and "waitpid()". */
+
+void sigint_handler(int sig)
+{
+    (void)sig;
+    write(1, "\n", 1);
+    
+}

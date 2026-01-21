@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:40:25 by rick              #+#    #+#             */
-/*   Updated: 2026/01/20 14:48:55 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/21 18:54:06 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,29 @@
 * This function creates the linked list of tokens
 * also setting up their indexes and value.
 + The return value is a pointer to the first element of the list */
+// --------- VER INDICES EN VEZ DE PUNTEROS EN STR ITERERATION ------/
 t_token	*init_list(char *str)
 {
 	t_token	*head;
-	int		i;
+	int		token_number;
 	int		len;
 
-	i = 0;
+	token_number = 0;
 	head = NULL;
+	if (!str)
+		return (NULL);
 	while (*str)
 	{
 		while (is_space(*str))
 			str++;
 		if (!*str)
 			break ;
-		len = init_add_token(&head, str, i);
+		len = init_add_token(&head, str, token_number);
 		if (len < 0)
 			return (perror("Failed token creation"), free_tokens(&head), NULL);
 		else
 			str += len;
-		i++;
+		token_number++;
 	}
 	set_types(&head);
 	set_dolar(&head);

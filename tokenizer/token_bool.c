@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 13:46:34 by rick              #+#    #+#             */
-/*   Updated: 2026/01/20 14:25:06 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/21 18:10:56 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	is_double(char c)
 	return (false);
 }
 
-bool	is_space(int c)
+bool	is_space(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\n'
 		|| c == '\v' || c == '\f' || c == '\r')

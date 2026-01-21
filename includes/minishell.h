@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/21 17:29:35 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/21 18:11:10 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h> 
+# include <signal.h>
 
 typedef enum e_type
 {
@@ -60,7 +61,7 @@ void	set_dolar(t_token **head);
 
 bool	is_single(char c);
 bool	is_double(char c);
-bool	is_space(int c);
+bool	is_space(char c);
 bool	is_operator(char c);
 
 t_token	*init_list(char *str);

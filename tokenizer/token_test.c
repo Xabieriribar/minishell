@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:26:09 by rick              #+#    #+#             */
-/*   Updated: 2026/01/21 15:37:38 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/21 18:06:42 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	test_init_list(char *line)
 {
 	t_token	*head;
 
+	if (!line)
+		return ;
 	printf("\n%s[TEST] Input:%s \"%s\"\n", YELLOW, RESET, line);
 	head = init_list(line);
 	if (!head)
