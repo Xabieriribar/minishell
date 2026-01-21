@@ -1,5 +1,6 @@
 CC       = cc
-CFLAGS   = -Wall -Wextra -Werror -g
+CFLAGS   = -Wall -Wextra -Werror -g -I/usr/local/opt/readline/include
+LDFLAGS  = -L/usr/local/opt/readline/lib -lreadline
 INCLUDES = ./includes ./libs/libft ./libs/gnl
 
 # ---------------- LIBRARY ----------------
@@ -33,7 +34,7 @@ $(GNL):
 	$(MAKE) -C $(GNL_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LIBFT) $(GNL) -o $(NAME)
+	$(CC) $(OBJS) $(LIBFT) $(GNL) $(LDFLAGS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(addprefix -I, $(INCLUDES)) $(LFLAGS) -c $< -o $@

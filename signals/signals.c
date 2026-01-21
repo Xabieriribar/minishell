@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/01/21 17:38:26 by rick             ###   ########.fr       */
+/*   Created: 2026/01/21 16:40:04 by rick              #+#    #+#             */
+/*   Updated: 2026/01/21 16:43:59 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
-{
-	char	*input;
+/*
+* Signals need to be handle in different cases during the execution 
+* of minishell in different ways:
 
-	while (1)
-	{
-		input = readline(PROMPT);
-		if (!input)
-			return (0);
-		test_init_list(input);
-	}
-	free(input);
-	return (0);
-}
++ 1. During the main loop or "waiting for the user prompt"
++ 2. During execution or "fork()", "execve()" and "waitpid()". */
