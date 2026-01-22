@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:20:03 by rick              #+#    #+#             */
-/*   Updated: 2026/01/21 18:47:39 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/22 17:36:02 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,63 +95,17 @@ void	set_dolar(t_token **head)
 	ptr = *head;
 	while (ptr)
 	{
-		if (ptr->type == T_WORD
+		if (ptr->dolar == -1)
+		{
+			ptr = ptr->next;
+			continue ;
+		}
+		else if (ptr->type == T_WORD
 			&& ft_strchr(ptr->value, '$') != NULL
-			&& ft_strlen(ptr->value) > 1
-			&& ptr->dolar != -1)
+			&& ft_strlen(ptr->value) > 1)
 			ptr->dolar = 1;
 		else
 			ptr->dolar = 0;
 		ptr = ptr->next;
 	}
 }
-
-// CHECK IF IS STICK TO THE DOLLAR 
-/*
-xabieriribar@DESKTOP-CDKLBE9:/mnt/c/Users/xirib/Desktop/pipex$ ./pipex infile "echo adios $ hola" "cat" outfile
-xabieriribar@DESKTOP-CDKLBE9:/mnt/c/Users/xirib/Desktop/pipex$ cat outfile
-adios $ hola
-xabieriribar@DESKTOP-CDKLBE9:/mnt/c/Users/xirib/Desktop/pipex$ ./pipex infile "echo adios $hola" "cat" outfile
-xabieriribar@DESKTOP-CDKLBE9:/mnt/c/Users/xirib/Desktop/pipex$ cat outfile
-adios
-xabieriribar@DESKTOP-CDKLBE9:/mnt/c/Users/xirib/Desktop/pipex$ ./pipex infile "echo adios $hola" "cat" outfile
-xabieriribar@DESKTOP-CDKLBE9:/mnt/c/Users/xirib/Desktop/pipex$ cat outfile
-adios
-xabieriribar@DESKTOP-CDKLBE9:/mnt/c/Users/xirib/Desktop/pipex$ ./pipex infile "echo adios $ hola" "cat" outfile
-xabieriribar@DESKTOP-CDKLBE9:/mnt/c/Users/xirib/Desktop/pipex$ cat outfile
-adios $ hola
-*xabieriribar@DESKTOP-CDKLBE9:/mnt/c/Users/xirib/Desktop/pipex$ ./pipex infile "echo adios $hola adios" "cat" outfile
-xabieriribar@DESKTOP-CDKLBE9:/mnt/c/Users/xirib/Desktop/pipex$ cat outfile
-adios adios
-xabieriribar@DESKTOP-CDKLBE9:/mnt/c/Users/xirib/Desktop/pipex$ ./pipex infile "echo adios $hola adios" "cat" outfile
-
-*➜  minishell git:(parse) ✗ echo adios    $hola adios
-adios adios
-*➜  minishell git:(parse) ✗ echo adios    $hola     adios
-adios adios
-
-➜  minishell git:(parse) ✗ echo "adios    $USER     adios"
-adios    rick     adios
-➜  minishell git:(parse) ✗ echo "adios    $ASD     adios" 
-adios         adios
-➜  minishell git:(parse) ✗ echo "adios    $ ASD     adios"
-adios    $ ASD     adios
-
-
-➜  minishell git:(parse) ✗ echo$user
-
-➜  minishell git:(parse) ✗ echo$USER
-zsh: command not found: echorick
-
-+++++++++++++ SI AL FINAL ES ESPACIO Y SOLO ESPACIO O END OF STRING ES FALSE
-
-➜  minishell git:(parse) ✗ echo $'\t' 
-	
-➜  minishell git:(parse) ✗ echo $'\v'
-
-
-➜  minishell git:(parse) ✗ echo $'\n'
-
-
-➜  minishell git:(parse) ✗ echo $'\b'
-*/

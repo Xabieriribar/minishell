@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/21 18:11:10 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/22 18:23:14 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ int		token_single(t_token **head, char *str, int ix);
 int		token_double(t_token **head, char *str, int ix);
 int		token_word(t_token **head, char *str, int ix);
 
-void	test_init_list(char *line);
+void	test_init_list(char *line, char *expected);
+
+// ----------- SIGNALS ---------- //
+
+void	sigint_handler(int sig);
 
 #endif
