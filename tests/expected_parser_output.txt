@@ -1,0 +1,101 @@
+--- 1. Basic Commands & Spaces ---
+01: CMD(ls)
+02: CMD(ls, args:[-la])
+03: CMD(echo, args:[hello, world])
+04: CMD(ls, args:[-l])
+05: CMD(ls, args:[-la])
+06: CMD(/bin/ls)
+07: CMD(./minishell)
+08: CMD(echo, args:[""])
+09: CMD(echo, args:[" "])
+10: CMD("", args:[""])
+
+--- 2. Single Quotes (Literal) ---
+11: CMD(ls -la)
+12: CMD(echo, args:[   hello   ])
+13: CMD(echo, args:[$USER])
+14: CMD(echo, args:[quote "in" quote])
+15: CMD("")
+16: CMD(" ")
+17: CMD(cat, args:[file name with spaces])
+
+--- 3. Double Quotes ---
+18: CMD(ls -la)
+19: CMD(echo, args:[hello $USER])
+20: CMD(echo, args:['single quotes'])
+21: CMD(      )
+22: CMD(echo, args:[pipe | in quotes])
+23: CMD(echo, args:[> redir in quotes])
+24: CMD(echo, args:[$?])
+
+--- 4. Token Concatenation (Glue) ---
+25: CMD(echohello)
+26: CMD(ls-la)
+27: CMD(echohelloworld)
+28: CMD(catfilename)
+29: CMD(ls)
+30: CMD(ls)
+
+--- 5. Simple Redirections & Pipes ---
+31: PIPE
+    ├── LEFT: CMD(ls)
+    └── RIGHT: CMD(wc)
+
+32: PIPE
+    ├── LEFT: CMD(ls)
+    └── RIGHT: CMD(wc)
+
+33: CMD(cat, REDIR:[IN:file])
+
+34: CMD(ls, REDIR:[OUT:file])
+
+35: CMD(ls, REDIR:[APP:file])
+
+36: CMD(cat, REDIR:[HD:limit])
+
+37: PIPE
+    ├── LEFT: PIPE
+    │         ├── LEFT: CMD(ls)
+    │         └── RIGHT: CMD(wc)
+    └── RIGHT: CMD(grep, args:[0])
+
+38: PIPE
+    ├── LEFT: PIPE
+    │         ├── LEFT: PIPE
+    │         │         ├── LEFT: CMD(ls)
+    │         │         └── RIGHT: CMD(wc)
+    │         └── RIGHT: CMD(grep)
+    └── RIGHT: CMD(awk)
+
+--- 6. Mixed Operators & Commands ---
+39: PIPE
+    ├── LEFT: CMD(ls, args:[-l])
+    └── RIGHT: CMD(grep, args:[.c], REDIR:[OUT:out])
+
+40: PIPE
+    ├── LEFT: CMD(cat, REDIR:[IN:in])
+    └── RIGHT: CMD(wc, args:[-l], REDIR:[OUT:out])
+
+41: PIPE
+    ├── LEFT: CMD(ls, REDIR:[OUT:out])
+    └── RIGHT: CMD(wc, args:[-l])
+
+42: CMD(ls, REDIR:[OUT:out])
+
+43: CMD(ls, args:[-l, -a], REDIR:[OUT:out1, OUT:out2])
+
+44: PIPE
+    ├── LEFT: PIPE
+    │         ├── LEFT: CMD(cat, REDIR:[IN:in])
+    │         └── RIGHT: CMD(grep, args:[a], REDIR:[APP:out])
+    └── RIGHT: CMD(wc, args:[-l])
+
+--- 7. The Evil Tests (Syntax Errors / Edge Cases) ---
+45: ERROR: Syntax error near unexpected token '|'
+46: ERROR: Syntax error near unexpected token '>'
+47: ERROR: Syntax error near unexpected token '|'
+48: ERROR: Syntax error near unexpected token 'newline'
+49: ERROR: Syntax error near unexpected token 'newline'
+50: PIPE
+    ├── LEFT: CMD("")
+    └── RIGHT: CMD("", REDIR:[OUT:" "])
