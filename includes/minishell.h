@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/22 18:23:14 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/23 15:24:18 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define BLUE    "\033[34m"
 # define RED     "\033[31m"
 
-#define PROMPT "\001\033[45m\002>>> \001\033[33m\002Minishell>$ \001\033[0m\002"
+# define PROMPT "\033[45m\002>>> \033[33m\002Minishell>$ \033[0m\002"
 
 # include "libft.h"
 # include "get_next_line.h"
@@ -50,6 +50,8 @@ struct s_token
 	int		dolar;
 	t_token	*next;
 };
+
+typedef struct s_tree	t_tree;
 
 // ----------- TOKENIZER ---------- //
 

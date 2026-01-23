@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:26:09 by rick              #+#    #+#             */
-/*   Updated: 2026/01/22 18:18:55 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/23 15:12:54 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	test_init_list(char *line, char *expected)
 	if (!line)
 		return ;
 	printf("\n%s[TEST] Input:%s    \"%s\"\n", YELLOW, RESET, line);
-	printf("%s[EXPECTED]:%s   %s\n", BLUE, RESET, expected);
-	
+	if (expected)
+		printf("%s[EXPECTED]:%s   %s\n", BLUE, RESET, expected);
 	head = init_list(line);
 	if (!head)
 	{
@@ -98,7 +98,7 @@ int	main(void)
 	test_init_list("echo \" \"", "WORD(echo), WORD( )");
 	test_init_list("\"\" \"\"", "WORD(), WORD()");
 
-	printf("\n%s============ 2. Single Quotes %s(Literal - D=FALSE)%s ============%s\n", CYAN, RED, CYAN, RESET);
+	printf("\n%s==== 2. Single Quotes %s(Literal - D=FALSE)%s ===%s\n", CYAN, RED, CYAN, RESET);
 	test_init_list("\'ls -la\'", "WORD(ls -la)");
 	test_init_list("echo \'   hello   \'", "WORD(echo), WORD(   hello   )");
 	test_init_list("echo \'$USER\'", "WORD(echo), WORD($USER) [D=FALSE]");
@@ -107,7 +107,7 @@ int	main(void)
 	test_init_list("\' \'", "WORD( )");
 	test_init_list("cat \'file name\'", "WORD(cat), WORD(file name)");
 
-	printf("\n%s============ 3. Double Quotes %s(Expansion - D=TRUE)%s ============%s\n", CYAN, GREEN, CYAN, RESET);
+	printf("\n%s==== 3. Double Quotes %s(Expansion - D=TRUE)%s ===%s\n", CYAN, GREEN, CYAN, RESET);
 	test_init_list("\"ls -la\"", "WORD(ls -la)");
 	test_init_list("echo \"hello $USER\"", "WORD(echo), WORD(hello $USER) [D=TRUE]");
 	test_init_list("echo \"\'single quotes\'\"", "WORD(echo), WORD('single quotes')");
@@ -116,7 +116,7 @@ int	main(void)
 	test_init_list("echo \"> redir in quotes\"", "WORD(echo), WORD(> redir in quotes)");
 	test_init_list("echo \"$?\"", "WORD(echo), WORD($?) [D=TRUE]");
 
-	printf("\n%s============ 4. Token Concatenation (Glue) ============%s\n", CYAN, RESET);
+	printf("\n%s====== 4. Token Concatenation (Glue) ======%s\n", CYAN, RESET);
 	test_init_list("echo\"hello\"", "WORD(echohello)");
 	test_init_list("ls\"-la\"", "WORD(ls-la)");
 	test_init_list("echo\'hello\'world", "WORD(echohelloworld)");
@@ -124,7 +124,7 @@ int	main(void)
 	test_init_list("\"\"ls", "WORD(ls)");
 	test_init_list("ls\"\"", "WORD(ls)");
 
-	printf("\n%s============ 5. Simple Redirections & Pipes ============%s\n", CYAN, RESET);
+	printf("\n%s====== 5. Simple Redirections & Pipes ======%s\n", CYAN, RESET);
 	test_init_list("ls|wc", "WORD(ls), PIPE, WORD(wc)");
 	test_init_list("ls | wc", "WORD(ls), PIPE, WORD(wc)");
 	test_init_list("cat<file", "WORD(cat), RED_IN, WORD(file)");
@@ -134,7 +134,7 @@ int	main(void)
 	test_init_list("ls | wc | grep 0", "WORD(ls), PIPE, WORD(wc), PIPE, WORD(grep), WORD(0)");
 	test_init_list("ls|wc|grep|awk", "WORD(ls), PIPE, WORD(wc), PIPE, WORD(grep), PIPE, WORD(awk)");
 
-	printf("\n%s============ 6. Mixed Operators & Commands ============%s\n", CYAN, RESET);
+	printf("\n%s===== 6. Mixed Operators & Commands =%s\n", CYAN, RESET);
 	test_init_list("ls -l | grep .c > out", "WORD(ls), WORD(-l), PIPE, WORD(grep), WORD(.c), RED_OUT, WORD(out)");
 	test_init_list("cat < in | wc -l > out", "WORD(cat), RED_IN, WORD(in), PIPE, WORD(wc), WORD(-l), RED_OUT, WORD(out)");
 	test_init_list("ls > out | wc -l", "WORD(ls), RED_OUT, WORD(out), PIPE, WORD(wc), WORD(-l)");
@@ -142,7 +142,7 @@ int	main(void)
 	test_init_list("ls -l > out1 -a > out2", "WORD(ls), WORD(-l), RED_OUT, WORD(out1), WORD(-a), RED_OUT, WORD(out2)");
 	test_init_list("cat < in | grep a >> out | wc -l", "WORD(cat), RED_IN, WORD(in), PIPE, WORD(grep), WORD(a), APPEND, WORD(out), PIPE, WORD(wc), WORD(-l)");
 
-	printf("\n%s============ 7. The Evil Tests ============%s\n", CYAN, RESET);
+	printf("\n%s===== 7. The Evil Tests =====%s\n", CYAN, RESET);
 	test_init_list("ls | | wc", "WORD(ls), PIPE, PIPE, WORD(wc)");
 	test_init_list("ls > > out", "WORD(ls), RED_OUT, RED_OUT, WORD(out)");
 	test_init_list("| ls", "PIPE, WORD(ls)");
