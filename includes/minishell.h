@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/23 16:13:20 by marvin           ###   ########.fr       */
+/*   Updated: 2026/01/23 16:18:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@ typedef enum e_node_type
 {
 	NODE_CMD,
 	NODE_PIPE,
-	// NODE_AND;
-	// NODE_OR;
-	// NODE_SUBSHELL;
 } t_node_type;
 
 typedef struct s_redir
@@ -70,6 +67,7 @@ typedef struct s_node {
 	t_node_type node_type;
 	struct s_node *left_child;
 	struct s_node *right_child;
+	char **args;
 	// t_node *child ONLY FOR BONUS
 	t_redir *redir;
 } t_node;
