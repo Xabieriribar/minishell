@@ -13,9 +13,6 @@ GNL = $(GNL_DIR)/gnl.a
 # ---------------- SOURCE ----------------
 SRCS = \
 	main.c \
-<<<<<<< HEAD
-	parser/parser.c
-=======
 	tokenizer/token_init.c \
 	tokenizer/token_test.c \
 	tokenizer/token_utils.c \
@@ -23,7 +20,6 @@ SRCS = \
 	tokenizer/token_handler.c \
 	signals/signals.c \
 
->>>>>>> main
 # ------------- COMPILING ----------------
 
 OBJS = $(SRCS:.c=.o)

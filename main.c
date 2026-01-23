@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/01/23 15:11:58 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/23 16:22:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ void sigint_handler(int sig)
 
 int	main(void)
 {
-<<<<<<< HEAD
-	char **tokens= ft_split("ls -la", ' ');
-	char **args;
-	args = create_args(tokens);
-	printf("Hello World");
-=======
 	char	*input;
 
 	signal(SIGINT, sigint_handler);
@@ -42,6 +36,5 @@ int	main(void)
 		test_init_list(input, NULL);
 		free(input);
 	}
->>>>>>> main
 	return (0);
 }
