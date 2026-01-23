@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/23 15:50:11 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/23 15:54:59 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef enum e_type
 	T_REDIR_IN,
 	T_REDIR_OUT,
 	T_REDIR_APPEND,
-	T_HEREDOCC,
+	T_HEREDOC,
 }	t_type;
 
 typedef struct s_token	t_token;
