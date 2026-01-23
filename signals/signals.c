@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_tokens.c                                      :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/17 18:19:45 by rick              #+#    #+#             */
-/*   Updated: 2026/01/17 19:28:17 by rick             ###   ########.fr       */
+/*   Created: 2026/01/21 16:40:04 by rick              #+#    #+#             */
+/*   Updated: 2026/01/23 15:09:03 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* 
-poanteg_to_head* init_token(char *str)at
+#include "minishell.h"
 
-* bool quotes = false
+/*
+* Signals need to be handle in different cases during the execution 
+* of minishell in different ways:
 
-* while (*str)
-* skip_whitespace()
-* 
-*/
++ 1. During the main loop or "waiting for the user prompt"
++ 2. During execution or "fork()", "execve()" and "waitpid()". */
+
+void	sigint_handler(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1);
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
+}

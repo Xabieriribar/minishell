@@ -1,5 +1,6 @@
 CC       = cc
-CFLAGS   = -Wall -Wextra -Werror
+CFLAGS   = -Wall -Wextra -Werror -g -I/usr/local/opt/readline/include
+LDFLAGS  = -L/usr/local/opt/readline/lib -lreadline
 INCLUDES = ./includes ./libs/libft ./libs/gnl
 
 # ---------------- LIBRARY ----------------
@@ -12,7 +13,17 @@ GNL = $(GNL_DIR)/gnl.a
 # ---------------- SOURCE ----------------
 SRCS = \
 	main.c \
+<<<<<<< HEAD
 	parser/parser.c
+=======
+	tokenizer/token_init.c \
+	tokenizer/token_test.c \
+	tokenizer/token_utils.c \
+	tokenizer/token_bool.c \
+	tokenizer/token_handler.c \
+	signals/signals.c \
+
+>>>>>>> main
 # ------------- COMPILING ----------------
 
 OBJS = $(SRCS:.c=.o)
@@ -28,7 +39,7 @@ $(GNL):
 	$(MAKE) -C $(GNL_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LIBFT) $(GNL) -o $(NAME)
+	$(CC) $(OBJS) $(LIBFT) $(GNL) $(LDFLAGS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(addprefix -I, $(INCLUDES)) $(LFLAGS) -c $< -o $@

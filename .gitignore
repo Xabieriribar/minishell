@@ -5,3 +5,4 @@ minishell
 .vscode/
 gmon.out
 .DS_Store
+launch.json
