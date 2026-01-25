@@ -52,14 +52,14 @@ struct s_token
 	t_token	*next;
 };
 
-typedef struct s_node {
-	t_node_type node_type;
-	struct s_node *left_child;
-	struct s_node *right_child;
-	char **args;
-	// t_node *child ONLY FOR BONUS
-	t_redir *redir;
-} t_node;
+// typedef struct s_node {
+// 	t_node_type node_type;
+// 	struct s_node *left_child;
+// 	struct s_node *right_child;
+// 	char **args;
+// 	// t_node *child ONLY FOR BONUS
+// 	t_redir *redir;
+// } t_node;
 
 void	lst_add_back_token(t_token **lst, t_token *new);
 t_token	*lstlast_token(t_token *lst);
