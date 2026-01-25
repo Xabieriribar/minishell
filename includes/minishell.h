@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/23 16:30:13 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/25 14:06:49 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ struct s_token
 	int		index;
 	int		dolar;
 	t_token	*next;
+	t_token	*prev;
 };
 
 typedef struct s_tree	t_tree;
@@ -67,11 +68,16 @@ bool	is_space(char c);
 bool	is_operator(char c);
 
 t_token	*init_list(char *str);
-int		init_add_token(t_token **head, char *str, int ix);
+int		init_add_token(t_token **head, char *str, int ix, int separated);
+
 int		token_operator(t_token **head, char *str, int ix);
 int		token_single(t_token **head, char *str, int ix);
 int		token_double(t_token **head, char *str, int ix);
 int		token_word(t_token **head, char *str, int ix);
+
+int		token_single_append(t_token *last, char *str);
+int		token_double_append(t_token *last, char *str);
+int		token_word_append(t_token *last, char *str);
 
 void	test_init_list(char *line, char *expected);
 
