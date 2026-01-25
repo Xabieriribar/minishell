@@ -18,6 +18,7 @@ SRCS = \
 	tokenizer/token_utils.c \
 	tokenizer/token_bool.c \
 	tokenizer/token_handler.c \
+	tokenizer/token_append.c \
 	signals/signals.c \
 
 # ------------- COMPILING ----------------

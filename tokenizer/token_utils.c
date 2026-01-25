@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:20:03 by rick              #+#    #+#             */
-/*   Updated: 2026/01/22 17:36:02 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/25 12:04:34 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,18 @@ void	lst_add_back_token(t_token **lst, t_token *new)
 {
 	t_token	*ptr;
 
+	if (!new)
+		return ;
+	new->next = NULL;
+	new->prev = NULL;
 	ptr = lstlast_token(*lst);
 	if (!ptr)
+	{
 		*lst = new;
-	else
-		ptr->next = new;
+		return ;
+	}
+	ptr->next = new;
+	new->prev = ptr;
 }
 
 /* 
