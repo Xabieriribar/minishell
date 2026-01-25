@@ -3,9 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
+/*   Updated: 2026/01/23 16:31:57 by marvin           ###   ########.fr       */
 /*   Updated: 2026/01/25 14:06:49 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -49,12 +50,16 @@ struct s_token
 	int		index;
 	int		dolar;
 	t_token	*next;
-	t_token	*prev;
 };
 
-typedef struct s_tree	t_tree;
-
-// ----------- TOKENIZER ---------- //
+typedef struct s_node {
+	t_node_type node_type;
+	struct s_node *left_child;
+	struct s_node *right_child;
+	char **args;
+	// t_node *child ONLY FOR BONUS
+	t_redir *redir;
+} t_node;
 
 void	lst_add_back_token(t_token **lst, t_token *new);
 t_token	*lstlast_token(t_token *lst);
