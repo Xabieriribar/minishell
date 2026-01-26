@@ -1,0 +1,3 @@
+ls :: WORD :: PASS
+pwd :: WORD :: PASS
+env :: WORD :: PASS

@@ -90,4 +90,9 @@ void	test_init_list(char *line, char *expected);
 
 void	sigint_handler(int sig);
 
+
+// ----------- PARSER ---------- //
+
+int test_grammar(int fd_commands, int fd_grammar_tester);
+
 #endif
