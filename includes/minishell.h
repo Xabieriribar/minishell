@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/25 14:06:49 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/26 12:10:09 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ typedef struct s_token	t_token;
 
 struct s_token
 {
-	t_type	type;
-	char	*value;
-	int		index;
-	int		dolar;
-	t_token	*next;
-	t_token	*prev;
+	t_type		type;
+	char		*value;
+	int			index;
+	int			dolar;
+	t_token		*next;
+	t_token		*prev;
 };
 
 typedef struct s_tree	t_tree;
@@ -59,7 +59,7 @@ typedef struct s_tree	t_tree;
 void	lst_add_back_token(t_token **lst, t_token *new);
 t_token	*lstlast_token(t_token *lst);
 void	free_tokens(t_token **head);
-void	set_types(t_token **head);
+void	set_type(t_token *token, char *str);
 void	set_dolar(t_token **head);
 
 bool	is_single(char c);

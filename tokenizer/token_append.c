@@ -6,12 +6,16 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:34:13 by rick              #+#    #+#             */
-/*   Updated: 2026/01/25 19:18:07 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/26 11:17:26 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+* Creates and appends to the last node from the list.
++ Returns i, being the length of the added part of the string to.
++ this last node of the list, or a negative interger for error.*/
 int	token_word_append(t_token *last, char *str)
 {
 	int		i;
@@ -36,6 +40,11 @@ int	token_word_append(t_token *last, char *str)
 	return (i);
 }
 
+/*
+* Creates and appends to the last node from the list,
+* in case of finding double quotes.
++ Returns i, being the length of the added part of the string to.
++ this last node of the list, or a negative interger for error.*/
 int	token_double_append(t_token *last, char *str)
 {
 	int		i;
@@ -59,6 +68,11 @@ int	token_double_append(t_token *last, char *str)
 	return (i + 1);
 }
 
+/*
+* Creates and appends to the last node from the list,
+* in case of finding single quotes.
++ Returns i, being the length of the added part of the string to.
++ this last node of the list, or a negative interger for error.*/
 int	token_single_append(t_token *last, char *str)
 {
 	int		i;
@@ -82,69 +96,3 @@ int	token_single_append(t_token *last, char *str)
 	last->dolar = -1;
 	return (i + 1);
 }
-
-/*
-[TEST] Input:    """"""
-[EXPECTED]:   WORD(), WORD()
- ____________________________________________________________
- | INDEX | TYPE        | DOLAR | VALUE
- |-------|--------------|-------|----------------------------
- | 0     | WORD        | FALSE  | Value: ''
- ------------------------------------------------------------
-
-[TEST] Input:    "ls|wc"
-[EXPECTED]:   WORD(ls), PIPE, WORD(wc)
- ____________________________________________________________
- | INDEX | TYPE        | DOLAR | VALUE
- |-------|--------------|-------|----------------------------
- | 0     | WORD        | FALSE  | Value: 'ls'
- | 1     | PIPE        | FALSE  | Value: '|wc'
- ------------------------------------------------------------
-
-[TEST] Input:    "cat<file"
-[EXPECTED]:   WORD(cat), RED_IN, WORD(file)
- ____________________________________________________________
- | INDEX | TYPE        | DOLAR | VALUE
- |-------|--------------|-------|----------------------------
- | 0     | WORD        | FALSE  | Value: 'cat'
- | 1     | REDIR_IN    | FALSE  | Value: '<file'
- ------------------------------------------------------------
-
-[TEST] Input:    "ls|wc|grep|awk"
-[EXPECTED]:   WORD(ls), PIPE, WORD(wc), PIPE, WORD(grep), PIPE, WORD(awk)
- ____________________________________________________________
- | INDEX | TYPE        | DOLAR | VALUE
- |-------|--------------|-------|----------------------------
- | 0     | WORD        | FALSE  | Value: 'ls'
- | 1     | PIPE        | FALSE  | Value: '|wc'
- | 3     | PIPE        | FALSE  | Value: '|grep'
- | 5     | PIPE        | FALSE  | Value: '|awk'
- ------------------------------------------------------------
-
-[TEST] Input:    "ls>file"
-[EXPECTED]:   WORD(ls), RED_OUT, WORD(file)
- ____________________________________________________________
- | INDEX | TYPE        | DOLAR | VALUE
- |-------|--------------|-------|----------------------------
- | 0     | WORD        | FALSE  | Value: 'ls'
- | 1     | REDIR_OUT   | FALSE  | Value: '>file'
- ------------------------------------------------------------
-
-[TEST] Input:    "ls>>file"
-[EXPECTED]:   WORD(ls), APPEND, WORD(file)
- ____________________________________________________________
- | INDEX | TYPE        | DOLAR | VALUE
- |-------|--------------|-------|----------------------------
- | 0     | WORD        | FALSE  | Value: 'ls'
- | 1     | REDIR_APPEND | FALSE  | Value: '>>file'
- ------------------------------------------------------------
-
-[TEST] Input:    "cat<<limit"
-[EXPECTED]:   WORD(cat), HEREDOC, WORD(limit)
- ____________________________________________________________
- | INDEX | TYPE        | DOLAR | VALUE
- |-------|--------------|-------|----------------------------
- | 0     | WORD        | FALSE  | Value: 'cat'
- | 1     | HEREDOC     | FALSE  | Value: '<<limit'
- ------------------------------------------------------------
-*/

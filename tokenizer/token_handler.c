@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:26:07 by rick              #+#    #+#             */
-/*   Updated: 2026/01/25 12:34:45 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/26 12:11:46 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	token_operator(t_token **head, char *str, int ix)
 		return (perror("Malloc error at token_operator()"), -1);
 	token->next = NULL;
 	token->index = ix;
+	set_type(token, str);
 	if (!ft_strncmp(str, "<<", 2))
 		token->value = ft_strdup("<<");
 	else if (!ft_strncmp(str, ">>", 2))
@@ -46,8 +47,7 @@ int	token_operator(t_token **head, char *str, int ix)
 /*
 * Creates and appends node in case of finding double quotes.
 + Returns the length of the sring "value".
-+ or a negative interger for error.
-!!!!!!!!!!!!!!!!!!!!!!! ACA AGEGA CONTROL DE COMILLAS NO CERRADAS!!!!!!!!!*/
++ or a negative interger for error. */
 int	token_double(t_token **head, char *str, int ix)
 {
 	int		i;
@@ -59,6 +59,7 @@ int	token_double(t_token **head, char *str, int ix)
 		return (perror("Err: Malloc"), -1);
 	token->next = NULL;
 	token->index = ix;
+	set_type(token, str);
 	i = 0;
 	buff = ft_calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!buff)
@@ -90,6 +91,7 @@ int	token_single(t_token **head, char *str, int ix)
 		return (perror("Err: Malloc"), -1);
 	token->next = NULL;
 	token->index = ix;
+	set_type(token, str);
 	i = 0;
 	buff = ft_calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!buff)
@@ -122,6 +124,7 @@ int	token_word(t_token **head, char *str, int ix)
 		return (perror("Err: Malloc"), -1);
 	token->next = NULL;
 	token->index = ix;
+	set_type(token, str);
 	i = 0;
 	buff = ft_calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!buff)

@@ -6,17 +6,17 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/01/25 19:08:42 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/26 11:54:03 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+/* int	main(void)
 {
-	test_init_list("ls|echo", NULL);
+	test_init_list("echo \"'single quotes'\"", "WORD(echo), WORD('single quotes')");
 	return (0);
-}
+} */
 
 /* int	main(void)
 {
@@ -35,7 +35,7 @@ int	main(void)
 	return (0);
 } */
 
-/*
+
 int	main(void)
 {
 	printf("\n%s= 1. Basic Commands & Spaces =%s\n", CYAN, RESET);
@@ -118,4 +118,4 @@ int	main(void)
 	test_init_list("ls    \"file name\"   -l", "WORD(ls), WORD(file name), WORD(-l)");
 
 	return (0);
-}*/
+}
