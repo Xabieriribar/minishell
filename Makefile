@@ -25,6 +25,9 @@ SRCS = \
 	signals/signals.c \
 	built_in/cd.c \
 	built_in/pwd.c \
+	parser/grammar_tester.c \
+	parser/grammar_validator.c \
+	parser/parser_utils.c \
 
 # ------------- COMPILING ----------------
 

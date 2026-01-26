@@ -111,6 +111,9 @@ void	sigint_handler(int sig);
 
 // ----------- PARSER ---------- //
 
-int test_grammar(int fd_commands, int fd_grammar_tester);
+int test_grammar(int fd_grammar_tester);
+int	ft_token_lstsize(t_token *lst);
+char *grammar_validator(t_token *head);
+int		ft_token_lstsize(t_token *lst);
 
 #endif

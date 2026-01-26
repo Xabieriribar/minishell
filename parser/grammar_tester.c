@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+
 int test_grammar(int fd_grammar_tester)
 {
     char *line_tokens;
@@ -8,17 +9,15 @@ int test_grammar(int fd_grammar_tester)
     {
         char *cmd = strtok(line_tokens, "::");
         char *tokens = strtok(NULL, "::");
-        char **token = ft_split(tokens, ' ');
-        char *result = strtok(NULL, "::");
+        (void)tokens;
+        char *expected_result = strtok(NULL, "::");
         head = init_list(cmd);
-        int i = 0;
-        while (head)
-        {
-            if (strcmp(head->, token[i]))
-            head = head->next;
-        }
-        head = init_list(line_tokens);
-
+        char *real_result = grammar_validator(head); 
+        int result;
+        if ((result = strcmp(real_result, expected_result)) != 0)
+            printf("FAIL\n");
+        else
+            printf("PASS\n");
     }
     return (0);
-}`
+}
