@@ -84,5 +84,8 @@ void	test_init_list(char *line, char *expected);
 // ----------- SIGNALS ---------- //
 
 void	sigint_handler(int sig);
-
+int test_grammar(int fd_grammar_tester);
+char *grammar_validator(t_token *head);
+int		ft_token_lstsize(t_token *lst);
+int		ft_is_redir(t_type *type);
 #endif
