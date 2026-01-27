@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/16 12:09:33 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/16 12:13:41 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,5 @@ int 	b_cd(char **args);
 // ----------- SIGNALS ---------- //
 
 void	sigint_handler(int sig);
-
-
-// ----------- PARSER ---------- //
-
-int test_grammar(int fd_grammar_tester);
-int	ft_token_lstsize(t_token *lst);
-char *grammar_validator(t_token *head);
-int		ft_token_lstsize(t_token *lst);
 
 #endif
