@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:20:03 by rick              #+#    #+#             */
-/*   Updated: 2026/01/25 12:04:34 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/26 12:09:34 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,31 +63,45 @@ void	free_tokens(t_token **head)
 }
 
 /* 
-* Funtion to set the enum types for each token in the list.
+* Funtion to set the enum types for a token in the list.
 + T_PIPE → |
 + T_REDIR_IN → <
 + T_REDIR_OUT → >
 + T_REDIR_APPEND → >>
 + T_HEREDOC → << */
-void	set_types(t_token **head)
+/* void	set_type(t_token *token)
 {
-	t_token	*ptr;
+	if (!ft_strncmp(token->value, ">>", 2))
+		token->type = T_REDIR_APPEND;
+	else if (!ft_strncmp(token->value, "<<", 2))
+		token->type = T_HEREDOC;
+	else if (!ft_strncmp(token->value, "|", 1))
+		token->type = T_PIPE;
+	else if (!ft_strncmp(token->value, "<", 1))
+		token->type = T_REDIR_IN;
+	else if (!ft_strncmp(token->value, ">", 1))
+		token->type = T_REDIR_OUT;
+} */
 
-	ptr = *head;
-	while (ptr)
-	{
-		if (!ft_strncmp(ptr->value, ">>", 2))
-			ptr->type = T_REDIR_APPEND;
-		else if (!ft_strncmp(ptr->value, "<<", 2))
-			ptr->type = T_HEREDOC;
-		else if (!ft_strncmp(ptr->value, "|", 1))
-			ptr->type = T_PIPE;
-		else if (!ft_strncmp(ptr->value, "<", 1))
-			ptr->type = T_REDIR_IN;
-		else if (!ft_strncmp(ptr->value, ">", 1))
-			ptr->type = T_REDIR_OUT;
-		ptr = ptr->next;
-	}
+/* 
+* Funtion to set the enum types for a token in the list.
++ T_PIPE → |
++ T_REDIR_IN → <
++ T_REDIR_OUT → >
++ T_REDIR_APPEND → >>
++ T_HEREDOC → << */
+void	set_type(t_token *token, char *str)
+{
+	if (!ft_strncmp(str, ">>", 2))
+		token->type = T_REDIR_APPEND;
+	else if (!ft_strncmp(str, "<<", 2))
+		token->type = T_HEREDOC;
+	else if (!ft_strncmp(str, "|", 1))
+		token->type = T_PIPE;
+	else if (!ft_strncmp(str, "<", 1))
+		token->type = T_REDIR_IN;
+	else if (!ft_strncmp(str, ">", 1))
+		token->type = T_REDIR_OUT;
 }
 
 /* 
