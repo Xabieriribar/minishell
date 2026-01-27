@@ -34,24 +34,29 @@ int ft_check_simple_commands(t_token *head)
 
 int ft_check_redirs(t_token *head)
 {
+    int lst_len = ft_token_lstsize(head);
+    int  lst_index = 1;
     while (head)
     {
-        if (ft_is_redir(head->type) != 0)
+        if (ft_is_redir(head->type) == 0)
         {
-            if (head->next->type == T_PIPE)
+            if (lst_len == lst_index)
                 return (1);
         }
+        lst_index++;
         head = head->next;
     }
     return (0);
 }
+
+
 char *grammar_validator(t_token *head)
 {
     if (ft_check_simple_commands(head) == 0)
         return ("PASS\n");
     else if (ft_check_pipes(head) != 0)
         return ("FAIL\n");
-    else if (ft_checK_redirs(head) != 0)
+    else if (ft_check_redirs(head) != 0)
         return ("FAIL\n");
     // else if (ft_check_pipes(head) != 0)
     //     return ("FAIL\n");
