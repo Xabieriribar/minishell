@@ -1,1 +1,24 @@
-The front-end is the part that deals with user input and user interaction, like commands and signals
+Mirar el tokenizer una vez mas para gestionar estos casos;
+cat 'ls > out'::WORD WORD T_REDIR_OUT WORD::PASS
+ls ; pwd
+ls \ -l
+echo hello \
+ls && pwd
+ls || pwd
+(ls)
+(ls && pwd) || echo "fail"
+ls && (pwd || echo "fail")
+( (ls) )
+ls | (grep a && echo b)
+TODOS ESTOS EL TOKENIZER DEBERIA LANZAR SYNTAX ERROR
+
+
+
+
+
+
+
+
+
+Mirar este test ">>>>>>>>>" ya que el parser tiene que lanzar error especial asi que
+el tokenizeer me tiene que mandar la string original, no solo >>

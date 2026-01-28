@@ -42,6 +42,8 @@ int ft_check_redirs(t_token *head)
         {
             if (lst_len == lst_index)
                 return (1);
+            else if (head->next->type != T_WORD)
+                return (1);
         }
         lst_index++;
         head = head->next;

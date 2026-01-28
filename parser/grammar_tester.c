@@ -17,9 +17,9 @@ int test_grammar(int fd_grammar_tester)
         int result;
         i++;
         if ((result = strcmp(real_result, expected_result)) != 0)
-            printf("%d FAIL\n", i);
+            printf("%d %s[FAIL]%s %s\n", i, RED, RESET, head->value);
         else
-            printf("%d PASS\n", i);
+            printf("%d %s[PASS]%s %s\n", i, GREEN, RESET, head->value);
     }
     return (0);
 }
