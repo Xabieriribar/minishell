@@ -89,4 +89,5 @@ char *grammar_validator(t_token *head);
 int		ft_token_lstsize(t_token *lst);
 int		ft_is_redir(t_type type);
 int		ft_is_append_or_heredoc(t_type type);
+void	test_init_list(char *line, char *expected);
 #endif
