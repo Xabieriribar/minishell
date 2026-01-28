@@ -16,6 +16,8 @@ int test_grammar(int fd_grammar_tester)
         char *real_result = grammar_validator(head); 
         int result;
         i++;
+        if (i == 47)
+            printf("LSTSIZE %d\n", ft_token_lstsize(head));
         if ((result = strcmp(real_result, expected_result)) != 0)
             printf("%d %s[FAIL]%s %s\n", i, RED, RESET, head->value);
         else
