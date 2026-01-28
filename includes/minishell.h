@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/26 12:10:09 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/28 15:38:25 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,17 @@ struct s_token
 	t_token		*prev;
 };
 
-typedef struct s_tree	t_tree;
+typedef struct s_node	t_node;
+
+//* REMEMBER EVIRONMENT VARIABLES
+struct s_node
+{
+	t_type		type;
+	char		**values;
+	char		*address;
+	t_node		*left;
+	t_node		*right;
+};
 
 // ----------- TOKENIZER ---------- //
 
