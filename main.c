@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/01/26 11:54:03 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/28 10:37:09 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 int	main(void)
 {
-	printf("\n%s= 1. Basic Commands & Spaces =%s\n", CYAN, RESET);
+	printf("\n%s= 1. Basic Commands & Spaces =%s\n", CYAN, RESET); 
 	test_init_list("ls", "WORD(ls)");
 	test_init_list("ls -la", "WORD(ls), WORD(-la)");
 	test_init_list("echo hello world", "WORD(echo), WORD(hello), WORD(world)");
