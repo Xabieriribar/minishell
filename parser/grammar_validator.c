@@ -40,7 +40,14 @@ int ft_check_redirs(t_token *head)
     {
         if (ft_is_redir(head->type) == 0)
         {
-            if (lst_len == lst_index)
+            if (ft_is_append_or_heredoc(head->type) != 0)
+            {
+                if (head->prev->type == T_WORD || head->prev->type != T_PIPE)
+                    return (1); //HERE WE SHOW A PARSE ERROR NEAR << OR >>
+                else if (head->next->type != T_WORD)
+                    return (1);//HERE WE SHOW A PARSE NEAR \N
+            }
+            else if (lst_len == lst_index)
                 return (1);
             else if (head->next->type != T_WORD)
                 return (1);

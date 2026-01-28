@@ -1,5 +1,4 @@
 Mirar el tokenizer una vez mas para gestionar estos casos;
-cat 'ls > out'::WORD WORD T_REDIR_OUT WORD::PASS
 ls ; pwd
 ls \ -l
 echo hello \
