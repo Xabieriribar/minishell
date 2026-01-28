@@ -1,6 +1,14 @@
 #include "minishell.h"
 
-
+static void print_init_list(t_token *head)
+{
+    while (head)
+    {
+        printf("%s\n", head->value);
+        head = head->next;
+    }
+    printf("\n");
+}
 int test_grammar(int fd_grammar_tester)
 {
     char *line_tokens;
@@ -16,12 +24,16 @@ int test_grammar(int fd_grammar_tester)
         char *real_result = grammar_validator(head); 
         int result;
         i++;
-        if (i == 47)
-            printf("LSTSIZE %d\n", ft_token_lstsize(head));
         if ((result = strcmp(real_result, expected_result)) != 0)
-            printf("%d %s[FAIL]%s\n", i, RED, RESET, test_init_list(cmd, NULL));
+        {
+            printf("%d %s[FAIL]%s\n", i, RED, RESET) ;
+            print_init_list(head);
+        }
         else
-            printf("%d %s[PASS]%s %s\n", i, GREEN, RESET, test_init_list(cmd, NULL));
+        {
+            printf("%d %s[PASS]%s\n", i, GREEN, RESET);
+            print_init_list(head);
+        }
     }
     return (0);
 }

@@ -45,3 +45,21 @@ cat << END | grep a > out | wc -l::WORD T_HEREDOC WORD PIPE WORD WORD T_REDIR_OU
 echo $USER > $USER.txt::WORD WORD T_REDIR_OUT WORD::PASS
 ls | |::WORD PIPE PIPE::FAIL
 >>>>>>::WORD::FAIL
+cat << END | grep pattern::WORD T_HEREDOC WORD PIPE WORD WORD::PASS
+cat << END > out::WORD T_HEREDOC WORD T_REDIR_OUT WORD::PASS
+ls -l | wc -l > count.txt::WORD WORD PIPE WORD WORD T_REDIR_OUT WORD::PASS
+> out1 ls | grep a > out2::T_REDIR_OUT WORD WORD PIPE WORD WORD T_REDIR_OUT WORD::PASS
+echo "hello"|cat::WORD WORD PIPE WORD::PASS
+ls>out::WORD T_REDIR_OUT WORD::PASS
+ls |grep a|wc::WORD PIPE WORD WORD PIPE WORD::PASS
+""::WORD::PASS
+ls -l  ::WORD WORD::PASS
+ls > out | > out2 cat::WORD T_REDIR_OUT WORD PIPE T_REDIR_OUT WORD WORD::PASS
+cat << END | grep a > out | wc -l::WORD::PASS
+echo $USER > $USER.txt::WORD::PASS
+ls | |::WORD::FAIL
+>>>>::WORD::FAIL
+<<<<::WORD::FAIL
+| | |::WORD::FAIL
+ls | < in::WORD::PASS
+ls > | wc::WORD::FAIL

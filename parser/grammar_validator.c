@@ -14,7 +14,9 @@ int  ft_check_pipes(t_token *head)
             if (lst_len == lst_index)
                 return (1);
             else if (head->next->type == T_PIPE)
-                return (1);
+                return (printf("parse error near '|'"), 1);
+            else if (head->prev->type == T_REDIR_IN)
+                return (printf("parse error near '|'"));
         }
         lst_index++;
         head = head->next;
@@ -40,15 +42,15 @@ int ft_check_redirs(t_token *head)
     {
         if (ft_is_redir(head->type) == 0)
         {
-            if (ft_is_append_or_heredoc(head->type) != 0)
-            {
-                if (head->prev->type == T_WORD || head->prev->type != T_PIPE)
-                    return (1); //HERE WE SHOW A PARSE ERROR NEAR << OR >>
-            }
-            else if (lst_len == lst_index)
-                return (1);
-            else if (head->next->type != T_WORD)
+            if (lst_len == lst_index)
                 return (printf("syntax error near unexpected token `newline'\n"), 1); //HERE WE SHOW A PARSE ERORR NEAR \N TOKEN
+            else if (head->next->type != T_WORD)
+                return (printf("syntax error near unexpected token `newline'\n"), 1);
+            else if (ft_is_append_or_heredoc(head->type) != 0)
+            {
+                if (head->prev->type != T_WORD)
+                    return (printf("syntax error near unexpected token '<<'"),1); //HERE WE SHOW A PARSE ERROR NEAR << OR >>
+            }
         }
         lst_index++;
         head = head->next;
