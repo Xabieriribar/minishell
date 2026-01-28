@@ -44,13 +44,11 @@ int ft_check_redirs(t_token *head)
             {
                 if (head->prev->type == T_WORD || head->prev->type != T_PIPE)
                     return (1); //HERE WE SHOW A PARSE ERROR NEAR << OR >>
-                else if (head->next->type != T_WORD)
-                    return (1);//HERE WE SHOW A PARSE NEAR \N
             }
             else if (lst_len == lst_index)
                 return (1);
             else if (head->next->type != T_WORD)
-                return (1);
+                return (printf("syntax error near unexpected token `newline'\n"), 1); //HERE WE SHOW A PARSE ERORR NEAR \N TOKEN
         }
         lst_index++;
         head = head->next;

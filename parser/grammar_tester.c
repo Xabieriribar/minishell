@@ -19,9 +19,9 @@ int test_grammar(int fd_grammar_tester)
         if (i == 47)
             printf("LSTSIZE %d\n", ft_token_lstsize(head));
         if ((result = strcmp(real_result, expected_result)) != 0)
-            printf("%d %s[FAIL]%s %s\n", i, RED, RESET, head->value);
+            printf("%d %s[FAIL]%s\n", i, RED, RESET, test_init_list(cmd, NULL));
         else
-            printf("%d %s[PASS]%s %s\n", i, GREEN, RESET, head->value);
+            printf("%d %s[PASS]%s %s\n", i, GREEN, RESET, test_init_list(cmd, NULL));
     }
     return (0);
 }
