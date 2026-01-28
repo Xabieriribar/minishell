@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:20:03 by rick              #+#    #+#             */
-/*   Updated: 2026/01/26 12:09:34 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/28 10:46:38 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,6 @@ void	free_tokens(t_token **head)
 		*head = tmp;
 	}
 }
-
-/* 
-* Funtion to set the enum types for a token in the list.
-+ T_PIPE → |
-+ T_REDIR_IN → <
-+ T_REDIR_OUT → >
-+ T_REDIR_APPEND → >>
-+ T_HEREDOC → << */
-/* void	set_type(t_token *token)
-{
-	if (!ft_strncmp(token->value, ">>", 2))
-		token->type = T_REDIR_APPEND;
-	else if (!ft_strncmp(token->value, "<<", 2))
-		token->type = T_HEREDOC;
-	else if (!ft_strncmp(token->value, "|", 1))
-		token->type = T_PIPE;
-	else if (!ft_strncmp(token->value, "<", 1))
-		token->type = T_REDIR_IN;
-	else if (!ft_strncmp(token->value, ">", 1))
-		token->type = T_REDIR_OUT;
-} */
 
 /* 
 * Funtion to set the enum types for a token in the list.

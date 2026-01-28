@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:26:07 by rick              #+#    #+#             */
-/*   Updated: 2026/01/26 12:11:46 by rick             ###   ########.fr       */
+/*   Updated: 2026/01/28 12:55:30 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,5 @@ int	token_word(t_token **head, char *str, int ix)
 	if (!token->value)
 		return (perror("Err: Malloc"), free(token), free(buff), -1);
 	lst_add_back_token(head, token);
-	free(buff);
-	return ((int)ft_strlen(token->value));
+	return (free(buff), (int)ft_strlen(token->value));
 }
