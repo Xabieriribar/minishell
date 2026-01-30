@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/28 15:38:25 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/01/30 13:24:43 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 typedef enum e_type
 {
+	T_CMD,
 	T_WORD,
 	T_PIPE,
 	T_REDIR_IN,
@@ -41,6 +42,8 @@ typedef enum e_type
 }	t_type;
 
 typedef struct s_token	t_token;
+typedef struct s_node	t_node;
+typedef struct s_redir	t_redir;
 
 struct s_token
 {
@@ -52,16 +55,18 @@ struct s_token
 	t_token		*prev;
 };
 
-typedef struct s_node	t_node;
+typedef struct s_redir {
+    t_type	type;     // <, >, >>, <<
+    char	*target; // filename or heredoc string
+    t_redir	*next;
+};
 
-//* REMEMBER EVIRONMENT VARIABLES
-struct s_node
-{
-	t_type		type;
-	char		**values;
-	char		*address;
-	t_node		*left;
-	t_node		*right;
+typedef struct s_node {
+    t_type	type;	  // T_CMD or T_PIPE
+    char	**argv;   // only for COMMAND
+    t_redir	*redirs;  // only for COMMAND
+    t_node	*left;
+    t_node	*right;
 };
 
 // ----------- TOKENIZER ---------- //
