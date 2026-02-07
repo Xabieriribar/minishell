@@ -63,3 +63,7 @@ ls | |::WORD::FAIL
 | | |::WORD::FAIL
 ls | < in::WORD::PASS
 ls > | wc::WORD::FAIL
+echo "hello' world"::WORD::PASS
+echo 'hello" world'::WORD::PASS
+ls | cat | grep a | wc -l | > file::WORD::PASS
+ls | cat | grep a | wc -l > file::WORD::PASS
