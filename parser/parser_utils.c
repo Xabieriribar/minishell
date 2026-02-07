@@ -1,5 +1,13 @@
 #include "minishell.h"
 
+char	*ft_type_to_str(t_token *lst)
+{
+	if (lst->type == T_HEREDOC)
+		return ("<<");
+	else if (lst->type == T_REDIR_APPEND)
+		return (">>");
+	return (lst->value);
+}
 int		ft_is_append_or_heredoc(t_type type)
 {
 	if (type == T_HEREDOC)
