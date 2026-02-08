@@ -64,13 +64,13 @@ typedef enum s_node_type
 	COMMAND,
 	PIPE,
 } t_node_type;
+
 typedef struct s_node
 {
 	t_node_type	node_type;
 	char	**args;
 	t_redirs	*redirs;
 } s_node;
-typedef struct s_tree	t_tree;
 
 // ----------- TOKENIZER ---------- //
 
