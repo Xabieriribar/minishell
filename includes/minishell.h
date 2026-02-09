@@ -65,12 +65,16 @@ typedef enum s_node_type
 	PIPE,
 } t_node_type;
 
-typedef struct s_node
+
+typedef struct s_node t_node;
+s_node
 {
 	t_node_type	node_type;
 	char	**args;
 	t_redirs	*redirs;
-} s_node;
+	t_node *right_child;
+	t_node *left_child;
+} t_node;
 
 // ----------- TOKENIZER ---------- //
 
@@ -110,3 +114,7 @@ int		ft_is_append_or_heredoc(t_type type);
 void	test_init_list(char *line, char *expected);
 char	*ft_type_to_str(t_token *lst);
 #endif
+
+// ----------- PARSER ---------- //
+int test_tree(int fd_tree_tester);
+int init_tree(t_token *token_list);
