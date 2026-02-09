@@ -63,6 +63,7 @@ int test_tree(int fd_tree_tester)
     while ((line = get_next_line(fd_tree_tester)))
     {
         char *commands = strtok(line, "::");
+        char *redirs = strtok(NULL, "::");
         head = init_list(commands);
         tree = init_tree(head);
         number_of_tokens = ft_token_lstsize(head);

@@ -31,7 +31,7 @@ t_node *init_tree(t_token *token_list)
 
     number_of_tokens = ft_token_lstsize(token_list);
     node = malloc(sizeof(struct s_node));
-    node->args = malloc(number_of_tokens);
+    node->args = malloc((number_of_tokens + 1) * sizeof(char *));
     fill_tree(node);
     if (!node->args || !node)
         perror("Malloc failed for the argument creation when size is one");

@@ -6,3 +6,6 @@ ls -a::NULL::NULL::NULL
 echo papa::NULL::NULL::NULL
 echo papa mama::NULL::NULL::NULL
 echo papa::NULL::NULL::NULL::NULL
+echo papi mami gordi::NULL::NULL::NULL
+what a good day to be alive::NULL::NULL::NULL
+ls > outfile::T_REDIR_OUT,outfile::NULL::NULL 
