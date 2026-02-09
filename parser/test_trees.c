@@ -9,20 +9,17 @@ int compare_args(t_node *tree, char *expected_args, int number_of_tokens)
         if (strcmp(tree->args[0], expected_args) != 0)
             return 1;
     }
+    else
     {
         char **expected_arguments = ft_split(expected_args, ' ');
         int i = 0;
         while (expected_arguments[i])
         {
             if (strcmp(tree->args[i], expected_arguments[i]) != 0)
-            {
-                printf("Here is %s and %s", tree->args[i], expected_arguments[i]);
                 return 1;
-            }
             i++;
         }
     }
-    printf("Here then?\n");
     return 0;
 }
 
@@ -51,7 +48,7 @@ void    print_args(char **args)
             mode = 0;
         }
         else
-            printf("%s", args[i]);
+            printf("%s,", args[i]);
         i++;
     }
     printf("]\n");
@@ -70,7 +67,7 @@ int test_tree(int fd_tree_tester)
         tree = init_tree(head);
         number_of_tokens = ft_token_lstsize(head);
         if (compare_args(tree, commands, number_of_tokens) != 0)
-            return(printf("%d %s[FAIL]%s\n", i, RED, RESET), 1);
+            printf("%d %s[FAIL]%s\n", i, RED, RESET);
         else
             printf("%d %s[PASS]%s\n", i, GREEN, RESET);
         // // if (compare_redirs(tree, head) != 0)
