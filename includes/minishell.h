@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/01/30 13:24:43 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/09 17:42:01 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,18 @@ struct s_token
 	char		*value;
 	int			index;
 	int			dolar;
+	bool		hdoc_expand;
 	t_token		*next;
 	t_token		*prev;
 };
 
-typedef struct s_redir {
+struct s_redir {
     t_type	type;     // <, >, >>, <<
     char	*target; // filename or heredoc string
     t_redir	*next;
 };
 
-typedef struct s_node {
+struct s_node {
     t_type	type;	  // T_CMD or T_PIPE
     char	**argv;   // only for COMMAND
     t_redir	*redirs;  // only for COMMAND
@@ -76,11 +77,13 @@ t_token	*lstlast_token(t_token *lst);
 void	free_tokens(t_token **head);
 void	set_type(t_token *token, char *str);
 void	set_dolar(t_token **head);
+void	set_init(t_token *token, int ix, int flag);
 
 bool	is_single(char c);
 bool	is_double(char c);
 bool	is_space(char c);
 bool	is_operator(char c);
+bool	is_dollar(char c);
 
 t_token	*init_list(char *str);
 int		init_add_token(t_token **head, char *str, int ix, int separated);
@@ -95,6 +98,13 @@ int		token_double_append(t_token *last, char *str);
 int		token_word_append(t_token *last, char *str);
 
 void	test_init_list(char *line, char *expected);
+
+// ----------- EXPANDER ---------- //
+
+char	*expander(t_token *token);
+char	*append_char(char *str, char c);
+char	*append_env(t_token *token, int *i, char *result);
+char 	*ft_strconcat(char *s1, char *s2);
 
 // ----------- SIGNALS ---------- //
 

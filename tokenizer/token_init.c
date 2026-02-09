@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:40:25 by rick              #+#    #+#             */
-/*   Updated: 2026/01/28 12:56:11 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/09 11:50:40 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,24 @@ int	init_add_token(t_token **head, char *str, int ix, int separated)
 			return (token_single(head, str, ix));
 		else
 			return (token_word(head, str, ix));
+	}
+}
+
+/*
++ Simple helper function to handle HEREDOC flag.*/
+void	set_init(t_token *token, int ix, int flag)
+{
+	if (flag == 1)
+	{
+		token->next = NULL;
+		token->index = ix;
+		token->hdoc_expand = false;
+		token->dolar = -1;
+	}
+	if (flag == 2)
+	{
+		token->index = ix;
+		if (token->prev && token->prev->type == T_HEREDOC)
+			token->hdoc_expand = true;
 	}
 }

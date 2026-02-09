@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:26:09 by rick              #+#    #+#             */
-/*   Updated: 2026/01/25 12:59:30 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/09 17:39:35 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,34 +33,35 @@ static void	print_token(t_token *token)
 {
 	char	*val;
 	char	*dol;
+	char	*hdoc;
 
 	if (!token)
 		return ;
 	val = token->value;
 	if (!val)
 		val = "(null)";
-	if (token->dolar == 1)
-		dol = GREEN "TRUE " RESET;
-	else
-		dol = RED "FALSE" RESET;
-	printf(" | %-5d | %-20s | %-15s | Value: '%s'\n",
-		token->index, type_to_str(token->type), dol, val);
+	dol = (token->dolar == 1) ? GREEN "TRUE " RESET : RED "FALSE" RESET;
+	hdoc = (token->hdoc_expand) ? GREEN "TRUE " RESET : RED "FALSE" RESET;
+
+	printf(" | %-5d | %-20s | %-15s | %-12s | Value: '%s'\n",
+		token->index, type_to_str(token->type), dol, hdoc, val);
 }
 
 static void	print_token_list(t_token *head)
 {
 	t_token	*current;
 
-	printf(" ____________________________________________________________\n");
-	printf(" | %-5s | %-11s | %-5s | %s\n", "INDEX", "TYPE", "DOLAR", "VALUE");
-	printf(" |-------|--------------|-------|----------------------------\n");
+	printf(" __________________________________________________________________\n");
+	printf(" | %-5s | %-11s | %-5s | %-12s | %s\n", "INDEX", "TYPE", "DOLAR", "HDOC", "VALUE");
+	printf(" |-------|--------------|-------|------------|----------------------------\n");
 	current = head;
 	while (current)
 	{
+		expander(current);
 		print_token(current);
 		current = current->next;
 	}
-	printf(" ------------------------------------------------------------\n");
+	printf(" ------------------------------------------------------------------\n");
 }
 
 void	test_init_list(char *line, char *expected)

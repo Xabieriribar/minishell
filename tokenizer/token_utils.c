@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:20:03 by rick              #+#    #+#             */
-/*   Updated: 2026/01/28 10:46:38 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/09 11:54:26 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	set_type(t_token *token, char *str)
 		token->type = T_REDIR_IN;
 	else if (!ft_strncmp(str, ">", 1))
 		token->type = T_REDIR_OUT;
+	else
+		token->type = T_WORD;
 }
 
 /* 
