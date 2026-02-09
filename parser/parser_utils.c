@@ -39,3 +39,19 @@ int		ft_token_lstsize(t_token *lst)
 	}
 	return (i);
 }
+
+int find_number_of_redirs(t_token *token_list)
+{
+	int number_of_redirs;
+
+	if (!token_list)
+		return (-1);
+	number_of_redirs = 0;
+	while (token_list)
+	{
+		if (ft_is_redir(token_list->type) == 0)
+			number_of_redirs++;
+		token_list = token_list->next;
+	}
+	return (number_of_redirs);
+}

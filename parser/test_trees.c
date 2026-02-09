@@ -31,23 +31,57 @@ int compare_args(t_node *tree, char *expected_args, int number_of_tokens)
     return 0;
 }
 
-int compare_redirs(char **redirs, t_node *tree)
+char *find_enum_type(t_redirs *redirs)
 {
     char *enum_type;
+    enum_type = NULL;
+    if (redirs->redir_type == T_HEREDOC)
+        enum_type = "T_HEREDOC";
+    else if (redirs->redir_type == T_REDIR_APPEND)
+        enum_type = "T_REDIR_APPEND";
+    else if (redirs->redir_type == T_REDIR_IN)
+        enum_type = "T_REDIR_IN";
+    else if (redirs->redir_type == T_REDIR_OUT)
+        enum_type = "T_REDIR_OUT";
+    return enum_type;
+}
+
+int compare_redirs(char **redirs, t_node *tree, t_token *token_list)
+{
+    char *enum_type = NULL;
     if (!redirs)
         return 0;
-    if (tree->redirs->redir_type == T_HEREDOC)
-        enum_type = "T_HEREDOC";
-    else if (tree->redirs->redir_type == T_REDIR_APPEND)
-        enum_type = "T_REDIR_APPEND";
-    else if (tree->redirs->redir_type == T_REDIR_IN)
-        enum_type = "T_REDIR_IN";
-    else if (tree->redirs->redir_type == T_REDIR_OUT)
-        enum_type = "T_REDIR_OUT";
-    if (strcmp(enum_type, redirs[0]))
-        return 1;
-    else if(strcmp(tree->redirs->filename, redirs[1]))
-        return 1;
+    int number_of_redirs = find_number_of_redirs(token_list);
+    if (number_of_redirs < 2)
+    {
+        enum_type = find_enum_type (tree->redirs);
+        redirs = ft_split(redirs[0], ',');
+        if (strcmp(enum_type, redirs[0]) != 0)
+            return 1;
+        else if(strcmp(tree->redirs->filename, redirs[1]) != 0)
+            return 1;
+    }
+    else
+    {
+        int i = 0;
+        while (redirs[i])
+        {
+            char **redir_and_filename = ft_split(redirs[i], ',');
+            enum_type = find_enum_type(tree->redirs);
+            int j = 0;
+            printf("Iteracion numero %d\n", i);
+            if (strcmp(enum_type, redir_and_filename[j]) != 0)
+            {
+                printf("Ja! porque enum es |%s| y redir es |%s|", enum_type, redir_and_filename[i]);
+                return 1;
+            }
+            else if(strcmp(tree->redirs->filename, redir_and_filename[j + 1]) != 0)
+                return 1;
+            i++;
+            tree->redirs = tree->redirs->next;
+
+        }
+    }
     return 0;
 }
 
@@ -77,7 +111,7 @@ void    print_args(char **args)
 int test_tree(int fd_tree_tester)
 {
     int i = 1;
-    t_token *head;
+    t_token *token_list;
     char *line;
     int number_of_tokens;
     t_node *tree;
@@ -90,13 +124,13 @@ int test_tree(int fd_tree_tester)
         // if (strcmp(redir, "NULL") != 0)
         //     redirs = ft_split(redir, ',');
         if (strcmp(redir, "NULL") != 0)
-            redirs = ft_split(redir, ',');
-        head = init_list(tokens);
-        tree = init_tree(head);
-        number_of_tokens = ft_token_lstsize(head);
+            redirs = ft_split(redir, '-');
+        token_list = init_list(tokens);
+        tree = init_tree(token_list);
+        number_of_tokens = ft_token_lstsize(token_list);
         if (compare_args(tree, commands, number_of_tokens) != 0)
             printf("%d %s[FAIL]%s\n", i, RED, RESET);
-        else if (compare_redirs(redirs, tree) != 0)
+        else if (compare_redirs(redirs, tree, token_list) != 0)
             printf("%d %s[FAIL]%s\n", i, RED, RESET);
         else
             printf("%d %s[PASS]%s\n", i, GREEN, RESET);

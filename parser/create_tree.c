@@ -6,8 +6,16 @@ void    create_redirs_list(t_node *node, t_token *pointer_to_redir_token)
     {
         node->redirs = malloc(sizeof(struct s_redirs));
         node->redirs->redir_type = pointer_to_redir_token->type;
-        node->redirs->filename = pointer_to_redir_token->value;
+        node->redirs->filename = pointer_to_redir_token->next->value;
         node->redirs->next = NULL;
+    }
+    else
+    {
+        while (node->redirs->next != NULL)
+            node->redirs = node->redirs->next;
+        node->redirs->next = malloc(sizeof(struct s_redirs));
+        node->redirs->next->filename = pointer_to_redir_token->next->value;
+        node->redirs->next->redir_type = pointer_to_redir_token->type;
     }
 }
 int     create_multiple_args(t_node *node, t_token *token_list)
