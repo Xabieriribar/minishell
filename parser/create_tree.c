@@ -9,12 +9,14 @@ int     create_multiple_args(t_node *node, t_token *token_list)
     while (token_list)
     {
         node->args[index] = token_list->value;
+        printf("Value from nodes %s\nValue to tokens %s\nIndex %d\n", node->args[index], token_list->value, index);
         token_list = token_list->next;
         index++;
     }
     node->args[index] = NULL;
     return 0;
 }
+
 void    fill_tree(t_node *node)
 {
     node->args[0] = NULL;
@@ -28,8 +30,8 @@ t_node *init_tree(t_token *token_list)
     int number_of_tokens;
 
     number_of_tokens = ft_token_lstsize(token_list);
-    node = ft_calloc(1, sizeof(struct s_node));
-    node->args = ft_calloc(number_of_tokens, sizeof(node->args));
+    node = malloc(sizeof(struct s_node));
+    node->args = malloc(number_of_tokens);
     fill_tree(node);
     if (!node->args || !node)
         perror("Malloc failed for the argument creation when size is one");

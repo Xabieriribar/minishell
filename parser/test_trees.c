@@ -56,8 +56,8 @@ void    print_args(char **args)
 int test_tree(int fd_tree_tester)
 {
     int i = 1;
-    char *line;
     t_token *head;
+    char *line;
     int number_of_tokens;
     t_node *tree;
     while ((line = get_next_line(fd_tree_tester)))
@@ -76,6 +76,7 @@ int test_tree(int fd_tree_tester)
         // //     printf("Child creation failed\n" != 0);
         i++;
         printf("ARGS: "), print_args(tree->args);
+        free(line);
     }
     return 0;
 }

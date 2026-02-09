@@ -53,7 +53,6 @@ char	*_gnl(char **stash, int fd, int ret)
 			return (free(buff), NULL);
 		}
 		*stash = concat_end(*stash, buff);
-		free(buff);
 		buff = ft_calloc_gnl(sizeof(char), (1 + 1));
 		if (contains_n(*stash))
 		{

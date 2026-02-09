@@ -15,5 +15,6 @@ int main(void)
 		perror("Failed to open tester file");
 	if (test_tree(fd_tree_tester) != 0)
 		return (perror("Failed to test tree"), 1);
+	close(fd_tree_tester);
 	return 0;
 }
