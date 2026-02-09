@@ -1,5 +1,15 @@
 #include "minishell.h"
 
+void    create_redirs_list(t_node *node, t_token *pointer_to_redir_token)
+{
+    if (!node->redirs)
+    {
+        node->redirs = malloc(sizeof(struct s_redirs));
+        node->redirs->redir_type = pointer_to_redir_token->type;
+        node->redirs->filename = pointer_to_redir_token->value;
+        node->redirs->next = NULL;
+    }
+}
 int     create_multiple_args(t_node *node, t_token *token_list)
 {
     int index;
@@ -8,8 +18,13 @@ int     create_multiple_args(t_node *node, t_token *token_list)
         return 1;
     while (token_list)
     {
+        if (ft_is_redir(token_list->type) == 0)
+        {
+            create_redirs_list(node, token_list);
+            token_list = token_list->next->next;
+            continue;
+        }
         node->args[index] = token_list->value;
-        printf("Value from nodes %s\nValue to tokens %s\nIndex %d\n", node->args[index], token_list->value, index);
         token_list = token_list->next;
         index++;
     }
@@ -38,7 +53,9 @@ t_node *init_tree(t_token *token_list)
     if (number_of_tokens == 1)
         node->args[0] = token_list->value;
     else
+    {
         if (create_multiple_args(node, token_list) != 0)
             printf("Failed to create multiple args\n");
+    }
     return node;
 }
