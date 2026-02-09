@@ -1,4 +1,4 @@
-ls
-NULL
-NULL
-NULL
+ls::NULL::NULL::NULL
+echo::NULL::NULL::NULL
+pwd::NULL::NULL::NULL
+ls -l::NULL::NULL::NULL

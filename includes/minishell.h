@@ -56,7 +56,7 @@ typedef struct s_redirs
 {
 	t_type	redir_type;
 	char	*filename;
-	t_redirs	*next;
+	struct s_redirs *next;
 }	t_redirs;
 
 typedef enum s_node_type
@@ -65,15 +65,13 @@ typedef enum s_node_type
 	PIPE,
 } t_node_type;
 
-
-typedef struct s_node t_node;
-s_node
+typedef struct s_node 
 {
 	t_node_type	node_type;
 	char	**args;
-	t_redirs	*redirs;
-	t_node *right_child;
-	t_node *left_child;
+	struct s_redirs *redirs;
+	struct s_node *right_child;
+	struct s_node *left_child;
 } t_node;
 
 // ----------- TOKENIZER ---------- //
@@ -117,4 +115,6 @@ char	*ft_type_to_str(t_token *lst);
 
 // ----------- PARSER ---------- //
 int test_tree(int fd_tree_tester);
-int init_tree(t_token *token_list);
+t_node *init_tree(t_token *token_list);
+char	*ft_strdup(const char *s);
+void	*ft_calloc(size_t nmemb, size_t size);

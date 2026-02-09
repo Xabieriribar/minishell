@@ -1,18 +1,26 @@
 #include "minishell.h"
 
-int init_tree(t_token *token_list)
+t_node *init_tree(t_token *token_list)
 {
     t_node *node;
-    if (ft_token_lstsize(token_list) == 1)
-    {
-        node = malloc(sizeof(struct s_node));
-        if (!node)
-            perror("Malloc failed for the node creation");
-        node->args[0] = token_list->value;
-        node->args[1] = NULL;
-        node->redirs = NULL;
-        node->left_child = NULL;
-        node->right_child = NULL;
-    }
-    return 0;
+    int number_of_tokens;
+
+    number_of_tokens = ft_token_lstsize(token_list);
+    node = ft_calloc(number_of_tokens, sizeof(struct s_node));
+    node->args = ft_calloc(number_of_tokens, sizeof(node->args));
+    if (!node->args)
+        perror("Malloc failed for the argument creation when size is one");
+    // node->args[0] = NULL;
+    // fill_tree_values(node);
+    if (!node)
+        perror("Malloc failed for the node creation");
+    // if (number_of_tokens == 1)
+    // {
+    //     node->args[0] = token_list->value;
+    //     node->args[1] = NULL;
+    //     node->redirs = NULL;
+    //     node->left_child = NULL;
+    //     node->right_child = NULL;
+    // }
+    return node;
 }

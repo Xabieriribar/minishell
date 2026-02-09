@@ -23,6 +23,8 @@ SRCS = \
 	parser/grammar_tester.c \
 	parser/grammar_validator.c \
 	parser/parser_utils.c \
+	parser/create_tree.c \
+	parser/test_trees.c \
 
 # ------------- COMPILING ----------------
 
