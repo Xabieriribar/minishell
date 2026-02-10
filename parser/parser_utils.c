@@ -55,3 +55,39 @@ int find_number_of_redirs(t_token *token_list)
 	}
 	return (number_of_redirs);
 }
+
+void	ft_lstadd_back_redirs(t_redirs **lst, t_redirs *new)
+{
+	t_redirs *ptr;
+
+	ptr = ft_lstlast_redirs(*lst);
+	if (!ptr)
+		*lst = new;
+	else
+		ptr->next = new;
+}
+
+t_redirs *ft_lstlast_redirs(t_redirs *lst)
+{
+	t_redirs *ptr;
+
+	ptr = lst;
+	if (!lst)
+		return (NULL);
+	while (ptr->next != NULL)
+		ptr = ptr->next;
+	return (ptr);
+}
+
+t_redirs *ft_lstnew_redirs(char *filename, t_type redir_type)
+{
+	t_redirs *li;
+
+	li = malloc(sizeof(struct s_redirs));
+	if (!li)
+		return (NULL);
+	li->filename = filename;
+	li->redir_type = redir_type;
+	li->next = NULL;
+	return (li);
+}

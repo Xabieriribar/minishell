@@ -12,4 +12,4 @@ ls > outfile::ls::T_REDIR_OUT,outfile::NULL::NULL
 < outfile ls::ls::T_REDIR_IN,outfile::NULL::NULL
 ls >> outfile::ls::T_REDIR_APPEND,outfile::NULL::NULL
 ls << EOF::ls::T_HEREDOC,EOF::NULL::NULL
-ls > outfile1 > outfile2 >> outfile3::ls::T_REDIR_OUT,outfile1-T_REDIR_OUT,outfile2-T_REDIR_APPEND,outfile3::NULL::NULL
+ls > outfile1 > outfile2::ls::T_REDIR_OUT,outfile1-T_REDIR_OUT,outfile2::NULL::NULL

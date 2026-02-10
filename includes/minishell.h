@@ -119,3 +119,7 @@ t_node *init_tree(t_token *token_list);
 char	*ft_strdup(const char *s);
 void	*ft_calloc(size_t nmemb, size_t size);
 int find_number_of_redirs(t_token *token_list);
+char *find_enum_type(t_redirs *redirs);
+void	ft_lstadd_back_redirs(t_redirs **lst, t_redirs *new);
+t_redirs *ft_lstlast_redirs(t_redirs *lst);
+t_redirs *ft_lstnew_redirs(char *filename, t_type redir_type);

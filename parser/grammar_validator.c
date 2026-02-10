@@ -4,9 +4,7 @@
 int ft_check_simple_commands(t_token *head)
 {
     int no_word_len;
-    int lst_len;
 
-    lst_len = ft_token_lstsize(head);
     no_word_len = 0;
     while (head)
     {

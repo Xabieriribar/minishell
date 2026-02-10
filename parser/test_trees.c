@@ -69,12 +69,8 @@ int compare_redirs(char **redirs, t_node *tree, t_token *token_list)
             char **redir_and_filename = ft_split(redirs[i], ',');
             enum_type = find_enum_type(tree->redirs);
             int j = 0;
-            printf("Iteracion numero %d\n", i);
             if (strcmp(enum_type, redir_and_filename[j]) != 0)
-            {
-                printf("Ja! porque enum es |%s| y redir es |%s|", enum_type, redir_and_filename[i]);
                 return 1;
-            }
             else if(strcmp(tree->redirs->filename, redir_and_filename[j + 1]) != 0)
                 return 1;
             i++;
@@ -91,22 +87,40 @@ int compare_redirs(char **redirs, t_node *tree, t_token *token_list)
 //         return 1;
 //     return 0;
 // }
-void    print_args(char **args)
+void    print_tree(t_node *tree)
 {
     int i = 0;
-    int mode = 1;
-    while (args[i])
+    printf("ARGS: [");
+    while (tree->args[i])
     {
-        if (mode == 1)
-        {
-            printf("[%s,", args[i]);
-            mode = 0;
-        }
-        else
-            printf("%s,", args[i]);
+        printf("%s", tree->args[i]);
+        if (tree->args[i + 1] != NULL)
+            printf(",");
         i++;
     }
     printf("]\n");
+    int mode = 1;
+    if (tree->redirs != NULL)
+    {
+        printf("Problemon");
+        while(tree->redirs)
+        {
+            int j = 1;
+            if (mode == 1)
+            {
+                printf("REDIR_TYPE %d: %s\n", j, find_enum_type(tree->redirs));
+                printf("FILE NAME %d: %s\n", j, tree->redirs->filename);
+                mode = 0;
+            }
+            else
+            {
+                printf("REDIR_TYPE %d: %s\n", j, find_enum_type(tree->redirs->next));
+                printf("FILE NAME %d: %s\n", j, tree->redirs->next->filename);
+            }
+            tree->redirs = tree->redirs->next;
+            j++;
+        }
+    }
 }
 int test_tree(int fd_tree_tester)
 {
@@ -127,6 +141,7 @@ int test_tree(int fd_tree_tester)
             redirs = ft_split(redir, '-');
         token_list = init_list(tokens);
         tree = init_tree(token_list);
+        t_node *temp_tree = tree;
         number_of_tokens = ft_token_lstsize(token_list);
         if (compare_args(tree, commands, number_of_tokens) != 0)
             printf("%d %s[FAIL]%s\n", i, RED, RESET);
@@ -139,7 +154,7 @@ int test_tree(int fd_tree_tester)
         // // if (compare_childs(tree, head) != 0)
         // //     printf("Child creation failed\n" != 0);
         i++;
-        printf("ARGS: "), print_args(tree->args);
+        print_tree(temp_tree);
         free(line);
     }
     return 0;
