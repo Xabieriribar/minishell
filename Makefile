@@ -20,6 +20,7 @@ SRCS = \
 	tokenizer/token_handler.c \
 	tokenizer/token_append.c \
 	expander/expander.c \
+	expander/test_exp.c \
 	signals/signals.c \
 
 # ------------- COMPILING ----------------

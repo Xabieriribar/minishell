@@ -1,0 +1,39 @@
+# $ EDGE CASES
+echo $user::echo
+echo $$::echo 2426
+echo $$$::echo 2426$
+echo $ ::echo $
+echo $"::echo
+echo $'::echo
+
+# VARIABLE NAME BOUNDARIES
+echo $USER.::echo john.
+echo $USER!::echo john!
+echo $USER$::echo john$
+echo $USER123::echo
+echo $_USER::echo
+echo $9::echo
+
+# STUCK / ADJACENT EXPANSIONS
+echo $USER$HOME::echo john/home/john
+echo a$USERb::echo ajohnb
+echo $USER"hola"::echo johnhola
+echo "hola"$USER::echo holajohn
+echo "$USER$HOME"::echo john/home/john
+
+# UNDEFINED VARIABLES
+echo $DOES_NOT_EXIST::echo
+echo a$DOES_NOT_EXISTb::echo ab
+echo $USER$DOES_NOT_EXIST$HOME::echo john/home/john
+
+# QUOTES + $
+echo "$"::echo $
+echo '$'::echo $
+echo "$USER"::echo john
+echo '$USER'::echo $USER
+
+# STRESS TESTS
+echo $$$$$$$$::echo 2426$$$$$$$
+echo $USER$USER$USER$USER::echo johnjohnjohnjohn
+echo a$b$c$d$e::echo a
+echo $::echo $
