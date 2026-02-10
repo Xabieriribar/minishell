@@ -5,14 +5,11 @@ void    create_redirs_list(t_node *node, t_token *pointer_to_redir_token)
     t_redirs *new_node;
 
     if (!node->redirs)
-    {
-        (void)new_node;
         node->redirs = ft_lstnew_redirs(pointer_to_redir_token->next->value, pointer_to_redir_token->type);
-    }
     else
     {
         new_node = ft_lstnew_redirs(pointer_to_redir_token->next->value, pointer_to_redir_token->type); 
-        ft_lstadd_back_redirs(&node->redirs, new_node);
+        ft_lstadd_back_redirs(&(node->redirs), new_node);
     }
 }
 int     create_multiple_args(t_node *node, t_token *token_list)

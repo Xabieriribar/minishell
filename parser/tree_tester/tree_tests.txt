@@ -1,15 +1,1 @@
-ls::ls::NULL::NULL
-echo::echo::NULL::NULL
-pwd::pwd::NULL::NULL
-ls -l::ls -l::NULL::NULL
-ls -a::ls -a::NULL::NULL
-echo papa::echo papa::NULL::NULL
-echo papa mama::echo papa mama::NULL::NULL
-echo papa::echo papa::NULL::NULL::NULL
-echo papi mami gordi::echo papi mami gordi::NULL::NULL
-what a good day to be alive::what a good day to be alive::NULL::NULL
-ls > outfile::ls::T_REDIR_OUT,outfile::NULL::NULL 
-< outfile ls::ls::T_REDIR_IN,outfile::NULL::NULL
-ls >> outfile::ls::T_REDIR_APPEND,outfile::NULL::NULL
-ls << EOF::ls::T_HEREDOC,EOF::NULL::NULL
-ls > outfile1 > outfile2::ls::T_REDIR_OUT,outfile1-T_REDIR_OUT,outfile2::NULL::NULL
+ls > outfile1 > outfile2 >> outfile3::ls::T_REDIR_OUT,outfile1-T_REDIR_OUT,outfile2-T_REDIR_APPEND,outfile3::NULL::NULL

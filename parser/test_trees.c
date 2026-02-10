@@ -73,6 +73,7 @@ int compare_redirs(char **redirs, t_node *tree, t_token *token_list)
                 return 1;
             else if(strcmp(tree->redirs->filename, redir_and_filename[j + 1]) != 0)
                 return 1;
+            printf("enum_type %s and filename %s\n", enum_type, tree->redirs->filename);
             i++;
             tree->redirs = tree->redirs->next;
 
@@ -141,7 +142,7 @@ int test_tree(int fd_tree_tester)
             redirs = ft_split(redir, '-');
         token_list = init_list(tokens);
         tree = init_tree(token_list);
-        t_node *temp_tree = tree;
+        t_node **temp_tree = &tree;
         number_of_tokens = ft_token_lstsize(token_list);
         if (compare_args(tree, commands, number_of_tokens) != 0)
             printf("%d %s[FAIL]%s\n", i, RED, RESET);
@@ -154,7 +155,7 @@ int test_tree(int fd_tree_tester)
         // // if (compare_childs(tree, head) != 0)
         // //     printf("Child creation failed\n" != 0);
         i++;
-        print_tree(temp_tree);
+        print_tree(*temp_tree);
         free(line);
     }
     return 0;
