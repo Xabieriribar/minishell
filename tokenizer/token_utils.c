@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:20:03 by rick              #+#    #+#             */
-/*   Updated: 2026/02/09 11:54:26 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/10 12:59:11 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	set_dolar(t_token **head)
 			ptr->dolar = 1;
 		else
 			ptr->dolar = 0;
+		ptr->value = expander(ptr);
 		ptr = ptr->next;
 	}
 }

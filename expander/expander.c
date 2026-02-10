@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 09:49:03 by rick              #+#    #+#             */
-/*   Updated: 2026/02/09 17:37:59 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/10 12:56:39 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*ft_strconcat(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
+	if (!s2 && !s1)
+		return (NULL);
 	if (!s2)
 		return (s1);
 	if (!s1)
@@ -36,33 +38,51 @@ char	*ft_strconcat(char *s1, char *s2)
 	return (free(s1), res);
 }
 
-char	*append_env(t_token *token, int *i, char *result)
+char *append_env(t_token *token, int *i, char *result)
 {
-	char	*env;
-	char	*val;
-	char	*getval;
+    char    *env;
+    char    *val;
+    char    *getval;
 
-	env = NULL;
-	val = token->value;
-	(*i)++;
-	while (val[*i] && !is_dollar(val[*i]) && !is_space(val[*i]))
-	{
-		env = append_char(env, val[*i]);
-		if (!env)
-			return (perror("Err: Malloc"), NULL);
-		(*i)++;
-	}
-	getval = getenv(env);
-	if (getval == NULL)
-		getval = "";
-	if (!env || env[0] == '\0')
-		result = ft_strconcat(result, "$");
-	else
-		result = ft_strconcat(result, getval);
-	if (!result)
-		return (perror("Err: Malloc"), NULL);
-	return (free(env), result);
+    val = token->value;
+    (*i)++; // skip the initial $
+
+    // If $ is at the end of the string, just append literal $
+    if (val[*i] == '\0')
+        return ft_strconcat(result, "$");
+
+    env = NULL;
+
+    // Build the env variable name: letters, digits, underscore
+    while (val[*i] && ((val[*i] >= 'A' && val[*i] <= 'Z')
+                      || (val[*i] >= 'a' && val[*i] <= 'z')
+                      || (val[*i] >= '0' && val[*i] <= '9')
+                      || val[*i] == '_'))
+    {
+        env = append_char(env, val[*i]);
+        if (!env)
+            return (perror("Err: Malloc"), NULL);
+        (*i)++;
+    }
+
+    // If no valid variable name, treat it as literal $
+    if (!env || env[0] == '\0')
+        return ft_strconcat(result, "$");
+
+    // Lookup environment value
+    getval = getenv(env);
+    if (!getval)
+        getval = "";
+
+    // Append value
+    result = ft_strconcat(result, getval);
+    if (!result)
+        return (perror("Err: Malloc"), NULL);
+
+    free(env);
+    return result;
 }
+
 
 char	*append_char(char *str, char c)
 {
@@ -97,7 +117,8 @@ char	*expander(t_token *token)
 	char	*result;
 	char	*val;
 
-	if (token->dolar != 1)
+	if (token->dolar != 1 
+		|| ((token->value[0] == '$' && token->value[1] == '\0')))
 		return (token->value);
 	i = 0;
 	result = NULL;

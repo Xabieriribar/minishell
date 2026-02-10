@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:26:09 by rick              #+#    #+#             */
-/*   Updated: 2026/02/09 17:39:35 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/10 12:20:27 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	print_token_list(t_token *head)
 	current = head;
 	while (current)
 	{
-		expander(current);
+//		current->value = expander(current);
 		print_token(current);
 		current = current->next;
 	}
