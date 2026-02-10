@@ -67,7 +67,7 @@ typedef enum s_node_type
 
 typedef struct s_node 
 {
-	t_node_type	node_type;
+	enum s_node_type node_type;
 	char	**args;
 	struct s_redirs *redirs;
 	struct s_node *right_child;
