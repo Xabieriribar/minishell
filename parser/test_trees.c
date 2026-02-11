@@ -115,8 +115,8 @@ void    print_tree(t_node *tree)
             }
             else
             {
-                printf("REDIR_TYPE %d: %s\n", j, find_enum_type(tree->redirs->next));
-                printf("FILE NAME %d: %s\n", j, tree->redirs->next->filename);
+                printf("REDIR_TYPE %d: %s\n", j, find_enum_type(tree->redirs));
+                printf("FILE NAME %d: %s\n", j, tree->redirs->filename);
             }
             tree->redirs = tree->redirs->next;
             j++;
@@ -141,7 +141,7 @@ int test_tree(int fd_tree_tester)
         if (strcmp(redir, "NULL") != 0)
             redirs = ft_split(redir, '-');
         token_list = init_list(tokens);
-        tree = init_tree(token_list);
+        tree = init_tree(&token_list);
         t_node **temp_tree = &tree;
         number_of_tokens = ft_token_lstsize(token_list);
         if (compare_args(tree, commands, number_of_tokens) != 0)

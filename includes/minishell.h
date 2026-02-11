@@ -115,7 +115,7 @@ char	*ft_type_to_str(t_token *lst);
 
 // ----------- PARSER ---------- //
 int test_tree(int fd_tree_tester);
-t_node *init_tree(t_token *token_list);
+t_node *init_tree(t_token **token_list);
 char	*ft_strdup(const char *s);
 void	*ft_calloc(size_t nmemb, size_t size);
 int find_number_of_redirs(t_token *token_list);
