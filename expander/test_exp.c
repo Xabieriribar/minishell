@@ -6,35 +6,35 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:35:34 by rick              #+#    #+#             */
-/*   Updated: 2026/02/10 19:24:36 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/11 11:59:56 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*join_tokens(t_token *tok)
+static char *join_tokens(t_token *token)
 {
-	char	*result;
-	char	*tmp;
+	char *result;
+	char *tmp;
 
 	result = ft_strdup("");
-	while (tok)
+	while (token)
 	{
 		tmp = result;
-		result = ft_strjoin(result, tok->value);
+		result = ft_strjoin(result, token->value);
 		free(tmp);
-		if (tok->next)
+		if (token->next)
 		{
 			tmp = result;
 			result = ft_strjoin(result, " ");
 			free(tmp);
 		}
-		tok = tok->next;
+		token = token->next;
 	}
 	return (result);
 }
 
-int	expander_test(char *address)
+int expander_test(char *address)
 {
 	int		fd;
 	char	*line;
@@ -50,40 +50,32 @@ int	expander_test(char *address)
 	fd = open(address, O_RDONLY);
 	if (fd < 0)
 		return (printf("%sWrong address%s\n", RED, RESET), -1);
-
 	while ((line = get_next_line(fd)))
 	{
 		line[strcspn(line, "\n")] = '\0';
-		// skip comments and empty lines
 		if (*line == '\0' || line[0] == '#')
 		{
 			free(line);
 			continue;
 		}
-
 		command = strtok(line, "::");
 		exp_output = strtok(NULL, "::");
-
 		if (!command || !exp_output)
 		{
 			printf("%s[FORMAT ERROR]%s %s\n\n", RED, RESET, line);
 			free(line);
 			continue;
 		}
-
 		tokens = init_list(command);
 		result = join_tokens(tokens);
-
 		if (strcmp(result, exp_output) == 0)
 			printf("%s[PASS]%s\n", GREEN, RESET);
 		else
 			printf("%s[FAIL]%s\n", RED, RESET);
-
 		printf("%sCOMMAND :%s %s\n", CYAN, RESET, command);
 		printf("%sEXPECTED:%s %s\n", YELLOW, RESET, exp_output);
 		printf("%sRESULT  :%s %s\n", BLUE, RESET, result);
 		printf("\n");
-
 		free(result);
 		free_tokens(&tokens);
 		free(line);
@@ -91,4 +83,3 @@ int	expander_test(char *address)
 	close(fd);
 	return (0);
 }
-
