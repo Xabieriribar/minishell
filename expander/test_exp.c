@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:35:34 by rick              #+#    #+#             */
-/*   Updated: 2026/02/11 11:59:56 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/11 14:47:39 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static char *join_tokens(t_token *token)
 int expander_test(char *address)
 {
 	int		fd;
+	int		percentage;
+	int		n_tests;
 	char	*line;
 	char	*command;
 	char	*exp_output;
@@ -47,6 +49,8 @@ int expander_test(char *address)
 	setenv("HOME", "/home/john", 1);
 	setenv("VAR1", "42", 1);
 
+	percentage = 0;
+	n_tests = 0;
 	fd = open(address, O_RDONLY);
 	if (fd < 0)
 		return (printf("%sWrong address%s\n", RED, RESET), -1);
@@ -69,9 +73,16 @@ int expander_test(char *address)
 		tokens = init_list(command);
 		result = join_tokens(tokens);
 		if (strcmp(result, exp_output) == 0)
+		{
 			printf("%s[PASS]%s\n", GREEN, RESET);
+			percentage++;
+			n_tests++;
+		}
 		else
+		{
 			printf("%s[FAIL]%s\n", RED, RESET);
+			n_tests++;
+		}
 		printf("%sCOMMAND :%s %s\n", CYAN, RESET, command);
 		printf("%sEXPECTED:%s %s\n", YELLOW, RESET, exp_output);
 		printf("%sRESULT  :%s %s\n", BLUE, RESET, result);
@@ -81,5 +92,7 @@ int expander_test(char *address)
 		free(line);
 	}
 	close(fd);
+	percentage = percentage * 100 / n_tests;
+	printf("\n%sPASSED TESTS:%s  [%i%%]%s\n", YELLOW, GREEN, percentage, RESET);
 	return (0);
 }

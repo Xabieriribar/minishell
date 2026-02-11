@@ -6,17 +6,20 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/10 19:09:37 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/11 14:10:43 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* int	main(void)
+volatile sig_atomic_t g_status = 0;
+
+int	main(void)
 {
-	test_init_list("echo '\"'hola'\"'chau", NULL);
+	g_status = 42;
+	expander_test("./expander/expander_test.txt");
 	return (0);
-} */
+}
 
 /* int	main(void)
 {
@@ -34,9 +37,3 @@
 	}
 	return (0);
 } */
-
-int	main(void)
-{
-	expander_test("./expander/expander_test.txt");
-	return (0);
-}

@@ -6,12 +6,25 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 09:49:03 by rick              #+#    #+#             */
-/*   Updated: 2026/02/10 12:56:39 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/11 14:36:44 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static bool	valid_chars(char c)
+{
+	if ((c >= 'A' && c <= 'Z')
+		|| (c >= 'a' && c <= 'z')
+		|| (c >= '0' && c <= '9')
+		|| c == '_')
+		return (true);
+	return (false);
+}
+
+/*
+* Concatenates 2 strings, allocating memory for the returning string and freeing
+* ONLY THE FIRST ONE, SECOND STRING CAN BE A CONSTANT.*/
 char	*ft_strconcat(char *s1, char *s2)
 {
 	char	*res;
@@ -38,52 +51,83 @@ char	*ft_strconcat(char *s1, char *s2)
 	return (free(s1), res);
 }
 
+/*
+* Helper function to handle the "$?" case, where we
+* need to access to the previous exit status, stored in
+* our global variable g_status.
+- (getenv() doesn´t return this.)*/
+int	append_status(int *i, char *value, char **result)
+{
+    char *status_str;
+
+    if (value[*i] != '?')
+        return (0);
+    
+    (*i)++;
+    status_str = ft_itoa(g_status);
+    *result = ft_strconcat(*result, status_str);
+    free(status_str);
+    return (1);
+}
+
+/*
+* Helper function to handle the getenv() case, where we
+* add to our result the evironment variable value returned
+* by the function getenv().*/
+int append_getenv(char *env, char **result)
+{
+    char    *getval;
+    char    *new_res;
+
+    if (!env || env[0] == '\0')
+    {
+        new_res = ft_strconcat(*result, "$");
+        if (!new_res)
+			return (0);
+        *result = new_res;
+        return (1);
+    }
+    getval = getenv(env);
+    if (!getval)
+        getval = "";
+    new_res = ft_strconcat(*result, getval);
+    if (!new_res)
+        return (0);
+    *result = new_res;
+    return (1);
+}
+
+/*
+* Main logic to append evironment variables and also
+* previous exit status after a dollar sign ($).*/
 char *append_env(t_token *token, int *i, char *result)
 {
     char    *env;
     char    *val;
-    char    *getval;
 
     val = token->value;
-    (*i)++; // skip the initial $
-
-    // If $ is at the end of the string, just append literal $
+    (*i)++;
     if (val[*i] == '\0')
-        return ft_strconcat(result, "$");
-
+        return (ft_strconcat(result, "$"));
+    if (append_status(i, val, &result))
+        return (result);
     env = NULL;
-
-    // Build the env variable name: letters, digits, underscore
-    while (val[*i] && ((val[*i] >= 'A' && val[*i] <= 'Z')
-                      || (val[*i] >= 'a' && val[*i] <= 'z')
-                      || (val[*i] >= '0' && val[*i] <= '9')
-                      || val[*i] == '_'))
+    while (val[*i] && valid_chars(val[*i]))
     {
         env = append_char(env, val[*i]);
         if (!env)
             return (perror("Err: Malloc"), NULL);
         (*i)++;
     }
-
-    // If no valid variable name, treat it as literal $
-    if (!env || env[0] == '\0')
-        return ft_strconcat(result, "$");
-
-    // Lookup environment value
-    getval = getenv(env);
-    if (!getval)
-        getval = "";
-
-    // Append value
-    result = ft_strconcat(result, getval);
+	append_getenv(env, &result);
     if (!result)
         return (perror("Err: Malloc"), NULL);
-
-    free(env);
-    return result;
+    return (free(env), result);
 }
 
-
+/*
+* Helper function that will append char by char
+* allocating +1 byte and helping to copy one by one.*/
 char	*append_char(char *str, char c)
 {
 	char	*new;

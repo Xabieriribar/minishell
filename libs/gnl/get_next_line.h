@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:33:34 by zalemu            #+#    #+#             */
-/*   Updated: 2026/02/11 12:14:13 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/11 12:28:15 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # endif
 
 char	*get_next_line(int fd);
-size_t	ft_strlen_gnl(const char *s);
+size_t	slen_gnl(const char *s);
 char	*ft_strchr_gnl(const char *s, int c);
 char	*ft_strjoin_gnl(char *prev_line, char *buffer);
 

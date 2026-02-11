@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/11 12:11:28 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/11 14:10:55 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # include <readline/history.h> 
 # include <signal.h>
 # include <fcntl.h>
+
+extern volatile sig_atomic_t g_status;
 
 typedef enum e_type
 {
@@ -57,19 +59,10 @@ struct s_token
 	t_token		*prev;
 };
 
-struct s_redir {
-    t_type	type;     // <, >, >>, <<
-    char	*target; // filename or heredoc string
-    t_redir	*next;
-};
-
-struct s_node {
-    t_type	type;	  // T_CMD or T_PIPE
-    char	**argv;   // only for COMMAND
-    t_redir	*redirs;  // only for COMMAND
-    t_node	*left;
-    t_node	*right;
-};
+typedef struct s_data
+{
+	int		exit_status;
+}	t_data;
 
 // ----------- TOKENIZER ---------- //
 
