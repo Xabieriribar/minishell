@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:26:07 by rick              #+#    #+#             */
-/*   Updated: 2026/02/09 11:54:57 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/11 17:25:21 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	token_operator(t_token **head, char *str, int ix)
 	token = ft_calloc(sizeof(t_token), 1);
 	if (!token)
 		return (perror("Malloc error at token_operator()"), -1);
-	token->next = NULL;
-	token->index = ix;
-	token->hdoc_expand = false;
-	set_type(token, str);
+	set_init(token, str, ix, 3);
 	if (!ft_strncmp(str, "<<", 2))
 		token->value = ft_strdup("<<");
 	else if (!ft_strncmp(str, ">>", 2))
@@ -58,10 +55,7 @@ int	token_double(t_token **head, char *str, int ix)
 	token = ft_calloc(sizeof(t_token), 1);
 	if (!token)
 		return (perror("Err: Malloc"), -1);
-	token->next = NULL;
-	token->index = ix;
-	token->hdoc_expand = false;
-	set_type(token, str);
+	set_init(token, str, ix, 2);
 	i = 0;
 	buff = ft_calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!buff)
@@ -75,6 +69,8 @@ int	token_double(t_token **head, char *str, int ix)
 		return (perror("Err: Malloc"), free(token), free(buff), -1);
 	lst_add_back_token(head, token);
 	free(buff);
+	set_dolar(token);
+	token->value = expander(token);
 	return ((int)ft_strlen(token->value) + 2);
 }
 
@@ -91,8 +87,7 @@ int	token_single(t_token **head, char *str, int ix)
 	token = ft_calloc(sizeof(t_token), 1);
 	if (!token)
 		return (perror("Err: Malloc"), -1);
-	set_init(token, ix, 1);
-	set_type(token, str);
+	set_init(token, str, ix, 1);
 	i = 0;
 	buff = ft_calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!buff)
@@ -106,6 +101,7 @@ int	token_single(t_token **head, char *str, int ix)
 		return (perror("Err: Malloc"), free(token), free(buff), -1);
 	lst_add_back_token(head, token);
 	free(buff);
+	set_dolar(token);
 	return ((int)ft_strlen(token->value) + 2);
 }
 
@@ -122,9 +118,7 @@ int	token_word(t_token **head, char *str, int ix)
 	token = ft_calloc(sizeof(t_token), 1);
 	if (!token)
 		return (perror("Err: Malloc"), -1);
-	token->next = NULL;
-	token->hdoc_expand = false;
-	set_type(token, str);
+	set_init(token, str, ix, 2);
 	i = 0;
 	buff = ft_calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!buff)
@@ -139,6 +133,7 @@ int	token_word(t_token **head, char *str, int ix)
 	if (!token->value)
 		return (perror("Err: Malloc"), free(token), free(buff), -1);
 	lst_add_back_token(head, token);
-	set_init(token, ix, 2);
+	set_dolar(token);
+	token->value = expander(token);
 	return (free(buff), (int)ft_strlen(token->value));
 }

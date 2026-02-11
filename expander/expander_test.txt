@@ -17,6 +17,7 @@ echo $9::echo
 # STUCK / ADJACENT EXPANSIONS
 echo $USER$HOME::echo john/home/john
 echo a$USERb::echo a
+echo a$USER"b"::echo ab
 echo $USER"hola"::echo johnhola
 echo "hola"$USER::echo holajohn
 echo "$USER$HOME"::echo john/home/john

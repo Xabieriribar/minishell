@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:35:34 by rick              #+#    #+#             */
-/*   Updated: 2026/02/11 14:47:39 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/11 16:51:58 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int expander_test(char *address)
 		line[strcspn(line, "\n")] = '\0';
 		if (*line == '\0' || line[0] == '#')
 		{
+			printf("%s%s%s\n\n", RED, line, RESET);
 			free(line);
 			continue;
 		}

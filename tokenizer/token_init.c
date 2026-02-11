@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:40:25 by rick              #+#    #+#             */
-/*   Updated: 2026/02/09 11:50:40 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/11 17:26:14 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ t_token	*init_list(char *str)
 		str += len;
 		token_number++;
 	}
-	set_dolar(&head);
 	return (head);
 }
 
@@ -103,9 +102,13 @@ int	init_add_token(t_token **head, char *str, int ix, int separated)
 }
 
 /*
-+ Simple helper function to handle HEREDOC flag.*/
-void	set_init(t_token *token, int ix, int flag)
++ Simple helper function to handle flags and init values.
+- Flag == 1 is a simple quote case
+- Flag == 2 is a double quote or no quote case
+- Flag == 3 operators.*/
+void	set_init(t_token *token, char *str, int ix, int flag)
 {
+	set_type(token, str);
 	if (flag == 1)
 	{
 		token->next = NULL;
@@ -118,5 +121,15 @@ void	set_init(t_token *token, int ix, int flag)
 		token->index = ix;
 		if (token->prev && token->prev->type == T_HEREDOC)
 			token->hdoc_expand = true;
+		else
+			token->hdoc_expand = false;
+		token->next = NULL;
+		token->index = ix;
+	}
+	if (flag == 3)
+	{
+		token->next = NULL;
+		token->index = ix;
+		token->hdoc_expand = false;
 	}
 }

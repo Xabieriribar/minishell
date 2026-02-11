@@ -1,0 +1,74 @@
+# 1. Basic Commands & Spaces
+ls::WORD(ls)
+ls -la::WORD(ls), WORD(-la)
+echo hello world::WORD(echo), WORD(hello), WORD(world)
+   ls -l   ::WORD(ls), WORD(-l)
+ls       -la::WORD(ls), WORD(-la)
+/bin/ls::WORD(/bin/ls)
+./minishell::WORD(./minishell)
+echo ""::WORD(echo), WORD()
+echo " "::WORD(echo), WORD( )
+"" ""::WORD(), WORD()
+
+# 2. Single Quotes (Literal - No Expansion)
+'ls -la'::WORD(ls -la)
+echo '   hello   '::WORD(echo), WORD(   hello   )
+echo '$USER'::WORD(echo), WORD($USER)
+echo 'quote "in" quote'::WORD(echo), WORD(quote "in" quote)
+''::WORD()
+' '::WORD( )
+cat 'file name'::WORD(cat), WORD(file name)
+
+# 3. Double Quotes (Expanded)
+"ls -la"::WORD(ls -la)
+echo "hello $USER"::WORD(echo), WORD(hello john)
+echo "'single quotes'"::WORD(echo), WORD('single quotes')
+"       "::WORD(       )
+echo "pipe | in quotes"::WORD(echo), WORD(pipe | in quotes)
+echo "> redir in quotes"::WORD(echo), WORD(> redir in quotes)
+echo "$?"::WORD(echo), WORD(42)
+
+# 4. Token Concatenation
+echo"hello"::WORD(echohello)
+ls"-la"::WORD(ls-la)
+echo'hello'world::WORD(echohelloworld)
+cat"file"'name'::WORD(catfilename)
+""ls::WORD(ls)
+ls""::WORD(ls)
+
+# 5. Simple Redirections & Pipes
+ls|wc::WORD(ls), PIPE, WORD(wc)
+ls | wc::WORD(ls), PIPE, WORD(wc)
+cat<file::WORD(cat), RED_IN, WORD(file)
+ls>file::WORD(ls), RED_OUT, WORD(file)
+ls>>file::WORD(ls), APPEND, WORD(file)
+cat<<limit::WORD(cat), HEREDOC, WORD(limit)
+ls | wc | grep 0::WORD(ls), PIPE, WORD(wc), PIPE, WORD(grep), WORD(0)
+ls|wc|grep|awk::WORD(ls), PIPE, WORD(wc), PIPE, WORD(grep), PIPE, WORD(awk)
+
+# 6. Mixed Operators & Commands
+ls -l | grep .c > out::WORD(ls), WORD(-l), PIPE, WORD(grep), WORD(.c), RED_OUT, WORD(out)
+cat < in | wc -l > out::WORD(cat), RED_IN, WORD(in), PIPE, WORD(wc), WORD(-l), RED_OUT, WORD(out)
+ls > out | wc -l::WORD(ls), RED_OUT, WORD(out), PIPE, WORD(wc), WORD(-l)
+> out ls::RED_OUT, WORD(out), WORD(ls)
+ls -l > out1 -a > out2::WORD(ls), WORD(-l), RED_OUT, WORD(out1), WORD(-a), RED_OUT, WORD(out2)
+cat < in | grep a >> out | wc -l::WORD(cat), RED_IN, WORD(in), PIPE, WORD(grep), WORD(a), APPEND, WORD(out), PIPE, WORD(wc), WORD(-l)
+
+# 7. The Evil Tests
+ls | | wc::WORD(ls), PIPE, PIPE, WORD(wc)
+ls > > out::WORD(ls), RED_OUT, RED_OUT, WORD(out)
+| ls::PIPE, WORD(ls)
+ls |::WORD(ls), PIPE
+ls >::WORD(ls), RED_OUT
+"" | '' > " "::WORD(), PIPE, WORD(), RED_OUT, WORD( )
+
+# 8. Dollar & Expansion Tests
+echo $USER::WORD(echo), WORD(john)
+echo '$USER'::WORD(echo), WORD($USER)
+echo "Hello $HOME"::WORD(echo), WORD(Hello /home/john)
+echo ""$HOME""::WORD(echo), WORD(/home/john)
+
+# 9. Spaces & Empty Quotes
+echo "" '' " "::WORD(echo), WORD(), WORD(), WORD( )
+""""::WORD(), WORD()
+ls    "file name"   -l::WORD(ls), WORD(file name), WORD(-l)

@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/11 14:10:55 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/11 17:56:56 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ typedef enum e_type
 }	t_type;
 
 typedef struct s_token	t_token;
-typedef struct s_node	t_node;
-typedef struct s_redir	t_redir;
 
 struct s_token
 {
@@ -70,8 +68,8 @@ void	lst_add_back_token(t_token **lst, t_token *new);
 t_token	*lstlast_token(t_token *lst);
 void	free_tokens(t_token **head);
 void	set_type(t_token *token, char *str);
-void	set_dolar(t_token **head);
-void	set_init(t_token *token, int ix, int flag);
+void	set_dolar(t_token *token);
+void	set_init(t_token *token, char *str, int ix, int flag);
 
 bool	is_single(char c);
 bool	is_double(char c);
@@ -91,7 +89,7 @@ int		token_single_append(t_token *last, char *str);
 int		token_double_append(t_token *last, char *str);
 int		token_word_append(t_token *last, char *str);
 
-void	test_init_list(char *line, char *expected);
+int		tokenizer_test(char *file_path);
 
 // ----------- EXPANDER ---------- //
 

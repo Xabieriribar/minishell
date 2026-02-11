@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:20:03 by rick              #+#    #+#             */
-/*   Updated: 2026/02/10 12:59:11 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/11 17:22:25 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,25 +90,14 @@ void	set_type(t_token *token, char *str)
 + In function token_single(), the dolar value will be set inmediatly
 + to -1, so we never mark it as true in that case.
 + Otherwise the value will be 1 for true, and 0 for false.*/
-void	set_dolar(t_token **head)
+void	set_dolar(t_token *token)
 {
-	t_token	*ptr;
-
-	ptr = *head;
-	while (ptr)
-	{
-		if (ptr->dolar == -1)
-		{
-			ptr = ptr->next;
-			continue ;
-		}
-		else if (ptr->type == T_WORD
-			&& ft_strchr(ptr->value, '$') != NULL
-			&& ft_strlen(ptr->value) > 1)
-			ptr->dolar = 1;
-		else
-			ptr->dolar = 0;
-		ptr->value = expander(ptr);
-		ptr = ptr->next;
-	}
+	if (token->dolar == -1)
+		return ;
+	else if (token->type == T_WORD
+		&& ft_strchr(token->value, '$') != NULL
+		&& ft_strlen(token->value) > 1)
+		token->dolar = 1;
+	else
+		token->dolar = 0;
 }
