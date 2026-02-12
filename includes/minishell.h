@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 11:29:36 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/12 18:27:43 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,11 @@ char	*expander(t_token *token);
 char	*ft_strconcat(char *s1, char *s2);
 int		expander_test(char *address);
 bool	valid_chars(char c);
+
+// ----------- BUILTINS ---------- //
+
+int		b_pwd(char **args);
+int 	b_cd(char **args);
 
 // ----------- SIGNALS ---------- //
 

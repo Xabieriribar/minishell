@@ -23,6 +23,8 @@ SRCS = \
 	expander/expander_utils.c \
 	expander/test_exp.c \
 	signals/signals.c \
+	built_in/cd.c \
+	built_in/pwd.c \
 
 # ------------- COMPILING ----------------
 

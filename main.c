@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 11:03:14 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/12 19:14:41 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,23 @@
 
 volatile sig_atomic_t g_status = 0;
 
-int	main(void)
+/* int main(void)
+{
+	char *str[] = {"cd", "../Common-Core", NULL};
+ 	char *str2[] = {"pwd", NULL};
+	b_pwd(str2);
+	b_cd(str);
+	return (0);
+} */
+
+/* int	main(void)
 {
 	g_status = 42;
 	tokenizer_test("./tokenizer/tokenizer_tests.txt");
 	printf("\n\n");
 	expander_test("./expander/expander_test.txt");
 	return (0);
-}
+} */
 
 /* int	main(void)
 {
