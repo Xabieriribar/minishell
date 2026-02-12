@@ -19,10 +19,15 @@ SRCS = \
 	tokenizer/token_bool.c \
 	tokenizer/token_handler.c \
 	tokenizer/token_append.c \
+	expander/expander.c \
+	expander/expander_utils.c \
+	expander/test_exp.c \
 	signals/signals.c \
 	parser/grammar_tester.c \
 	parser/grammar_validator.c \
 	parser/parser_utils.c \
+	built_in/cd.c \
+	built_in/pwd.c \
 
 # ------------- COMPILING ----------------
 

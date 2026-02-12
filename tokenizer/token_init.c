@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:40:25 by rick              #+#    #+#             */
-/*   Updated: 2026/01/26 12:05:59 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/12 11:20:53 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,6 @@
 
 static void	skip_spaces(char **str, int *separated);
 
-/* t_token	*init_list(char *str)
-{
-	t_token	*head;
-	int		token_number;
-	int		len;
-
-	token_number = 0;
-	head = NULL;
-	if (!str)
-		return (NULL);
-	while (*str)
-	{
-		while (is_space(*str))
-			str++;
-		if (!*str)
-			break ;
-		len = init_add_token(&head, str, token_number);
-		if (len < 0)
-			return (perror("Failed token creation"), free_tokens(&head), NULL);
-		else
-			str += len;
-		token_number++;
-	}
-	set_types(&head);
-	set_dolar(&head);
-	return (head);
-} */
-/* int	init_add_token(t_token **head, char *str, int ix)
-{
-	if (is_operator(*str))
-		return (token_operator(head, str, ix));
-	else if (is_double(*str))
-		return (token_double(head, str, ix));
-	else if (is_single(*str))
-		return (token_single(head, str, ix));
-	else
-		return (token_word(head, str, ix));
-}*/
 /*
 - All this functions will create a string according to the string
 - recieved, separating like this all the different cases.
@@ -90,11 +52,9 @@ t_token	*init_list(char *str)
 		len = init_add_token(&head, str, token_number, separated);
 		if (len < 0)
 			return (perror("Failed token creation"), free_tokens(&head), NULL);
-
 		str += len;
 		token_number++;
 	}
-	set_dolar(&head);
 	return (head);
 }
 
@@ -138,5 +98,38 @@ int	init_add_token(t_token **head, char *str, int ix, int separated)
 			return (token_single(head, str, ix));
 		else
 			return (token_word(head, str, ix));
+	}
+}
+
+/*
++ Simple helper function to handle flags and init values.
+- Flag == 1 is a simple quote case
+- Flag == 2 is a double quote or no quote case
+- Flag == 3 operators.*/
+void	set_init(t_token *token, char *str, int ix, int flag)
+{
+	set_type(token, str);
+	if (flag == 1)
+	{
+		token->next = NULL;
+		token->index = ix;
+		token->hdoc_expand = false;
+		token->dolar = -1;
+	}
+	if (flag == 2)
+	{
+		token->index = ix;
+		if (token->prev && token->prev->type == T_HEREDOC)
+			token->hdoc_expand = true;
+		else
+			token->hdoc_expand = false;
+		token->next = NULL;
+		token->index = ix;
+	}
+	if (flag == 3)
+	{
+		token->next = NULL;
+		token->index = ix;
+		token->hdoc_expand = false;
 	}
 }

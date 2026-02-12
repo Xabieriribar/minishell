@@ -5,92 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/12 12:34:25 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/24 09:58:15 by rick             ###   ########.fr       */
+/*   Created: 2025/10/13 11:33:50 by zalemu            #+#    #+#             */
+/*   Updated: 2026/02/11 12:27:40 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/*
-	* Returns the length of a string */
-int	ft_strlen_gnl(const char *s)
+size_t	slen_gnl(const char *s)
 {
-	int	len;
-
-	len = 0;
-	if (!s)
-		return (len);
-	while (s[len])
-		len++;
-	return (len);
-}
-
-/*
-	* free() stash and set to NULL*/
-void	free_stash(char **stash)
-{
-	free(*stash);
-	*stash = NULL;
-}
-
-/*
-	* BOOL. Function to check if the string
-	* contains a new line char ('\n'). */
-int	contains_n(char *str)
-{
-	int	i;
+	size_t	i;
 
 	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-	{
-		if (str[i] == '\n')
-			return (1);
+	while (s && s[i])
 		i++;
-	}
-	return (0);
+	return (i);
 }
 
-/*
-	* Allocates memory, filling bytes with 0s */
-void	*ft_calloc_gnl(int nmemb, int size)
+char	*ft_strchr_gnl(const char *s, int c)
 {
-	unsigned char	*ptr;
-	int				i;
-
-	i = 0;
-	ptr = malloc(nmemb * size);
-	if (!ptr)
-		return (NULL);
-	while (i < nmemb * size)
-		ptr[i++] = '\0';
-	return (ptr);
-}
-
-/*
-	* str_realloc() allocates in memory a new string, coping each byte of str
-	* into the new string + BUFFER_SIZE '\0' bytes.
-	* RETURN: frees the old string and returns the new one. */
-char	*str_realloc(char *str)
-{
-	char	*new;
-	int		i;
-
-	i = 0;
-	new = ft_calloc_gnl(sizeof(char), (ft_strlen_gnl(str) + 1 + 1));
-	if (new == NULL)
+	while (s && *s)
 	{
-		free(str);
+		if (*s == (unsigned char) c)
+			return ((char *) s);
+		s++;
+	}
+	if (s && *s == (unsigned char) c)
+		return ((char *) s);
+	return (NULL);
+}
+
+char	*ft_strjoin_gnl(char *prev_line, char *buffer)
+{
+	char	*line;
+	size_t	i;
+	size_t	j;
+
+	if (!prev_line && !*buffer)
+		return (NULL);
+	line = (char *) malloc(slen_gnl(prev_line) + slen_gnl(buffer) + 1);
+	if (!line)
+	{
+		free(prev_line);
 		return (NULL);
 	}
-	while (str[i])
+	i = 0;
+	j = 0;
+	while (prev_line && prev_line[i])
 	{
-		new[i] = str[i];
+		line[i] = prev_line[i];
 		i++;
 	}
-	if (str)
-		free(str);
-	return (new);
+	while (buffer && buffer[j])
+		line[i++] = buffer[j++];
+	line[i] = '\0';
+	free(prev_line);
+	return (line);
 }
