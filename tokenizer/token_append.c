@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:34:13 by rick              #+#    #+#             */
-/*   Updated: 2026/01/26 11:17:26 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/12 10:54:53 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	token_word_append(t_token *last, char *str)
 		return (perror("Err: Malloc"), -1);
 	free(last->value);
 	last->value = new;
+	set_dolar(last);
+	last->value = expander(last);
 	return (i);
 }
 
@@ -65,6 +67,8 @@ int	token_double_append(t_token *last, char *str)
 		return (perror("Err: Malloc"), -1);
 	free(last->value);
 	last->value = new;
+	set_dolar(last);
+	last->value = expander(last);
 	return (i + 1);
 }
 

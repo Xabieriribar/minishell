@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:26:09 by rick              #+#    #+#             */
-/*   Updated: 2026/02/11 17:59:28 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/12 11:21:18 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int tokenizer_test(char *file_path)
     fd = open(file_path, O_RDONLY);
     if (fd < 0)
         return (printf("%sError: Cannot open file %s%s\n", RED, file_path, RESET), -1);
-    printf("\n%s=== STARTING TOKENIZER + EXPANDER TESTS ===%s\n", CYAN, RESET);
+    printf("\n%s=== STARTING TOKENIZER TESTS ===%s\n", CYAN, RESET);
     while ((line = get_next_line(fd)))
     {
         line[strcspn(line, "\n")] = '\0';

@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/11 17:56:21 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/12 11:03:14 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(void)
 {
 	g_status = 42;
 	tokenizer_test("./tokenizer/tokenizer_tests.txt");
+	printf("\n\n");
+	expander_test("./expander/expander_test.txt");
 	return (0);
 }
 

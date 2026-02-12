@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:35:34 by rick              #+#    #+#             */
-/*   Updated: 2026/02/11 16:51:58 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/12 11:11:31 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ int expander_test(char *address)
 	fd = open(address, O_RDONLY);
 	if (fd < 0)
 		return (printf("%sWrong address%s\n", RED, RESET), -1);
+    printf("\n%s=== STARTING EXPANDER TESTS ===%s\n\n", CYAN, RESET);
 	while ((line = get_next_line(fd)))
 	{
 		line[strcspn(line, "\n")] = '\0';
 		if (*line == '\0' || line[0] == '#')
 		{
-			printf("%s%s%s\n\n", RED, line, RESET);
+			printf("%s%s%s\n", RED, line, RESET);
 			free(line);
 			continue;
 		}

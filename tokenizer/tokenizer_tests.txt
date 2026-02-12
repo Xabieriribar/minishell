@@ -1,4 +1,5 @@
 # 1. Basic Commands & Spaces
+
 ls::WORD(ls)
 ls -la::WORD(ls), WORD(-la)
 echo hello world::WORD(echo), WORD(hello), WORD(world)
@@ -67,8 +68,9 @@ echo $USER::WORD(echo), WORD(john)
 echo '$USER'::WORD(echo), WORD($USER)
 echo "Hello $HOME"::WORD(echo), WORD(Hello /home/john)
 echo ""$HOME""::WORD(echo), WORD(/home/john)
+echo "hello"$USER::WORD(echo), WORD(hellojohn)
 
 # 9. Spaces & Empty Quotes
 echo "" '' " "::WORD(echo), WORD(), WORD(), WORD( )
-""""::WORD(), WORD()
+""""::WORD()
 ls    "file name"   -l::WORD(ls), WORD(file name), WORD(-l)

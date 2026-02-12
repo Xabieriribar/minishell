@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:26:07 by rick              #+#    #+#             */
-/*   Updated: 2026/02/11 17:25:21 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/12 11:35:46 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ int	token_double(t_token **head, char *str, int ix)
 	if (!token->value)
 		return (perror("Err: Malloc"), free(token), free(buff), -1);
 	lst_add_back_token(head, token);
-	free(buff);
 	set_dolar(token);
+	i = (int)ft_strlen(token->value);
 	token->value = expander(token);
-	return ((int)ft_strlen(token->value) + 2);
+	return (free(buff), (i + 2));
 }
 
 /*
@@ -105,6 +105,14 @@ int	token_single(t_token **head, char *str, int ix)
 	return ((int)ft_strlen(token->value) + 2);
 }
 
+static bool	valid_c(char c)
+{
+	if (c && !is_single(c) && !is_double(c)
+	&& !is_space(c) && !is_operator(c))
+		return (true);
+	return (false);
+}
+
 /*
 * Creates and appends node in case of finding word.
 + Returns the length of the sring "value".
@@ -123,8 +131,7 @@ int	token_word(t_token **head, char *str, int ix)
 	buff = ft_calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!buff)
 		return (perror("Err: Malloc"), free(token), -1);
-	while (str[i] && !is_single(str[i]) && !is_double(str[i])
-		&& !is_space(str[i]) && !is_operator(str[i]))
+	while (valid_c(str[i]))
 	{
 		buff[i] = str[i];
 		i++;
@@ -134,6 +141,7 @@ int	token_word(t_token **head, char *str, int ix)
 		return (perror("Err: Malloc"), free(token), free(buff), -1);
 	lst_add_back_token(head, token);
 	set_dolar(token);
+	i = (int)ft_strlen(token->value);
 	token->value = expander(token);
-	return (free(buff), (int)ft_strlen(token->value));
+	return (free(buff), i);
 }

@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/11 17:56:56 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/12 11:29:36 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # include <signal.h>
 # include <fcntl.h>
 
-extern volatile sig_atomic_t g_status;
+extern volatile sig_atomic_t	g_status;
 
 typedef enum e_type
 {
@@ -44,7 +44,7 @@ typedef enum e_type
 	T_HEREDOC,
 }	t_type;
 
-typedef struct s_token	t_token;
+typedef struct s_token			t_token;
 
 struct s_token
 {
@@ -94,10 +94,9 @@ int		tokenizer_test(char *file_path);
 // ----------- EXPANDER ---------- //
 
 char	*expander(t_token *token);
-char	*append_char(char *str, char c);
-char	*append_env(t_token *token, int *i, char *result);
-char 	*ft_strconcat(char *s1, char *s2);
+char	*ft_strconcat(char *s1, char *s2);
 int		expander_test(char *address);
+bool	valid_chars(char c);
 
 // ----------- SIGNALS ---------- //
 

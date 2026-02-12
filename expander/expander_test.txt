@@ -1,4 +1,4 @@
-# $ EDGE CASES
+# 1. $ EDGE CASES
 echo $user::echo 
 echo $$::echo $$
 echo $$$::echo $$$
@@ -6,7 +6,7 @@ echo $ ::echo $
 echo $"::
 echo $'::
 
-# VARIABLE NAME BOUNDARIES
+# 2. VARIABLE NAME BOUNDARIES
 echo $USER.::echo john.
 echo $USER!::echo john!
 echo $USER$::echo john$
@@ -14,32 +14,32 @@ echo $USER123::echo
 echo $_USER::echo 
 echo $9::echo 
 
-# STUCK / ADJACENT EXPANSIONS
+# 3. STUCK / ADJACENT EXPANSIONS
 echo $USER$HOME::echo john/home/john
 echo a$USERb::echo a
-echo a$USER"b"::echo ab
+echo a$USER"b"::echo ajohnb
 echo $USER"hola"::echo johnhola
 echo "hola"$USER::echo holajohn
 echo "$USER$HOME"::echo john/home/john
 
-# UNDEFINED VARIABLES
+# 4. UNDEFINED VARIABLES
 echo $DOES_NOT_EXIST::echo 
 echo a$DOES_NOT_EXISTb::echo a
 echo $USER$DOES_NOT_EXIST$HOME::echo john/home/john
 
-# QUOTES + $
+# 5. QUOTES + $
 echo "$?"::echo 42
 echo '$?'::echo $?
 echo $?::echo 42
 echo "hola "$?::echo hola 42
 
-# QUOTES + $
+# 6. QUOTES + $
 echo "$"::echo $
 echo '$'::echo $
 echo "$USER"::echo john
 echo '$USER'::echo $USER
 
-# STRESS TESTS
+# 7. STRESS TESTS
 echo $$$$$$$$::echo $$$$$$$$
 echo $USER$USER$USER$USER::echo johnjohnjohnjohn
 echo a$b$c$d$e::echo a
