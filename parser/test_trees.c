@@ -1,7 +1,19 @@
 #include "minishell.h"
 
+// void    compare_tree_args(t_node *tree, char *expected_args, int number_of_tokens)
+// {
+//     if (tree->node_type != PIPE)
+//     {
+//         //COMPARE THEM
+//         return;
+//     }
+//     compare_tree_args(tree->left_child, expected_args)
+//     compare_args(tree->left_child, expected_args, number_of_tokens);
+// }
 int compare_args(t_node *tree, char *expected_args, int number_of_tokens)
 {
+    if (!tree->args)
+        return 1;
     if (!tree->args[0])
         return 1;
     if (number_of_tokens == 1)
@@ -92,6 +104,8 @@ void    print_tree(t_node *tree)
 {
     int i = 0;
     printf("ARGS: [");
+    if (!tree->args)
+        tree = tree->left_child;
     while (tree->args[i])
     {
         printf("%s", tree->args[i]);
@@ -123,39 +137,97 @@ void    print_tree(t_node *tree)
         }
     }
 }
+// void assign_enums(char **expected_left_child, char **expected_right_child)
+// {
+//     if (*expected_left_child == T_PIPE)
+
+// }
+int compare_childs(char *expected_left_child, char *expected_right_child, t_node *tree)
+{
+    // enum right_type;
+    // enum left_type;
+    // assign_enums(&expected_left_child, &expected_right_child);
+    
+    (void)expected_left_child;
+    (void)expected_right_child;
+    if (tree->left_child != NULL || tree->left_child != NULL)
+    {
+        if (tree->left_child->node_type !=  PIPE && tree->right_child->node_type != COMMAND)
+            return 1;
+    }
+    return 0;
+
+}
+void print_ast(t_node *node, int level)
+{
+    // 1. Caso base: si el nodo es NULL, no hay nada que imprimir
+    if (!node)
+        return;
+
+    // 2. Recomendación visual: Imprime primero el hijo DERECHO
+    // Esto hace que el árbol se vea correctamente de lado en la terminal
+    print_ast(node->right_child, level + 1);
+
+    // 3. Imprimir el nodo actual con su indentación
+    // Usa un bucle simple para imprimir espacios o tabuladores según 'level'
+    for (int i = 0; i < level; i++)
+        printf("    "); // 4 espacios por nivel
+
+    // 4. ¿Qué tipo de nodo es?
+    if (node->node_type == PIPE)
+        printf("[PIPE]\n");
+    else if (node->node_type == COMMAND)
+    {
+        printf("CMD: ");
+        // Aquí recorres tu array de argumentos que tanto te costó
+        for (int i = 0; node->args && node->args[i]; i++)
+            printf("%s ", node->args[i]);
+        printf("\n");
+    }
+
+    // 5. Por último, el hijo IZQUIERDO
+    print_ast(node->left_child, level + 1);
+}
 int test_tree(int fd_tree_tester)
 {
     int i = 1;
     t_token *token_list;
     char *line;
-    int number_of_tokens;
+    // int number_of_tokens;
     t_node *tree;
     while ((line = get_next_line(fd_tree_tester)))
     {
         char *tokens = strtok(line, "::");
-        char *commands = strtok(NULL, "::");
-        char **redirs = NULL;
-        char *redir = strtok(NULL, "::");
+        // char *commands = strtok(NULL, "::");
+        // char **redirs = NULL;
+        // char *redir = strtok(NULL, "::");
+        // char *left_child = strtok(NULL, "::");
+        // char *right_child = strtok(NULL, "::");
         // if (strcmp(redir, "NULL") != 0)
         //     redirs = ft_split(redir, ',');
-        if (strcmp(redir, "NULL") != 0)
-            redirs = ft_split(redir, '-');
+        // if (strcmp(redir, "NULL") != 0)
+        //     redirs = ft_split(redir, '-');
         token_list = init_list(tokens);
         tree = init_tree(&token_list);
-        t_node **temp_tree = &tree;
-        number_of_tokens = ft_token_lstsize(token_list);
-        if (compare_args(tree, commands, number_of_tokens) != 0)
-            printf("%d %s[FAIL]%s\n", i, RED, RESET);
-        else if (compare_redirs(redirs, tree, token_list) != 0)
-            printf("%d %s[FAIL]%s\n", i, RED, RESET);
-        else
-            printf("%d %s[PASS]%s\n", i, GREEN, RESET);
+        // t_node **temp_tree = &tree;
+        // number_of_tokens = ft_token_lstsize(token_list);
+        int level = 0;
+        print_ast(tree, level);
+        // if (compare_args(tree, commands, number_of_tokens) != 0)
+        //     printf("%d %s[FAIL]%s\n", i, RED, RESET);
+        // else if (compare_redirs(redirs, tree, token_list) != 0)
+        //     printf("%d %s[FAIL]%s\n", i, RED, RESET);
+        // else if (compare_childs(left_child, right_child, tree) != 0)
+        //     printf("%d %s[FAIL]%s\n", i, RED, RESET);
+        // else
+        //     printf("%d %s[PASS]%s\n", i, GREEN, RESET);
         // // if (compare_redirs(tree, head) != 0)
         // //     printf("Redirs creation failed\n");
         // // if (compare_childs(tree, head) != 0)
         // //     printf("Child creation failed\n" != 0);
         i++;
-        print_tree(*temp_tree);
+        // pri| goingnt_tree(*temp_tree);
+        printf("\n\n");
         free(line);
     }
     return 0;

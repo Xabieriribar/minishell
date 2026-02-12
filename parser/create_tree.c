@@ -18,7 +18,7 @@ int     create_multiple_args(t_node *node, t_token *token_list)
     index = 0;
     if (!node || !token_list)
         return 1;
-    while (token_list)
+    while (token_list && token_list->type != T_PIPE)
     {
         if (ft_is_redir(token_list->type) == 0)
         {
@@ -45,12 +45,18 @@ void    fill_command_node(t_node *node)
 int     ft_tokens_before_pipe(t_token *token_list)
 {
     int tokens_before_pipe;
+    int pipe_found;
 
+    pipe_found = 0;
     tokens_before_pipe = 0;
     while (token_list)
     {
         if (token_list->type != T_PIPE)
             tokens_before_pipe++;
+        else
+            pipe_found = 1;
+        if (pipe_found == 1)
+            return tokens_before_pipe;
         token_list = token_list->next;
     }
     return tokens_before_pipe;
@@ -100,12 +106,17 @@ int ft_next_token_is_pipe(t_token **token_list)
 t_node *create_node(t_type node_type)
 {
     t_node *node;
+
+    // node->left_child = NULL;
+    // node->right_child = NULL;
+    // node->redirs = NULL;
+    // node->args = NULL;
     if (node_type == T_PIPE)
     {
         node = malloc(sizeof(struct s_node));
-        if (!node_type)
+        if (!node)
             return (NULL);
-        node->node_type = 2;
+        node->node_type = PIPE;
         node->args= NULL;
         node->redirs = NULL;
         node->left_child = NULL;
@@ -121,24 +132,16 @@ int     move_pointer_after_pipe(t_token **token_list)
 }
 t_node *init_tree(t_token **token_list)
 {
-    //EN UN COMANDO COMO ls | cat | cat
-    //CREA UN COMANDO NODO Y MUEVE EL PUNTERO DE LOS TOKENS HASTA |
-    //es un pipe? si si, crea un nodo pipe
-    //que no? asigna el left child al nodo comando y ahora vuelve a llamar a la funcion
-    //en la segunda llamada, que asignara el right child, se asigna un nodo cat, y, como no hay pipe,
-    //se devuelve el nodo, se asigna el right child y ya esta no?
     t_node *node_command;
     t_node *pipe_node;
 
     node_command = parse_commands(token_list);
     if (ft_next_token_is_pipe(token_list) != 0)
     {
-        //IF IT IS A PIPE, WE SHOULDD MOVE THE LIST POINTER TO THE NEXT TOKEN AFTER THE PIPE
-        //WE SHOULD THEN CREATE A PIPE NODE RIGHT? WE CREATE THE PIPE NODDE FIRST
         pipe_node = create_node(T_PIPE);
         move_pointer_after_pipe(token_list);
-        pipe_node->left_child = node_command;
-        pipe_node->right_child = init_tree(token_list);
+        pipe_node->right_child = node_command;
+        pipe_node->left_child = init_tree(token_list);
         return pipe_node;
     }
     return node_command;

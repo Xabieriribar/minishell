@@ -1,2 +1,5 @@
-ls > outfile1 > outfile2 >> outfile3::ls::T_REDIR_OUT,outfile1-T_REDIR_OUT,outfile2-T_REDIR_APPEND,outfile3::NULL::NULL
-ls > outfile1 > outfile2 >> outfile3::ls::T_REDIR_OUT,outfile1-T_REDIR_OUT,outfile2-T_REDIR_APPEND,outfile3::NULL::NULL
+ls -l -a | grep minishell | tr 'a-z' 'A-Z' | head -n 5 | cat -e | wc -l::NULL::NULL::NULL::NULL
+ls | cat | wc |hostname | tr 'a-z' 'A-Z'::NULL::NULL::NULL::NULL
+ls | cat | wc | hostname::NULL::NULL::NULL::NULL
+ls | cat::ls::NULL::PIPE::COMMAND
+
