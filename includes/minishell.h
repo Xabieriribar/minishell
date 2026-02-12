@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 18:27:43 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/12 19:27:48 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,11 @@ int 	b_cd(char **args);
 // ----------- SIGNALS ---------- //
 
 void	sigint_handler(int sig);
-int test_grammar(int fd_grammar_tester);
-char *grammar_validator(t_token *head);
+int		test_grammar(int fd_grammar_tester);
+char	*grammar_validator(t_token *head);
 int		ft_token_lstsize(t_token *lst);
 int		ft_is_redir(t_type type);
 int		ft_is_append_or_heredoc(t_type type);
-void	test_init_list(char *line, char *expected);
 char	*ft_type_to_str(t_token *lst);
+
 #endif
