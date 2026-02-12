@@ -6,12 +6,11 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 19:22:03 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/12 19:28:36 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int main(void)
 
 volatile sig_atomic_t g_status = 0;
 
