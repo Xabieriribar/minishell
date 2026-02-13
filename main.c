@@ -22,6 +22,7 @@
 // }
 int main(void)
 {
+	g_status = 42;
 	int fd_tree_tester = open("parser/tree_tester/tree_tests.txt", O_RDONLY);
 	if (fd_tree_tester < 0)
 		perror("Failed to open tester file");
@@ -30,12 +31,6 @@ int main(void)
 	close(fd_tree_tester);
 	return 0;
 }
-	g_status = 42;
-	tokenizer_test("./tokenizer/tokenizer_tests.txt");
-	printf("\n\n");
-	expander_test("./expander/expander_test.txt");
-	return (0);
-} */
 
 /* int	main(void)
 {
