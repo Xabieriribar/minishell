@@ -20,9 +20,10 @@
 // 		return (perror("Failed to test grammar"), 1);
 // 	return 0;
 // }
+volatile sig_atomic_t g_status = 0;
 int main(void)
 {
-	g_status = 42;
+
 	int fd_tree_tester = open("parser/tree_tester/tree_tests.txt", O_RDONLY);
 	if (fd_tree_tester < 0)
 		perror("Failed to open tester file");

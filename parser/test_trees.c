@@ -188,46 +188,112 @@ void print_ast(t_node *node, int level)
     // 5. Por último, el hijo IZQUIERDO
     print_ast(node->left_child, level + 1);
 }
+#include <ctype.h>
+#include <string.h>
+
+char *trim_whitespace(char *str)
+{
+    char *end;
+
+    if (!str)
+        return (NULL);
+
+    // Trim leading space
+    while (isspace((unsigned char)*str))
+        str++;
+
+    if (*str == 0) // All spaces?
+        return (str);
+
+    // Trim trailing space
+    end = str + strlen(str) - 1;
+    while (end > str && isspace((unsigned char)*end))
+        end--;
+
+    // Write new null terminator
+    end[1] = '\0';
+
+    return (str);
+}
+void serialize_tree(t_node *node, char *buffer)
+{
+    if (!node)
+        return;
+
+    if (node->node_type == PIPE)
+    {
+        strcat(buffer, "( ");
+        serialize_tree(node->left_child, buffer);
+        strcat(buffer, " | ");
+        serialize_tree(node->right_child, buffer);
+        strcat(buffer, " )");
+    }
+    else if (node->node_type == COMMAND)
+    {
+        strcat(buffer, "[");
+        // 1. Añadir argumentos
+        for (int i = 0; node->args && node->args[i]; i++)
+        {
+            strcat(buffer, node->args[i]);
+            if (node->args[i + 1])
+                strcat(buffer, " ");
+        }
+        
+        // 2. Añadir redirecciones si existen
+        t_redirs *r = node->redirs;
+        while (r)
+        {
+            // Añadimos un espacio antes de la redirección para que no se pegue al comando
+            strcat(buffer, " "); 
+            if (r->redir_type == T_REDIR_IN) strcat(buffer, "<");
+            else if (r->redir_type == T_REDIR_OUT) strcat(buffer, ">");
+            else if (r->redir_type == T_REDIR_APPEND) strcat(buffer, ">>");
+            else if (r->redir_type == T_HEREDOC) strcat(buffer, "<<");
+            
+            strcat(buffer, " ");
+            strcat(buffer, r->filename);
+            r = r->next;
+        }
+        strcat(buffer, "]");
+    }
+}
+void run_tree_test(char *input_line)
+{
+    char *input = strtok(input_line, "::");
+    char *expected = strtok(NULL, "::");
+    if (!expected) return;
+
+    // 1. Build your actual tree
+    t_token *tokens = init_list(input);
+    t_token *backup = tokens;
+    t_node *tree = init_tree(&tokens);
+
+    // 2. Create the "Actual" string
+    char *actual = ft_calloc(16384, 1);
+    if (tree)
+        serialize_tree(tree, actual);
+
+    // 3. Compare
+    if (strcmp(actual, trim_whitespace(expected)) == 0)
+        printf("[PASS] %s\n", input);
+    else
+    {
+        printf("[FAIL] %s\n", input);
+        printf("   Expected: %s\n", expected);
+        printf("   Actual:   %s\n", actual);
+    }
+    if (backup)
+        free_tokens(&backup);
+    free(actual);
+    if (tree)
+        free_tree(tree);
+}
 int test_tree(int fd_tree_tester)
 {
-    int i = 1;
-    t_token *token_list;
     char *line;
-    // int number_of_tokens;
-    t_node *tree;
     while ((line = get_next_line(fd_tree_tester)))
     {
-        char *tokens = strtok(line, "::");
-        // char *commands = strtok(NULL, "::");
-        // char **redirs = NULL;
-        // char *redir = strtok(NULL, "::");
-        // char *left_child = strtok(NULL, "::");
-        // char *right_child = strtok(NULL, "::");
-        // if (strcmp(redir, "NULL") != 0)
-        //     redirs = ft_split(redir, ',');
-        // if (strcmp(redir, "NULL") != 0)
-        //     redirs = ft_split(redir, '-');
-        token_list = init_list(tokens);
-        tree = init_tree(&token_list);
-        // t_node **temp_tree = &tree;
-        // number_of_tokens = ft_token_lstsize(token_list);
-        int level = 0;
-        print_ast(tree, level);
-        // if (compare_args(tree, commands, number_of_tokens) != 0)
-        //     printf("%d %s[FAIL]%s\n", i, RED, RESET);
-        // else if (compare_redirs(redirs, tree, token_list) != 0)
-        //     printf("%d %s[FAIL]%s\n", i, RED, RESET);
-        // else if (compare_childs(left_child, right_child, tree) != 0)
-        //     printf("%d %s[FAIL]%s\n", i, RED, RESET);
-        // else
-        //     printf("%d %s[PASS]%s\n", i, GREEN, RESET);
-        // // if (compare_redirs(tree, head) != 0)
-        // //     printf("Redirs creation failed\n");
-        // // if (compare_childs(tree, head) != 0)
-        // //     printf("Child creation failed\n" != 0);
-        i++;
-        // pri| goingnt_tree(*temp_tree);
-        printf("\n\n");
+        run_tree_test(line);
         free(line);
     }
     return 0;

@@ -1,5 +1,100 @@
-ls -l -a | grep minishell | tr 'a-z' 'A-Z' | head -n 5 | cat -e | wc -l::NULL::NULL::NULL::NULL
-ls | cat | wc |hostname | tr 'a-z' 'A-Z'::NULL::NULL::NULL::NULL
-ls | cat | wc | hostname::NULL::NULL::NULL::NULL
-ls | cat::ls::NULL::PIPE::COMMAND
-
+ls :: [ls]
+ls -l :: [ls -l]
+ls -l -a :: [ls -l -a]
+ls -l -a -h :: [ls -l -a -h]
+/bin/ls :: [/bin/ls]
+/bin/ls -la :: [/bin/ls -la]
+echo hello :: [echo hello]
+echo "hello world" :: [echo hello world]
+echo "" :: [echo ]
+cat Makefile :: [cat Makefile]
+ls | cat :: ( [ls] | [cat] )
+ls | grep a :: ( [ls] | [grep a] )
+ls | wc -l :: ( [ls] | [wc -l] )
+cat file | grep pattern :: ( [cat file] | [grep pattern] )
+ls -l | head -n 5 :: ( [ls -l] | [head -n 5] )
+ls | cat | wc :: ( ( [ls] | [cat] ) | [wc] )
+ls | grep a | sort :: ( ( [ls] | [grep a] ) | [sort] )
+cat file | grep a | wc -l :: ( ( [cat file] | [grep a] ) | [wc -l] )
+env | grep USER | cut -d = -f 2 :: ( ( [env] | [grep USER] ) | [cut -d = -f 2] )
+ls | cat | cat | cat :: ( ( ( [ls] | [cat] ) | [cat] ) | [cat] )
+ls | cat | cat | cat | cat :: ( ( ( ( [ls] | [cat] ) | [cat] ) | [cat] ) | [cat] )
+a | b | c | d | e | f :: ( ( ( ( ( [a] | [b] ) | [c] ) | [d] ) | [e] ) | [f] )
+ls > out :: [ls > out]
+ls -la > out :: [ls -la > out]
+cat < file :: [cat < file]
+cat < file -e :: [cat -e < file]
+ls >> out :: [ls >> out]
+cat << END :: [cat << END]
+ls > out1 > out2 :: [ls > out1 > out2]
+cat < in1 < in2 :: [cat < in1 < in2]
+< in cat :: [cat < in]
+> out ls :: [ls > out]
+> out1 > out2 ls -la :: [ls -la > out1 > out2]
+< in1 < in2 cat -e :: [cat -e < in1 < in2]
+ls | grep a > out :: ( [ls] | [grep a > out] )
+ls > out | grep a :: ( [ls > out] | [grep a] )
+cat < in | wc -l :: ( [cat < in] | [wc -l] )
+ls | cat < in :: ( [ls] | [cat < in] )
+cat < in | grep a > out :: ( [cat < in] | [grep a > out] )
+ls > out | cat < in :: ( [ls > out] | [cat < in] )
+ls >> out | grep a :: ( [ls >> out] | [grep a] )
+cat << END | grep a :: ( [cat << END] | [grep a] )
+ls > out1 > out2 | grep a :: ( [ls > out1 > out2] | [grep a] )
+cat < in1 < in2 | wc -l :: ( [cat < in1 < in2] | [wc -l] )
+ls -l | grep a > out1 > out2 :: ( [ls -l] | [grep a > out1 > out2] )
+cat < in1 | grep a | wc -l > out1 :: ( ( [cat < in1] | [grep a] ) | [wc -l > out1] )
+ls > out | cat | wc -l :: ( ( [ls > out] | [cat] ) | [wc -l] )
+ls | grep a > out | wc -l :: ( ( [ls] | [grep a > out] ) | [wc -l] )
+echo $TEST_VAR :: [echo value]
+echo $TEST_VAR | cat :: ( [echo value] | [cat] )
+ls -l | grep $TEST_VAR :: ( [ls -l] | [grep value] )
+grep $TEST_VAR < in :: [grep value < in]
+ls|cat :: ( [ls] | [cat] )
+ls|cat|wc :: ( ( [ls] | [cat] ) | [wc] )
+ls >out :: [ls > out]
+cat<in :: [cat < in]
+ls>>out :: [ls >> out]
+cat<<END :: [cat << END]
+ls -la|grep .c :: ( [ls -la] | [grep .c] )
+ls -la>out :: [ls -la > out]
+cat<in|grep a>out :: ( [cat < in] | [grep a > out] )
+ls|grep a>out|wc -l :: ( ( [ls] | [grep a > out] ) | [wc -l] )
+cat Makefile|grep CC|cut -d = -f 2 :: ( ( [cat Makefile] | [grep CC] ) | [cut -d = -f 2] )
+find . -name "*.c" | xargs grep "main" :: ( [find . -name *.c] | [xargs grep main] )
+ls -R / | grep "minishell" :: ( [ls -R /] | [grep minishell] )
+cat /etc/passwd | awk -F : '{print $1}' :: ( [cat /etc/passwd] | [awk -F : {print $1}] )
+ps aux | grep root | head -n 10 :: ( ( [ps aux] | [grep root] ) | [head -n 10] )
+yes | head -n 5 :: ( [yes] | [head -n 5] )
+dmesg | grep -i usb :: ( [dmesg] | [grep -i usb] )
+ls -l | grep "^d" | wc -l :: ( ( [ls -l] | [grep ^d] ) | [wc -l] )
+cat file.txt | tr ' ' '\n' | sort | uniq -c :: ( ( ( [cat file.txt] | [tr  \n] ) | [sort] ) | [uniq -c] )
+ls > file1 < file2 :: [ls > file1 < file2]
+> out < in cat :: [cat > out < in]
+< in > out cat -e :: [cat -e < in > out]
+cat << LIMIT > out :: [cat << LIMIT > out]
+ls >> out < in :: [ls >> out < in]
+grep a < in1 > out1 | wc -l :: ( [grep a < in1 > out1] | [wc -l] )
+ls | grep a < in | cat > out :: ( ( [ls] | [grep a < in] ) | [cat > out] )
+cat < in1 > out1 | cat < in2 > out2 :: ( [cat < in1 > out1] | [cat < in2 > out2] )
+ls -l | grep ".c" | sort | uniq | wc -l :: ( ( ( ( [ls -l] | [grep .c] ) | [sort] ) | [uniq] ) | [wc -l] )
+cat < in1 >> out1 | grep a << END | wc -l > out2 :: ( ( [cat < in1 >> out1] | [grep a << END] ) | [wc -l > out2] )
+true | false | true | false :: ( ( ( [true] | [false] ) | [true] ) | [false] )
+ls -l | grep a | grep b | grep c | grep d :: ( ( ( ( [ls -l] | [grep a] ) | [grep b] ) | [grep c] ) | [grep d] )
+cat file | cat | cat | cat | cat | cat :: ( ( ( ( ( [cat file] | [cat] ) | [cat] ) | [cat] ) | [cat] ) | [cat] )
+> out1 > out2 > out3 ls :: [ls > out1 > out2 > out3]
+< in1 < in2 < in3 cat :: [cat < in1 < in2 < in3]
+ls | > out cat :: ( [ls] | [cat > out] )
+ls | < in cat :: ( [ls] | [cat < in] )
+< in ls | > out cat :: ( [ls < in] | [cat > out] )
+ls -la | grep " " :: ( [ls -la] | [grep  ] )
+ls "" :: [ls ]
+"" ls :: [ ls]
+ls | "" :: ( [ls] | [] )
+ls | | cat :: ( ( [ls] | [] ) | [cat] )
+echo $INVALID_VAR :: [echo ]
+echo $TEST_VAR$TEST_VAR :: [echo valuevalue]
+ls > out | :: ( [ls > out] | [] )
+| ls :: ( [] | [ls] )
+ls -l | grep a | sort -r | head -n 10 | tail -n 5 | wc -l | cat -e :: ( ( ( ( ( ( [ls -l] | [grep a] ) | [sort -r] ) | [head -n 10] ) | [tail -n 5] ) | [wc -l] ) | [cat -e] )
+cat Makefile | grep CC | cut -d = -f 2 | tr -d ' ' :: ( ( ( [cat Makefile] | [grep CC] ) | [cut -d = -f 2] ) | [tr -d  ] )

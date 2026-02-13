@@ -28,8 +28,10 @@ SRCS = \
 	parser/parser_utils.c \
 	built_in/cd.c \
 	built_in/pwd.c \
+	parser/create_tree_utils.c \
 	parser/create_tree.c \
 	parser/test_trees.c \
+	parser/free_tree.c \
 
 # ------------- COMPILING ----------------
 

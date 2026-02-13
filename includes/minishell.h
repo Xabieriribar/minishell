@@ -146,3 +146,11 @@ char *find_enum_type(t_redirs *redirs);
 void	ft_lstadd_back_redirs(t_redirs **lst, t_redirs *new);
 t_redirs *ft_lstlast_redirs(t_redirs *lst);
 t_redirs *ft_lstnew_redirs(char *filename, t_type redir_type);
+void run_tree_test(char *input_line);
+/* parser/create_tree_utils.c */
+void	fill_command_node(t_node *node);
+int		ft_tokens_before_pipe(t_token *token_list);
+int		move_pointer_to_next_pipe(t_token **token_list);
+int		ft_next_token_is_pipe(t_token **token_list);
+int		move_pointer_after_pipe(t_token **token_list);
+void    free_tree(t_node *tree);
