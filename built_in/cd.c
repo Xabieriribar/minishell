@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:25 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 19:13:48 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/15 14:02:54 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,27 @@
 + If command found and execution:success returns 1
 + If command found and execution:error, returns -1
 + Errors for each command are handled internally.*/
-/* int	run_bultins(char **args)
+int	run_bultins(char **args)
 {
 	if (!args || !*args)
 		return (0);
-	if (!ft_strncmp(args[0], "cd", 2));
+	if (!ft_strncmp(args[0], "cd", 2))
 		return(b_cd(args));
-	if (!ft_strncmp(args[0], "echo", 4));
+/* 	if (!ft_strncmp(args[0], "echo", 4));
 		return(b_echo(args));
 	if (!ft_strncmp(args[0], "env", 3));
 		return(b_env(args));
 	if (!ft_strncmp(args[0], "exit", 4));
 		return(b_exit(args));
 	if (!ft_strncmp(args[0], "export", 6));
-		return(b_export(args));
-	if (!ft_strncmp(args[0], "pwd", 3));
-		return(b_pwd(args));
-	if (!ft_strncmp(args[0], "unset", 5));
-		return(b_unset(args));
+		return(b_export(args)); */
+	if (!ft_strncmp(args[0], "pwd", 3))
+ 		return(b_pwd(args));
+/*	if (!ft_strncmp(args[0], "unset", 5));
+		return(b_unset(args)); */
 	return(0);
-} */
-/* 
+}
+
 int b_cd(char **args)
 {
 	char	*str;
@@ -88,4 +88,4 @@ int b_cd(char **args)
 	if (errn == -1)
 		return(printf("cd: no such file or directory\n"), -1);
 	return(1);
-} */
+}

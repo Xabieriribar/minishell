@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 19:14:41 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/15 13:32:41 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,42 @@ volatile sig_atomic_t g_status = 0;
 	return (0);
 } */
 
-/* int	main(void)
+char **get_args(t_token *token)
 {
-	char	*input;
+	char **args;
+	t_token *ptr = token;
+
+	while (ptr)
+		ptr = ptr->next;
+	args = malloc(sizeof(char *) * ptr->index + 2);
+	ptr = token;
+	while (ptr)
+	{
+		args[ptr->index] = ptr->value;
+		ptr = ptr->next;
+	}
+	args[ptr->index] = NULL;
+	return (args);
+}
+
+int	main(void)
+{
+	char *input;
+	t_token *token;
+	char **arr;
 
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		input = readline(PROMPT);
-		if (!input)
-			return (0);
-		test_init_list(input, NULL);
+		if (input)
+		{
+			token = init_list(input);
+			arr = get_args(token);
+			run_bultins(arr);
+		}
 		free(input);
 	}
 	return (0);
-} */
+}

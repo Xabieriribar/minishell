@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 18:27:43 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/15 13:32:08 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ bool	valid_chars(char c);
 
 // ----------- BUILTINS ---------- //
 
+int		run_bultins(char **args);
 int		b_pwd(char **args);
 int 	b_cd(char **args);
 
