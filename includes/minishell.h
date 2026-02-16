@@ -31,6 +31,9 @@
 # include <signal.h>
 # include <fcntl.h>
 
+#ifndef MAX_FORK 1024
+#define MAX_FORK 1024
+
 extern volatile sig_atomic_t	g_status;
 
 typedef enum e_type
@@ -61,6 +64,7 @@ typedef struct s_redirs
 {
 	t_type	redir_type;
 	char	*filename;
+	char	*temp_heredoc_filename;
 	struct s_redirs *next;
 }	t_redirs;
 
