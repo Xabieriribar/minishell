@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/16 12:16:07 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/16 17:22:17 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,40 +34,68 @@ volatile sig_atomic_t g_status = 0;
 
 char **get_args(t_token *token)
 {
-	char **args;
-	t_token *ptr = token;
+	char	**args;
+	t_token	*ptr;
+	int		len;
+	int		i;
 
-	while (ptr)
-		ptr = ptr->next;
-	args = malloc(sizeof(char *) * ptr->index + 2);
 	ptr = token;
+	len = 0;
 	while (ptr)
 	{
-		args[ptr->index] = ptr->value;
+		len++;
 		ptr = ptr->next;
 	}
-	args[ptr->index] = NULL;
+	args = malloc(sizeof(char *) * (len + 1));
+	if (!args)
+		return (NULL);
+	ptr = token;
+	i = 0;
+	while (ptr)
+	{
+		args[i] = ptr->value;
+		ptr = ptr->next;
+		i++;
+	}
+	args[i] = NULL;
 	return (args);
 }
 
-int	main(void)
+int	main(int ac, char **av, char **ep)
 {
+	(void)ac;
+	(void)av;
+	t_env *env_list;
 	char *input;
 	t_token *token;
 	char **arr;
 
+	env_list = init_env_list(ep);
 	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, SIG_IGN);
-	while (1)
-	{
-		input = readline(PROMPT);
-		if (input)
-		{
-			token = init_list(input);
-			arr = get_args(token);
-			run_bultins(arr);
-		}
-		free(input);
-	}
-	return (0);
+    signal(SIGQUIT, SIG_IGN);
+    while (1)
+    {
+        input = readline(PROMPT);
+        if (!input)
+        {
+            printf("exit\n");
+			free_env_vars(&env_list);
+			rl_clear_history();
+            exit(0);
+        }
+        if (input && *input)
+        {
+            add_history(input);
+            token = init_list(input);
+            arr = get_args(token);
+            run_bultins(arr, &env_list);
+			free_tokens(&token);
+			if (arr)
+					free(arr);
+        }
+        free(input);
+    }
+	free_env_vars(&env_list);
+	rl_clear_history();
+    return (0);
 }

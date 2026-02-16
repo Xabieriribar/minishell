@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:25 by rick              #+#    #+#             */
-/*   Updated: 2026/02/15 14:02:54 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/16 17:32:14 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,55 +37,58 @@
 + Previous directory
 + Env variable $HOME */
 
-
-/*
-* This function compares the first argument inside the array
-* of strings found in the node CMD, and executes the respective
-* builtin command.
-+ If no command is run returns 0
-+ If command found and execution:success returns 1
-+ If command found and execution:error, returns -1
-+ Errors for each command are handled internally.*/
-int	run_bultins(char **args)
-{
-	if (!args || !*args)
-		return (0);
-	if (!ft_strncmp(args[0], "cd", 2))
-		return(b_cd(args));
-/* 	if (!ft_strncmp(args[0], "echo", 4));
-		return(b_echo(args));
-	if (!ft_strncmp(args[0], "env", 3));
-		return(b_env(args));
-	if (!ft_strncmp(args[0], "exit", 4));
-		return(b_exit(args));
-	if (!ft_strncmp(args[0], "export", 6));
-		return(b_export(args)); */
-	if (!ft_strncmp(args[0], "pwd", 3))
- 		return(b_pwd(args));
-/*	if (!ft_strncmp(args[0], "unset", 5));
-		return(b_unset(args)); */
-	return(0);
-}
-
 int b_cd(char **args)
 {
 	char	*str;
 	int		errn;
 
-	if (args[2] != NULL)
-		return (printf("cd: too many arguments\n"), -1);
 	if (args[1] == NULL)
 	{
 		str = getenv("HOME");
 		if (!str)
-			return(printf("cd: HOME env unset\n"), -1);
+			return(printf("cd: HOME env unset\n"), 1);
 		errn = chdir(str);
 		if (errn == -1)
-			return(printf("cd: no such file or directory\n"), -1);
-		return(1);
+			return(printf("cd: no such file or directory\n"), 1);
+		b_pwd();
+		return(0);
 	}
+	if (args[2] != NULL)
+		return (printf("cd: too many arguments\n"), 1);
 	errn = chdir(args[1]);
 	if (errn == -1)
-		return(printf("cd: no such file or directory\n"), -1);
-	return(1);
+		return(printf("cd: no such file or directory\n"), 1);
+	b_pwd();
+	return(0);
 }
+/* 
+int b_cd(char **args, t_env *env) // Pass your env list to the function!
+{
+    char *current_dir;
+    char *old_dir;
+
+    // 1. Save current directory BEFORE moving
+    old_dir = get_current_dir_somehow(); // (e.g. get_env_value(env, "PWD"))
+
+    // 2. Move
+    if (chdir(args[1]) == -1)
+        return (perror("cd"), 1);
+
+    // 3. Get new directory AFTER moving
+    current_dir = getcwd(NULL, 0);
+
+    // 4. Update your internal list
+    set_env_value(env, "OLDPWD", old_dir); // Edit OLDPWD
+    set_env_value(env, "PWD", current_dir); // Edit PWD
+
+    free(current_dir);
+    // don't free old_dir if it was a pointer to the list value, careful here!
+    return (0);
+}
+
+int b_cd(char **args, t_env *env)
+{
+	char	*old_dir;
+
+	old_dir = 
+} */
