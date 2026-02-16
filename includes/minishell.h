@@ -30,6 +30,8 @@
 # include <readline/history.h> 
 # include <signal.h>
 # include <fcntl.h>
+# include <sys/wait.h>
+
 
 #ifndef MAX_FORK 1024
 #define MAX_FORK 1024
@@ -158,3 +160,7 @@ int		move_pointer_to_next_pipe(t_token **token_list);
 int		ft_next_token_is_pipe(t_token **token_list);
 int		move_pointer_after_pipe(t_token **token_list);
 void    free_tree(t_node *tree);
+
+/*EXECUTION*/
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int execute_pipeline(t_node *tree, int fd_in, int fd_out, int *pid_count, int *pid_values);

@@ -32,6 +32,7 @@ SRCS = \
 	parser/create_tree.c \
 	parser/test_trees.c \
 	parser/free_tree.c \
+	executor/executor.c \
 
 # ------------- COMPILING ----------------
 

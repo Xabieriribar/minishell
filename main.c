@@ -23,14 +23,19 @@
 volatile sig_atomic_t g_status = 0;
 int main(void)
 {
+	t_token *head;
+	t_node	*tree;
+	int		fd_in = 0;
+	int		fd_out = 1;
+	head = init_list("ls -l | cat");
+	tree = init_tree(&head);
+	int status = execute_pipeline(tree, fd_in, fd_out, 0, 0);
+	
+	
+	free_tokens(&head);
 
-	int fd_tree_tester = open("parser/tree_tester/tree_tests.txt", O_RDONLY);
-	if (fd_tree_tester < 0)
-		perror("Failed to open tester file");
-	if (test_tree(fd_tree_tester) != 0)
-		return (perror("Failed to test tree"), 1);
-	close(fd_tree_tester);
-	return 0;
+
+
 }
 
 /* int	main(void)
