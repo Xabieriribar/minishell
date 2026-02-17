@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_tree.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xiribar <xiribar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
+/*   Updated: 2026/02/12 19:28:36 by rick             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "minishell.h"
 
 t_node	*create_node(t_type node_type)
@@ -66,7 +77,7 @@ t_node	*parse_commands(t_token **token_list)
 	command_node = malloc(sizeof(struct s_node));
 	if (!command_node)
 		return (NULL);
-    command_node->args = ft_calloc(tokens_before_pipe + 1, sizeof(char *));
+	command_node->args = ft_calloc(tokens_before_pipe + 1, sizeof(char *));
 	if (!command_node->args)
 		return (free(command_node), NULL);
 	fill_command_node(command_node);
