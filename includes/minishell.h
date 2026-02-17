@@ -138,7 +138,6 @@ char	*grammar_validator(t_token *head);
 int		ft_token_lstsize(t_token *lst);
 int		ft_is_redir(t_type type);
 int		ft_is_append_or_heredoc(t_type type);
-char	*ft_type_to_str(t_token *lst);
 
 #endif
 
@@ -153,6 +152,8 @@ void	ft_lstadd_back_redirs(t_redirs **lst, t_redirs *new);
 t_redirs *ft_lstlast_redirs(t_redirs *lst);
 t_redirs *ft_lstnew_redirs(char *filename, t_type redir_type);
 void run_tree_test(char *input_line);
+// GRAMMAR VALIDATOR //
+int ft_handle_redirs(t_token *head, int lst_len, int lst_index);
 /* parser/create_tree_utils.c */
 void	fill_command_node(t_node *node);
 int		ft_tokens_before_pipe(t_token *token_list);
