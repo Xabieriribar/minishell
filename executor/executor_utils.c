@@ -47,4 +47,5 @@ char    *can_access(char *command, char *result)
     if (access(command, F_OK | X_OK) == -1)
         return (NULL);
     result = ft_strdup(command);
+    return (result);
 }

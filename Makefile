@@ -21,16 +21,11 @@ SRCS = \
 	tokenizer/token_append.c \
 	expander/expander.c \
 	expander/expander_utils.c \
-	expander/test_exp.c \
 	signals/signals.c \
-	parser/grammar_tester.c \
-	parser/grammar_validator.c \
-	parser/parser_utils.c \
 	built_in/cd.c \
 	built_in/pwd.c \
 	parser/create_tree_utils.c \
 	parser/create_tree.c \
-	parser/test_trees.c \
 	parser/free_tree.c \
 	executor/executor.c \
 	executor/executor_utils.c \
@@ -44,8 +39,8 @@ SRCS = \
 	built_in/unset.c \
 	built_in/exit.c \
 	built_in/export.c \
-	parser/grammar_tester.c \
 	parser/grammar_validator.c \
+	parser/grammar_utils.c \
 	parser/parser_utils.c \
 
 # ------------- COMPILING ----------------

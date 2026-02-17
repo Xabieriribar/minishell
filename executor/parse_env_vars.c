@@ -1,9 +1,21 @@
 #include "minishell.h"
+void	free_splits(char **strs, int index_allocated)
+{
+    int index;
+
+    index = 0;
+    while (index < index_allocated) 
+    {
+        free(strs[index]);
+        index++;
+    }
+    free(strs);
+}
 t_env *return_path(t_env *env_var)
 {
     while (env_var)
     {
-        if (!ft_strncmp(env->var->key, "PATH", ft_strlen("PATH")))
+        if (!ft_strncmp(env_var->key, "PATH", ft_strlen("PATH")))
         {
             return env_var;
         }
@@ -19,6 +31,7 @@ char    **fill_array_with_env_vars(t_env *env_var)
     int     index;
 
     index = 0;
+    result = NULL;
     while (env_var)
     {
         temp = ft_strjoin(env_var->key, "=");
@@ -37,10 +50,10 @@ char    **fill_array_with_env_vars(t_env *env_var)
 }
 char    **convert_env_var_to_array(t_env *env_var, int env_var_lstsize)
 {
+    char    **result;
 
     if (!env_var)
         return (NULL);
-    index = 0;
     result = malloc(sizeof(char *) * (env_var_lstsize + 1));
     if (!result)
         return (NULL);

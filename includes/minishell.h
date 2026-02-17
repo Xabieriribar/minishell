@@ -32,10 +32,6 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 
-
-#ifndef MAX_FORK 1024
-#define MAX_FORK 1024
-
 extern volatile sig_atomic_t	g_status;
 
 typedef enum e_type
@@ -69,13 +65,6 @@ typedef struct	s_env
 	struct s_env	*next;
 } t_env;
 
-typedef struct	s_env
-{
-	char			*key;
-	char			*value;
-	struct s_env	*next;
-} t_env;
-
 typedef struct s_redirs
 {
 	t_type	redir_type;
@@ -101,6 +90,8 @@ typedef struct s_node
 typedef struct s_data
 {
 	int		exit_status;
+	int		*pid_count;
+	int		*pid_values;
 	t_env	*env_var;
 }	t_data;
 
@@ -154,7 +145,8 @@ int		b_env(char **arr, t_env **list);
 
 void	sigint_handler(int sig);
 int		test_grammar(int fd_grammar_tester);
-char	*grammar_validator(t_token *head);
+
+int		grammar_validator(t_token *head);
 int		ft_token_lstsize(t_token *lst);
 int		ft_is_redir(t_type type);
 int		ft_is_append_or_heredoc(t_type type);
@@ -183,12 +175,20 @@ void    free_tree(t_node *tree);
 
 /*EXECUTION*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int execute_pipeline(t_node *tree, int fd_in, int fd_out, int *pid_count, int *pid_values);
 void	free_splits(char **strs, int index_allocated);
 int contains_out_redirs(t_redirs *redirs);
 int contains_in_redirs(t_redirs *redirs);
 int update_fd_out(t_redirs *redirs);
 int update_fd_in(t_redirs *redirs);
 int execute_heredoc(int fd_heredoc, char *delimiter);
+int     contains_slash(char *suspect);
+char    *can_access(char *command, char *result);
+void    update_fd(t_redirs *redirs, int *fd_in, int *fd_out);
+void    close_if_not_stdin_or_stdout(int fd_in, int fd_out);
+char	*ft_itoa(int n);
+t_env *return_path(t_env *env_var);
+char    **convert_env_var_to_array(t_env *env_var, int env_var_lstsize);
+int ft_env_var_lstsize(t_env *env_var);
+void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data);
 
-#endif
+# endif

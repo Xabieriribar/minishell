@@ -20,7 +20,7 @@ int execute_heredoc(int fd_heredoc, char *delimiter)
     close(fd_heredoc);
     return (0);
 }
-void    search_and_execute_heredoc(t_node *redirs, int *heredoc_file_index)
+void    search_and_execute_heredoc(t_redirs *redirs, int *heredoc_file_index)
 {
     t_redirs *temp_redir;
     int     fd_heredoc;
@@ -30,13 +30,13 @@ void    search_and_execute_heredoc(t_node *redirs, int *heredoc_file_index)
     {
         if (temp_redir->redir_type == T_HEREDOC)
         {
-            temp_redir->temp_heredoc_filename = ft_atoi(*heredoc_file_index);
+            temp_redir->temp_heredoc_filename = ft_itoa(*heredoc_file_index);
             temp_redir->temp_heredoc_filename = ft_strjoin("/tmp/.heredoc_", temp_redir->temp_heredoc_filename);
             fd_heredoc = open(temp_redir->temp_heredoc_filename, O_WRONLY | O_CREAT | O_TRUNC);
             if (fd_heredoc < 0)
                 perror("Open for the heredoc failed");
             execute_heredoc(fd_heredoc, temp_redir->filename);
-            *heredoc_file_index++;
+            *heredoc_file_index += 1;
         }
         temp_redir->filename = temp_redir->temp_heredoc_filename;
         temp_redir = temp_redir->next;
@@ -44,10 +44,6 @@ void    search_and_execute_heredoc(t_node *redirs, int *heredoc_file_index)
 }
 void    open_temporary_heredocs(t_node *tree, int *heredoc_file_index)
 {
-    t_redirs    *temp_redir;
-    int         fd_heredoc;
-
-    temp_redir = NULL;
     if (tree->node_type == COMMAND)
     {
         if (tree->redirs != NULL)

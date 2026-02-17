@@ -21,23 +21,6 @@
 // 	return 0;
 // }
 volatile sig_atomic_t g_status = 0;
-int main(void)
-{
-	t_token *head;
-	t_node	*tree;
-	int		fd_in = 0;
-	int		fd_out = 1;
-	head = init_list("ls -l | cat");
-	tree = init_tree(&head);
-	int status = execute_pipeline(tree, fd_in, fd_out, 0, 0);
-	
-	
-	free_tokens(&head);
-
-
-
-}
-
 char **get_args(t_token *token)
 {
 	char	**args;
