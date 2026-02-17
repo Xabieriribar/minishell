@@ -164,3 +164,9 @@ void    free_tree(t_node *tree);
 /*EXECUTION*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int execute_pipeline(t_node *tree, int fd_in, int fd_out, int *pid_count, int *pid_values);
+void	free_splits(char **strs, int index_allocated);
+int contains_out_redirs(t_redirs *redirs);
+int contains_in_redirs(t_redirs *redirs);
+int update_fd_out(t_redirs *redirs);
+int update_fd_in(t_redirs *redirs);
+int execute_heredoc(int fd_heredoc, char *delimiter);

@@ -33,6 +33,10 @@ SRCS = \
 	parser/test_trees.c \
 	parser/free_tree.c \
 	executor/executor.c \
+	executor/executor_utils.c \
+	executor/execute_heredocs.c \
+	executor/execute_redirs.c \
+	executor/parse_env_vars.c \
 
 # ------------- COMPILING ----------------
 
