@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:56 by rick              #+#    #+#             */
-/*   Updated: 2026/02/16 21:39:53 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/17 14:14:19 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ char **env_to_array(t_env *env)
     if (!arr)
         return (NULL);
 
-    // 3. Fill array
+    // 3. Fill array´
     i = 0;
     tmp = env;
     while (tmp)
