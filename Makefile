@@ -37,6 +37,16 @@ SRCS = \
 	executor/execute_heredocs.c \
 	executor/execute_redirs.c \
 	executor/parse_env_vars.c \
+	built_in/echo.c \
+	built_in/builtins.c \
+	built_in/builtins_utils.c \
+	built_in/env.c \
+	built_in/unset.c \
+	built_in/exit.c \
+	built_in/export.c \
+	parser/grammar_tester.c \
+	parser/grammar_validator.c \
+	parser/parser_utils.c \
 
 # ------------- COMPILING ----------------
 
