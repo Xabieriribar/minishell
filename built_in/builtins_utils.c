@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:56 by rick              #+#    #+#             */
-/*   Updated: 2026/02/16 16:44:21 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/16 21:39:53 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,44 @@ void	free_env_vars(t_env **head)
 		free(*head);
 		*head = tmp;
 	}
+}
+
+char **env_to_array(t_env *env)
+{
+    t_env   *tmp;
+    char    **arr;
+    int     len;
+    int     i;
+
+    // 1. Count nodes
+    len = 0;
+    tmp = env;
+    while (tmp)
+    {
+        len++;
+        tmp = tmp->next;
+    }
+
+    // 2. Allocate array (len + 1 for NULL terminator)
+    arr = malloc(sizeof(char *) * (len + 1));
+    if (!arr)
+        return (NULL);
+
+    // 3. Fill array
+    i = 0;
+    tmp = env;
+    while (tmp)
+    {
+        // Join KEY + "=" + VALUE
+        arr[i] = join_key_value(tmp->key, tmp->value); 
+        if (!arr[i])
+        {
+            free_matrix(arr); // Helper to free everything on error
+            return (NULL);
+        }
+        tmp = tmp->next;
+        i++;
+    }
+    arr[i] = NULL; // Null-terminate the array
+    return (arr);
 }

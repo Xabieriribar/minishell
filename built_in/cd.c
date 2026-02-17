@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:25 by rick              #+#    #+#             */
-/*   Updated: 2026/02/16 17:32:14 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/17 13:15:48 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int b_cd(char **args)
 	b_pwd();
 	return(0);
 }
+
 /* 
 int b_cd(char **args, t_env *env) // Pass your env list to the function!
 {
@@ -84,11 +85,29 @@ int b_cd(char **args, t_env *env) // Pass your env list to the function!
     free(current_dir);
     // don't free old_dir if it was a pointer to the list value, careful here!
     return (0);
+}*/
+
+/*
+* Function iterates though the linked list until finding a matching name.*/
+/* char	*env_value(t_env *env, char *str)
+{
+	t_env	*ptr;
+
+	ptr = env;
+	while (ptr)
+	{
+		if (!ft_strncmp(str, ptr->key, ft_strlen(str)))
+			return (ptr->key);
+		ptr->next;
+	}
+	return (NULL);
 }
 
 int b_cd(char **args, t_env *env)
 {
 	char	*old_dir;
+	char	*new_dir;
 
-	old_dir = 
-} */
+	old_dir = env_value(env, "PWD");
+	new_dir = 
+}  */

@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:55 by rick              #+#    #+#             */
-/*   Updated: 2026/02/16 17:01:58 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/17 11:18:14 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int b_env(char **arr, t_env **list)
             if (arr[1][1]) 
                 ft_putchar_fd(arr[1][1], STDERR_FILENO);
             ft_putendl_fd("'", STDERR_FILENO);
-            return (125);
+            return (1);
         }
         ft_putstr_fd("env: '", STDERR_FILENO);
         ft_putstr_fd(arr[1], STDERR_FILENO);
         ft_putendl_fd("': No such file or directory", STDERR_FILENO);
-        return (127);
+        return (1);
     }
     print_env_list(list);
     return (0);
