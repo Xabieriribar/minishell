@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/16 17:02:12 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/17 15:47:34 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,10 @@ t_env	*init_env_list(char **envp);
 void	free_env_vars(t_env **head);
 void	print_env_list(t_env **head);
 int		b_pwd(void);
-int 	b_cd(char **args);
+int 	b_cd(t_env *env, char **args);
 int		b_echo(char **args);
 int		b_env(char **arr, t_env **list);
+
 // ----------- SIGNALS ---------- //
 
 void	sigint_handler(int sig);

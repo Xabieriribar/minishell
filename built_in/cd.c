@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:25 by rick              #+#    #+#             */
-/*   Updated: 2026/02/17 13:15:48 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/17 17:05:17 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,77 +37,97 @@
 + Previous directory
 + Env variable $HOME */
 
-int b_cd(char **args)
-{
-	char	*str;
-	int		errn;
-
-	if (args[1] == NULL)
-	{
-		str = getenv("HOME");
-		if (!str)
-			return(printf("cd: HOME env unset\n"), 1);
-		errn = chdir(str);
-		if (errn == -1)
-			return(printf("cd: no such file or directory\n"), 1);
-		b_pwd();
-		return(0);
-	}
-	if (args[2] != NULL)
-		return (printf("cd: too many arguments\n"), 1);
-	errn = chdir(args[1]);
-	if (errn == -1)
-		return(printf("cd: no such file or directory\n"), 1);
-	b_pwd();
-	return(0);
-}
-
-/* 
-int b_cd(char **args, t_env *env) // Pass your env list to the function!
-{
-    char *current_dir;
-    char *old_dir;
-
-    // 1. Save current directory BEFORE moving
-    old_dir = get_current_dir_somehow(); // (e.g. get_env_value(env, "PWD"))
-
-    // 2. Move
-    if (chdir(args[1]) == -1)
-        return (perror("cd"), 1);
-
-    // 3. Get new directory AFTER moving
-    current_dir = getcwd(NULL, 0);
-
-    // 4. Update your internal list
-    set_env_value(env, "OLDPWD", old_dir); // Edit OLDPWD
-    set_env_value(env, "PWD", current_dir); // Edit PWD
-
-    free(current_dir);
-    // don't free old_dir if it was a pointer to the list value, careful here!
-    return (0);
-}*/
-
 /*
-* Function iterates though the linked list until finding a matching name.*/
-/* char	*env_value(t_env *env, char *str)
+* Function iterates though the linked list until finding a matching name.
+* Returns a pointer to the matching string key or NULL if not found.*/
+static char    *get_env_value(t_env *env, char *key)
 {
-	t_env	*ptr;
+    t_env   *ptr;
+    size_t  len;
 
-	ptr = env;
-	while (ptr)
-	{
-		if (!ft_strncmp(str, ptr->key, ft_strlen(str)))
-			return (ptr->key);
-		ptr->next;
-	}
-	return (NULL);
+    ptr = env;
+    len = ft_strlen(key);
+    while (ptr)
+    {
+        if (ft_strncmp(key, ptr->key, len) == 0 && ptr->key[len] == '\0')
+            return (ptr->value);
+        ptr = ptr->next;
+    }
+    return (NULL);
 }
 
-int b_cd(char **args, t_env *env)
+static int update_env(t_env *env, char *key, char *new_val)
 {
-	char	*old_dir;
-	char	*new_dir;
+    t_env   *ptr;
+    size_t  len;
 
-	old_dir = env_value(env, "PWD");
-	new_dir = 
-}  */
+    ptr = env;
+    len = ft_strlen(key);
+    while (ptr)
+    {
+        if (ft_strncmp(key, ptr->key, len) == 0 && ptr->key[len] == '\0')
+        {
+            if (ptr->value)
+                free(ptr->value);
+            ptr->value = ft_strdup(new_val);
+            return (0);
+        }
+        ptr = ptr->next;
+    }
+// 2. Key not found? Create and Add it.
+    // Note: We need a specialized init that doesn't split by '='
+    new_node = ft_calloc(1, sizeof(t_env));
+    if (!new_node)
+        return (1);
+    new_node->key = ft_strdup(key);
+    if (value)
+        new_node->value = ft_strdup(value);
+    else
+        new_node->value = NULL;
+    
+    // Add to back of list (using your existing list function)
+    lst_add_back_env(&head, new_node);
+    return (1);
+}
+
+static int  change_dir(t_env *env, char *path)
+{
+    char    *old_pwd;
+    char    *new_pwd;
+
+    old_pwd = get_env_value(env, "PWD");
+    if (chdir(path) == -1)
+    {
+        ft_putstr_fd("minishell: cd: ", 2);
+        perror(path);
+        return (1);
+    }
+    if (old_pwd)
+        update_env(env, "OLDPWD", old_pwd);
+    new_pwd = getcwd(NULL, 0);
+    if (new_pwd)
+    {
+        update_env(env, "PWD", new_pwd);
+        free(new_pwd);
+    }
+    return (0);
+}
+
+int b_cd(t_env *env, char **args)
+{
+    char    *path;
+	int		ret;
+
+    if (!args[1])
+    {
+        path = get_env_value(env, "HOME");
+        if (!path)
+            return (ft_putstr_fd("minishell: cd: HOME not set\n", 2), 1);
+        return (change_dir(env, path));
+    }
+    if (args[2])
+		return (ft_putstr_fd("minishell: cd: too many arguments\n", 2), 1);
+	ret = change_dir(env, args[1]);
+	b_pwd();
+    return (ret);
+}

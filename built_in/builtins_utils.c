@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:56 by rick              #+#    #+#             */
-/*   Updated: 2026/02/17 14:14:19 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/17 14:15:21 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	free_env_vars(t_env **head)
 	}
 }
 
-char **env_to_array(t_env *env)
+/* char **env_to_array(t_env *env)
 {
     t_env   *tmp;
     char    **arr;
@@ -150,3 +150,4 @@ char **env_to_array(t_env *env)
     arr[i] = NULL; // Null-terminate the array
     return (arr);
 }
+ */
