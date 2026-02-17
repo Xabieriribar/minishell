@@ -101,7 +101,7 @@ typedef struct s_node
 typedef struct s_data
 {
 	int		exit_status;
-	t_env	env_var;
+	t_env	*env_var;
 }	t_data;
 
 // ----------- TOKENIZER ---------- //
@@ -159,7 +159,6 @@ int		ft_token_lstsize(t_token *lst);
 int		ft_is_redir(t_type type);
 int		ft_is_append_or_heredoc(t_type type);
 
-#endif
 
 // ----------- PARSER ---------- //
 int test_tree(int fd_tree_tester);
@@ -191,3 +190,5 @@ int contains_in_redirs(t_redirs *redirs);
 int update_fd_out(t_redirs *redirs);
 int update_fd_in(t_redirs *redirs);
 int execute_heredoc(int fd_heredoc, char *delimiter);
+
+#endif
