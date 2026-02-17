@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/17 13:46:25 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/17 13:48:09 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 
 #ifndef MAX_FORK 1024
 #define MAX_FORK 1024
+#endif
 
 extern volatile sig_atomic_t	g_status;
 
