@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:48 by rick              #+#    #+#             */
-/*   Updated: 2026/02/16 14:52:12 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/18 10:02:32 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	is_n_flag(char *str)
 
 	if (!str || str[0] != '-')
 		return (false);
-	if (!str[1]) 
+	if (!str[1])
 		return (false);
 	i = 1;
 	while (str[i])

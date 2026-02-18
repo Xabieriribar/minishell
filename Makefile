@@ -32,9 +32,6 @@ SRCS = \
 	built_in/unset.c \
 	built_in/exit.c \
 	built_in/export.c \
-	parser/grammar_tester.c \
-	parser/grammar_validator.c \
-	parser/parser_utils.c \
 
 # ------------- COMPILING ----------------
 

@@ -6,33 +6,15 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/17 15:37:18 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/18 10:12:37 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-volatile sig_atomic_t g_status = 0;
+volatile sig_atomic_t	g_status = 0;
 
-/* int main(void)
-{
-	char *str[] = {"cd", "../Common-Core", NULL};
- 	char *str2[] = {"pwd", NULL};
-	b_pwd(str2);
-	b_cd(str);
-	return (0);
-} */
-
-/* int	main(void)
-{
-	g_status = 42;
-	tokenizer_test("./tokenizer/tokenizer_tests.txt");
-	printf("\n\n");
-	expander_test("./expander/expander_test.txt");
-	return (0);
-} */
-
-char **get_args(t_token *token)
+char	**get_args(t_token *token)
 {
 	char	**args;
 	t_token	*ptr;
@@ -63,39 +45,39 @@ char **get_args(t_token *token)
 
 int	main(int ac, char **av, char **ep)
 {
+	t_env	*env_list;
+	char	*input;
+	t_token	*token;
+	char	**arr;
+
 	(void)ac;
 	(void)av;
-	t_env *env_list;
-	char *input;
-	t_token *token;
-	char **arr;
-
 	env_list = init_env_list(ep);
 	signal(SIGINT, sigint_handler);
-    signal(SIGQUIT, SIG_IGN);
-    while (1)
-    {
-        input = readline(PROMPT);
-        if (!input)
-        {
-            printf("exit\n");
+	signal(SIGQUIT, SIG_IGN);
+	while (1)
+	{
+		input = readline(PROMPT);
+		if (!input)
+		{
+			printf("exit\n");
 			free_env_vars(&env_list);
 			rl_clear_history();
-            exit(0);
-        }
-        if (input && *input)
-        {
-            add_history(input);
-            token = init_list(input);
-            arr = get_args(token);
-            run_bultins(arr, &env_list);
+			exit(0);
+		}
+		if (input && *input)
+		{
+			add_history(input);
+			token = init_list(input);
+			arr = get_args(token);
+			run_bultins(arr, &env_list);
 			free_tokens(&token);
 			if (arr)
-					free(arr);
-        }
-        free(input);
-    }
+				free(arr);
+		}
+		free(input);
+	}
 	free_env_vars(&env_list);
 	rl_clear_history();
-    return (0);
+	return (0);
 }

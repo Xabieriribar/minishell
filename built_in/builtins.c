@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/02/17 15:43:42 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/18 09:59:51 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,20 @@
 + If command found and execution:success returns 0
 + If command found and execution:error, returns 1
 + Errors for each command are handled internally.*/
-int run_bultins(char **args, t_env **list)
+int	run_bultins(char **args, t_env **list)
 {
-    if (!args || !*args)
-        return (-1);
-    if (!ft_strncmp(args[0], "cd", 3))
-        return (b_cd(*list, args));
-    if (!ft_strncmp(args[0], "echo", 5))
-        return (b_echo(args));
-    if (!ft_strncmp(args[0], "env", 4))
-        return (b_env(args, list));
-    if (!ft_strncmp(args[0], "pwd", 4))
-        return (b_pwd());
+	if (!args || !*args)
+		return (-1);
+	if (!ft_strncmp(args[0], "cd", 3))
+		return (b_cd(*list, args));
+	if (!ft_strncmp(args[0], "echo", 5))
+		return (b_echo(args));
+	if (!ft_strncmp(args[0], "env", 4))
+		return (b_env(args, list));
+	if (!ft_strncmp(args[0], "pwd", 4))
+		return (b_pwd());
+	return (-1);
+}
 /*
     if (!ft_strncmp(args[0], "exit", 5))
         return (b_exit(args));
@@ -42,5 +44,3 @@ int run_bultins(char **args, t_env **list)
     if (!ft_strncmp(args[0], "unset", 6))
         return (b_unset(args, list)); 
     */
-    return (-1);
-}
