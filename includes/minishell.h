@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/18 11:33:05 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/18 16:55:59 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ typedef struct s_env
 typedef struct s_data
 {
 	int		exit_status;
-	t_env	env_var;
+	int		pid_count;
+	int		*pid_values;
+	int		recursive_call_counter;
+	t_env	*env_var;
 }	t_data;
 
 // ----------- TOKENIZER ---------- //
