@@ -6,7 +6,7 @@ void    open_redir_append(char *filename, int append_count, int *updated_fd_appe
         close(*updated_fd_append);
     *updated_fd_append = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
     if (*updated_fd_append < 0)
-        perror("Open failed when output redirections");
+        perror("Error");
 }
 
 void open_redir_out(char *filename, int out_count, int *updated_fd_out)
@@ -15,7 +15,7 @@ void open_redir_out(char *filename, int out_count, int *updated_fd_out)
         close(*updated_fd_out);
     *updated_fd_out = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (*updated_fd_out < 0)
-        perror("Open failed when input redirections");
+        perror("Error");
 }
 int update_fd_out(t_redirs *redirs)
 {
@@ -57,7 +57,7 @@ int update_fd_in(t_redirs *redirs)
                 close(updated_fd_in);
             updated_fd_in = open(redirs->filename, O_RDONLY);
             if (updated_fd_in < 0)
-                perror("Open failed when input redirections");
+                perror("Error");
         }
         in_count++;
         redirs = redirs->next;

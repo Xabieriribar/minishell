@@ -90,8 +90,9 @@ typedef struct s_node
 typedef struct s_data
 {
 	int		exit_status;
-	int		*pid_count;
+	int		pid_count;
 	int		*pid_values;
+	int		recursive_call_counter;
 	t_env	*env_var;
 }	t_data;
 

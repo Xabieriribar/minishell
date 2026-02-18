@@ -61,9 +61,14 @@ void    execute_command(t_node *tree, t_env *env_var, int fd_in, int fd_out)
     path_env_var = return_path(env_var);
     if (!path_env_var)
         perror("Environment variable path doesnt exist");
+    if (run_bultins(tree->args, &env_var))
+        exit(1);
     pathname = get_path(tree->args[0], path_env_var->value);
     if (!pathname)
+    {
+        perror("Error");
         exit(127);
+    }
     env_vars = convert_env_var_to_array(env_var, ft_env_var_lstsize(env_var)); 
     if (execve(pathname, tree->args, env_vars) != -1)
     {
@@ -79,7 +84,7 @@ void    wait_for_last_child(t_data *data)
     int index;
 
     index = 0;
-    while (index < *(data->pid_count))
+    while (index < data->pid_count)
     {
         waitpid(data->pid_values[index], &(data->exit_status), 0);
         if (WIFEXITED(data->exit_status))
@@ -101,13 +106,18 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
             close(fd_in);
         if (fd_out != 1)
             close(fd_out);
-        data->pid_values[*(data->pid_count++)] = process_id;
+        data->pid_values[data->pid_count] = process_id;
+        data->pid_count++;
+        if (data->recursive_call_counter == 0)
+            wait_for_last_child(data);
+        data->recursive_call_counter = 0;
         return ;
     }
     else
     {
         if (pipe(pipefdes) < 0)
             perror("First pipe failed to execute");
+        data->recursive_call_counter++;
         execute_pipeline(tree->left_child, fd_in, pipefdes[1], data);
         execute_pipeline(tree->right_child, pipefdes[0], fd_out, data);
         wait_for_last_child(data);

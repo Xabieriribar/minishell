@@ -1,0 +1,24 @@
+{
+    ignore_readline_leaks
+    Memcheck:Leak
+    ...
+    fun:readline
+}
+{
+    ignore_add_history_leaks
+    Memcheck:Leak
+    ...
+    fun:add_history
+}
+{
+    ignore_rl_initialize
+    Memcheck:Leak
+    ...
+    fun:rl_initialize
+}
+{
+    ignore_libtinfo
+    Memcheck:Leak
+    ...
+    obj:*/libtinfo.so.*
+}

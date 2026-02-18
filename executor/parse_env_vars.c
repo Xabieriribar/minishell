@@ -23,7 +23,7 @@ t_env *return_path(t_env *env_var)
     }
     return (NULL);
 }
-char    **fill_array_with_env_vars(t_env *env_var)
+char    **fill_array_with_env_vars(t_env *env_var, int env_var_lstsize)
 {
     char    **result;
     char    *candidate;
@@ -31,7 +31,9 @@ char    **fill_array_with_env_vars(t_env *env_var)
     int     index;
 
     index = 0;
-    result = NULL;
+    result = malloc(sizeof(char *) * (env_var_lstsize + 1));
+    if (!result)
+        return (NULL);
     while (env_var)
     {
         temp = ft_strjoin(env_var->key, "=");
@@ -54,10 +56,7 @@ char    **convert_env_var_to_array(t_env *env_var, int env_var_lstsize)
 
     if (!env_var)
         return (NULL);
-    result = malloc(sizeof(char *) * (env_var_lstsize + 1));
-    if (!result)
-        return (NULL);
-    result = fill_array_with_env_vars(env_var);
+    result = fill_array_with_env_vars(env_var, env_var_lstsize);
     if (!result)
         return (NULL);
     return (result);

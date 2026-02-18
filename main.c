@@ -21,45 +21,44 @@
 // 	return 0;
 // }
 volatile sig_atomic_t g_status = 0;
-char **get_args(t_token *token)
+/*This function mallocs the data struct it and initializes its values to NULL
+It returns the struct on success and 1 when somethings goes wrong*/
+t_data *init_data(void)
 {
-	char	**args;
-	t_token	*ptr;
-	int		len;
-	int		i;
+    t_data *data;
 
-	ptr = token;
-	len = 0;
-	while (ptr)
-	{
-		len++;
-		ptr = ptr->next;
-	}
-	args = malloc(sizeof(char *) * (len + 1));
-	if (!args)
-		return (NULL);
-	ptr = token;
-	i = 0;
-	while (ptr)
-	{
-		args[i] = ptr->value;
-		ptr = ptr->next;
-		i++;
-	}
-	args[i] = NULL;
-	return (args);
+    data = malloc(sizeof(struct s_data));
+    if (!data)
+        return (perror("Malloc failed when initializing the data struct"), NULL);
+    data->env_var = NULL;
+    data->exit_status = 0;
+    data->pid_count  = 0;
+    data->recursive_call_counter = 0;
+    /* WE ALLOCATE 1024 FOR A GENEROUS AMOUNT OF PIPE. PAY ATTENTION, THIS CAN BREAK STRESS TESTS AND MUST BE TREATED*/
+    data->pid_values = malloc(sizeof(int) * 1024);
+    return (data);
+
 }
-
+/*This functino takes the data structure as an argument and frees the elements that were allocated to it*/
+void    free_data(t_data *data)
+{
+    free(data->pid_values);
+    free(data);
+}
 int	main(int ac, char **av, char **ep)
 {
 	(void)ac;
 	(void)av;
-	t_env *env_list;
-	char *input;
+    t_data  *data;
+    t_node  *tree;
+	char    *input;
 	t_token *token;
-	char **arr;
+    t_token *temp_token;
 
-	env_list = init_env_list(ep);
+    data = init_data();
+    if (!data)
+		return (1);
+	data->env_var = init_env_list(ep);
 	signal(SIGINT, sigint_handler);
     signal(SIGQUIT, SIG_IGN);
     while (1)
@@ -68,7 +67,7 @@ int	main(int ac, char **av, char **ep)
         if (!input)
         {
             printf("exit\n");
-			free_env_vars(&env_list);
+			free_env_vars(&data->env_var);
 			rl_clear_history();
             exit(0);
         }
@@ -76,15 +75,19 @@ int	main(int ac, char **av, char **ep)
         {
             add_history(input);
             token = init_list(input);
-            arr = get_args(token);
-            run_bultins(arr, &env_list);
-			free_tokens(&token);
-			if (arr)
-					free(arr);
+            temp_token = token;
+            tree = init_tree(&token);
+            execute_pipeline(tree, 0, 1, data);
+            /* Why do we initialise the pid_count to 0? The command execution has ended, but the pid_count value has been changed. Therefore,
+            we need to set its value to 0 to not break the next command*/
+            data->pid_count = 0;
+            free_tree(tree);
+			free_tokens(&temp_token);
         }
         free(input);
     }
-	free_env_vars(&env_list);
+	free_env_vars(&data->env_var);
+    free_data(data);
 	rl_clear_history();
     return (0);
 }

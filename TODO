@@ -1,23 +1,10 @@
-Mirar el tokenizer una vez mas para gestionar estos casos;
-ls ; pwd
-ls \ -l
-echo hello \
-ls && pwd
-ls || pwd
-(ls)
-(ls && pwd) || echo "fail"
-ls && (pwd || echo "fail")
-( (ls) )
-ls | (grep a && echo b)
-TODOS ESTOS EL TOKENIZER DEBERIA LANZAR SYNTAX ERROR
+1) Por que falla minishell cuando intentamos tomar el exit status del ultimo comando?
+ej: lss -> echo $? -> 0. El output esperado es 127, no 0 dos veces.
+2) Por que falla minishell con la gestion de errores?
+ej: < infile ls | echo hola (en el caso de que infile no exista) 
+resultado esperado: hola infile: no such file or directory
+resultado obtenido: hola error: no such file or directory hola (por que se repite hola dos veces?)
+3) Por que se repite el error del exit status una y otra vez?
+algo esta fallando con echo $?
+4
 
-
-
-
-
-
-
-
-
-Mirar este test ">>>>>>>>>" ya que el parser tiene que lanzar error especial asi que
-el tokenizeer me tiene que mandar la string original, no solo >>
