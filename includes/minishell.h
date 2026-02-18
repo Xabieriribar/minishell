@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/18 09:54:25 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/18 11:33:05 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int		b_pwd(void);
 int		b_cd(t_env *env, char **args);
 int		b_echo(char **args);
 int		b_env(char **arr, t_env **list);
+int		b_unset(t_env **env, char **arr);
 
 // ----------- SIGNALS ---------- //
 

@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/02/18 09:59:51 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/18 11:36:09 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	run_bultins(char **args, t_env **list)
 		return (b_env(args, list));
 	if (!ft_strncmp(args[0], "pwd", 4))
 		return (b_pwd());
+	if (!ft_strncmp(args[0], "unset", 6))
+		return (b_unset(list, args));
 	return (-1);
 }
 /*
@@ -41,6 +43,5 @@ int	run_bultins(char **args, t_env **list)
     if (!ft_strncmp(args[0], "export", 7))
         return (b_export(args, list));
 
-    if (!ft_strncmp(args[0], "unset", 6))
-        return (b_unset(args, list)); 
+
     */
