@@ -126,11 +126,12 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
 
 void    execute(t_node *tree, t_data *data)
 {
-
-    execute_pipeline(tree, 0, 1, data);
-    // if (!tree->left_child)
-        // if (run_builtins(tree->args, &(data->env_var), &data, 1) != -1)
-            // return ;
-    //if (tree->left_child)
-    //     execute_pipeline(tree, 0, 1, data);
+    if (!tree->left_child)
+    {
+        if (run_builtins(tree->args, &(data->env_var), &data, 1) != -1)
+            return ;
+        execute_pipeline(tree, 0, 1, data);
+    }
+    else 
+        execute_pipeline(tree, 0, 1, data);
 }
