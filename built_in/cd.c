@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:25 by rick              #+#    #+#             */
-/*   Updated: 2026/02/18 09:58:48 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/19 15:14:04 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static int	change_dir(t_env *env, char *path)
 	old_pwd = get_env_value(env, "PWD");
 	if (chdir(path) == -1)
 	{
-		ft_putstr_fd("minishell: cd: ", 2);
+		ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
 		perror(path);
 		return (1);
 	}
@@ -123,11 +123,17 @@ int	b_cd(t_env *env, char **args)
 	{
 		path = get_env_value(env, "HOME");
 		if (!path)
-			return (ft_putstr_fd("minishell: cd: HOME not set\n", 2), 1);
+		{
+			ft_putstr_fd("minishell: cd: HOME not set\n", STDERR_FILENO);
+			return (1);
+		}
 		return (change_dir(env, path));
 	}
 	if (args[2])
-		return (ft_putstr_fd("minishell: cd: too many arguments\n", 2), 1);
+	{
+		ft_putstr_fd("minishell: cd: too many arguments\n", STDERR_FILENO);
+		return (1);
+	}
 	ret = change_dir(env, args[1]);
 	return (ret);
 }

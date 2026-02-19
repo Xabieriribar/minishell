@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/18 10:12:37 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/19 13:20:36 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,18 @@ char	**get_args(t_token *token)
 int	main(int ac, char **av, char **ep)
 {
 	t_env	*env_list;
+	t_data	*data;
 	char	*input;
 	t_token	*token;
 	char	**arr;
+	int		ret;
 
 	(void)ac;
 	(void)av;
 	env_list = init_env_list(ep);
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
+	data = ft_calloc(sizeof(t_data), 1);
 	while (1)
 	{
 		input = readline(PROMPT);
@@ -70,14 +73,20 @@ int	main(int ac, char **av, char **ep)
 			add_history(input);
 			token = init_list(input);
 			arr = get_args(token);
-			run_bultins(arr, &env_list);
+			ret = run_bultins(arr, &env_list, &data);
 			free_tokens(&token);
 			if (arr)
 				free(arr);
+			if (ret == -42)
+				break ;
 		}
 		free(input);
 	}
+	if (input)
+		free(input);
 	free_env_vars(&env_list);
 	rl_clear_history();
-	return (0);
+	int asd = data->exit_status;
+	free(data);
+	return (asd);
 }

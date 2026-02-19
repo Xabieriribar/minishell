@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:48:07 by rick              #+#    #+#             */
-/*   Updated: 2026/02/18 17:34:22 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/19 16:50:32 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,55 @@
 */
 
 /*
-* Checks if a string is a valid Bash identifier.
-* Returns 1 if valid, 0 if invalid. */
-int	is_valid_identifier(char *str)
+* Checks if a string is a valid Bash identifier.*/
+static bool	is_valid_identifier(char *str)
 {
 	int	i;
 
-	if (!str || !str[0])
-		return (0);
+	if (!str || !str[0] || str[0] == '=')
+		return (false);
 	if (!ft_isalpha(str[0]) && str[0] != '_')
-		return (0);
+		return (false);
 	i = 1;
-	while (str[i])
+	while (str[i] && str[i] != '=')
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '_')
-			return (0);
+			return (false);
 		i++;
 	}
-	return (1);
+	return (true);
+}
+
+/*
+* Function to sort and print the environment variables
+* list.
++ Used for case where export has no arguments.*/
+static void	sort_and_print_export(t_env *env)
+{
+	t_env	**arr;
+	t_env	*temp;
+	int		size;
+	int		i;
+
+	size = env_list_size(env);
+	arr = malloc(sizeof(t_env *) * size);
+	if (!arr)
+		return ;
+	i = 0;
+	temp = env;
+	while (temp)
+	{
+		arr[i++] = temp;
+		temp = temp->next;
+	}
+	sort_env_arr(arr, size);
+	print_arr(arr, size);
+	free(arr);
+}
+
+int	b_export(char **arr, t_env **env)
+{
+	if (!arr[1])
+		return (sort_and_print_export(*env), 0);
+	return (0);
 }
