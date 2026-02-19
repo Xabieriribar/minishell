@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/19 16:45:24 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/19 18:43:42 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,20 +112,20 @@ bool	valid_chars(char c);
 
 // ----------- BUILTINS ---------- //
 
-int		run_bultins(char **args, t_env **list, t_data **data);
+int		run_bultins(char **args, t_env **list, t_data **data, int out_nmb);
 t_env	*init_env_list(char **envp);
 void	free_env_vars(t_env **head);
-void	print_env_list(t_env **head);
+void	print_env_list(t_env **head, int out_nmb);
 int		env_list_size(t_env *env);
-void	print_arr(t_env **arr, int size);
+void	print_arr(t_env **arr, int size, int out_nmb);
 void	sort_env_arr(t_env **arr, int size);
-int		b_pwd(void);
-int		b_cd(t_env *env, char **args);
-int		b_echo(char **args);
-int		b_env(char **arr, t_env **list);
+int		b_pwd(int out_nbr);
+int		b_cd(t_env *env, char **args, int out_nmb);
+int		b_echo(char **args, int out_nmb);
+int		b_env(char **arr, t_env **list, int out_nmb);
 int		b_unset(t_env **env, char **arr);
 int		b_exit(char **args, t_data **data);
-int		b_export(char **arr, t_env **env);
+int		b_export(char **arr, t_env **env, int out_nmb);
 
 // ----------- SIGNALS ---------- //
 

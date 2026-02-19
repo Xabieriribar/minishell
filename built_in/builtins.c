@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/02/19 16:39:04 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/19 18:43:56 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 + return value and break the main loop, to then free everything
 + and terminate the program.
 + b_exit() setst the exit_status to handle users input in that sense. */
-int	run_bultins(char **args, t_env **list, t_data **data)
+int	run_bultins(char **args, t_env **list, t_data **data, int out_nmb)
 {
 	int	ret;
 
@@ -43,17 +43,17 @@ int	run_bultins(char **args, t_env **list, t_data **data)
 	if (!ft_strncmp(args[0], "exit", 5))
 		return (b_exit(args, data));
 	if (!ft_strncmp(args[0], "cd", 3))
-		ret = b_cd(*list, args);
+		ret = b_cd(*list, args, out_nmb);
 	else if (!ft_strncmp(args[0], "echo", 5))
-		ret = b_echo(args);
+		ret = b_echo(args, out_nmb);
 	else if (!ft_strncmp(args[0], "env", 4))
-		ret = b_env(args, list);
+		ret = b_env(args, list, out_nmb);
 	else if (!ft_strncmp(args[0], "pwd", 4))
-		ret = b_pwd();
+		ret = b_pwd(out_nmb);
 	else if (!ft_strncmp(args[0], "unset", 6))
 		ret = b_unset(list, args);
 	else if (!ft_strncmp(args[0], "export", 7))
-		ret = b_export(args, list);
+		ret = b_export(args, list, out_nmb);
 	else
 		return (-1);
 	(*data)->exit_status = ret;

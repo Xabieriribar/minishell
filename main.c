@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/19 13:20:36 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/19 18:44:55 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int ac, char **av, char **ep)
 			add_history(input);
 			token = init_list(input);
 			arr = get_args(token);
-			ret = run_bultins(arr, &env_list, &data);
+			ret = run_bultins(arr, &env_list, &data, 1);
 			free_tokens(&token);
 			if (arr)
 				free(arr);

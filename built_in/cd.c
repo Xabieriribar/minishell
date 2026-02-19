@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:25 by rick              #+#    #+#             */
-/*   Updated: 2026/02/19 15:14:04 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/19 18:42:54 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	update_env(t_env *env, char *key, char *new_val)
 * Function to change directories and update the values of keys
 * PWD and OLDPWD. In case of not finding those variables in the list of
 * env, no new values are assigned as regular cd does.*/
-static int	change_dir(t_env *env, char *path)
+static int	change_dir(t_env *env, char *path, int out_nmb)
 {
 	char	*old_pwd;
 	char	*new_pwd;
@@ -110,11 +110,11 @@ static int	change_dir(t_env *env, char *path)
 		update_env(env, "PWD", new_pwd);
 		free(new_pwd);
 	}
-	b_pwd();
+	b_pwd(out_nmb);
 	return (0);
 }
 
-int	b_cd(t_env *env, char **args)
+int	b_cd(t_env *env, char **args, int out_nmb)
 {
 	char	*path;
 	int		ret;
@@ -127,13 +127,13 @@ int	b_cd(t_env *env, char **args)
 			ft_putstr_fd("minishell: cd: HOME not set\n", STDERR_FILENO);
 			return (1);
 		}
-		return (change_dir(env, path));
+		return (change_dir(env, path, out_nmb));
 	}
 	if (args[2])
 	{
 		ft_putstr_fd("minishell: cd: too many arguments\n", STDERR_FILENO);
 		return (1);
 	}
-	ret = change_dir(env, args[1]);
+	ret = change_dir(env, args[1], out_nmb);
 	return (ret);
 }

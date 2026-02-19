@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:48 by rick              #+#    #+#             */
-/*   Updated: 2026/02/18 10:02:32 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/19 18:42:16 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool	is_n_flag(char *str)
 	return (true);
 }
 
-int	b_echo(char **args)
+int	b_echo(char **args, int out_nmb)
 {
 	int		i;
 	bool	n_flag;
@@ -44,12 +44,12 @@ int	b_echo(char **args)
 	}
 	while (args[i])
 	{
-		ft_putstr_fd(args[i], STDOUT_FILENO);
+		ft_putstr_fd(args[i], out_nmb);
 		if (args[i + 1])
-			write(STDOUT_FILENO, " ", 1);
+			write(out_nmb, " ", 1);
 		i++;
 	}
 	if (!n_flag)
-		write(STDOUT_FILENO, "\n", 1);
+		write(1, "\n", 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:56 by rick              #+#    #+#             */
-/*   Updated: 2026/02/19 16:48:34 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/19 18:39:17 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,20 @@ void	sort_env_arr(t_env **arr, int size)
 /*
 * Helper function to print the array of t_env.
 * Used in b_export.*/
-void	print_arr(t_env **arr, int size)
+void	print_arr(t_env **arr, int size, int out_nmb)
 {
 	int	i;
 
 	i = 0;
 	while (i < size)
 	{
-		ft_putstr_fd("declare -x ", 1);
-		ft_putstr_fd(arr[i]->key, 1);
+		ft_putstr_fd("declare -x ", out_nmb);
+		ft_putstr_fd(arr[i]->key, out_nmb);
 		if (arr[i]->value)
 		{
-			ft_putstr_fd("=\"", 1);
-			ft_putstr_fd(arr[i]->value, 1);
-			ft_putstr_fd("\"", 1);
+			ft_putstr_fd("=\"", out_nmb);
+			ft_putstr_fd(arr[i]->value, out_nmb);
+			ft_putstr_fd("\"", out_nmb);
 		}
 		ft_putstr_fd("\n", 1);
 		i++;
