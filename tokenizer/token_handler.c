@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:26:07 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 11:35:46 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/18 09:51:01 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	token_single(t_token **head, char *str, int ix)
 static bool	valid_c(char c)
 {
 	if (c && !is_single(c) && !is_double(c)
-	&& !is_space(c) && !is_operator(c))
+		&& !is_space(c) && !is_operator(c))
 		return (true);
 	return (false);
 }

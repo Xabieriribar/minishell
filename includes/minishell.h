@@ -31,6 +31,7 @@
 # include <signal.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <limits.h>
 
 extern volatile sig_atomic_t	g_status;
 
@@ -58,12 +59,12 @@ struct s_token
 	t_token		*prev;
 };
 
-typedef struct	s_env
+typedef struct s_env
 {
 	char			*key;
 	char			*value;
 	struct s_env	*next;
-} t_env;
+}	t_env;
 
 typedef struct s_redirs
 {
@@ -136,14 +137,21 @@ bool	valid_chars(char c);
 
 // ----------- BUILTINS ---------- //
 
-int		run_bultins(char **args, t_env **list);
+int		run_bultins(char **args, t_env **list, t_data **data, int out_nmb);
 t_env	*init_env_list(char **envp);
 void	free_env_vars(t_env **head);
-void	print_env_list(t_env **head);
-int		b_pwd(void);
-int 	b_cd(char **args);
-int		b_echo(char **args);
-int		b_env(char **arr, t_env **list);
+void	print_env_list(t_env **head, int out_nmb);
+int		env_list_size(t_env *env);
+void	print_arr(t_env **arr, int size, int out_nmb);
+void	sort_env_arr(t_env **arr, int size);
+int		b_pwd(int out_nbr);
+int		b_cd(t_env *env, char **args, int out_nmb);
+int		b_echo(char **args, int out_nmb);
+int		b_env(char **arr, t_env **list, int out_nmb);
+int		b_unset(t_env **env, char **arr);
+int		b_exit(char **args, t_data **data);
+int		b_export(char **arr, t_env **env, int out_nmb);
+
 // ----------- SIGNALS ---------- //
 
 void	sigint_handler(int sig);
