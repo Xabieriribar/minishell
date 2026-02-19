@@ -123,6 +123,7 @@ int	main(int ac, char **av, char **ep)
             tree = init_tree(&token);
             execute(tree, data);
 			free_tokens(&temp_token);
+            printf("Exit status for this command %d\n", data->exit_status);
             free_tree(tree);
 			if (data->exit_status == -42)
 				break ;

@@ -128,7 +128,7 @@ void    execute(t_node *tree, t_data *data)
 {
     if (!tree->left_child)
     {
-        if (run_builtins(tree->args, &(data->env_var), &data, 1) != -1)
+        if (run_bultins(tree->args, &(data->env_var), &data, 1) != -1)
             return ;
         execute_pipeline(tree, 0, 1, data);
     }
