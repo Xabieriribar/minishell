@@ -93,6 +93,8 @@ typedef struct s_data
 	int		pid_count;
 	int		*pid_values;
 	int		recursive_call_counter;
+	int		fd_in;
+	int		fd_out;
 	t_env	*env_var;
 }	t_data;
 
@@ -191,5 +193,6 @@ t_env *return_path(t_env *env_var);
 char    **convert_env_var_to_array(t_env *env_var, int env_var_lstsize);
 int ft_env_var_lstsize(t_env *env_var);
 void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data);
+void    execute(t_node *tree, t_data *data);
 
 # endif

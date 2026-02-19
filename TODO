@@ -6,5 +6,14 @@ resultado esperado: hola infile: no such file or directory
 resultado obtenido: hola error: no such file or directory hola (por que se repite hola dos veces?)
 3) Por que se repite el error del exit status una y otra vez?
 algo esta fallando con echo $?
-4
+4) Por que la salida de los builtins no esta conectada a la salida de los pipes?
+Solucion: no puedes correr un builtin y execve al mismo tiempo. O corres uno o corres el otro, pero no los dos
+5) Por que no existe un tester para cada comando?
+Solucion: hacer un tester automatizado. Empezar por los comandos simples, comparando las salidas y los exit codes.
+Seguir por comandos mas complejos con redirecciones, para comprobar is se crean archivos en el orden, y la informacion
+va de un lugar a otro con seguridad, y se reproducen los mensajes de error (no al pie de la letra)
+Una vez tengamos los comandos simples y complejos seguros, el tester pasaria a los env_vars y builtins. Funcionan todos los builtins? Conseguimos expandir todas las variables e imprimirlas?
+Tenemos leaks en el proceso? El cuarto paso, una vez tengamos comandos simples y complejos, builtins + expanders, seria pasar, una vez mas, a la gramatica: se reproducen los mensajes de error
+del shell en todos los edge cases? El quinto paso es introducir los pipes. Funcionan comandos simples unidos por un pipe? Captura el exit code del ultimo child? Gestioan los errores igual que en el shell?
+Que pasa si el primer pipe el infile esta mal? Se reproduce el comando igual? Si el infile y el comando que viene esta mal pero el resto bien? Se sigue ejecutando la serie? Que pasa si el comando del ultimo pipe esta mal 
 

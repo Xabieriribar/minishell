@@ -58,15 +58,15 @@ void    execute_command(t_node *tree, t_env *env_var, int fd_in, int fd_out)
     dup2(fd_in, 0);
     dup2(fd_out, 1);
     close_if_not_stdin_or_stdout(fd_in, fd_out);
+    // if (run_bultins(tree->args, &env_var) != 0)
+    //     exit(1);
     path_env_var = return_path(env_var);
     if (!path_env_var)
         perror("Environment variable path doesnt exist");
-    if (run_bultins(tree->args, &env_var))
-        exit(1);
     pathname = get_path(tree->args[0], path_env_var->value);
     if (!pathname)
     {
-        perror("Error");
+        perror("Error with pathname");
         exit(127);
     }
     env_vars = convert_env_var_to_array(env_var, ft_env_var_lstsize(env_var)); 
@@ -122,4 +122,15 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
         execute_pipeline(tree->right_child, pipefdes[0], fd_out, data);
         wait_for_last_child(data);
     }
+}
+
+void    execute(t_node *tree, t_data *data)
+{
+
+    execute_pipeline(tree, 0, 1, data);
+    // if (!tree->left_child)
+        // if (run_builtins(tree->args, &(data->env_var), &data, 1) != -1)
+            // return ;
+    //if (tree->left_child)
+    //     execute_pipeline(tree, 0, 1, data);
 }

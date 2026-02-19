@@ -23,14 +23,14 @@
 volatile sig_atomic_t g_status = 0;
 /*This function mallocs the data struct it and initializes its values to NULL
 It returns the struct on success and 1 when somethings goes wrong*/
-t_data *init_data(void)
+t_data *init_data(char **env_variables)
 {
     t_data *data;
 
     data = malloc(sizeof(struct s_data));
     if (!data)
         return (perror("Malloc failed when initializing the data struct"), NULL);
-    data->env_var = NULL;
+    data->env_var = init_env_list(env_variables);
     data->exit_status = 0;
     data->pid_count  = 0;
     data->recursive_call_counter = 0;
@@ -42,52 +42,97 @@ t_data *init_data(void)
 /*This functino takes the data structure as an argument and frees the elements that were allocated to it*/
 void    free_data(t_data *data)
 {
+	free_env_vars(&(data->env_var));
     free(data->pid_values);
     free(data);
 }
+// int	main(int ac, char **av, char **ep)
+// {
+// 	(void)ac;
+// 	(void)av;
+//     t_data  *data;
+//     t_node  *tree;
+// 	char    *input;
+// 	t_token *token;
+//     t_token *temp_token;
+
+//     data = init_data();
+//     if (!data)
+// 		return (1);
+// 	data->env_var = init_env_list(ep);
+// 	signal(SIGINT, sigint_handler);
+//     signal(SIGQUIT, SIG_IGN);
+//     while (1)
+//     {
+//         input = readline(PROMPT);
+//         if (!input)
+//         {
+//             printf("exit\n");
+// 			free_env_vars(&data->env_var);
+// 			rl_clear_history();
+//             exit(0);
+//         }
+//         if (input && *input)
+//         {
+//             add_history(input);
+//             token = init_list(input);
+//             temp_token = token;
+//             tree = init_tree(&token);
+//             execute_pipeline(tree, 0, 1, data);
+//             /* Why do we initialise the pid_count to 0? The command execution has ended, but the pid_count value has been changed. Therefore,
+//             we need to set its value to 0 to not break the next command*/
+//             data->pid_count = 0;
+//             printf("%d", data->exit_status);
+//             free_tree(tree);
+// 			free_tokens(&temp_token);
+//         }
+//         free(input);
+//     }
+// 	free_env_vars(&data->env_var);
+// 	rl_clear_history();
+//     return (0);
+// }
 int	main(int ac, char **av, char **ep)
 {
-	(void)ac;
-	(void)av;
-    t_data  *data;
+	t_data	*data;
+	char	*input;
+	t_token	*token;
     t_node  *tree;
-	char    *input;
-	t_token *token;
     t_token *temp_token;
 
-    data = init_data();
-    if (!data)
-		return (1);
-	data->env_var = init_env_list(ep);
+	(void)ac;
+	(void)av;
 	signal(SIGINT, sigint_handler);
-    signal(SIGQUIT, SIG_IGN);
-    while (1)
-    {
-        input = readline(PROMPT);
-        if (!input)
-        {
-            printf("exit\n");
-			free_env_vars(&data->env_var);
+	signal(SIGQUIT, SIG_IGN);
+    data = init_data(ep);
+	while (1)
+	{
+		input = readline(PROMPT);
+		if (!input)
+		{
+			printf("exit\n");
+			free_env_vars(&(data->env_var));
 			rl_clear_history();
-            exit(0);
-        }
-        if (input && *input)
-        {
-            add_history(input);
-            token = init_list(input);
+			exit(0);
+		}
+		if (input && *input)
+		{
+			add_history(input);
+			token = init_list(input);
             temp_token = token;
             tree = init_tree(&token);
-            execute_pipeline(tree, 0, 1, data);
-            /* Why do we initialise the pid_count to 0? The command execution has ended, but the pid_count value has been changed. Therefore,
-            we need to set its value to 0 to not break the next command*/
-            data->pid_count = 0;
-            free_tree(tree);
+            execute(tree, data);
 			free_tokens(&temp_token);
-        }
-        free(input);
-    }
-	free_env_vars(&data->env_var);
+            free_tree(tree);
+			if (data->exit_status == -42)
+				break ;
+		}
+		free(input);
+	}
+	if (input)
+		free(input);
     free_data(data);
 	rl_clear_history();
-    return (0);
+	int asd = data->exit_status;
+	return (asd);
 }
