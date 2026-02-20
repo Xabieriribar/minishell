@@ -6,9 +6,10 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/20 14:56:55 by marvin           ###   ########.fr       */
+/*   Updated: 2026/02/20 15:22:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -139,14 +140,19 @@ bool	valid_chars(char c);
 
 int		run_bultins(char **args, t_env **list, t_data **data, int out_nmb);
 t_env	*init_env_list(char **envp);
+t_env	*init_env(char *str);
+t_env	*lstlast_env(t_env *lst);
+t_env	*find_env(t_env **env, char *key);
+int		lst_add_back_env(t_env **lst, t_env *new);
 void	free_env_vars(t_env **head);
 void	print_env_list(t_env **head, int out_nmb);
 int		env_list_size(t_env *env);
 void	print_arr(t_env **arr, int size, int out_nmb);
 void	sort_env_arr(t_env **arr, int size);
+char	*get_key(char *str);
 int		b_pwd(int out_nbr);
 int		b_cd(t_env *env, char **args, int out_nmb);
-int		b_echo(char **args, int out_nmb);
+int		b_echo(char **args, int out_nmb, t_data **data);
 int		b_env(char **arr, t_env **list, int out_nmb);
 int		b_unset(t_env **env, char **arr);
 int		b_exit(char **args, t_data **data);

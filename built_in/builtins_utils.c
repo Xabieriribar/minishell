@@ -6,26 +6,30 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:56 by rick              #+#    #+#             */
-/*   Updated: 2026/02/19 18:39:17 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/20 14:49:18 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*
-* Function to free the environment variable linked list*/
-void	free_env_vars(t_env **head)
+* Function returns a pointer to the node matching
+* with the value key.*/
+t_env	*find_env(t_env **env, char *key)
 {
-	t_env	*tmp;
+	t_env	*ptr;
+	size_t	len;
 
-	while (*head)
+	ptr = *env;
+	len = ft_strlen(key);
+	while (ptr)
 	{
-		tmp = (*head)->next;
-		free((*head)->key);
-		free((*head)->value);
-		free(*head);
-		*head = tmp;
+		if (ft_strncmp(key, ptr->key, len) == 0
+			&& ptr->key[len] == '\0')
+			return (ptr);
+		ptr = ptr->next;
 	}
+	return (NULL);
 }
 
 /*
@@ -91,7 +95,21 @@ void	print_arr(t_env **arr, int size, int out_nmb)
 			ft_putstr_fd(arr[i]->value, out_nmb);
 			ft_putstr_fd("\"", out_nmb);
 		}
-		ft_putstr_fd("\n", 1);
+		ft_putstr_fd("\n", out_nmb);
 		i++;
 	}
+}
+
+/*
+* Helper function for b_export that will return a newly 
+* allocated string from the begining of the argument until
+* finding the "=" or the end of the string argument.*/
+char	*get_key(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != '=')
+		i++;
+	return (ft_substr(str, 0, i));
 }
