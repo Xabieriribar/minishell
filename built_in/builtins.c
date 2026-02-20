@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/02/20 12:44:44 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/20 15:10:51 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	run_bultins(char **args, t_env **list, t_data **data, int out_nmb)
 	if (!ft_strncmp(args[0], "cd", 3))
 		ret = b_cd(*list, args, out_nmb);
 	else if (!ft_strncmp(args[0], "echo", 5))
-		ret = b_echo(args, out_nmb);
+		ret = b_echo(args, out_nmb, data);
 	else if (!ft_strncmp(args[0], "env", 4))
 		ret = b_env(args, list, out_nmb);
 	else if (!ft_strncmp(args[0], "pwd", 4))

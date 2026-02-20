@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:55 by rick              #+#    #+#             */
-/*   Updated: 2026/02/20 14:41:01 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/20 14:58:30 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	print_env_list(t_env **head, int out_nmb)
 	}
 }
 
+/*
+* Env without flags will print a list of environment variables.*/
 int	b_env(char **arr, t_env **list, int out_nmb)
 {
 	if (arr[1])

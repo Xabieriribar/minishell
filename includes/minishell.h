@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/20 14:49:38 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/20 15:10:39 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	sort_env_arr(t_env **arr, int size);
 char	*get_key(char *str);
 int		b_pwd(int out_nbr);
 int		b_cd(t_env *env, char **args, int out_nmb);
-int		b_echo(char **args, int out_nmb);
+int		b_echo(char **args, int out_nmb, t_data **data);
 int		b_env(char **arr, t_env **list, int out_nmb);
 int		b_unset(t_env **env, char **arr);
 int		b_exit(char **args, t_data **data);
