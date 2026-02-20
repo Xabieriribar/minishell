@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/17 13:18:40 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/20 14:56:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ t_redirs *ft_lstnew_redirs(char *filename, t_type redir_type);
 void run_tree_test(char *input_line);
 // GRAMMAR VALIDATOR //
 int ft_handle_redirs(t_token *head, int lst_len, int lst_index);
+int	grammar_validator(t_token *head);
 /* parser/create_tree_utils.c */
 void	fill_command_node(t_node *node);
 int		ft_tokens_before_pipe(t_token *token_list);
@@ -203,4 +204,9 @@ int ft_env_var_lstsize(t_env *env_var);
 void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data);
 void    execute(t_node *tree, t_data *data);
 
+
+
+// ----------- LIBFT ---------- //
+
+void	ft_putnbr_fd(int n, int fd);
 # endif

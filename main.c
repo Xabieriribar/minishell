@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/17 13:17:13 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/20 15:04:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,17 @@ int	main(int ac, char **av, char **ep)
 			add_history(input);
 			token = init_list(input);
             temp_token = token;
+			if (grammar_validator(token) != 0)
+			{
+				data->exit_status = 2;
+				free_tokens(&temp_token);
+				free_tree(tree);
+				free(input);
+				continue ;
+			}
             tree = init_tree(&token);
             execute(tree, data);
 			free_tokens(&temp_token);
-            printf("Exit status for this command %d\n", data->exit_status);
             free_tree(tree);
 			if (data->exit_status == -42)
 				break ;

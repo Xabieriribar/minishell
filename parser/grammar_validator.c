@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grammar_validator.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiribar <xiribar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 19:28:36 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/20 15:01:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ int	ft_check_pipes(t_token *head)
 	lst_len = ft_token_lstsize(head);
 	lst_index = 1;
 	if (head->type == T_PIPE)
-		return (printf("parse error near '|'\n"), 1);
+		return (printf("syntax error near unexpected token `|'\n"), 1);
 	while (head)
 	{
 		if (head->type == T_PIPE)
 		{
 			if (lst_len == lst_index)
-				return (printf("parse error near '|'\n"), 1);
+				return (printf("syntax error near unexpected token `|'\n"), 1);
 			else if (head->next && head->next->type == T_PIPE)
-				return (printf("parse error near '|'\n"), 1);
+				return (printf("syntax error near unexpected token `|'\n"), 1);
 			else if (head->prev && head->prev->type == T_REDIR_IN)
-				return (printf("parse error near '|'\n"), 1);
+				return (printf("syntax error near unexpected token `|'\n"), 1);
 		}
 		lst_index++;
 		head = head->next;

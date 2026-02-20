@@ -53,13 +53,7 @@ void    execute_command(t_node *tree, t_env *env_var, int fd_in, int fd_out)
     char    **env_vars;
     char    *pathname;
 
-    if (tree->redirs != NULL)
-        update_fd(tree->redirs, &fd_in, &fd_out);
-    dup2(fd_in, 0);
-    dup2(fd_out, 1);
     close_if_not_stdin_or_stdout(fd_in, fd_out);
-    // if (run_bultins(tree->args, &env_var) != 0)
-    //     exit(1);
     path_env_var = return_path(env_var);
     if (!path_env_var)
         perror("Environment variable path doesnt exist");
@@ -101,7 +95,15 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
     {
         process_id = fork();
         if (process_id == 0)
+        {
+            if (tree->redirs != NULL)
+                update_fd(tree->redirs, &fd_in, &fd_out);
+            dup2(fd_in, 0);
+            dup2(fd_out, 1);
+            if (run_bultins(tree->args, &(data->env_var), &data, 1) != -1)
+                exit(1);
             execute_command(tree, data->env_var, fd_in, fd_out);
+        }
         if (fd_in != 0)
             close(fd_in);
         if (fd_out != 1)

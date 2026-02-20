@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:48 by rick              #+#    #+#             */
-/*   Updated: 2026/02/19 18:42:16 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/20 14:51:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	b_echo(char **args, int out_nmb)
 
 	i = 1;
 	n_flag = false;
+	if (!ft_strncmp(args[1], "$?", 2))
+		return (0);
 	while (args[i] && is_n_flag(args[i]))
 	{
 		n_flag = true;

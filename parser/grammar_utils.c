@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grammar_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiribar <xiribar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 19:28:36 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/20 15:01:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_handle_error_message(t_type redir_type)
 	else if (redir_type == T_HEREDOC)
 		return (printf("parse error near '<<'\n"), 1);
 	else if (redir_type != T_HEREDOC && redir_type != T_REDIR_APPEND)
-		return (printf("parse error near '|'\n"), 1);
+		return (printf("syntax error near unexpected token `|'\n"), 1);
 	return (0);
 }
 
