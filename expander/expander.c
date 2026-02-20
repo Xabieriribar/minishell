@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 09:49:03 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 11:24:41 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/20 16:03:00 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*append_char(char *str, char c)
 * need to access to the previous exit status, stored in
 * our global variable g_status.
 - (getenv() doesn´t return this.)*/
-static int	append_status(int *i, char *value, char **result)
+/* static int	append_status(int *i, char *value, char **result)
 {
 	char	*status_str;
 
@@ -58,7 +58,7 @@ static int	append_status(int *i, char *value, char **result)
 	*result = ft_strconcat(*result, status_str);
 	free(status_str);
 	return (1);
-}
+} */
 
 /*
 * Helper function to handle the getenv() case, where we
@@ -99,8 +99,8 @@ static char	*append_env(t_token *token, int *i, char *result)
 	(*i)++;
 	if (val[*i] == '\0')
 		return (ft_strconcat(result, "$"));
-	if (append_status(i, val, &result))
-		return (result);
+/* 	if (append_status(i, val, &result))
+		return (result); */
 	env = NULL;
 	while (val[*i] && valid_chars(val[*i]))
 	{
