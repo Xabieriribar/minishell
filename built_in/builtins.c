@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/02/19 18:43:56 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/20 12:44:44 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	run_bultins(char **args, t_env **list, t_data **data, int out_nmb)
 /* 
 * Returns a pointer to the last element of the list of
 * environment variables.*/
-static t_env	*lstlast_env(t_env *lst)
+t_env	*lstlast_env(t_env *lst)
 {
 	t_env	*ptr;
 
@@ -77,7 +77,7 @@ static t_env	*lstlast_env(t_env *lst)
 
 /*
 * Adds a env variable node to the last position of the list*/
-static int	lst_add_back_env(t_env **lst, t_env *new)
+int	lst_add_back_env(t_env **lst, t_env *new)
 {
 	t_env	*ptr;
 
@@ -96,7 +96,7 @@ static int	lst_add_back_env(t_env **lst, t_env *new)
 
 /*
 * Inits a single environment variable node.*/
-static t_env	*init_env(char *str)
+t_env	*init_env(char *str)
 {
 	t_env	*env;
 	char	*eq_ptr;
