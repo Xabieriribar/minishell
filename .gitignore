@@ -7,3 +7,4 @@ gmon.out
 .DS_Store
 launch.json
 main.c
+minishell_tester/
