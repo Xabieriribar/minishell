@@ -33,6 +33,7 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <limits.h>
+# include <sys/stat.h>
 
 extern volatile sig_atomic_t	g_status;
 

@@ -92,54 +92,84 @@ void    free_data(t_data *data)
 // 	rl_clear_history();
 //     return (0);
 // }
-int	main(int ac, char **av, char **ep)
+int main(int ac, char **av, char **ep)
 {
-	t_data	*data;
-	char	*input;
-	t_token	*token;
+    t_data  *data;
+    char    *input;
+    t_token *token;
     t_node  *tree;
     t_token *temp_token;
+	int		exit_code;
 
-	(void)ac;
-	(void)av;
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, SIG_IGN);
+    signal(SIGINT, sigint_handler);
+    signal(SIGQUIT, SIG_IGN);
     data = init_data(ep);
-	while (1)
-	{
-		input = readline(PROMPT);
-		if (!input)
+if (ac >= 3 && ft_strncmp(av[1], "-c", 3) == 0)
+    {
+        token = init_list(av[2]);
+		if (!token)
 		{
-			printf("exit\n");
-			free_env_vars(&(data->env_var));
-			rl_clear_history();
+			free_data(data);
 			exit(0);
 		}
-		if (input && *input)
-		{
-			add_history(input);
-			token = init_list(input);
-            temp_token = token;
-			if (grammar_validator(token) != 0)
+        temp_token = token;
+        if (grammar_validator(token) != 0)
+        {
+            data->exit_status = 2;
+            free_tokens(&temp_token);
+        }
+        else
+        {
+            tree = init_tree(&token);
+            execute(tree, data);
+            free_tokens(&temp_token);
+            free_tree(tree);
+        }
+        exit_code = data->exit_status;
+        free_data(data);
+        exit(exit_code);
+    }
+    /* --------------------------------------- */
+    while (1)
+    {
+        input = readline(PROMPT);
+        if (!input)
+        {
+            printf("exit\n");
+            free_env_vars(&(data->env_var));
+            rl_clear_history();
+            exit(0);
+        }
+        if (input && *input)
+        {
+            add_history(input);
+            token = init_list(input);
+			if (!token)
 			{
-				data->exit_status = 2;
-				free_tokens(&temp_token);
 				free(input);
 				continue ;
 			}
+            temp_token = token;
+            if (grammar_validator(token) != 0)
+            {
+                data->exit_status = 2;
+                free_tokens(&temp_token);
+                free(input);
+                continue ;
+            }
             tree = init_tree(&token);
             execute(tree, data);
-			free_tokens(&temp_token);
+            free_tokens(&temp_token);
             free_tree(tree);
-			if (data->exit_status == -42)
-				break ;
-		}
-		free(input);
-	}
-	if (input)
-		free(input);
-	rl_clear_history();
-	int asd = data->exit_status;
+            if (data->exit_status == -42)
+                break ;
+        }
+        free(input);
+    }
+    if (input)
+        free(input);
+    rl_clear_history();
+    exit_code = data->exit_status;
     free_data(data);
-	return (asd);
+    return (exit_code);
 }

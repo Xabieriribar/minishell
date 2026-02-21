@@ -48,6 +48,48 @@ char    *get_path(char *command, char *path)
     return (result);
 }
 
+void    write_error_message(char *cmd)
+{
+    ft_putstr_fd("minishell: ", 2);
+    ft_putstr_fd(cmd, 2);
+}
+
+void    handle_pathname_error_message(char *pathname, char *cmd)
+{
+    struct  stat st;
+
+    if (ft_strncmp(cmd, "..", 2) == 0)
+    {
+        ft_putstr_fd("minishell: ..: command not found\n", 2);
+        exit(127);
+    }
+    if (ft_strncmp(cmd, ".", 1) == 0)
+    {
+        ft_putstr_fd("minishell: .: filename argument required\n", 2);
+        exit(2);
+    }
+    if (!pathname)
+    {
+        write_error_message(cmd);
+        ft_putstr_fd(": command not found\n", 2);
+        exit(127);
+    }
+    if (stat(pathname, &st) == 0)
+    {
+        if (S_ISDIR(st.st_mode))
+        {
+            write_error_message(cmd);
+            ft_putstr_fd(": Is a directory\n", 2);
+            exit(126);
+        }
+        if (access(pathname, X_OK) == -1)
+        {
+            write_error_message(cmd);
+            ft_putstr_fd(": Permission denied\n", 2);
+            exit(126);
+        }
+    }
+}
 void    execute_command(t_node *tree, t_env *env_var, int fd_in, int fd_out)
 {
     t_env   *path_env_var;
@@ -59,17 +101,14 @@ void    execute_command(t_node *tree, t_env *env_var, int fd_in, int fd_out)
     if (!path_env_var)
         perror("Environment variable path doesnt exist");
     pathname = get_path(tree->args[0], path_env_var->value);
-    if (!pathname)
-    {
-        perror("Error with pathname");
-        exit(127);
-    }
+    handle_pathname_error_message(pathname, tree->args[0]);
     env_vars = convert_env_var_to_array(env_var, ft_env_var_lstsize(env_var)); 
     if (execve(pathname, tree->args, env_vars) != -1)
     {
         free(pathname);
         free_splits(env_vars, ft_env_var_lstsize(env_var));
         perror("Execve failed to execute");
+        exit(127);
     }
     exit(1);
 }
@@ -91,7 +130,9 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
 {
     pid_t   process_id;
     int     pipefdes[2];
+    int     i;
 
+    (void)i;
     if (tree->node_type == COMMAND)
     {
         process_id = fork();
@@ -101,8 +142,13 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
                 update_fd(tree->redirs, &fd_in, &fd_out);
             dup2(fd_in, 0);
             dup2(fd_out, 1);
-            if (run_bultins(tree->args, &(data->env_var), &data, 1) != -1)
-                exit(1);
+            i = 3;
+            while (i < 1024)
+                close(i++);
+            if (!tree->args || !tree->args[0])
+                exit(0);
+            if (run_bultins(tree->args, &(data->env_var), &data, fd_out) != -1)
+                exit(EXIT_SUCCESS);
             execute_command(tree, data->env_var, fd_in, fd_out);
         }
         if (fd_in != 0)
@@ -119,6 +165,8 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
             perror("First pipe failed to execute");
         execute_pipeline(tree->left_child, fd_in, pipefdes[1], data);
         execute_pipeline(tree->right_child, pipefdes[0], fd_out, data);
+        close(pipefdes[1]);
+        close(pipefdes[0]);
     }
 }
 
@@ -126,7 +174,9 @@ void    execute(t_node *tree, t_data *data)
 {
     if (!tree->left_child)
     {
-        if (run_bultins(tree->args, &(data->env_var), &data, 1) != -1)
+        if (tree->redirs != NULL)
+            update_fd(tree->redirs, &(data->fd_in), &(data->fd_out));
+        if (run_bultins(tree->args, &(data->env_var), &data, data->fd_out) != -1)
             return ;
         execute_pipeline(tree, 0, 1, data);
     }

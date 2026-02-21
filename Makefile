@@ -1,5 +1,5 @@
 CC       = cc
-CFLAGS   = -Wall -Wextra -Werror -g -I/usr/local/opt/readline/include
+CFLAGS   = -Wall -Wextra -Werror -g -c -I/usr/local/opt/readline/include
 LDFLAGS  = -L/usr/local/opt/readline/lib -lreadline
 INCLUDES = ./includes ./libs/libft ./libs/gnl
 

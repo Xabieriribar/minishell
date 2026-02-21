@@ -36,17 +36,17 @@ int	ft_check_pipes(t_token *head)
 	lst_len = ft_token_lstsize(head);
 	lst_index = 1;
 	if (head->type == T_PIPE)
-		return (printf("syntax error near unexpected token `|'\n"), 1);
+		return (ft_putstr_fd("syntax error near unexpected token `|'\n", 2), 1);
 	while (head)
 	{
 		if (head->type == T_PIPE)
 		{
 			if (lst_len == lst_index)
-				return (printf("syntax error near unexpected token `|'\n"), 1);
+				return (ft_putstr_fd("syntax error near unexpected token `|'\n", 2), 1);
 			else if (head->next && head->next->type == T_PIPE)
-				return (printf("syntax error near unexpected token `|'\n"), 1);
+				return (ft_putstr_fd("syntax error near unexpected token `|'\n", 2), 1);
 			else if (head->prev && head->prev->type == T_REDIR_IN)
-				return (printf("syntax error near unexpected token `|'\n"), 1);
+				return (ft_putstr_fd("syntax error near unexpected token `|'\n", 2), 1);
 		}
 		lst_index++;
 		head = head->next;
