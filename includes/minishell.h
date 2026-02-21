@@ -200,7 +200,7 @@ int update_fd_out(t_redirs *redirs);
 int update_fd_in(t_redirs *redirs);
 int execute_heredoc(int fd_heredoc, char *delimiter);
 int     contains_slash(char *suspect);
-char    *can_access(char *command, char *result);
+char    *can_access(char *command);
 void    update_fd(t_redirs *redirs, int *fd_in, int *fd_out);
 void    close_if_not_stdin_or_stdout(int fd_in, int fd_out);
 char	*ft_itoa(int n);

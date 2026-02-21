@@ -42,10 +42,9 @@ void    close_if_not_stdin_or_stdout(int fd_in, int fd_out)
         close(fd_out);
 }
 
-char    *can_access(char *command, char *result)
+char    *can_access(char *command)
 {
     if (access(command, F_OK | X_OK) == -1)
         return (NULL);
-    result = ft_strdup(command);
-    return (result);
+    return ((ft_strdup(command)));
 }

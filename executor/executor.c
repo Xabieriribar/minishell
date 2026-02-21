@@ -37,7 +37,8 @@ char    *get_path(char *command, char *path)
     result = NULL;
     if (contains_slash(command))
     {
-        if (!can_access(command, result))
+        result = can_access(command);
+        if (!result)
             return (NULL);
         return (result);
     }
@@ -110,19 +111,14 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
             close(fd_out);
         data->pid_values[data->pid_count] = process_id;
         data->pid_count++;
-        if (data->recursive_call_counter == 0)
-            wait_for_last_child(data);
-        data->recursive_call_counter = 0;
         return ;
     }
     else
     {
         if (pipe(pipefdes) < 0)
             perror("First pipe failed to execute");
-        data->recursive_call_counter++;
         execute_pipeline(tree->left_child, fd_in, pipefdes[1], data);
         execute_pipeline(tree->right_child, pipefdes[0], fd_out, data);
-        wait_for_last_child(data);
     }
 }
 
@@ -136,4 +132,5 @@ void    execute(t_node *tree, t_data *data)
     }
     else 
         execute_pipeline(tree, 0, 1, data);
+    wait_for_last_child(data);
 }

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/20 15:04:38 by marvin           ###   ########.fr       */
+/*   Updated: 2026/02/21 10:18:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ int	main(int ac, char **av, char **ep)
 			{
 				data->exit_status = 2;
 				free_tokens(&temp_token);
-				free_tree(tree);
 				free(input);
 				continue ;
 			}
@@ -139,8 +138,8 @@ int	main(int ac, char **av, char **ep)
 	}
 	if (input)
 		free(input);
-    free_data(data);
 	rl_clear_history();
 	int asd = data->exit_status;
+    free_data(data);
 	return (asd);
 }
