@@ -37,7 +37,12 @@ int	b_echo(char **args, int out_nmb, t_data **data)
 
 	i = 1;
 	n_flag = false;
-	if (!ft_strncmp(args[1], "$?", 2))
+	if (!args[1])
+	{
+		ft_putstr_fd("\n", out_nmb);
+		return (0);
+	}
+	if (!ft_strncmp(args[1], "$?", 3))
 		return (0);
 	while (args[i] && is_n_flag(args[i]))
 	{

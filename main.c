@@ -44,8 +44,10 @@ t_data *init_data(char **env_variables)
 /*This functino takes the data structure as an argument and frees the elements that were allocated to it*/
 void    free_data(t_data *data)
 {
-	free_env_vars(&(data->env_var));
-    free(data->pid_values);
+    if (data->env_var)
+        free_env_vars(&(data->env_var));
+    if (data->pid_values)
+        free(data->pid_values);
     free(data);
 }
 int main(int ac, char **av, char **ep)

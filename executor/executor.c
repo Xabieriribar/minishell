@@ -180,7 +180,9 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
 It receives the first command as an argument, it returns 1 if is exit, cd, export or unset and 0 if it isnt*/
 int is_parent_builtin(char *command)
 {
-	if (!ft_strncmp(command, "exit", 5))
+    if (!command)
+        return (0);
+	else if (!ft_strncmp(command, "exit", 5))
 		return (1);
 	else if (!ft_strncmp(command, "cd", 3))
         return (1);
@@ -211,6 +213,7 @@ void    execute_parent_builtin(t_node *tree, t_data *data)
 
 void    execute(t_node *tree, t_data *data)
 {
+    open_temporary_heredocs(tree, &(data->heredoc_file_index));
     if (!tree->left_child && is_parent_builtin(tree->args[0]))
     {
         execute_parent_builtin(tree, data);
