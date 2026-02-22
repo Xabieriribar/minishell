@@ -111,7 +111,7 @@ void    execute_command(t_node *tree, t_data *data, int fd_in, int fd_out)
         free(pathname);
         free_splits(env_vars, ft_env_var_lstsize(data->env_var));
         perror("Execve failed to execute");
-        free_all_and_exit(data, EXIT_SUCCESS);
+        free_all_and_exit(data, EXIT_FAILURE);
     }
     exit(1);
 }
@@ -142,7 +142,10 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
         if (process_id == 0)
         {
             if (tree->redirs != NULL)
-                update_fd(tree->redirs, &fd_in, &fd_out, 0);
+            {
+                data->flag = 0;
+                update_fd(tree->redirs, &fd_in, &fd_out, data);
+            }
             dup2(fd_in, 0);
             dup2(fd_out, 1);
             i = 3;
@@ -151,7 +154,7 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
             if (!tree->args || !tree->args[0])
                 free_all_and_exit(data, EXIT_SUCCESS);
             if (run_bultins(tree->args, &(data->env_var), &data, fd_out) != -1)
-                free_all_and_exit(data, EXIT_SUCCESS);
+                free_all_and_exit(data, data->exit_status);
             execute_command(tree, data, fd_in, fd_out);
         }
         if (fd_in != 0)
@@ -194,7 +197,14 @@ void    execute_parent_builtin(t_node *tree, t_data *data)
     data->fd_in = 0;
     data->fd_out = 1;
     if (tree->redirs != NULL)
-        update_fd(tree->redirs, &(data->fd_in), &(data->fd_out), 1);
+    {
+        data->flag = 1;
+        if (update_fd(tree->redirs, &(data->fd_in), &(data->fd_out), data) == -1)
+        {
+            data->exit_status = 1;
+            return ;
+        }
+    }
     run_bultins(tree->args, &(data->env_var), &data, data->fd_out);
     close_if_not_stdin_or_stdout(data->fd_in, data->fd_out);
 }
