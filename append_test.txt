@@ -1,0 +1,130 @@
+total 1520
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 21 11:39 $
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 21 11:39 >
+-rw-r--r-- 1 xabieriribar xabieriribar    1700 Feb 21 14:14 Makefile
+-rw-r--r-- 1 xabieriribar xabieriribar    1910 Feb 21 11:39 TODO
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 22 10:33 append_test.txt
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 14:15 built_in
+-rw-r--r-- 1 xabieriribar xabieriribar      48 Feb 22 10:33 daemon_info.txt
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 22 10:33 diff.log
+drwxr-xr-x 3 xabieriribar xabieriribar    4096 Feb 22 10:28 executor
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 14:15 expander
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 11:42 includes
+drwxr-xr-x 4 xabieriribar xabieriribar    4096 Feb 21 11:00 libs
+-rw-r--r-- 1 xabieriribar xabieriribar    4085 Feb 22 10:12 main.c
+-rw-r--r-- 1 xabieriribar xabieriribar   12048 Feb 22 10:12 main.o
+-rwxr-xr-x 1 xabieriribar xabieriribar   98960 Feb 22 10:28 minishell
+drwxr-xr-x 5 xabieriribar xabieriribar    4096 Feb 21 14:14 minishell_tester
+-rw-r--r-- 1 xabieriribar xabieriribar       6 Feb 22 10:31 out10.txt
+-rw-r--r-- 1 xabieriribar xabieriribar       6 Feb 22 10:31 out11.txt
+-rw-r--r-- 1 xabieriribar xabieriribar    2583 Feb 22 10:31 out3.txt
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 22 10:31 out4.txt
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 22 10:10 out5.txt
+-rw-r--r-- 1 xabieriribar xabieriribar    1438 Feb 22 10:31 out9.txt
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 22 10:30 out_chaos.txt
+-rw-r--r-- 1 xabieriribar xabieriribar       6 Feb 21 15:27 outfile
+drwxr-xr-x 3 xabieriribar xabieriribar    4096 Feb 22 10:17 parser
+-rw-r--r-- 1 xabieriribar xabieriribar    1438 Feb 22 10:33 passwd_copy.txt
+-rw-r--r-- 1 xabieriribar xabieriribar     302 Feb 21 11:39 readline.supp
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 14:15 signals
+-rw-r--r-- 1 xabieriribar xabieriribar    1788 Feb 22 10:33 sorted_groups.txt
+-rwxr-xr-x 1 xabieriribar xabieriribar 1334301 Feb 21 11:00 subject.pdf
+-rwxr-xr-x 1 xabieriribar xabieriribar       0 Feb 21 11:00 test.txt
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 11:42 test_files
+-rwxr-xr-x 1 xabieriribar xabieriribar    7418 Feb 22 10:33 tester.sh
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 11:00 tests
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 14:15 tokenizer
+-rw-r--r-- 1 xabieriribar xabieriribar     133 Feb 22 10:33 valid_shells.txt
+total 1524
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 21 11:39 $
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 21 11:39 >
+-rw-r--r-- 1 xabieriribar xabieriribar    1700 Feb 21 14:14 Makefile
+-rw-r--r-- 1 xabieriribar xabieriribar    1910 Feb 21 11:39 TODO
+-rw-r--r-- 1 xabieriribar xabieriribar    2528 Feb 22 10:33 append_test.txt
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 14:15 built_in
+-rw-r--r-- 1 xabieriribar xabieriribar      48 Feb 22 10:33 daemon_info.txt
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 22 10:33 diff.log
+drwxr-xr-x 3 xabieriribar xabieriribar    4096 Feb 22 10:28 executor
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 14:15 expander
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 11:42 includes
+drwxr-xr-x 4 xabieriribar xabieriribar    4096 Feb 21 11:00 libs
+-rw-r--r-- 1 xabieriribar xabieriribar    4085 Feb 22 10:12 main.c
+-rw-r--r-- 1 xabieriribar xabieriribar   12048 Feb 22 10:12 main.o
+-rwxr-xr-x 1 xabieriribar xabieriribar   98960 Feb 22 10:28 minishell
+drwxr-xr-x 5 xabieriribar xabieriribar    4096 Feb 21 14:14 minishell_tester
+-rw-r--r-- 1 xabieriribar xabieriribar       6 Feb 22 10:31 out10.txt
+-rw-r--r-- 1 xabieriribar xabieriribar       6 Feb 22 10:31 out11.txt
+-rw-r--r-- 1 xabieriribar xabieriribar    2583 Feb 22 10:31 out3.txt
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 22 10:31 out4.txt
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 22 10:10 out5.txt
+-rw-r--r-- 1 xabieriribar xabieriribar    1438 Feb 22 10:31 out9.txt
+-rw-r--r-- 1 xabieriribar xabieriribar       0 Feb 22 10:30 out_chaos.txt
+-rw-r--r-- 1 xabieriribar xabieriribar       6 Feb 21 15:27 outfile
+drwxr-xr-x 3 xabieriribar xabieriribar    4096 Feb 22 10:17 parser
+-rw-r--r-- 1 xabieriribar xabieriribar    1438 Feb 22 10:33 passwd_copy.txt
+-rw-r--r-- 1 xabieriribar xabieriribar     302 Feb 21 11:39 readline.supp
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 14:15 signals
+-rw-r--r-- 1 xabieriribar xabieriribar    1788 Feb 22 10:33 sorted_groups.txt
+-rwxr-xr-x 1 xabieriribar xabieriribar 1334301 Feb 21 11:00 subject.pdf
+-rwxr-xr-x 1 xabieriribar xabieriribar       0 Feb 21 11:00 test.txt
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 11:42 test_files
+-rwxr-xr-x 1 xabieriribar xabieriribar    7418 Feb 22 10:33 tester.sh
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 11:00 tests
+drwxr-xr-x 2 xabieriribar xabieriribar    4096 Feb 21 14:15 tokenizer
+-rw-r--r-- 1 xabieriribar xabieriribar     133 Feb 22 10:33 valid_shells.txt
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+systemd-timesync:x:996:996:systemd Time Synchronization:/:/usr/sbin/nologin
+dhcpcd:x:100:65534:DHCP Client Daemon,,,:/usr/lib/dhcpcd:/bin/false
+messagebus:x:101:101::/nonexistent:/usr/sbin/nologin
+syslog:x:102:102::/nonexistent:/usr/sbin/nologin
+systemd-resolve:x:991:991:systemd Resolver:/:/usr/sbin/nologin
+uuidd:x:103:103::/run/uuidd:/usr/sbin/nologin
+landscape:x:104:105::/var/lib/landscape:/usr/sbin/nologin
+polkitd:x:990:990:User for polkitd:/:/usr/sbin/nologin
+xabieriribar:x:1000:1000:,,,:/home/xabieriribar:/bin/bash
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+systemd-timesync:x:996:996:systemd Time Synchronization:/:/usr/sbin/nologin
+dhcpcd:x:100:65534:DHCP Client Daemon,,,:/usr/lib/dhcpcd:/bin/false
+messagebus:x:101:101::/nonexistent:/usr/sbin/nologin
+syslog:x:102:102::/nonexistent:/usr/sbin/nologin
+systemd-resolve:x:991:991:systemd Resolver:/:/usr/sbin/nologin
+uuidd:x:103:103::/run/uuidd:/usr/sbin/nologin
+landscape:x:104:105::/var/lib/landscape:/usr/sbin/nologin
+polkitd:x:990:990:User for polkitd:/:/usr/sbin/nologin
+xabieriribar:x:1000:1000:,,,:/home/xabieriribar:/bin/bash

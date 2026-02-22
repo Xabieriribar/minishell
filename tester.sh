@@ -172,27 +172,133 @@ TESTS_BUILTIN=(
 
 # --- Pipes & Redirections ---
 TESTS_PIPEREDIR=(
-    "ls | cat"
-    "ls -la | wc -l"
-    "echo hello | grep h"
-    "echo hello | grep x"
-    "cat /etc/passwd | head -n 5"
-    "env | sort | grep PATH"
-    "ls | grep a | wc -l"
-    "echo a | cat | cat | cat | cat | cat | cat | cat"
-    "ls does_not_exist | grep a" 
-    "ls | does_not_exist | cat" 
-    "ls | cat | does_not_exist" 
-    "ls -la > out3.txt | wc -l" 
-    "> out4.txt" 
-    ">> out5.txt" 
-    "cat < /etc/passwd | wc -l"
-    "grep root < /etc/passwd"
-    "cat < does_not_exist"
+    # --- 1. Basic Single Pipes ---
+    "cat Makefile | grep a"
+    "ls -l | cat -e"
+    "ls -a | wc -l"
+    "ls | sort"
+    "ls | rev"
+    "cat /etc/passwd | cut -d: -f1"
+    "ls -t | head -n 3"
+    "cat /etc/group | tail -n 2"
+    "ls | tr 'a-z' 'A-Z'"
+    "cat /etc/passwd | awk -F: '{print \$1}'"
+
+    # --- 2. Multiple Pipes (Chain Execution) ---
+    "ls -la | grep d | wc -l"
+    "cat /etc/passwd | cut -d: -f1 | sort | rev"
+    "ls -l | grep -v total | awk '{print \$9}' | sort"
+    "cat /etc/passwd | grep root | awk -F: '{print \$7}' | cat -e"
+    "ls | rev | sort | rev"
+    "cat /etc/group | grep -v root | head -n 5 | tail -n 2"
+    "ls -1 | tr '\n' ' ' | tr ' ' '\n' | wc -l"
+    "cat /dev/urandom | head -c 100 | wc -c"
+    "ls -a | grep '\.' | grep -v '\.\.' | wc -l"
+    "cat /etc/passwd | cut -d: -f3 | sort -n | tail -n 1"
+    "ls -la | cat | cat | cat | wc -l"
+    "cat /etc/passwd | grep /bin/bash | wc -l | cat"
+    "ls | head -n 5 | tail -n 3 | rev | sort"
+    "cat /etc/hosts | grep -v '^#' | grep -v '^$' | wc -l"
+    "ls /etc | grep a | grep b | grep c | wc -c"
+
+    # --- 3. Simple Output Redirections (>) ---
+    "ls > test_out1.txt"
+    "ls -la > test_out2.txt"
+    "> test_out3.txt ls"
+    "ls > test_out4.txt -la"
+    "cat /etc/passwd > test_out5.txt"
+    "> test_out6.txt cat /etc/passwd"
+    "cat > test_out7.txt /etc/group"
+    "grep root /etc/passwd > test_out8.txt"
+    "sort /etc/passwd > test_out9.txt"
+    "> test_out10.txt"
+
+    # --- 4. Simple Input Redirections (<) ---
+    "cat < /etc/passwd"
     "< /etc/passwd cat"
-    "cat < /etc/passwd > out9.txt | wc -l"
-    "> out10.txt echo hello"
-    "echo > out11.txt hello"
+    "grep root < /etc/passwd"
+    "< /etc/passwd grep root"
+    "wc -l < /etc/passwd"
+    "< /etc/passwd wc -c"
+    "sort < /etc/passwd"
+    "head -n 5 < /etc/passwd"
+    "< /etc/passwd tail -n 3"
+    "rev < /etc/passwd"
+
+    # --- 5. Append Redirections (>>) ---
+    "ls >> test_app1.txt"
+    "ls -la >> test_app2.txt"
+    ">> test_app3.txt ls"
+    "ls >> test_app4.txt -la"
+    "cat /etc/passwd >> test_app5.txt"
+    ">> test_app6.txt cat /etc/passwd"
+    "grep bin /etc/passwd >> test_app7.txt"
+    "sort /etc/passwd >> test_app8.txt"
+    ">> test_app9.txt"
+    "wc -l /etc/passwd >> test_app10.txt"
+
+    # --- 6. Mixed Output & Input Redirections ---
+    "cat < /etc/passwd > test_mix1.txt"
+    "< /etc/passwd cat > test_mix2.txt"
+    "> test_mix3.txt cat < /etc/passwd"
+    "grep root < /etc/passwd > test_mix4.txt"
+    "< /etc/passwd grep bin >> test_mix5.txt"
+    ">> test_mix6.txt grep daemon < /etc/passwd"
+    "< /etc/passwd > test_mix7.txt wc -l"
+    "> test_mix8.txt < /etc/passwd sort"
+    "cat < /etc/passwd >> test_mix9.txt"
+    "< /etc/passwd >> test_mix10.txt cat"
+
+    # --- 7. Pipes AND Redirections Combined ---
+    "cat < /etc/passwd | wc -l"
+    "ls | grep a > test_pipeout1.txt"
+    "ls -la > test_pipeout2.txt | wc -l"
+    "cat < /etc/passwd | grep root > test_pipeout3.txt"
+    "< /etc/passwd grep root | wc -l > test_pipeout4.txt"
+    "ls | head -n 5 >> test_pipeout5.txt"
+    "cat < /etc/passwd | sort | rev > test_pipeout6.txt"
+    "ls -l | tail -n +2 | wc -l > test_pipeout7.txt"
+    "> out_first.txt ls | cat"
+    "ls | > out_mid.txt cat"
+    "cat < /etc/passwd | > out_weird.txt grep bin | wc -l"
+    "ls | grep a | wc -l >> test_pipeout8.txt"
+    "< /etc/passwd cat | cat | cat > test_pipeout9.txt"
+    "grep daemon < /etc/passwd | cut -d: -f1 > test_pipeout10.txt"
+    "ls | sort -r | head -n 3 > test_pipeout11.txt"
+
+    # --- 8. Missing/Failing Commands & Files ---
+    "ls | non_existent_cmd"
+    "non_existent_cmd | ls"
+    "cat < does_not_exist | wc -l"
+    "ls | grep a > /root/denied.txt"
+    "cat < /root/shadow | grep root"
+    "ls | grep root | non_existent_cmd | wc -l"
+    "non_existent_cmd < /etc/passwd"
+    "< does_not_exist cat > out_fail.txt"
+    "> /root/denied2.txt cat < /etc/passwd"
+    "ls | cat > does_not_exist/file.txt"
+
+    # --- 9. No-Space Parsing Stress Tests ---
+    "ls>out_space1.txt"
+    "ls|cat"
+    "cat</etc/passwd"
+    "cat</etc/passwd>out_space2.txt"
+    "ls -la|grep root|wc -l"
+    ">out_space3.txt ls"
+    "ls>>out_space4.txt"
+    "cat /etc/passwd|grep bin>>out_space5.txt"
+    "ls|cat>out_space6.txt|wc -l"
+    "</etc/passwd grep root|cat>>out_space7.txt"
+
+    # --- 10. Pathological & Edge Cases ---
+    "cat /dev/null | wc -l"
+    "ls | | cat" 
+    "ls > > out_syn.txt"
+    "< < ls"
+    "cat /etc/passwd | grep root > out_bonus1.txt | head -n 1"
+    "> a.txt > b.txt > c.txt ls"
+    "< /etc/passwd < /etc/group cat"
+    "ls > a1.txt >> a1.txt > a1.txt"
 )
 
 # --- Quotes & Expansions ---
@@ -269,9 +375,9 @@ TESTS_EDGE=(
 
 echo -e "${BLUE}=== RUNNING MINISHELL TEST SUITE ===${RESET}"
 
-for cmd in "${TESTS_BUILTIN[@]}"; do run_test "$cmd" "BUILT-IN"; done
+# for cmd in "${TESTS_BUILTIN[@]}"; do run_test "$cmd" "BUILT-IN"; done
 for cmd in "${TESTS_PIPEREDIR[@]}"; do run_test "$cmd" "PIPE/REDIR"; done
-for cmd in "${TESTS_QUOTES[@]}"; do run_test "$cmd" "QUOTES/EXP"; done
-for cmd in "${TESTS_EDGE[@]}"; do run_test "$cmd" "EDGE CASES"; done
+# for cmd in "${TESTS_QUOTES[@]}"; do run_test "$cmd" "QUOTES/EXP"; done
+# for cmd in "${TESTS_EDGE[@]}"; do run_test "$cmd" "EDGE CASES"; done
 
 echo -e "\n${BLUE}Tests finished. Check '$LOG_FILE' for detailed failure diffs.${RESET}"

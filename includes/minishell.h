@@ -99,13 +99,14 @@ typedef struct s_data
 	int		fd_in;
 	int		fd_out;
 	t_env	*env_var;
+	t_node	*ast_head;
+	t_token	*token_head;
 }	t_data;
 
 // ----------- TOKENIZER ---------- //
 
 void	lst_add_back_token(t_token **lst, t_token *new);
 t_token	*lstlast_token(t_token *lst);
-void	free_tokens(t_token **head);
 void	set_type(t_token *token, char *str);
 void	set_dolar(t_token *token);
 void	set_init(t_token *token, char *str, int ix, int flag);
@@ -145,7 +146,6 @@ t_env	*init_env(char *str);
 t_env	*lstlast_env(t_env *lst);
 t_env	*find_env(t_env **env, char *key);
 int		lst_add_back_env(t_env **lst, t_env *new);
-void	free_env_vars(t_env **head);
 void	print_env_list(t_env **head, int out_nmb);
 int		env_list_size(t_env *env);
 void	print_arr(t_env **arr, int size, int out_nmb);
@@ -190,19 +190,15 @@ int		ft_tokens_before_pipe(t_token *token_list);
 int		move_pointer_to_next_pipe(t_token **token_list);
 int		ft_next_token_is_pipe(t_token **token_list);
 int		move_pointer_after_pipe(t_token **token_list);
-void    free_tree(t_node *tree);
 
 /*EXECUTION*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	free_splits(char **strs, int index_allocated);
 int contains_out_redirs(t_redirs *redirs);
 int contains_in_redirs(t_redirs *redirs);
-int update_fd_out(t_redirs *redirs);
-int update_fd_in(t_redirs *redirs);
 int execute_heredoc(int fd_heredoc, char *delimiter);
 int     contains_slash(char *suspect);
 char    *can_access(char *command);
-void    update_fd(t_redirs *redirs, int *fd_in, int *fd_out);
+void    update_fd(t_redirs *redirs, int *fd_in, int *fd_out, int flag);
 void    close_if_not_stdin_or_stdout(int fd_in, int fd_out);
 char	*ft_itoa(int n);
 t_env *return_path(t_env *env_var);
@@ -212,6 +208,15 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data);
 void    execute(t_node *tree, t_data *data);
 
 
+void    write_error_message(char *cmd);
+
+// ----------- FREE FUNCTIONS ---------- //
+void	free_splits(char **strs, int index_allocated);
+void	free_all_and_exit(t_data *data, int exit_status);
+void    free_data(t_data *data);
+void    free_tree(t_node *tree);
+void	free_env_vars(t_env **head);
+void	free_tokens(t_token **head);
 
 // ----------- LIBFT ---------- //
 

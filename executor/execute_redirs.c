@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void    update_fd(t_redirs *redirs, int *fd_in, int *fd_out)
+void    update_fd(t_redirs *redirs, int *fd_in, int *fd_out, int flag)
 {
     while (redirs)
     {
@@ -8,9 +8,15 @@ void    update_fd(t_redirs *redirs, int *fd_in, int *fd_out)
         {
             if (*fd_in != 0)
                 close(*fd_in);
-            *fd_in = open(redirs->filename, O_RDONLY);
+            *fd_in = open(redirs->filename, O_RDONLY, 0644);
             if (*fd_in < 0)
-                return ;
+            {
+                if (flag)
+                    return ;
+                write_error_message(redirs->filename);
+                ft_putstr_fd(": No such file or directory\n", 2);
+                exit(EXIT_FAILURE);
+            }
         }
         else if (redirs->redir_type == T_REDIR_OUT || redirs->redir_type == T_REDIR_APPEND)
         {
@@ -22,7 +28,13 @@ void    update_fd(t_redirs *redirs, int *fd_in, int *fd_out)
                 *fd_out = open(redirs->filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
             
             if (*fd_out < 0)
-                return ;
+            {
+                if (flag)
+                    return ;
+                write_error_message(redirs->filename);
+                ft_putstr_fd("No such file or directory\n", 2);
+                exit(EXIT_FAILURE);
+            }
         }
         redirs = redirs->next;
     }

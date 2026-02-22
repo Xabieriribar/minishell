@@ -34,6 +34,8 @@ t_data *init_data(char **env_variables)
     data->exit_status = 0;
     data->pid_count  = 0;
     data->recursive_call_counter = 0;
+    data->fd_in = 0;
+    data->fd_out = 0;
     /* WE ALLOCATE 1024 FOR A GENEROUS AMOUNT OF PIPE. PAY ATTENTION, THIS CAN BREAK STRESS TESTS AND MUST BE TREATED*/
     data->pid_values = malloc(sizeof(int) * 1024);
     return (data);
@@ -46,52 +48,6 @@ void    free_data(t_data *data)
     free(data->pid_values);
     free(data);
 }
-// int	main(int ac, char **av, char **ep)
-// {
-// 	(void)ac;
-// 	(void)av;
-//     t_data  *data;
-//     t_node  *tree;
-// 	char    *input;
-// 	t_token *token;
-//     t_token *temp_token;
-
-//     data = init_data();
-//     if (!data)
-// 		return (1);
-// 	data->env_var = init_env_list(ep);
-// 	signal(SIGINT, sigint_handler);
-//     signal(SIGQUIT, SIG_IGN);
-//     while (1)
-//     {
-//         input = readline(PROMPT);
-//         if (!input)
-//         {
-//             printf("exit\n");
-// 			free_env_vars(&data->env_var);
-// 			rl_clear_history();
-//             exit(0);
-//         }
-//         if (input && *input)
-//         {
-//             add_history(input);
-//             token = init_list(input);
-//             temp_token = token;
-//             tree = init_tree(&token);
-//             execute_pipeline(tree, 0, 1, data);
-//             /* Why do we initialise the pid_count to 0? The command execution has ended, but the pid_count value has been changed. Therefore,
-//             we need to set its value to 0 to not break the next command*/
-//             data->pid_count = 0;
-//             printf("%d", data->exit_status);
-//             free_tree(tree);
-// 			free_tokens(&temp_token);
-//         }
-//         free(input);
-//     }
-// 	free_env_vars(&data->env_var);
-// 	rl_clear_history();
-//     return (0);
-// }
 int main(int ac, char **av, char **ep)
 {
     t_data  *data;
@@ -103,32 +59,35 @@ int main(int ac, char **av, char **ep)
 
     signal(SIGINT, sigint_handler);
     signal(SIGQUIT, SIG_IGN);
+    (void)ac;
+    (void)av;
     data = init_data(ep);
-if (ac >= 3 && ft_strncmp(av[1], "-c", 3) == 0)
-    {
-        token = init_list(av[2]);
-		if (!token)
-		{
-			free_data(data);
-			exit(0);
-		}
-        temp_token = token;
-        if (grammar_validator(token) != 0)
-        {
-            data->exit_status = 2;
-            free_tokens(&temp_token);
-        }
-        else
-        {
-            tree = init_tree(&token);
-            execute(tree, data);
-            free_tokens(&temp_token);
-            free_tree(tree);
-        }
-        exit_code = data->exit_status;
-        free_data(data);
-        exit(exit_code);
-    }
+    // if (ac >= 3 && ft_strncmp(av[1], "-c", 3) == 0)
+    // {
+    //     token = init_list(av[2]);
+	// 	if (!token)
+	// 	{
+	// 		free_data(data);
+	// 		exit(0);
+	// 	}
+    //     temp_token = token;
+    //     if (grammar_validator(token) != 0)
+    //     {
+    //         data->exit_status = 2;
+    //         free_tokens(&temp_token);
+    //     }
+    //     else
+    //     {
+    //         tree = init_tree(&token);
+    //         free(token);
+    //         execute(tree, data);
+    //         free_tokens(&temp_token);
+    //         free_tree(tree);
+    //     }
+    //     exit_code = data->exit_status;
+    //     free_data(data);
+    //     exit(exit_code);
+    // }
     /* --------------------------------------- */
     while (1)
     {
@@ -158,6 +117,8 @@ if (ac >= 3 && ft_strncmp(av[1], "-c", 3) == 0)
                 continue ;
             }
             tree = init_tree(&token);
+            data->ast_head = tree;
+            data->token_head = temp_token;
             execute(tree, data);
             free_tokens(&temp_token);
             free_tree(tree);

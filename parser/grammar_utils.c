@@ -60,14 +60,6 @@ int	ft_handle_redirs(t_token *head, int lst_len, int lst_index)
 			if (ft_handle_error_message(head->next->type) != 0)
 				return (1);
 		}
-		else if (ft_is_append_or_heredoc(head->type) != 0)
-		{
-			if (head->prev->type != T_WORD)
-			{
-				ft_putstr_fd("syntax error near unexpected token '<<'\n", 2);
-				return (1);
-			}
-		}
 	}
 	return (0);
 }

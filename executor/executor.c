@@ -9,19 +9,21 @@ char    *finds_directory(char *command, char *path)
     char **directories_to_check;
     int index;
     char *result;
+    char    *temp;
 
     index = 0;
     directories_to_check = ft_split(path, ':');
     while (directories_to_check[index])
     {
-        result = ft_strjoin(directories_to_check[index], "/");
-        if (!result)
+        temp = ft_strjoin(directories_to_check[index], "/");
+        if (!temp)
             return (free_splits(directories_to_check, index), NULL);
-        result = ft_strjoin(result, command);
+        result = ft_strjoin(temp, command);
+        free(temp);
         if (!result)
             return (free_splits(directories_to_check, index), NULL);
         if (access(result, F_OK | X_OK) != -1)
-            return (result);
+            return (free_splits(directories_to_check, index), result);
         free(result);
         index++;
     }
@@ -54,25 +56,25 @@ void    write_error_message(char *cmd)
     ft_putstr_fd(cmd, 2);
 }
 
-void    handle_pathname_error_message(char *pathname, char *cmd)
+void    handle_pathname_error_message(char *pathname, char *cmd, t_data *data)
 {
     struct  stat st;
 
     if (ft_strncmp(cmd, "..", 2) == 0)
     {
         ft_putstr_fd("minishell: ..: command not found\n", 2);
-        exit(127);
+        free_all_and_exit(data, 127);
     }
     if (ft_strncmp(cmd, ".", 1) == 0)
     {
         ft_putstr_fd("minishell: .: filename argument required\n", 2);
-        exit(2);
+        free_all_and_exit(data, 2);
     }
     if (!pathname)
     {
         write_error_message(cmd);
         ft_putstr_fd(": command not found\n", 2);
-        exit(127);
+        free_all_and_exit(data, 127);
     }
     if (stat(pathname, &st) == 0)
     {
@@ -80,33 +82,33 @@ void    handle_pathname_error_message(char *pathname, char *cmd)
         {
             write_error_message(cmd);
             ft_putstr_fd(": Is a directory\n", 2);
-            exit(126);
+            free_all_and_exit(data, 126);
         }
         if (access(pathname, X_OK) == -1)
         {
             write_error_message(cmd);
             ft_putstr_fd(": Permission denied\n", 2);
-            exit(126);
+            free_all_and_exit(data, 126);
         }
     }
 }
-void    execute_command(t_node *tree, t_env *env_var, int fd_in, int fd_out)
+void    execute_command(t_node *tree, t_data *data, int fd_in, int fd_out)
 {
     t_env   *path_env_var;
     char    **env_vars;
     char    *pathname;
 
     close_if_not_stdin_or_stdout(fd_in, fd_out);
-    path_env_var = return_path(env_var);
+    path_env_var = return_path(data->env_var);
     if (!path_env_var)
         perror("Environment variable path doesnt exist");
     pathname = get_path(tree->args[0], path_env_var->value);
-    handle_pathname_error_message(pathname, tree->args[0]);
-    env_vars = convert_env_var_to_array(env_var, ft_env_var_lstsize(env_var)); 
+    handle_pathname_error_message(pathname, tree->args[0], data);
+    env_vars = convert_env_var_to_array(data->env_var, ft_env_var_lstsize(data->env_var)); 
     if (execve(pathname, tree->args, env_vars) != -1)
     {
         free(pathname);
-        free_splits(env_vars, ft_env_var_lstsize(env_var));
+        free_splits(env_vars, ft_env_var_lstsize(data->env_var));
         perror("Execve failed to execute");
         exit(127);
     }
@@ -139,17 +141,17 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
         if (process_id == 0)
         {
             if (tree->redirs != NULL)
-                update_fd(tree->redirs, &fd_in, &fd_out);
+                update_fd(tree->redirs, &fd_in, &fd_out, 0);
             dup2(fd_in, 0);
             dup2(fd_out, 1);
             i = 3;
             while (i < 1024)
                 close(i++);
             if (!tree->args || !tree->args[0])
-                exit(0);
+                exit(EXIT_SUCCESS);
             if (run_bultins(tree->args, &(data->env_var), &data, fd_out) != -1)
                 exit(EXIT_SUCCESS);
-            execute_command(tree, data->env_var, fd_in, fd_out);
+            execute_command(tree, data, fd_in, fd_out);
         }
         if (fd_in != 0)
             close(fd_in);
@@ -175,7 +177,7 @@ void    execute(t_node *tree, t_data *data)
     if (!tree->left_child)
     {
         if (tree->redirs != NULL)
-            update_fd(tree->redirs, &(data->fd_in), &(data->fd_out));
+            update_fd(tree->redirs, &(data->fd_in), &(data->fd_out), 1);
         if (run_bultins(tree->args, &(data->env_var), &data, data->fd_out) != -1)
             return ;
         execute_pipeline(tree, 0, 1, data);

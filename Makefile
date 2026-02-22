@@ -42,6 +42,7 @@ SRCS = \
 	parser/grammar_validator.c \
 	parser/grammar_utils.c \
 	parser/parser_utils.c \
+	free/free.c
 
 # ------------- COMPILING ----------------
 
