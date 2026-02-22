@@ -6,6 +6,7 @@ a.txt
 a1.txt
 append_only.txt
 append_test.txt
+archivo.txt
 b.txt
 built_in
 c.txt
@@ -13,6 +14,7 @@ daemon_info.txt
 diff.log
 executor
 expander
+free
 includes
 isolated_creation.txt
 libs

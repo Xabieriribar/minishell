@@ -44,12 +44,6 @@ int	run_bultins(char **args, t_env **list, t_data **data, int out_nmb)
 		return (b_exit(args, data));
 	if (!ft_strncmp(args[0], "cd", 3))
 		ret = b_cd(*list, args, out_nmb);
-	else if (!ft_strncmp(args[0], "echo", 5) && !ft_strncmp(args[1], "$?", 2))
-	{
-		ret = 0; 
-		ft_putnbr_fd((*data)->exit_status, out_nmb);
-		ft_putchar_fd('\n', out_nmb);
-	}
 	else if (!ft_strncmp(args[0], "echo", 5))
 		ret = b_echo(args, out_nmb, data);
 	else if (!ft_strncmp(args[0], "env", 4))

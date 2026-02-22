@@ -62,32 +62,32 @@ int main(int ac, char **av, char **ep)
     (void)ac;
     (void)av;
     data = init_data(ep);
-    // if (ac >= 3 && ft_strncmp(av[1], "-c", 3) == 0)
-    // {
-    //     token = init_list(av[2]);
-	// 	if (!token)
-	// 	{
-	// 		free_data(data);
-	// 		exit(0);
-	// 	}
-    //     temp_token = token;
-    //     if (grammar_validator(token) != 0)
-    //     {
-    //         data->exit_status = 2;
-    //         free_tokens(&temp_token);
-    //     }
-    //     else
-    //     {
-    //         tree = init_tree(&token);
-    //         free(token);
-    //         execute(tree, data);
-    //         free_tokens(&temp_token);
-    //         free_tree(tree);
-    //     }
-    //     exit_code = data->exit_status;
-    //     free_data(data);
-    //     exit(exit_code);
-    // }
+    if (ac >= 3 && ft_strncmp(av[1], "-c", 3) == 0)
+    {
+        token = init_list(av[2]);
+		if (!token)
+		{
+			free_data(data);
+			exit(0);
+		}
+        temp_token = token;
+        if (grammar_validator(token) != 0)
+        {
+            data->exit_status = 2;
+            free_tokens(&temp_token);
+        }
+        else
+        {
+            tree = init_tree(&token);
+            free(token);
+            execute(tree, data);
+            free_tokens(&temp_token);
+            free_tree(tree);
+        }
+        exit_code = data->exit_status;
+        free_data(data);
+        exit(exit_code);
+    }
     /* --------------------------------------- */
     while (1)
     {

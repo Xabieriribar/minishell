@@ -60,12 +60,13 @@ void    handle_pathname_error_message(char *pathname, char *cmd, t_data *data)
 {
     struct  stat st;
 
-    if (ft_strncmp(cmd, "..", 2) == 0)
+
+    if (ft_strncmp(cmd, "..", 3) == 0)
     {
         ft_putstr_fd("minishell: ..: command not found\n", 2);
         free_all_and_exit(data, 127);
     }
-    if (ft_strncmp(cmd, ".", 1) == 0)
+    if (ft_strncmp(cmd, ".", 2) == 0)
     {
         ft_putstr_fd("minishell: .: filename argument required\n", 2);
         free_all_and_exit(data, 2);
@@ -78,7 +79,7 @@ void    handle_pathname_error_message(char *pathname, char *cmd, t_data *data)
     }
     if (stat(pathname, &st) == 0)
     {
-        if (S_ISDIR(st.st_mode))
+        if (S_ISDIR(st.st_mode) || ft_strncmp(cmd, "./", 3) == 0)
         {
             write_error_message(cmd);
             ft_putstr_fd(": Is a directory\n", 2);
@@ -110,7 +111,7 @@ void    execute_command(t_node *tree, t_data *data, int fd_in, int fd_out)
         free(pathname);
         free_splits(env_vars, ft_env_var_lstsize(data->env_var));
         perror("Execve failed to execute");
-        exit(127);
+        free_all_and_exit(data, EXIT_SUCCESS);
     }
     exit(1);
 }
@@ -148,9 +149,9 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
             while (i < 1024)
                 close(i++);
             if (!tree->args || !tree->args[0])
-                exit(EXIT_SUCCESS);
+                free_all_and_exit(data, EXIT_SUCCESS);
             if (run_bultins(tree->args, &(data->env_var), &data, fd_out) != -1)
-                exit(EXIT_SUCCESS);
+                free_all_and_exit(data, EXIT_SUCCESS);
             execute_command(tree, data, fd_in, fd_out);
         }
         if (fd_in != 0)
@@ -172,15 +173,38 @@ void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
     }
 }
 
+/*This function checks if the argument is a builtin that has to be executed inside the parent process
+It receives the first command as an argument, it returns 1 if is exit, cd, export or unset and 0 if it isnt*/
+int is_parent_builtin(char *command)
+{
+	if (!ft_strncmp(command, "exit", 5))
+		return (1);
+	else if (!ft_strncmp(command, "cd", 3))
+        return (1);
+	else if (!ft_strncmp(command, "unset", 6))
+        return (1);
+	else if (!ft_strncmp(command, "export", 7))
+        return (1);
+    return (0);
+}
+/*This function takes the tree node which contains the builtin command as an argument, saves the original stdout and stdin in case
+there are redirections, and executes them*/
+void    execute_parent_builtin(t_node *tree, t_data *data)
+{
+    data->fd_in = 0;
+    data->fd_out = 1;
+    if (tree->redirs != NULL)
+        update_fd(tree->redirs, &(data->fd_in), &(data->fd_out), 1);
+    run_bultins(tree->args, &(data->env_var), &data, data->fd_out);
+    close_if_not_stdin_or_stdout(data->fd_in, data->fd_out);
+}
+
 void    execute(t_node *tree, t_data *data)
 {
-    if (!tree->left_child)
+    if (!tree->left_child && is_parent_builtin(tree->args[0]))
     {
-        if (tree->redirs != NULL)
-            update_fd(tree->redirs, &(data->fd_in), &(data->fd_out), 1);
-        if (run_bultins(tree->args, &(data->env_var), &data, data->fd_out) != -1)
-            return ;
-        execute_pipeline(tree, 0, 1, data);
+        execute_parent_builtin(tree, data);
+        return ;
     }
     else 
         execute_pipeline(tree, 0, 1, data);

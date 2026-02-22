@@ -375,9 +375,9 @@ TESTS_EDGE=(
 
 echo -e "${BLUE}=== RUNNING MINISHELL TEST SUITE ===${RESET}"
 
-# for cmd in "${TESTS_BUILTIN[@]}"; do run_test "$cmd" "BUILT-IN"; done
-for cmd in "${TESTS_PIPEREDIR[@]}"; do run_test "$cmd" "PIPE/REDIR"; done
-# for cmd in "${TESTS_QUOTES[@]}"; do run_test "$cmd" "QUOTES/EXP"; done
-# for cmd in "${TESTS_EDGE[@]}"; do run_test "$cmd" "EDGE CASES"; done
+for cmd in "${TESTS_BUILTIN[@]}"; do run_test "$cmd" "BUILT-IN"; done
+# for cmd in "${TESTS_PIPEREDIR[@]}"; do run_test "$cmd" "PIPE/REDIR"; done
+for cmd in "${TESTS_QUOTES[@]}"; do run_test "$cmd" "QUOTES/EXP"; done
+for cmd in "${TESTS_EDGE[@]}"; do run_test "$cmd" "EDGE CASES"; done
 
 echo -e "\n${BLUE}Tests finished. Check '$LOG_FILE' for detailed failure diffs.${RESET}"
