@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   create_tree.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiribar <xiribar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 19:28:36 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/23 17:18:11 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "minishell.h"
 
 t_node	*create_node(t_type node_type)
@@ -60,9 +61,14 @@ int	create_multiple_args(t_node *node, t_token *token_list)
 			token_list = token_list->next->next;
 			continue ;
 		}
-		node->args[index] = token_list->value;
-		token_list = token_list->next;
-		index++;
+		if (token_list->value && token_list->value[0] != '\0')
+		{
+			node->args[index] = token_list->value;
+			token_list = token_list->next;
+			index++;
+		}
+		else
+			token_list = token_list->next;
 	}
 	node->args[index] = NULL;
 	return (0);

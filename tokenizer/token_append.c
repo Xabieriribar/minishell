@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_append.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:34:13 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 10:54:53 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/23 15:43:07 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,13 @@ int	token_word_append(t_token *last, char *str)
 	buff = ft_substr(str, 0, i);
 	if (!buff)
 		return (perror("Err: Malloc"), -1);
+	buff = expand_buff(buff);
 	new = ft_strjoin(last->value, buff);
 	free(buff);
 	if (!new)
 		return (perror("Err: Malloc"), -1);
 	free(last->value);
 	last->value = new;
-	set_dolar(last);
-	last->value = expander(last);
 	return (i);
 }
 
@@ -61,14 +60,13 @@ int	token_double_append(t_token *last, char *str)
 	buff = ft_substr(str, 1, i - 1);
 	if (!buff)
 		return (perror("Err: Malloc"), -1);
+	buff = expand_buff(buff);
 	new = ft_strjoin(last->value, buff);
 	free(buff);
 	if (!new)
 		return (perror("Err: Malloc"), -1);
 	free(last->value);
 	last->value = new;
-	set_dolar(last);
-	last->value = expander(last);
 	return (i + 1);
 }
 

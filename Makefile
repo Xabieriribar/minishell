@@ -30,6 +30,7 @@ SRCS = \
 	executor/executor.c \
 	executor/executor_utils.c \
 	executor/executor_utils2.c \
+	executor/executor_utils3.c \
 	executor/execute_heredocs.c \
 	executor/execute_redirs.c \
 	executor/parse_env_vars.c \

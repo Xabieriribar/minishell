@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 13:34:47 by rspinell          #+#    #+#             */
-/*   Updated: 2026/02/23 14:02:42 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/23 17:44:24 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*finds_directory(char *command, char *path)
 		tmp = ft_strjoin(dirs[i], "/");
 		res = ft_strjoin(tmp, command);
 		free(tmp);
-		if (res && access(res, F_OK | X_OK) != -1)
+		if (res && access(res, F_OK) != -1)
 			return (free_splits(dirs, -1), res);
 		free(res);
 		i++;
@@ -77,12 +77,20 @@ void	check_path_errors(char *pathname, char *cmd, t_data *data)
 {
 	struct stat	st;
 
-	if (!pathname)
+	if (*cmd == '\0')
+		free_all_and_exit(data, EXIT_SUCCESS);
+	if ((!pathname && *cmd != '/') || (!pathname && *cmd != '.'))
 	{
 		write_error_message(cmd);
 		ft_putstr_fd(": command not found\n", STDERR_FILENO);
 		free_all_and_exit(data, 127);
 	}
+	// if (!pathname && *cmd == '/')
+	// {
+	// 	write_error_message(cmd);
+	// 	ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+	// 	free_all_and_exit(data, 127);
+	// }
 	if (stat(pathname, &st) == 0)
 	{
 		if (S_ISDIR(st.st_mode) || ft_strncmp(cmd, "./", 3) == 0)
@@ -98,4 +106,19 @@ void	check_path_errors(char *pathname, char *cmd, t_data *data)
 			free_all_and_exit(data, 126);
 		}
 	}
+}
+
+int is_parent_builtin(char *str)
+{
+	if (!str || !*str)
+		return (0);
+	if (!ft_strncmp(str, "exit", 5))
+		return (1);
+	if (!ft_strncmp(str, "cd", 3))
+		return (1);
+	if (!ft_strncmp(str, "unset", 6))
+		return (1);
+	if (!ft_strncmp(str, "export", 7))
+		return (1);
+	return (0);
 }

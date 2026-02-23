@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   executor_utils3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 23:40:47 by rick              #+#    #+#             */
-/*   Updated: 2026/02/23 14:54:00 by rspinell         ###   ########.fr       */
+/*   Created: 2026/02/23 14:35:40 by rspinell          #+#    #+#             */
+/*   Updated: 2026/02/23 18:23:58 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void		write_error_message(char *cmd)
 {
-	while (s && *s)
-	{
-		ft_putchar_fd(*s, fd);
-		s++;
-	}
+	ft_putstr_fd("Minishell: ", STDERR_FILENO);
+	ft_putstr_fd(cmd, STDERR_FILENO);
 }

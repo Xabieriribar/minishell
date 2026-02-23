@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:48:02 by rick              #+#    #+#             */
-/*   Updated: 2026/02/20 15:04:49 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/23 16:45:17 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static bool	valid_number(char *arg, long long *exit_code)
 /*
 * Exit function will print the exit message in STDERR
 * Then will modify the data->exit_status according to the
-* arguments or not and will return -42, value un specific used
+* arguments or not and then will return -42, value in specific used
 * To stop the main loop of the function, to then free
 * all the allocated memory and exit the program.*/
 int	b_exit(char **arr, t_data **data)
@@ -75,7 +75,6 @@ int	b_exit(char **arr, t_data **data)
 	long long	exit_code;
 
 	exit_code = 0;
-	ft_putstr_fd("exit\n", STDERR_FILENO);
 	if (!arr[1])
 		return (-42);
 	if (!valid_number(arr[1], &exit_code))

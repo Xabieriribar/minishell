@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 09:49:03 by rick              #+#    #+#             */
-/*   Updated: 2026/02/20 16:03:00 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/23 17:57:11 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,6 @@ static char	*append_char(char *str, char c)
 }
 
 /*
-* Helper function to handle the "$?" case, where we
-* need to access to the previous exit status, stored in
-* our global variable g_status.
-- (getenv() doesn´t return this.)*/
-/* static int	append_status(int *i, char *value, char **result)
-{
-	char	*status_str;
-
-	if (value[*i] != '?')
-		return (0);
-	(*i)++;
-	status_str = ft_itoa(g_status);
-	*result = ft_strconcat(*result, status_str);
-	free(status_str);
-	return (1);
-} */
-
-/*
 * Helper function to handle the getenv() case, where we
 * add to our result the evironment variable value returned
 * by the function getenv().*/
@@ -90,17 +72,15 @@ static int	append_getenv(char *env, char **result)
 /*
 * Main logic to append evironment variables and also
 * previous exit status after a dollar sign ($).*/
-static char	*append_env(t_token *token, int *i, char *result)
+static char	*append_env(char *value, int *i, char *result)
 {
 	char	*env;
 	char	*val;
 
-	val = token->value;
+	val = value;
 	(*i)++;
 	if (val[*i] == '\0')
 		return (ft_strconcat(result, "$"));
-/* 	if (append_status(i, val, &result))
-		return (result); */
 	env = NULL;
 	while (val[*i] && valid_chars(val[*i]))
 	{
@@ -113,6 +93,35 @@ static char	*append_env(t_token *token, int *i, char *result)
 	if (!result)
 		return (perror("Err: Malloc"), NULL);
 	return (free(env), result);
+}
+
+char	*expand_buff(char *str)
+{
+	int		i;
+	char	*result;
+	char	*val;
+
+	i = 0;
+	result = NULL;
+	val = NULL;
+	while (str && str[i] && !is_dollar(str[i]))
+		i++;
+	if (str[i] == '\0')
+		return (str);
+	val = str;
+	while (val && val[i])
+	{
+		if (is_dollar(val[i]))
+			result = append_env(str, &i, result);
+		else
+		{
+			result = append_char(result, val[i]);
+			i++;
+		}
+		if (!result)
+			return (perror("Err: Malloc"), NULL);
+	}
+	return (free(str), result);
 }
 
 char	*expander(t_token *token)
@@ -130,7 +139,7 @@ char	*expander(t_token *token)
 	while (val && val[i])
 	{
 		if (is_dollar(val[i]))
-			result = append_env(token, &i, result);
+			result = append_env(token->value, &i, result);
 		else
 		{
 			result = append_char(result, val[i]);

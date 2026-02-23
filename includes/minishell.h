@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/02/23 14:00:18 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/23 16:42:11 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_data
 	int		recursive_call_counter;
 	int		fd_in;
 	int		fd_out;
+	int		exit_true;
 	t_env	*env_var;
 	t_node	*ast_head;
 	t_token	*token_head;
@@ -149,6 +150,7 @@ int			tokenizer_test(char *file_path);
 /* ------------------------------- EXPANDER --------------------------------- */
 
 char		*expander(t_token *token);
+char		*expand_buff(char *str);
 char		*ft_strconcat(char *s1, char *s2);
 int			expander_test(char *address);
 bool		valid_chars(char c);
@@ -168,7 +170,7 @@ void		sort_env_arr(t_env **arr, int size);
 char		*get_key(char *str);
 
 int			b_pwd(int out_nbr);
-int			b_cd(t_env *env, char **args, int out_nmb);
+int			b_cd(t_env *env, char **args);
 int			b_echo(char **args, int out_nmb, t_data **data);
 int			b_env(char **arr, t_env **list, int out_nmb);
 int			b_unset(t_env **env, char **arr);
@@ -222,6 +224,7 @@ void		write_error_message(char *cmd);
 char		*get_path(char *command, char *path);
 void		check_path_errors(char *pathname, char *cmd, t_data *data);
 void		wait_for_last_child(t_data *data);
+int			is_parent_builtin(char *str);
 
 /* -------------------------------- SIGNALS --------------------------------- */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:25 by rick              #+#    #+#             */
-/*   Updated: 2026/02/19 18:42:54 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/23 16:42:00 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	update_env(t_env *env, char *key, char *new_val)
 * Function to change directories and update the values of keys
 * PWD and OLDPWD. In case of not finding those variables in the list of
 * env, no new values are assigned as regular cd does.*/
-static int	change_dir(t_env *env, char *path, int out_nmb)
+static int	change_dir(t_env *env, char *path)
 {
 	char	*old_pwd;
 	char	*new_pwd;
@@ -110,11 +110,10 @@ static int	change_dir(t_env *env, char *path, int out_nmb)
 		update_env(env, "PWD", new_pwd);
 		free(new_pwd);
 	}
-	b_pwd(out_nmb);
 	return (0);
 }
 
-int	b_cd(t_env *env, char **args, int out_nmb)
+int	b_cd(t_env *env, char **args)
 {
 	char	*path;
 	int		ret;
@@ -127,13 +126,13 @@ int	b_cd(t_env *env, char **args, int out_nmb)
 			ft_putstr_fd("minishell: cd: HOME not set\n", STDERR_FILENO);
 			return (1);
 		}
-		return (change_dir(env, path, out_nmb));
+		return (change_dir(env, path));
 	}
 	if (args[2])
 	{
 		ft_putstr_fd("minishell: cd: too many arguments\n", STDERR_FILENO);
 		return (1);
 	}
-	ret = change_dir(env, args[1], out_nmb);
+	ret = change_dir(env, args[1]);
 	return (ret);
 }

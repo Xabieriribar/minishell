@@ -12,7 +12,7 @@ BLUE='\033[0;34m'
 RESET='\033[0m'
 
 # --- Configuration ---
-MINISHELL="./minishell"
+MINISHELL="../minishell"
 LOG_FILE="diff.log"
 VALGRIND_LOG="valgrind_err.log"
 USE_VALGRIND=0

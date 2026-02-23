@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/23 13:36:56 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/23 17:29:58 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	execute_parent_builtin(t_node *tree, t_data *data)
 			return ;
 		}
 	}
-	run_bultins(tree->args, &(data->env_var), &data, data->fd_out);
+	data->exit_true = run_bultins(tree->args, &(data->env_var), &data, data->fd_out);
 	close_if_not_stdin_or_stdout(data->fd_in, data->fd_out);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/23 13:45:32 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/23 16:58:18 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int	main(int ac, char **av, char **ep)
 		input = readline(PROMPT);
 		if (!input)
 		{
-			printf("exit\n");
 			free_env_vars(&(data->env_var));
 			rl_clear_history();
 			exit(0);
@@ -118,7 +117,7 @@ int	main(int ac, char **av, char **ep)
 			execute(tree, data);
 			free_tokens(&temp_token);
 			free_tree(tree);
-			if (data->exit_status == -42)
+			if (data->exit_true == -42)
 				break ;
 		}
 		free(input);
