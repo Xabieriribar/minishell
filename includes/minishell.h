@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/02/20 15:21:27 by marvin           ###   ########.fr       */
+/*   Updated: 2026/02/23 14:00:18 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 # define BLUE		"\033[34m"
 # define RED		"\033[31m"
 
-# define PROMPT		"\033[45m\002>>> \033[33m\002Minishell>$ \033[0m\002"
+# define PROMPT			"Minishell>> "
+# define PIPE_ERR_MSG	"syntax error near unexpected token `|'\n"
 
 /* ------------------------------- INCLUDES --------------------------------- */
 
@@ -217,6 +218,10 @@ int			contains_out_redirs(t_redirs *redirs);
 int			contains_in_redirs(t_redirs *redirs);
 
 void		write_error_message(char *cmd);
+
+char		*get_path(char *command, char *path);
+void		check_path_errors(char *pathname, char *cmd, t_data *data);
+void		wait_for_last_child(t_data *data);
 
 /* -------------------------------- SIGNALS --------------------------------- */
 

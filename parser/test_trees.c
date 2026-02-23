@@ -1,24 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_trees.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/23 13:33:12 by rspinell          #+#    #+#             */
+/*   Updated: 2026/02/23 13:50:56 by rspinell         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-// void    compare_tree_args(t_node *tree, char *expected_args, int number_of_tokens)
+/* 
+void    compare_tree_args(t_node *tree, char *exp_arg, int nb_of_tok)
 // {
 //     if (tree->node_type != PIPE)
 //     {
 //         //COMPARE THEM
 //         return;
 //     }
-//     compare_tree_args(tree->left_child, expected_args)
-//     compare_args(tree->left_child, expected_args, number_of_tokens);
+//     compare_tree_args(tree->left_child, exp_arg)
+//     compare_args(tree->left_child, exp_arg, nb_of_tok);
 // }
-int compare_args(t_node *tree, char *expected_args, int number_of_tokens)
+int compare_args(t_node *tree, char *exp_arg, int nb_of_tok)
 {
     if (!tree->args)
         return 1;
     if (!tree->args[0])
         return 1;
-    if (number_of_tokens == 1)
+    if (nb_of_tok == 1)
     {
-        if (strcmp(tree->args[0], expected_args) != 0)
+        if (strcmp(tree->args[0], exp_arg) != 0)
             return 1;
     }
     else
@@ -78,16 +91,16 @@ int compare_redirs(char **redirs, t_node *tree, t_token *token_list)
         int i = 0;
         while (redirs[i])
         {
-            char **redir_and_filename = ft_split(redirs[i], ',');
-            enum_type = find_enum_type(tree->redirs);
-            int j = 0;
-            if (strcmp(enum_type, redir_and_filename[j]) != 0)
-                return 1;
-            else if(strcmp(tree->redirs->filename, redir_and_filename[j + 1]) != 0)
-                return 1;
-            printf("enum_type %s and filename %s\n", enum_type, tree->redirs->filename);
-            i++;
-            tree->redirs = tree->redirs->next;
+        char **redir_and_filename = ft_split(redirs[i], ',');
+        enum_type = find_enum_type(tree->redirs);
+        int j = 0;
+        if (strcmp(enum_type, redir_and_filename[j]) != 0)
+            return 1;
+        else if(strcmp(tree->redirs->filename, redir_and_filename[j + 1]) != 0)
+            return 1;
+    printf("enum_type %s and filename %s\n", enum_type, tree->redirs->filename);
+        i++;
+        tree->redirs = tree->redirs->next;
 
         }
     }
@@ -142,17 +155,18 @@ void    print_tree(t_node *tree)
 //     if (*expected_left_child == T_PIPE)
 
 // }
-int compare_childs(char *expected_left_child, char *expected_right_child, t_node *tree)
+int compare_childs(char *exp_l_child, char *exp_r_child, t_node *tree)
 {
     // enum right_type;
     // enum left_type;
-    // assign_enums(&expected_left_child, &expected_right_child);
+    // assign_enums(&exp_l_child, &exp_r_child);
     
-    (void)expected_left_child;
-    (void)expected_right_child;
+    (void)exp_l_child;
+    (void)exp_r_child;
     if (tree->left_child != NULL || tree->left_child != NULL)
     {
-        if (tree->left_child->node_type !=  PIPE && tree->right_child->node_type != COMMAND)
+        if (tree->left_child->node_type !=  PIPE
+            && tree->right_child->node_type != COMMAND)
             return 1;
     }
     return 0;
@@ -243,7 +257,8 @@ void serialize_tree(t_node *node, char *buffer)
         t_redirs *r = node->redirs;
         while (r)
         {
-            // Añadimos un espacio antes de la redirección para que no se pegue al comando
+            // Añadimos un espacio antes de la 
+            // redirección para que no se pegue al comando
             strcat(buffer, " "); 
             if (r->redir_type == T_REDIR_IN) strcat(buffer, "<");
             else if (r->redir_type == T_REDIR_OUT) strcat(buffer, ">");
@@ -297,4 +312,4 @@ int test_tree(int fd_tree_tester)
         free(line);
     }
     return 0;
-}
+} */
