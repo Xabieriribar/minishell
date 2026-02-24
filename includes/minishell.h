@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/02/24 22:39:07 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/24 23:15:54 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 
 /* ------------------------------- GLOBALS ---------------------------------- */
 
-extern volatile sig_atomic_t	g_status;
+extern int						g_signal;
 
 /* ------------------------- STRUCTS & TYPEDEFS ----------------------------- */
 
@@ -230,6 +230,9 @@ int			is_parent_builtin(char *str);
 /* -------------------------------- SIGNALS --------------------------------- */
 
 void		sigint_handler(int sig);
+void		set_signals_interactive(void);
+void		set_signals_noninteractive(void);
+void		set_signals_child(void);
 
 /* ---------------------------- FREE FUNCTIONS ------------------------------ */
 

@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 14:20:03 by rick              #+#    #+#             */
-/*   Updated: 2026/02/11 17:22:25 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/24 22:49:42 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,6 @@ t_token	*lstlast_token(t_token *lst)
 	while (ptr->next != NULL)
 		ptr = ptr->next;
 	return (ptr);
-}
-
-/* 
-* Frees a linked list of tokens the char *value 
-* from each node. */
-void	free_tokens(t_token **head)
-{
-	t_token	*tmp;
-
-	while (*head)
-	{
-		tmp = (*head)->next;
-		free((*head)->value);
-		free(*head);
-		*head = tmp;
-	}
 }
 
 /* 

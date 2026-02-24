@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 13:38:46 by rspinell          #+#    #+#             */
-/*   Updated: 2026/02/24 22:37:45 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/24 22:51:56 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,36 @@ void	free_splits(char **strs, int index_allocated)
 		index++;
 	}
 	free(strs);
+}
+
+/* 
+* Frees a linked list of tokens the char *value 
+* from each node. */
+void	free_tokens(t_token **head)
+{
+	t_token	*tmp;
+
+	while (*head)
+	{
+		tmp = (*head)->next;
+		free((*head)->value);
+		free(*head);
+		*head = tmp;
+	}
+}
+
+/*
+* Function to free the environment variable linked list*/
+void	free_env_vars(t_env **head)
+{
+	t_env	*tmp;
+
+	while (*head)
+	{
+		tmp = (*head)->next;
+		free((*head)->key);
+		free((*head)->value);
+		free(*head);
+		*head = tmp;
+	}
 }
