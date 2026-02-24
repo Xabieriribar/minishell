@@ -48,13 +48,16 @@ void		is_a_directory_error(char *cmd, t_data *data)
 	free_all_and_exit(data, 126);
 }
 
-void		permission_denied_error(char *cmd, t_data *data)
+void		permission_denied_error(char *cmd, t_data *data, int flag)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
 	ft_putstr_fd(": Permission denied", STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
-	free_all_and_exit(data, 126);
+	if (flag)
+		free_all_and_exit(data, 1);
+	else
+		free_all_and_exit(data, 126);
 }
 
 

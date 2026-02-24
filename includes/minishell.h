@@ -244,13 +244,14 @@ void		*ft_calloc(size_t nmemb, size_t size);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_itoa(int n);
 void		ft_putnbr_fd(int n, int fd);
+void		ft_putchar_fd(char c, int fd);
 
 /* ---------------------------- ERRORS --------------------------------------- */
 
 void		command_not_found_error(char *cmd, t_data *data);
 void		no_such_file_or_directory_error(char *cmd, t_data *data, int flag);
 void		is_a_directory_error(char *cmd, t_data *data);
-void		permission_denied_error(char *cmd, t_data *data);
+void		permission_denied_error(char *cmd, t_data *data, int flag);
 void		check_possible_errors(char *cmd, t_data *data, int flag);
 
 #endif

@@ -22,14 +22,12 @@ static int	handle_in_redir(t_redirs *redir, int *fd_in, t_data *data)
 {
 	if (*fd_in != STDIN_FILENO)
 		close(*fd_in);
-	*fd_in = open(redir->filename, O_RDONLY);
+	*fd_in = open(redir->filename, O_RDONLY, 0644);
 	if (*fd_in < 0)
 	{
 		if (data->flag)
 			return (-1);
-		write_error_message(redir->filename);
-		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
-		free_all_and_exit(data, EXIT_FAILURE);
+		check_possible_errors(redir->filename, data, 1);
 	}
 	return (0);
 }
@@ -40,23 +38,17 @@ static int	handle_in_redir(t_redirs *redir, int *fd_in, t_data *data)
 */
 static int	handle_out_redir(t_redirs *redir, int *fd_out, t_data *data)
 {
-	int	flags;
-
 	if (*fd_out != STDOUT_FILENO)
 		close(*fd_out);
-	flags = O_WRONLY | O_CREAT;
 	if (redir->redir_type == T_REDIR_OUT)
-		flags |= O_TRUNC;
-	else
-		flags |= O_APPEND;
-	*fd_out = open(redir->filename, flags, 0644);
+		*fd_out = open(redir->filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (redir->redir_type == T_REDIR_APPEND)
+		*fd_out = open(redir->filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (*fd_out < 0)
 	{
 		if (data->flag)
 			return (-1);
-		write_error_message(redir->filename);
-		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
-		free_all_and_exit(data, EXIT_FAILURE);
+		check_possible_errors(redir->filename, data, 1);
 	}
 	return (0);
 }

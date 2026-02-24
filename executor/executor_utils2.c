@@ -93,7 +93,7 @@ void		check_possible_errors(char *cmd, t_data *data, int flag)
 	if (S_ISDIR(st.st_mode))
 		is_a_directory_error(cmd, data);
 	if (access(cmd, X_OK) == -1)
-		permission_denied_error(cmd, data);
+		permission_denied_error(cmd, data, flag);
 
 }
 
