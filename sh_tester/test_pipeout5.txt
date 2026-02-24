@@ -148,3 +148,33 @@ $? user ->$USER home -> $HOME
 $
 $? user ->$USER home -> $HOME
 000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000

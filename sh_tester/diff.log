@@ -1803,11 +1803,10 @@ COMMAND: echo \1 \2 \3
 ========================================
 COMMAND: cat /dev/urandom | head -c 100
 --- BASH STDOUT ---
-Û[ú…ˆ)Ñþ—ß^÷—ÞÓ„‘#xé‡°j+òƒt«hE
-dÒD¹+Èm±xy£j˜ éü
-y*ÙJDŒÜ’
-p‡ªu:­[Ah„õƒéŠèœdY¢Ù’Õi Åã~Ÿ5w!ð/ÞM--- MINI STDOUT ---
-•Ôui›ú‰^.äj‘Lu6¡Ÿ1‚ÉËaTÍ˜»‚®øŸ(‰jÜF Hí7l§ç K¾<6Ç0OÅ.`îäTÅ!nFÜØš¿nùÚ
-	º3#ºEã&ìxµwu[7Y"ÀˆßR¾--- BASH EXIT: 0 | MINI EXIT: 0 ---
+Â
+HÐ¢©tÃ{`Ž|=NuœDÅ¿7¤	ââ("¥t5°:Ë„ðy•ÍY¯qÛfúœ®Üw¼>ÎÏéGøˆàŠoâ¼Ù,
+Ê›½•ËŒzø²wmÝ	ÌSÂË3£--- MINI STDOUT ---
+*¿Éº=@ä}ì6bÊ«\†bÓ…Šl4€ŽlXL\)1õ´bž,æ&ÄZ¡ˆ¥5­ì9¼NC
+™e_Yþú{Éfhºš M¸Õ>Á_*5ß2ßQ¶W™yS¯ñ*l!N--- BASH EXIT: 0 | MINI EXIT: 0 ---
 ========================================
 
