@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/23 16:58:18 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/24 22:41:51 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,69 @@ t_data	*init_data(char **env_variables)
 	return (data);
 }
 
+/* static void	process_input(t_data *data)
+{
+	t_token	*token;
+	t_token	*head;
+	t_node	*tree;
+
+	add_history(data->input);
+	token = init_list(data->input, data);
+	if (!token)
+		return ;
+	head = token;
+	if (grammar_validator(token) != 0)
+	{
+		data->exit_status = 2;
+		free_tokens(&head);
+		return ;
+	}
+	tree = init_tree(&token);
+	data->ast_head = tree;
+	data->token_head = head;
+	execute(tree, data);
+	free_tokens(&head);
+	data->token_head = NULL; // Prevent double free on exit!
+	free_tree(tree);
+	data->ast_head = NULL;
+}
+
+static void	shell_loop(t_data *data)
+{
+	while (1)
+	{
+		data->input = readline(PROMPT);
+		if (!data->input)
+			break ;
+		if (data->input[0])
+		{
+			process_input(data);
+			if (data->exit_true == -42)
+				break ;
+		}
+		free(data->input);
+	}
+}
+
+int	main(int ac, char **av, char **ep)
+{
+	t_data	*data;
+	int		exit_code;
+
+	(void)ac;
+	(void)av;
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, SIG_IGN);
+	data = init_data(ep);
+	shell_loop(data);
+	if (data->input)
+		free(data->input);
+	exit_code = data->exit_status;
+	rl_clear_history();
+	free_all_and_exit(data, exit_code);
+	return (exit_code);
+} */
+
 int	main(int ac, char **av, char **ep)
 {
 	t_data	*data;
@@ -49,7 +112,7 @@ int	main(int ac, char **av, char **ep)
 	data = init_data(ep);
 	if (ac >= 3 && ft_strncmp(av[1], "-c", 3) == 0)
 	{
-		token = init_list(av[2]);
+		token = init_list(av[2], data);
 		if (!token)
 		{
 			free_data(data);
@@ -86,7 +149,7 @@ int	main(int ac, char **av, char **ep)
 		if (input && *input)
 		{
 			add_history(input);
-			token = init_list(input);
+			token = init_list(input, data);
 			if (!token)
 			{
 				free(input);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/02/23 18:19:17 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/24 20:12:02 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	run_bultins(char **args, t_env **list, t_data **data, int out_nmb)
 	if (!ft_strncmp(args[0], "cd", 3))
 		ret = b_cd(*list, args);
 	else if (!ft_strncmp(args[0], "echo", 5))
-		ret = b_echo(args, out_nmb, data);
+		ret = b_echo(args, out_nmb);
 	else if (!ft_strncmp(args[0], "env", 4))
 		ret = b_env(args, list, out_nmb);
 	else if (!ft_strncmp(args[0], "pwd", 4))

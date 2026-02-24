@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_heredocs.c                                 :+:      :+:    :+:   */
+/*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/20 15:01:11 by marvin           ###   ########.fr       */
+/*   Updated: 2026/02/24 20:13:53 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,15 @@ void	close_if_not_stdin_or_stdout(int fd_in, int fd_out)
 		close(fd_in);
 	if (fd_out != STDOUT_FILENO && fd_out != -1)
 		close(fd_out);
+}
+
+void	unlink_heredoc_files(t_node *tree)
+{
+	if (!tree->left_child)
+	{
+		unlink(tree->redirs->filename);
+		return ;
+	}
+	unlink(tree->right_child->redirs->filename);
+	unlink_heredoc_files(tree->left_child);
 }

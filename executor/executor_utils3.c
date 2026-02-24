@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 14:35:40 by rspinell          #+#    #+#             */
-/*   Updated: 2026/02/23 18:23:58 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/24 20:13:45 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,4 @@ void	permission_denied_error(char *cmd, t_data *data, int flag)
 		free_all_and_exit(data, 1);
 	else
 		free_all_and_exit(data, 126);
-}
-
-void	unlink_heredoc_files(t_node *tree)
-{
-	if (!tree->left_child)
-	{
-		unlink(tree->redirs->filename);
-		return;
-	}
-	unlink(tree->right_child->redirs->filename);
-	unlink_heredoc_files(tree->left_child);
 }

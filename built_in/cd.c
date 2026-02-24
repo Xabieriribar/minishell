@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:25 by rick              #+#    #+#             */
-/*   Updated: 2026/02/23 16:42:00 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/24 19:55:49 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,6 @@
 ~ IMPORTANT DATA NEEDED:
 + Previous directory
 + Env variable $HOME */
-
-/*
-* Function iterates though the linked list until finding a matching name.
-* Returns a pointer to the matching string key or NULL if not found.*/
-static char	*get_env_value(t_env *env, char *key)
-{
-	t_env	*ptr;
-	size_t	len;
-
-	ptr = env;
-	len = ft_strlen(key);
-	while (ptr)
-	{
-		if (ft_strncmp(key, ptr->key, len) == 0 && ptr->key[len] == '\0')
-			return (ptr->value);
-		ptr = ptr->next;
-	}
-	return (NULL);
-}
 
 /*
 * Function to update the value of a certain environment variable.

@@ -1,8 +1,6 @@
-&&
 >
 $
 $? user ->$USER home -> $HOME
-000
 0 user ->$USER home -> $HOME
 a1.txt
 append_only.txt
@@ -10,8 +8,6 @@ append_test.txt
 archivo.txt
 a.txt
 b.txt
-cd
-chmod
 c.txt
 daemon_info.txt
 diff.log
@@ -60,7 +56,6 @@ test_app6.txt
 test_app7.txt
 test_app8.txt
 test_app9.txt
-test_dir
 tester.sh
 test_mix10.txt
 test_mix1.txt

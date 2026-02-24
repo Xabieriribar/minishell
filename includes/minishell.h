@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/02/23 16:42:11 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/24 22:39:07 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,27 +133,29 @@ bool		is_space(char c);
 bool		is_operator(char c);
 bool		is_dollar(char c);
 
-t_token		*init_list(char *str);
-int			init_add_token(t_token **head, char *str, int ix, int separated);
+t_token		*init_list(char *str, t_data *data);
+int			init_add_token(t_token **head, char *str, int sep, t_data *data);
 
 int			token_operator(t_token **head, char *str, int ix);
 int			token_single(t_token **head, char *str, int ix);
-int			token_double(t_token **head, char *str, int ix);
-int			token_word(t_token **head, char *str, int ix);
+int			token_double(t_token **head, char *str, int ix, t_data *data);
+int			token_word(t_token **head, char *str, int ix, t_data *data);
 
 int			token_single_append(t_token *last, char *str);
-int			token_double_append(t_token *last, char *str);
-int			token_word_append(t_token *last, char *str);
+int			token_double_append(t_token *last, char *str, t_data *data);
+int			token_word_append(t_token *last, char *str, t_data *data);
 
 int			tokenizer_test(char *file_path);
 
 /* ------------------------------- EXPANDER --------------------------------- */
 
-char		*expander(t_token *token);
-char		*expand_buff(char *str);
+char		*expander(t_token *token, t_data *data);
+char		*expand_buff(char *str, t_data *data);
 char		*ft_strconcat(char *s1, char *s2);
 int			expander_test(char *address);
 bool		valid_chars(char c);
+char		*get_env_value(t_env *env, char *key);
+char		*append_char(char *str, char c);
 
 /* ------------------------------- BUILTINS --------------------------------- */
 
@@ -171,7 +173,7 @@ char		*get_key(char *str);
 
 int			b_pwd(int out_nbr);
 int			b_cd(t_env *env, char **args);
-int			b_echo(char **args, int out_nmb, t_data **data);
+int			b_echo(char **args, int out_nmb);
 int			b_env(char **arr, t_env **list, int out_nmb);
 int			b_unset(t_env **env, char **arr);
 int			b_exit(char **args, t_data **data);

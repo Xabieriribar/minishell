@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:48 by rick              #+#    #+#             */
-/*   Updated: 2026/02/23 18:24:15 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/24 19:57:12 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,7 @@ static bool	is_n_flag(char *str)
 	return (true);
 }
 
-static void	putsring_echo(char *str, int exit_status, int out_nb)
-{
-	int	i;
-
-	i = 0;
-	while (str && str[i])
-	{
-		if (!ft_strncmp(str + i, "$?", 2))
-		{
-			ft_putnbr_fd(exit_status, out_nb);
-			i = i + 2;
-		}
-		else
-		{
-			ft_putchar_fd(str[i], out_nb);
-			i++;
-		}
-	}
-}
-
-int	b_echo(char **args, int out_nmb, t_data **data)
+int	b_echo(char **args, int out_nmb)
 {
 	int		i;
 	bool	n_flag;
@@ -69,7 +49,7 @@ int	b_echo(char **args, int out_nmb, t_data **data)
 	}
 	while (args[i])
 	{
-		putsring_echo(args[i], (*data)->exit_status, out_nmb);
+		ft_putstr_fd(args[i], out_nmb);
 		if (args[i + 1])
 			write(out_nmb, " ", 1);
 		i++;

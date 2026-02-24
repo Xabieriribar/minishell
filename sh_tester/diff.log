@@ -1,158 +1,120 @@
 ========================================
 COMMAND: export
 --- BASH STDOUT ---
-declare -x BUNDLED_DEBUGPY_PATH="/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/libs/debugpy"
-declare -x CHROME_DESKTOP="code.desktop"
+declare -x CINNAMON_VERSION="6.4.8"
 declare -x COLORTERM="truecolor"
-declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/103042/bus"
-declare -x DEBUGINFOD_URLS="https://debuginfod.ubuntu.com "
-declare -x DESKTOP_SESSION="ubuntu"
+declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+declare -x DESKTOP_SESSION="cinnamon"
 declare -x DISPLAY=":0"
-declare -x DOCKER_HOST="unix:///run/user/103042/docker.sock"
-declare -x FT_HOOK_NAME="login-user"
-declare -x FT_HOOK_PATHNAME="login-user.d"
-declare -x GDK_BACKEND="x11"
-declare -x GDMSESSION="ubuntu"
-declare -x GEMINI_CLI_IDE_AUTH_TOKEN="1899d307-8f29-49bc-9bec-068bf17029ea"
-declare -x GEMINI_CLI_IDE_SERVER_PORT="38475"
-declare -x GEMINI_CLI_IDE_WORKSPACE_PATH="/home/xiribar/minihell"
-declare -x GIO_LAUNCHED_DESKTOP_FILE="/usr/share/applications/code.desktop"
-declare -x GIO_LAUNCHED_DESKTOP_FILE_PID="2517575"
-declare -x GIT_ASKPASS="/usr/share/code/resources/app/extensions/git/dist/askpass.sh"
-declare -x GJS_DEBUG_OUTPUT="stderr"
-declare -x GJS_DEBUG_TOPICS="JS ERROR;JS LOG"
+declare -x GDMSESSION="cinnamon"
+declare -x GDM_LANG="en_US"
 declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
-declare -x GPG_AGENT_INFO="/run/user/103042/gnupg/S.gpg-agent:0:1"
-declare -x GTK_IM_MODULE="ibus"
+declare -x GNOME_KEYRING_CONTROL="/run/user/1000/keyring"
+declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/6ab5b3b1_2965_412b_9114_acf0d2c2d1a1"
+declare -x GNOME_TERMINAL_SERVICE=":1.74"
+declare -x GPG_AGENT_INFO="/run/user/1000/gnupg/S.gpg-agent:0:1"
+declare -x GTK3_MODULES="xapp-gtk3-module"
 declare -x GTK_MODULES="gail:atk-bridge"
-declare -x HOME="/home/xiribar"
-declare -x INVOCATION_ID="5747615058074ea0b6cb51c86dd44cb3"
-declare -x JOURNAL_STREAM="8:17113798"
+declare -x HOME="/home/rick"
 declare -x LANG="en_US.UTF-8"
-declare -x LIBVIRT_DEFAULT_URI="qemu:///system"
-declare -x LOGNAME="xiribar"
-declare -x MANAGERPID="2514752"
-declare -x OLDPWD="/home/xiribar/minihell"
-declare -x ORIGINAL_XDG_CURRENT_DESKTOP="ubuntu:GNOME"
-declare -x PAM_KRB5CCNAME="/tmp/krb5cc_pam_DCLr97"
-declare -x PATH="/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/shims:/opt/pyenv/bin:/home/xiribar/bin:/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/bin:/home/xiribar/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/scripts/noConfigScripts:/home/xiribar/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-declare -x PWD="/home/xiribar/minihell/sh_tester"
-declare -x PYDEVD_DISABLE_FILE_VALIDATION="1"
-declare -x PYENV_ROOT="/opt/pyenv"
-declare -x PYTHONSTARTUP="/home/xiribar/.config/Code/User/workspaceStorage/fa30ec54db255e70e4810928269a4a77/ms-python.python/pythonrc.py"
-declare -x PYTHON_BASIC_REPL="1"
+declare -x LANGUAGE="en_US"
+declare -x LC_ADDRESS="de_CH.UTF-8"
+declare -x LC_IDENTIFICATION="de_CH.UTF-8"
+declare -x LC_MEASUREMENT="de_CH.UTF-8"
+declare -x LC_MONETARY="de_CH.UTF-8"
+declare -x LC_NAME="de_CH.UTF-8"
+declare -x LC_NUMERIC="de_CH.UTF-8"
+declare -x LC_PAPER="de_CH.UTF-8"
+declare -x LC_TELEPHONE="de_CH.UTF-8"
+declare -x LESS="-R"
+declare -x LOGNAME="rick"
+declare -x LSCOLORS="Gxfxcxdxbxegedabagacad"
+declare -x LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:"
+declare -x OLDPWD="/home/rick/Documents/minishell"
+declare -x PAGER="less"
+declare -x PATH="/home/rick/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/rick/.local/bin"
+declare -x PWD="/home/rick/Documents/minishell/sh_tester"
 declare -x QT_ACCESSIBILITY="1"
-declare -x QT_IM_MODULE="ibus"
-declare -x SESSION_MANAGER="local/c2r5s9.42lausanne.ch:@/tmp/.ICE-unix/2515535,unix/c2r5s9.42lausanne.ch:/tmp/.ICE-unix/2515535"
-declare -x SHELL="/bin/zsh"
+declare -x SESSION_MANAGER="local/Mint-VM:@/tmp/.ICE-unix/1184,unix/Mint-VM:/tmp/.ICE-unix/1184"
+declare -x SHELL="/usr/bin/zsh"
 declare -x SHLVL="3"
-declare -x SSH_AGENT_PID="2515496"
-declare -x SSH_AUTH_SOCK="/run/user/103042/keyring/ssh"
-declare -x SYSTEMD_EXEC_PID="2515553"
+declare -x SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
 declare -x TERM="xterm-256color"
-declare -x TERM_PROGRAM="vscode"
-declare -x TERM_PROGRAM_VERSION="1.104.2"
-declare -x USER="xiribar"
-declare -x USER_ZDOTDIR="/home/xiribar"
-declare -x VSCODE_DEBUGPY_ADAPTER_ENDPOINTS="/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-0731af56ba0fe4c7.txt"
-declare -x VSCODE_GIT_ASKPASS_EXTRA_ARGS=""
-declare -x VSCODE_GIT_ASKPASS_MAIN="/usr/share/code/resources/app/extensions/git/dist/askpass-main.js"
-declare -x VSCODE_GIT_ASKPASS_NODE="/usr/share/code/code"
-declare -x VSCODE_GIT_IPC_HANDLE="/run/user/103042/vscode-git-72be6d1278.sock"
-declare -x VSCODE_INJECTION="1"
-declare -x VSCODE_PYTHON_AUTOACTIVATE_GUARD="1"
-declare -x XAUTHORITY="/home/xiribar/.Xauthority"
-declare -x XDG_CONFIG_DIRS="/etc/xdg/xdg-ubuntu:/etc/xdg"
-declare -x XDG_CURRENT_DESKTOP="Unity"
-declare -x XDG_DATA_DIRS="/usr/share/ubuntu:/usr/share/gnome:/home/xiribar/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop"
-declare -x XDG_GREETER_DATA_DIR="/var/lib/lightdm-data/xiribar"
-declare -x XDG_MENU_PREFIX="gnome-"
-declare -x XDG_RUNTIME_DIR="/run/user/103042"
+declare -x USER="rick"
+declare -x VTE_VERSION="7600"
+declare -x XAUTHORITY="/home/rick/.Xauthority"
+declare -x XDG_CONFIG_DIRS="/etc/xdg/xdg-cinnamon:/etc/xdg"
+declare -x XDG_CURRENT_DESKTOP="X-Cinnamon"
+declare -x XDG_DATA_DIRS="/usr/share/cinnamon:/usr/share/gnome:/home/rick/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
+declare -x XDG_GREETER_DATA_DIR="/var/lib/lightdm-data/rick"
+declare -x XDG_RUNTIME_DIR="/run/user/1000"
+declare -x XDG_SEAT="seat0"
 declare -x XDG_SEAT_PATH="/org/freedesktop/DisplayManager/Seat0"
 declare -x XDG_SESSION_CLASS="user"
-declare -x XDG_SESSION_DESKTOP="ubuntu"
-declare -x XDG_SESSION_PATH="/org/freedesktop/DisplayManager/Session1"
+declare -x XDG_SESSION_DESKTOP="cinnamon"
+declare -x XDG_SESSION_ID="c1"
+declare -x XDG_SESSION_PATH="/org/freedesktop/DisplayManager/Session0"
 declare -x XDG_SESSION_TYPE="x11"
-declare -x XMODIFIERS="@im=ibus"
-declare -x YAD_PID="2515389"
-declare -x ZDOTDIR="/home/xiribar"
+declare -x XDG_VTNR="7"
+declare -x ZSH="/home/rick/.oh-my-zsh"
 declare -x _="/usr/bin/bash"
 --- MINI STDOUT ---
-declare -x BUNDLED_DEBUGPY_PATH="/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/libs/debugpy"
-declare -x CHROME_DESKTOP="code.desktop"
+declare -x CINNAMON_VERSION="6.4.8"
 declare -x COLORTERM="truecolor"
-declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/103042/bus"
-declare -x DEBUGINFOD_URLS="https://debuginfod.ubuntu.com "
-declare -x DESKTOP_SESSION="ubuntu"
+declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+declare -x DESKTOP_SESSION="cinnamon"
 declare -x DISPLAY=":0"
-declare -x DOCKER_HOST="unix:///run/user/103042/docker.sock"
-declare -x FT_HOOK_NAME="login-user"
-declare -x FT_HOOK_PATHNAME="login-user.d"
-declare -x GDK_BACKEND="x11"
-declare -x GDMSESSION="ubuntu"
-declare -x GEMINI_CLI_IDE_AUTH_TOKEN="1899d307-8f29-49bc-9bec-068bf17029ea"
-declare -x GEMINI_CLI_IDE_SERVER_PORT="38475"
-declare -x GEMINI_CLI_IDE_WORKSPACE_PATH="/home/xiribar/minihell"
-declare -x GIO_LAUNCHED_DESKTOP_FILE="/usr/share/applications/code.desktop"
-declare -x GIO_LAUNCHED_DESKTOP_FILE_PID="2517575"
-declare -x GIT_ASKPASS="/usr/share/code/resources/app/extensions/git/dist/askpass.sh"
-declare -x GJS_DEBUG_OUTPUT="stderr"
-declare -x GJS_DEBUG_TOPICS="JS ERROR;JS LOG"
+declare -x GDMSESSION="cinnamon"
+declare -x GDM_LANG="en_US"
 declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
-declare -x GPG_AGENT_INFO="/run/user/103042/gnupg/S.gpg-agent:0:1"
-declare -x GTK_IM_MODULE="ibus"
+declare -x GNOME_KEYRING_CONTROL="/run/user/1000/keyring"
+declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/6ab5b3b1_2965_412b_9114_acf0d2c2d1a1"
+declare -x GNOME_TERMINAL_SERVICE=":1.74"
+declare -x GPG_AGENT_INFO="/run/user/1000/gnupg/S.gpg-agent:0:1"
+declare -x GTK3_MODULES="xapp-gtk3-module"
 declare -x GTK_MODULES="gail:atk-bridge"
-declare -x HOME="/home/xiribar"
-declare -x INVOCATION_ID="5747615058074ea0b6cb51c86dd44cb3"
-declare -x JOURNAL_STREAM="8:17113798"
+declare -x HOME="/home/rick"
 declare -x LANG="en_US.UTF-8"
-declare -x LIBVIRT_DEFAULT_URI="qemu:///system"
-declare -x LOGNAME="xiribar"
-declare -x MANAGERPID="2514752"
-declare -x OLDPWD="/home/xiribar/minihell"
-declare -x ORIGINAL_XDG_CURRENT_DESKTOP="ubuntu:GNOME"
-declare -x PAM_KRB5CCNAME="/tmp/krb5cc_pam_DCLr97"
-declare -x PATH="/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/shims:/opt/pyenv/bin:/home/xiribar/bin:/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/bin:/home/xiribar/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/scripts/noConfigScripts:/home/xiribar/.config/Code/User/globalStorage/github.copilot-chat/debugCommand"
-declare -x PWD="/home/xiribar/minihell/sh_tester"
-declare -x PYDEVD_DISABLE_FILE_VALIDATION="1"
-declare -x PYENV_ROOT="/opt/pyenv"
-declare -x PYTHONSTARTUP="/home/xiribar/.config/Code/User/workspaceStorage/fa30ec54db255e70e4810928269a4a77/ms-python.python/pythonrc.py"
-declare -x PYTHON_BASIC_REPL="1"
+declare -x LANGUAGE="en_US"
+declare -x LC_ADDRESS="de_CH.UTF-8"
+declare -x LC_IDENTIFICATION="de_CH.UTF-8"
+declare -x LC_MEASUREMENT="de_CH.UTF-8"
+declare -x LC_MONETARY="de_CH.UTF-8"
+declare -x LC_NAME="de_CH.UTF-8"
+declare -x LC_NUMERIC="de_CH.UTF-8"
+declare -x LC_PAPER="de_CH.UTF-8"
+declare -x LC_TELEPHONE="de_CH.UTF-8"
+declare -x LESS="-R"
+declare -x LOGNAME="rick"
+declare -x LSCOLORS="Gxfxcxdxbxegedabagacad"
+declare -x LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:"
+declare -x OLDPWD="/home/rick/Documents/minishell"
+declare -x PAGER="less"
+declare -x PATH="/home/rick/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/rick/.local/bin"
+declare -x PWD="/home/rick/Documents/minishell/sh_tester"
 declare -x QT_ACCESSIBILITY="1"
-declare -x QT_IM_MODULE="ibus"
-declare -x SESSION_MANAGER="local/c2r5s9.42lausanne.ch:@/tmp/.ICE-unix/2515535,unix/c2r5s9.42lausanne.ch:/tmp/.ICE-unix/2515535"
-declare -x SHELL="/bin/zsh"
+declare -x SESSION_MANAGER="local/Mint-VM:@/tmp/.ICE-unix/1184,unix/Mint-VM:/tmp/.ICE-unix/1184"
+declare -x SHELL="/usr/bin/zsh"
 declare -x SHLVL="2"
-declare -x SSH_AGENT_PID="2515496"
-declare -x SSH_AUTH_SOCK="/run/user/103042/keyring/ssh"
-declare -x SYSTEMD_EXEC_PID="2515553"
+declare -x SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
 declare -x TERM="xterm-256color"
-declare -x TERM_PROGRAM="vscode"
-declare -x TERM_PROGRAM_VERSION="1.104.2"
-declare -x USER="xiribar"
-declare -x USER_ZDOTDIR="/home/xiribar"
-declare -x VSCODE_DEBUGPY_ADAPTER_ENDPOINTS="/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-0731af56ba0fe4c7.txt"
-declare -x VSCODE_GIT_ASKPASS_EXTRA_ARGS=""
-declare -x VSCODE_GIT_ASKPASS_MAIN="/usr/share/code/resources/app/extensions/git/dist/askpass-main.js"
-declare -x VSCODE_GIT_ASKPASS_NODE="/usr/share/code/code"
-declare -x VSCODE_GIT_IPC_HANDLE="/run/user/103042/vscode-git-72be6d1278.sock"
-declare -x VSCODE_INJECTION="1"
-declare -x VSCODE_PYTHON_AUTOACTIVATE_GUARD="1"
-declare -x XAUTHORITY="/home/xiribar/.Xauthority"
-declare -x XDG_CONFIG_DIRS="/etc/xdg/xdg-ubuntu:/etc/xdg"
-declare -x XDG_CURRENT_DESKTOP="Unity"
-declare -x XDG_DATA_DIRS="/usr/share/ubuntu:/usr/share/gnome:/home/xiribar/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop"
-declare -x XDG_GREETER_DATA_DIR="/var/lib/lightdm-data/xiribar"
-declare -x XDG_MENU_PREFIX="gnome-"
-declare -x XDG_RUNTIME_DIR="/run/user/103042"
+declare -x USER="rick"
+declare -x VTE_VERSION="7600"
+declare -x XAUTHORITY="/home/rick/.Xauthority"
+declare -x XDG_CONFIG_DIRS="/etc/xdg/xdg-cinnamon:/etc/xdg"
+declare -x XDG_CURRENT_DESKTOP="X-Cinnamon"
+declare -x XDG_DATA_DIRS="/usr/share/cinnamon:/usr/share/gnome:/home/rick/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
+declare -x XDG_GREETER_DATA_DIR="/var/lib/lightdm-data/rick"
+declare -x XDG_RUNTIME_DIR="/run/user/1000"
+declare -x XDG_SEAT="seat0"
 declare -x XDG_SEAT_PATH="/org/freedesktop/DisplayManager/Seat0"
 declare -x XDG_SESSION_CLASS="user"
-declare -x XDG_SESSION_DESKTOP="ubuntu"
-declare -x XDG_SESSION_PATH="/org/freedesktop/DisplayManager/Session1"
+declare -x XDG_SESSION_DESKTOP="cinnamon"
+declare -x XDG_SESSION_ID="c1"
+declare -x XDG_SESSION_PATH="/org/freedesktop/DisplayManager/Session0"
 declare -x XDG_SESSION_TYPE="x11"
-declare -x XMODIFIERS="@im=ibus"
-declare -x YAD_PID="2515389"
-declare -x ZDOTDIR="/home/xiribar"
+declare -x XDG_VTNR="7"
+declare -x ZSH="/home/rick/.oh-my-zsh"
 declare -x _="../minishell"
 --- BASH EXIT: 0 | MINI EXIT: 0 ---
 ========================================
@@ -167,158 +129,120 @@ COMMAND: export -VAR=42
 ========================================
 COMMAND: env
 --- BASH STDOUT ---
-SHELL=/bin/zsh
-SESSION_MANAGER=local/c2r5s9.42lausanne.ch:@/tmp/.ICE-unix/2515535,unix/c2r5s9.42lausanne.ch:/tmp/.ICE-unix/2515535
-USER_ZDOTDIR=/home/xiribar
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/Mint-VM:@/tmp/.ICE-unix/1184,unix/Mint-VM:/tmp/.ICE-unix/1184
 QT_ACCESSIBILITY=1
 COLORTERM=truecolor
-XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
-VSCODE_DEBUGPY_ADAPTER_ENDPOINTS=/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-0731af56ba0fe4c7.txt
-XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session1
-XDG_MENU_PREFIX=gnome-
-TERM_PROGRAM_VERSION=1.104.2
+XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg
+LESS=-R
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
 GNOME_DESKTOP_SESSION_ID=this-is-deprecated
-GTK_IM_MODULE=ibus
-GEMINI_CLI_IDE_SERVER_PORT=38475
-SSH_AUTH_SOCK=/run/user/103042/keyring/ssh
-PYDEVD_DISABLE_FILE_VALIDATION=1
-XMODIFIERS=@im=ibus
-DESKTOP_SESSION=ubuntu
-SSH_AGENT_PID=2515496
-FT_HOOK_NAME=login-user
+GNOME_KEYRING_CONTROL=/run/user/1000/keyring
+LANGUAGE=en_US
+LC_ADDRESS=de_CH.UTF-8
+LC_NAME=de_CH.UTF-8
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+CINNAMON_VERSION=6.4.8
+DESKTOP_SESSION=cinnamon
+LC_MONETARY=de_CH.UTF-8
 GTK_MODULES=gail:atk-bridge
-FT_HOOK_PATHNAME=login-user.d
-PWD=/home/xiribar/minihell/sh_tester
-LOGNAME=xiribar
-XDG_SESSION_DESKTOP=ubuntu
+XDG_SEAT=seat0
+PWD=/home/rick/Documents/minishell/sh_tester
+XDG_SESSION_DESKTOP=cinnamon
+LOGNAME=rick
 XDG_SESSION_TYPE=x11
-GPG_AGENT_INFO=/run/user/103042/gnupg/S.gpg-agent:0:1
-SYSTEMD_EXEC_PID=2515553
+GPG_AGENT_INFO=/run/user/1000/gnupg/S.gpg-agent:0:1
 _=/usr/bin/env
-BUNDLED_DEBUGPY_PATH=/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/libs/debugpy
-XAUTHORITY=/home/xiribar/.Xauthority
-VSCODE_GIT_ASKPASS_NODE=/usr/share/code/code
-XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/xiribar
-GJS_DEBUG_TOPICS=JS ERROR;JS LOG
-VSCODE_INJECTION=1
-HOME=/home/xiribar
+XAUTHORITY=/home/rick/.Xauthority
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/rick
+GDM_LANG=en_US
+HOME=/home/rick
 LANG=en_US.UTF-8
-XDG_CURRENT_DESKTOP=Unity
-PYTHONSTARTUP=/home/xiribar/.config/Code/User/workspaceStorage/fa30ec54db255e70e4810928269a4a77/ms-python.python/pythonrc.py
-GIT_ASKPASS=/usr/share/code/resources/app/extensions/git/dist/askpass.sh
+LC_PAPER=de_CH.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+XDG_CURRENT_DESKTOP=X-Cinnamon
+VTE_VERSION=7600
 XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
-INVOCATION_ID=5747615058074ea0b6cb51c86dd44cb3
-MANAGERPID=2514752
-CHROME_DESKTOP=code.desktop
-GJS_DEBUG_OUTPUT=stderr
-VSCODE_GIT_ASKPASS_EXTRA_ARGS=
-VSCODE_PYTHON_AUTOACTIVATE_GUARD=1
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/6ab5b3b1_2965_412b_9114_acf0d2c2d1a1
 XDG_SESSION_CLASS=user
-GEMINI_CLI_IDE_WORKSPACE_PATH=/home/xiribar/minihell
+LC_IDENTIFICATION=de_CH.UTF-8
 TERM=xterm-256color
-PYTHON_BASIC_REPL=1
-ZDOTDIR=/home/xiribar
-LIBVIRT_DEFAULT_URI=qemu:///system
-USER=xiribar
-VSCODE_GIT_IPC_HANDLE=/run/user/103042/vscode-git-72be6d1278.sock
-YAD_PID=2515389
+ZSH=/home/rick/.oh-my-zsh
+USER=rick
+GNOME_TERMINAL_SERVICE=:1.74
 DISPLAY=:0
 SHLVL=2
-PAM_KRB5CCNAME=/tmp/krb5cc_pam_DCLr97
-QT_IM_MODULE=ibus
-XDG_RUNTIME_DIR=/run/user/103042
-PYENV_ROOT=/opt/pyenv
-DEBUGINFOD_URLS=https://debuginfod.ubuntu.com 
-DOCKER_HOST=unix:///run/user/103042/docker.sock
-VSCODE_GIT_ASKPASS_MAIN=/usr/share/code/resources/app/extensions/git/dist/askpass-main.js
-JOURNAL_STREAM=8:17113798
-XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/home/xiribar/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
-GDK_BACKEND=x11
-GEMINI_CLI_IDE_AUTH_TOKEN=1899d307-8f29-49bc-9bec-068bf17029ea
-PATH=/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/shims:/opt/pyenv/bin:/home/xiribar/bin:/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/bin:/home/xiribar/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/scripts/noConfigScripts:/home/xiribar/.config/Code/User/globalStorage/github.copilot-chat/debugCommand
-GDMSESSION=ubuntu
-ORIGINAL_XDG_CURRENT_DESKTOP=ubuntu:GNOME
-DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/103042/bus
-GIO_LAUNCHED_DESKTOP_FILE_PID=2517575
-GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/code.desktop
-OLDPWD=/home/xiribar/minihell
-TERM_PROGRAM=vscode
+PAGER=less
+LC_TELEPHONE=de_CH.UTF-8
+LC_MEASUREMENT=de_CH.UTF-8
+XDG_VTNR=7
+XDG_SESSION_ID=c1
+XDG_RUNTIME_DIR=/run/user/1000
+GTK3_MODULES=xapp-gtk3-module
+XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/home/rick/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+PATH=/home/rick/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/rick/.local/bin
+GDMSESSION=cinnamon
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+LC_NUMERIC=de_CH.UTF-8
+OLDPWD=/home/rick/Documents/minishell
 --- MINI STDOUT ---
-SHELL=/bin/zsh
-SESSION_MANAGER=local/c2r5s9.42lausanne.ch:@/tmp/.ICE-unix/2515535,unix/c2r5s9.42lausanne.ch:/tmp/.ICE-unix/2515535
-USER_ZDOTDIR=/home/xiribar
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/Mint-VM:@/tmp/.ICE-unix/1184,unix/Mint-VM:/tmp/.ICE-unix/1184
 QT_ACCESSIBILITY=1
 COLORTERM=truecolor
-XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
-VSCODE_DEBUGPY_ADAPTER_ENDPOINTS=/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-0731af56ba0fe4c7.txt
-XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session1
-XDG_MENU_PREFIX=gnome-
-TERM_PROGRAM_VERSION=1.104.2
+XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg
+LESS=-R
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
 GNOME_DESKTOP_SESSION_ID=this-is-deprecated
-GTK_IM_MODULE=ibus
-GEMINI_CLI_IDE_SERVER_PORT=38475
-SSH_AUTH_SOCK=/run/user/103042/keyring/ssh
-PYDEVD_DISABLE_FILE_VALIDATION=1
-XMODIFIERS=@im=ibus
-DESKTOP_SESSION=ubuntu
-SSH_AGENT_PID=2515496
-FT_HOOK_NAME=login-user
+GNOME_KEYRING_CONTROL=/run/user/1000/keyring
+LANGUAGE=en_US
+LC_ADDRESS=de_CH.UTF-8
+LC_NAME=de_CH.UTF-8
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+CINNAMON_VERSION=6.4.8
+DESKTOP_SESSION=cinnamon
+LC_MONETARY=de_CH.UTF-8
 GTK_MODULES=gail:atk-bridge
-FT_HOOK_PATHNAME=login-user.d
-PWD=/home/xiribar/minihell/sh_tester
-XDG_SESSION_DESKTOP=ubuntu
-LOGNAME=xiribar
+XDG_SEAT=seat0
+PWD=/home/rick/Documents/minishell/sh_tester
+LOGNAME=rick
+XDG_SESSION_DESKTOP=cinnamon
 XDG_SESSION_TYPE=x11
-GPG_AGENT_INFO=/run/user/103042/gnupg/S.gpg-agent:0:1
-SYSTEMD_EXEC_PID=2515553
-BUNDLED_DEBUGPY_PATH=/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/libs/debugpy
-XAUTHORITY=/home/xiribar/.Xauthority
-VSCODE_GIT_ASKPASS_NODE=/usr/share/code/code
-XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/xiribar
-GJS_DEBUG_TOPICS=JS ERROR;JS LOG
-VSCODE_INJECTION=1
-HOME=/home/xiribar
+GPG_AGENT_INFO=/run/user/1000/gnupg/S.gpg-agent:0:1
+XAUTHORITY=/home/rick/.Xauthority
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/rick
+GDM_LANG=en_US
+HOME=/home/rick
+LC_PAPER=de_CH.UTF-8
 LANG=en_US.UTF-8
-XDG_CURRENT_DESKTOP=Unity
-PYTHONSTARTUP=/home/xiribar/.config/Code/User/workspaceStorage/fa30ec54db255e70e4810928269a4a77/ms-python.python/pythonrc.py
-GIT_ASKPASS=/usr/share/code/resources/app/extensions/git/dist/askpass.sh
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+XDG_CURRENT_DESKTOP=X-Cinnamon
+VTE_VERSION=7600
 XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
-INVOCATION_ID=5747615058074ea0b6cb51c86dd44cb3
-MANAGERPID=2514752
-CHROME_DESKTOP=code.desktop
-GJS_DEBUG_OUTPUT=stderr
-VSCODE_GIT_ASKPASS_EXTRA_ARGS=
-VSCODE_PYTHON_AUTOACTIVATE_GUARD=1
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/6ab5b3b1_2965_412b_9114_acf0d2c2d1a1
 XDG_SESSION_CLASS=user
-GEMINI_CLI_IDE_WORKSPACE_PATH=/home/xiribar/minihell
 TERM=xterm-256color
-PYTHON_BASIC_REPL=1
-ZDOTDIR=/home/xiribar
-LIBVIRT_DEFAULT_URI=qemu:///system
-USER=xiribar
-VSCODE_GIT_IPC_HANDLE=/run/user/103042/vscode-git-72be6d1278.sock
-YAD_PID=2515389
+LC_IDENTIFICATION=de_CH.UTF-8
+ZSH=/home/rick/.oh-my-zsh
+USER=rick
+GNOME_TERMINAL_SERVICE=:1.74
 DISPLAY=:0
 SHLVL=2
-PAM_KRB5CCNAME=/tmp/krb5cc_pam_DCLr97
-QT_IM_MODULE=ibus
-XDG_RUNTIME_DIR=/run/user/103042
-PYENV_ROOT=/opt/pyenv
-DEBUGINFOD_URLS=https://debuginfod.ubuntu.com 
-DOCKER_HOST=unix:///run/user/103042/docker.sock
-VSCODE_GIT_ASKPASS_MAIN=/usr/share/code/resources/app/extensions/git/dist/askpass-main.js
-JOURNAL_STREAM=8:17113798
-XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/home/xiribar/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
-GDK_BACKEND=x11
-GEMINI_CLI_IDE_AUTH_TOKEN=1899d307-8f29-49bc-9bec-068bf17029ea
-PATH=/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/shims:/opt/pyenv/bin:/home/xiribar/bin:/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/bin:/home/xiribar/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/scripts/noConfigScripts:/home/xiribar/.config/Code/User/globalStorage/github.copilot-chat/debugCommand
-GDMSESSION=ubuntu
-ORIGINAL_XDG_CURRENT_DESKTOP=ubuntu:GNOME
-DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/103042/bus
-GIO_LAUNCHED_DESKTOP_FILE_PID=2517575
-GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/code.desktop
-OLDPWD=/home/xiribar/minihell
-TERM_PROGRAM=vscode
+PAGER=less
+LC_TELEPHONE=de_CH.UTF-8
+LC_MEASUREMENT=de_CH.UTF-8
+XDG_VTNR=7
+XDG_SESSION_ID=c1
+XDG_RUNTIME_DIR=/run/user/1000
+GTK3_MODULES=xapp-gtk3-module
+XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/home/rick/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+PATH=/home/rick/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/rick/.local/bin
+GDMSESSION=cinnamon
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+LC_NUMERIC=de_CH.UTF-8
+OLDPWD=/home/rick/Documents/minishell
 _=../minishell
 --- BASH EXIT: 0 | MINI EXIT: 0 ---
 ========================================
@@ -326,82 +250,63 @@ _=../minishell
 ========================================
 COMMAND: env --
 --- BASH STDOUT ---
-SHELL=/bin/zsh
-SESSION_MANAGER=local/c2r5s9.42lausanne.ch:@/tmp/.ICE-unix/2515535,unix/c2r5s9.42lausanne.ch:/tmp/.ICE-unix/2515535
-USER_ZDOTDIR=/home/xiribar
+SHELL=/usr/bin/zsh
+LSCOLORS=Gxfxcxdxbxegedabagacad
+SESSION_MANAGER=local/Mint-VM:@/tmp/.ICE-unix/1184,unix/Mint-VM:/tmp/.ICE-unix/1184
 QT_ACCESSIBILITY=1
 COLORTERM=truecolor
-XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
-VSCODE_DEBUGPY_ADAPTER_ENDPOINTS=/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-0731af56ba0fe4c7.txt
-XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session1
-XDG_MENU_PREFIX=gnome-
-TERM_PROGRAM_VERSION=1.104.2
+XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg
+LESS=-R
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
 GNOME_DESKTOP_SESSION_ID=this-is-deprecated
-GTK_IM_MODULE=ibus
-GEMINI_CLI_IDE_SERVER_PORT=38475
-SSH_AUTH_SOCK=/run/user/103042/keyring/ssh
-PYDEVD_DISABLE_FILE_VALIDATION=1
-XMODIFIERS=@im=ibus
-DESKTOP_SESSION=ubuntu
-SSH_AGENT_PID=2515496
-FT_HOOK_NAME=login-user
+GNOME_KEYRING_CONTROL=/run/user/1000/keyring
+LANGUAGE=en_US
+LC_ADDRESS=de_CH.UTF-8
+LC_NAME=de_CH.UTF-8
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+CINNAMON_VERSION=6.4.8
+DESKTOP_SESSION=cinnamon
+LC_MONETARY=de_CH.UTF-8
 GTK_MODULES=gail:atk-bridge
-FT_HOOK_PATHNAME=login-user.d
-PWD=/home/xiribar/minihell/sh_tester
-LOGNAME=xiribar
-XDG_SESSION_DESKTOP=ubuntu
+XDG_SEAT=seat0
+PWD=/home/rick/Documents/minishell/sh_tester
+XDG_SESSION_DESKTOP=cinnamon
+LOGNAME=rick
 XDG_SESSION_TYPE=x11
-GPG_AGENT_INFO=/run/user/103042/gnupg/S.gpg-agent:0:1
-SYSTEMD_EXEC_PID=2515553
+GPG_AGENT_INFO=/run/user/1000/gnupg/S.gpg-agent:0:1
 _=/usr/bin/env
-BUNDLED_DEBUGPY_PATH=/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/libs/debugpy
-XAUTHORITY=/home/xiribar/.Xauthority
-VSCODE_GIT_ASKPASS_NODE=/usr/share/code/code
-XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/xiribar
-GJS_DEBUG_TOPICS=JS ERROR;JS LOG
-VSCODE_INJECTION=1
-HOME=/home/xiribar
+XAUTHORITY=/home/rick/.Xauthority
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/rick
+GDM_LANG=en_US
+HOME=/home/rick
 LANG=en_US.UTF-8
-XDG_CURRENT_DESKTOP=Unity
-PYTHONSTARTUP=/home/xiribar/.config/Code/User/workspaceStorage/fa30ec54db255e70e4810928269a4a77/ms-python.python/pythonrc.py
-GIT_ASKPASS=/usr/share/code/resources/app/extensions/git/dist/askpass.sh
+LC_PAPER=de_CH.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+XDG_CURRENT_DESKTOP=X-Cinnamon
+VTE_VERSION=7600
 XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
-INVOCATION_ID=5747615058074ea0b6cb51c86dd44cb3
-MANAGERPID=2514752
-CHROME_DESKTOP=code.desktop
-GJS_DEBUG_OUTPUT=stderr
-VSCODE_GIT_ASKPASS_EXTRA_ARGS=
-VSCODE_PYTHON_AUTOACTIVATE_GUARD=1
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/6ab5b3b1_2965_412b_9114_acf0d2c2d1a1
 XDG_SESSION_CLASS=user
-GEMINI_CLI_IDE_WORKSPACE_PATH=/home/xiribar/minihell
+LC_IDENTIFICATION=de_CH.UTF-8
 TERM=xterm-256color
-PYTHON_BASIC_REPL=1
-ZDOTDIR=/home/xiribar
-LIBVIRT_DEFAULT_URI=qemu:///system
-USER=xiribar
-VSCODE_GIT_IPC_HANDLE=/run/user/103042/vscode-git-72be6d1278.sock
-YAD_PID=2515389
+ZSH=/home/rick/.oh-my-zsh
+USER=rick
+GNOME_TERMINAL_SERVICE=:1.74
 DISPLAY=:0
 SHLVL=2
-PAM_KRB5CCNAME=/tmp/krb5cc_pam_DCLr97
-QT_IM_MODULE=ibus
-XDG_RUNTIME_DIR=/run/user/103042
-PYENV_ROOT=/opt/pyenv
-DEBUGINFOD_URLS=https://debuginfod.ubuntu.com 
-DOCKER_HOST=unix:///run/user/103042/docker.sock
-VSCODE_GIT_ASKPASS_MAIN=/usr/share/code/resources/app/extensions/git/dist/askpass-main.js
-JOURNAL_STREAM=8:17113798
-XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/home/xiribar/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
-GDK_BACKEND=x11
-GEMINI_CLI_IDE_AUTH_TOKEN=1899d307-8f29-49bc-9bec-068bf17029ea
-PATH=/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/shims:/opt/pyenv/bin:/home/xiribar/bin:/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/bin:/home/xiribar/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/xiribar/.vscode/extensions/ms-python.debugpy-2025.18.0-linux-x64/bundled/scripts/noConfigScripts:/home/xiribar/.config/Code/User/globalStorage/github.copilot-chat/debugCommand
-GDMSESSION=ubuntu
-ORIGINAL_XDG_CURRENT_DESKTOP=ubuntu:GNOME
-DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/103042/bus
-GIO_LAUNCHED_DESKTOP_FILE_PID=2517575
-GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/code.desktop
-OLDPWD=/home/xiribar/minihell
-TERM_PROGRAM=vscode
+PAGER=less
+LC_TELEPHONE=de_CH.UTF-8
+LC_MEASUREMENT=de_CH.UTF-8
+XDG_VTNR=7
+XDG_SESSION_ID=c1
+XDG_RUNTIME_DIR=/run/user/1000
+GTK3_MODULES=xapp-gtk3-module
+XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/home/rick/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+PATH=/home/rick/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/rick/.local/bin
+GDMSESSION=cinnamon
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+LC_NUMERIC=de_CH.UTF-8
+OLDPWD=/home/rick/Documents/minishell
 --- MINI STDOUT ---
 --- BASH EXIT: 0 | MINI EXIT: 1 ---
 ========================================
@@ -411,15 +316,6 @@ COMMAND: env IGNORE_ARGS
 --- BASH STDOUT ---
 --- MINI STDOUT ---
 --- BASH EXIT: 127 | MINI EXIT: 1 ---
-========================================
-
-========================================
-COMMAND: cat /dev/urandom | head -c 100 | wc -c
---- BASH STDOUT ---
-100
---- MINI STDOUT ---
-
---- BASH EXIT: 0 | MINI EXIT: 130 ---
 ========================================
 
 ========================================
@@ -467,32 +363,25 @@ syntax error
 ========================================
 
 ========================================
-COMMAND: echo '$?'
---- BASH STDOUT ---
-$?
---- MINI STDOUT ---
-0
---- BASH EXIT: 0 | MINI EXIT: 0 ---
-========================================
-
-========================================
 COMMAND: cat << EOF > file\ncontent\nEOF
 --- BASH STDOUT ---
 --- MINI STDOUT ---
 [?2004h> ^C[?2004l
+> [?2004h^C[?2004l
+> [?2004h^C[?2004l
+> [?2004h^C[?2004l
+> [?2004h^C[?2004l
+> [?2004h^C[?2004l
 > [?2004h[?2004l
-New filename /tmp/.heredoc_0
 --- BASH EXIT: 0 | MINI EXIT: 0 ---
 ========================================
 
 ========================================
 COMMAND: ls ; ls
 --- BASH STDOUT ---
-&&
 >
 $
 $? user ->$USER home -> $HOME
-000
 0 user ->$USER home -> $HOME
 a1.txt
 append_only.txt
@@ -500,8 +389,6 @@ append_test.txt
 archivo.txt
 a.txt
 b.txt
-cd
-chmod
 c.txt
 daemon_info.txt
 diff.log
@@ -551,7 +438,6 @@ test_app6.txt
 test_app7.txt
 test_app8.txt
 test_app9.txt
-test_dir
 tester.sh
 test_mix10.txt
 test_mix1.txt
@@ -586,11 +472,9 @@ test_pipeout8.txt
 test_pipeout9.txt
 test.txt
 valid_shells.txt
-&&
 >
 $
 $? user ->$USER home -> $HOME
-000
 0 user ->$USER home -> $HOME
 a1.txt
 append_only.txt
@@ -598,8 +482,6 @@ append_test.txt
 archivo.txt
 a.txt
 b.txt
-cd
-chmod
 c.txt
 daemon_info.txt
 diff.log
@@ -649,7 +531,6 @@ test_app6.txt
 test_app7.txt
 test_app8.txt
 test_app9.txt
-test_dir
 tester.sh
 test_mix10.txt
 test_mix1.txt
@@ -1700,11 +1581,9 @@ COMMAND: echo 1
 COMMAND: ls """"""""
 --- BASH STDOUT ---
 --- MINI STDOUT ---
-&&
 >
 $
 $? user ->$USER home -> $HOME
-000
 0 user ->$USER home -> $HOME
 a1.txt
 append_only.txt
@@ -1712,8 +1591,6 @@ append_test.txt
 archivo.txt
 a.txt
 b.txt
-cd
-chmod
 c.txt
 daemon_info.txt
 diff.log
@@ -1763,7 +1640,6 @@ test_app6.txt
 test_app7.txt
 test_app8.txt
 test_app9.txt
-test_dir
 tester.sh
 test_mix10.txt
 test_mix1.txt
@@ -1813,10 +1689,8 @@ COMMAND: echo \1 \2 \3
 ========================================
 COMMAND: cat /dev/urandom | head -c 100
 --- BASH STDOUT ---
-õe€/jFr¨¬ËZ∆ı≈HõxV“}ƒTGı<ÑÜgΩöËΩÂÂkü˙ Ω•H}ÀJ2Æ$,1¨°ØQ]‹äR·‘·ﬁVLàXs{3S—¨öèÌRûP‘ñôŸ£’•F–áXå¯ˆ--- MINI STDOUT ---
-D!è¬I+6$éM}≈‰q∑`Y∞æÎz≥ƒ.Å’(’9xë-E03)≈ä¢U
-∂Ézå0§ïº§k∞{:yE‘≈T(èL3≤êbôÆ)ß” J
-Ë|çZ∞=ÄÃEr<	
---- BASH EXIT: 0 | MINI EXIT: 0 ---
+K´¸c‚Ò⁄¯}ª˘ £m-Ch’õ£1…ßÜˇ«Ôè§îP gA>˘#PAéø¡~e3#iœÍå@‘xÈå›5ÖßÄ≠d=•çR¢E8»Ç<WbˆÁ7Ñôo≠ôﬂç--- MINI STDOUT ---
+ïèÉ¢ßÁ úüS0#Ù¢Ÿ–≤#[{ô_ˆPlﬂêo≠pπW>•£Êÿ'J?ÃS©‘†SnîFõƒ”<‡]!‚
+»˜€`ÁªØ*€	”∞œ°C?ﬁæ£ì∫jÛóŒÊ	A57∏	Ó--- BASH EXIT: 0 | MINI EXIT: 0 ---
 ========================================
 

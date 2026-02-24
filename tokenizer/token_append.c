@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_append.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:34:13 by rick              #+#    #+#             */
-/*   Updated: 2026/02/23 15:43:07 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/24 19:51:00 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 * Creates and appends to the last node from the list.
 + Returns i, being the length of the added part of the string to.
 + this last node of the list, or a negative interger for error.*/
-int	token_word_append(t_token *last, char *str)
+int	token_word_append(t_token *last, char *str, t_data *data)
 {
 	int		i;
 	char	*buff;
@@ -31,7 +31,7 @@ int	token_word_append(t_token *last, char *str)
 	buff = ft_substr(str, 0, i);
 	if (!buff)
 		return (perror("Err: Malloc"), -1);
-	buff = expand_buff(buff);
+	buff = expand_buff(buff, data);
 	new = ft_strjoin(last->value, buff);
 	free(buff);
 	if (!new)
@@ -46,7 +46,7 @@ int	token_word_append(t_token *last, char *str)
 * in case of finding double quotes.
 + Returns i, being the length of the added part of the string to.
 + this last node of the list, or a negative interger for error.*/
-int	token_double_append(t_token *last, char *str)
+int	token_double_append(t_token *last, char *str, t_data *data)
 {
 	int		i;
 	char	*buff;
@@ -60,7 +60,7 @@ int	token_double_append(t_token *last, char *str)
 	buff = ft_substr(str, 1, i - 1);
 	if (!buff)
 		return (perror("Err: Malloc"), -1);
-	buff = expand_buff(buff);
+	buff = expand_buff(buff, data);
 	new = ft_strjoin(last->value, buff);
 	free(buff);
 	if (!new)
