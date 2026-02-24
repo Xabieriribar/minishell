@@ -1,14 +1,10 @@
-Makefile
-a.txt
 a1.txt
 append_only.txt
 append_test.txt
 archivo.txt
+a.txt
 daemon_info.txt
-expander
 isolated_creation.txt
-main.c
-main.o
 out_chaos.txt
 out_space1.txt
 out_space2.txt
@@ -17,13 +13,11 @@ out_space4.txt
 out_space5.txt
 out_space6.txt
 out_space7.txt
-parser
 passwd_copy.txt
 readline.supp
 root_match.txt
-signals
-test_app1.txt
 test_app10.txt
+test_app1.txt
 test_app2.txt
 test_app3.txt
 test_app4.txt
@@ -32,5 +26,4 @@ test_app6.txt
 test_app7.txt
 test_app8.txt
 test_app9.txt
-valgrind_err.log
 valid_shells.txt

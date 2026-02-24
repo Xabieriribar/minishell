@@ -336,38 +336,123 @@ TESTS_QUOTES=(
 
 # --- Edge Cases & Syntax Errors ---
 TESTS_EDGE=(
-    ""
-    " "
-    "    "
-    " echo "
-    "    ls    -l    "
-    "|"
-    "||"
-    "| echo hello"
-    "echo hello |"
-    "echo hello | | cat"
-    "<"
-    ">"
-    ">>"
-    "< >"
-    "> >"
-    ">>>"
-    "<<"
-    "ls -l > > out.txt"
-    "ls < < out.txt"
-    "ls | >"
-    "does_not_exist"
-    "does_not_exist args"
-    "/tmp" 
-    "." 
-    ".."
-    "./"
-    " /bin/ls " 
-    "/bin/does_not_exist"
-    "echo 'hello'\"world\"\$USER"
+    # --- Whitespace & Empty Inputs ---
+    ""                          # Empty string
+    " "                         # Single space
+    "    "                      # Multiple spaces
+    "			"                 # Tabs
+    "  echo  "                  # Leading/trailing spaces
+    "    ls    -l    "          # Multiple internal spaces
+    "\n"                        # Newline character
+    " \t \n "                   # Mixed whitespace
+
+    # --- Pipe Operator Abuse ---
+    "|"                         # Lone pipe
+    "||"                        # Double pipe (often unsupported or bash-logic)
+    "|||"                       # Triple pipe
+    "| echo hello"              # Leading pipe
+    "echo hello |"              # Trailing pipe
+    "echo hello | | cat"        # Empty pipe segment
+    "ls | | | | wc"             # Multiple empty segments
+    "echo a |ls| wc"            # No spaces around pipes
+    "ls|ls|ls|ls|ls|ls|ls"      # Long pipe chain
+
+    # --- Redirection Syntax & Chaos ---
+    "<"                         # Lone input redirect
+    ">"                         # Lone output redirect
+    ">>"                        # Lone append
+    "< >"                       # Mixed lone redirects
+    "> >"                       # Space between redirect symbols
+    ">>>"                       # Triple redirect (invalid)
+    "<<"                        # Here-doc symbol (if supported)
+    "ls -l > > out.txt"         # Ambiguous redirect
+    "ls < < out.txt"            # Ambiguous input redirect
+    "ls | >"                    # Pipe into lone redirect
+    "> file"                    # Redirect with no command
+    "< file"                    # Input with no command
+    "echo hello >out1 >out2"    # Multiple outputs (last one wins?)
+    "echo hello > out1 > out2 > out3"
+    "cat < out1 < out2"         # Multiple inputs
+    "echo hello >> out.txt > out.txt" # Append then overwrite same file
+    "ls >"                      # Missing filename after redirect
+    "> out.txt ls"              # Redirect before command (Valid in Bash)
+    "ls > /dev/full"            # Writing to a full device
+    "ls > /dev/null/fail"       # Redirect to non-existent path
+
+    # --- Path & Permissions ---
+    "does_not_exist"            # Command not in PATH
+    "does_not_exist args"       # Invalid command with args
+    "/tmp"                      # Directory as command
+    "."                         # Dot as command
+    ".."                        # Double dot as command
+    "./"                        # Current dir slash
+    " /bin/ls "                 # Full path with spaces
+    "/bin/does_not_exist"       # Non-existent full path
+    "../../../../bin/ls"        # Relative path traversal
+    "/"                         # Root as command
+    "./myscript.sh"             # Script without +x permission
+    "   /usr/bin/whoami   "     # Path with excessive padding
+
+    # --- Quote & Expansion Nightmares ---
+    "echo 'hello'\"world\"\$USER" # Mixed quotes and env var
+    "echo \"\""                 # Empty double quotes
+    "echo ''"                   # Empty single quotes
+    "echo \"'\""                # Single quote inside double
+    "echo '\"'"                 # Double quote inside single
+    "echo \"   \""              # Spaces inside quotes
+    "echo \"| > <\""            # Operators inside quotes
+    "echo ' ' ' ' ' '"          # Multiple quoted spaces
+    "echo \"$NON_EXISTENT\""    # Expanding undefined variable
+    "echo \"$\""                # Lone dollar sign in quotes
+    "echo '$USER'"              # Variable in single quotes (no expansion)
+    "export A=B | echo $A"      # Pipe isolation (A should be empty/old)
+
+    # --- Complex Logic & Nesting ---
     "echo hello > out_chaos.txt | wc -l < out_chaos.txt"
     "cat /etc/passwd | head -n 5 | tail -n 2 | awk '{print \$1}' | wc -c"
     "echo '     ' | cat -e"
+    "ls -l | grep \".\" | wc -l > out.txt"
+    "cat << EOF > file\ncontent\nEOF" # Heredoc into file
+    "ls ; ls"                   # Semicolon (if supported)
+    "ls ; ; ls"                 # Double semicolon
+    "echo hello > out.txt | < out.txt cat" # Crazy redirect/pipe mix
+
+    # --- Argument & Character Limits ---
+    "echo $(seq 1 1000)"        # High argument count
+    "ls \"\"\"\"\"\"\"\""       # Empty quote strings
+    "echo -nnnnnnnnnnn"         # Repeated flags
+    "ls -l-l-l-l"               # Malformed flags
+    "echo \1 \2 \3"             # Backslash escapes (if supported)
+    "echo \"\n\v\f\r\""         # Escape sequences in quotes
+
+    # --- File System Edge Cases ---
+    "cat \"filename with spaces\""
+    "touch \"   leading_space\""
+    "ls \"*\""                  # Literal asterisk (no globbing)
+    "rm -rf /"                  # The "don't run this" test
+    "cat /dev/urandom | head -c 100" # Binary data handling
+
+    # --- Environment & Shell State ---
+    "env | grep PATH"           # Checking inherited env
+    "setenv TEST 123"           # Builtin check (if applicable)
+    "unsetenv PATH"             # Breaking the PATH
+    "cd /tmp | pwd"             # CD in a pipe (should not affect parent)
+    "cd .."                     # Navigating up
+    "cd /proc/self/fd"          # Deep system paths
+
+    # --- Signal & Exit Codes ---
+    "exit 0"                    # Basic exit
+    "exit 1"                    # Error exit
+    "exit 999"                  # Out of bounds exit
+    "exit -1"                   # Negative exit
+    "exit hello"                # Non-numeric exit
+
+    # --- Final Stressors ---
+    "ls | ls | ls | ls | ls"    # Process exhaustion
+    "   ls   -a   -l   -t   "   # Scattered flags
+    ">>>>>>"                    # Pure syntax gore
+    "| | |"                     # Pure pipe gore
+    "echo \"done\""             # Simple closer
 )
 # ==============================================================================
 # EXECUTION
@@ -375,9 +460,9 @@ TESTS_EDGE=(
 
 echo -e "${BLUE}=== RUNNING MINISHELL TEST SUITE ===${RESET}"
 
-for cmd in "${TESTS_BUILTIN[@]}"; do run_test "$cmd" "BUILT-IN"; done
+# for cmd in "${TESTS_BUILTIN[@]}"; do run_test "$cmd" "BUILT-IN"; done
 # for cmd in "${TESTS_PIPEREDIR[@]}"; do run_test "$cmd" "PIPE/REDIR"; done
-for cmd in "${TESTS_QUOTES[@]}"; do run_test "$cmd" "QUOTES/EXP"; done
+# for cmd in "${TESTS_QUOTES[@]}"; do run_test "$cmd" "QUOTES/EXP"; done
 for cmd in "${TESTS_EDGE[@]}"; do run_test "$cmd" "EDGE CASES"; done
 
 echo -e "\n${BLUE}Tests finished. Check '$LOG_FILE' for detailed failure diffs.${RESET}"

@@ -8,3 +8,7 @@ root:x:0:0:root:/root:/bin/bash
 root:x:0:0:root:/root:/bin/bash
 root:x:0:0:root:/root:/bin/bash
 root:x:0:0:root:/root:/bin/bash
+root:x:0:0:root:/root:/bin/bash
+root:x:0:0:root:/root:/bin/bash
+root:x:0:0:root:/root:/bin/bash
+root:x:0:0:root:/root:/bin/bash

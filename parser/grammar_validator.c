@@ -73,6 +73,11 @@ int	ft_check_redirs(t_token *head)
 
 int	grammar_validator(t_token *head)
 {
+	if (!ft_strncmp(head->value, ".", 2))
+	{
+		ft_putstr_fd("minishell: .: filename argument required\n", STDERR_FILENO);
+		return (1);
+	}
 	if (ft_check_simple_commands(head) == 0)
 		return (0);
 	else if (ft_check_pipes(head) != 0)
