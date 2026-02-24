@@ -116,7 +116,8 @@ void	execute_parent_builtin(t_node *tree, t_data *data)
 			return ;
 		}
 	}
-	data->exit_true = run_bultins(tree->args, &(data->env_var), &data, data->fd_out);
+	data->exit_true = run_bultins(tree->args, &(data->env_var),
+			&data, data->fd_out);
 	close_if_not_stdin_or_stdout(data->fd_in, data->fd_out);
 }
 
@@ -125,6 +126,7 @@ void	execute_parent_builtin(t_node *tree, t_data *data)
 */
 void	execute(t_node *tree, t_data *data)
 {
+	data->ast_head = tree;
 	data->heredoc_file_index = 0;
 	open_temporary_heredocs(tree, &(data->heredoc_file_index));
 	if (!tree->left_child && is_parent_builtin(tree->args[0]))

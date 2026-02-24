@@ -12,13 +12,13 @@
 
 #include "minishell.h"
 
-void		write_error_message(char *cmd)
+void	write_error_message(char *cmd)
 {
 	ft_putstr_fd("Minishell: ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
 }
 
-void		command_not_found_error(char *cmd, t_data *data)
+void	command_not_found_error(char *cmd, t_data *data)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
@@ -27,7 +27,7 @@ void		command_not_found_error(char *cmd, t_data *data)
 	free_all_and_exit(data, 127);
 }
 
-void		no_such_file_or_directory_error(char *cmd, t_data *data, int flag)
+void	no_such_file_or_directory_error(char *cmd, t_data *data, int flag)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
@@ -39,7 +39,7 @@ void		no_such_file_or_directory_error(char *cmd, t_data *data, int flag)
 		free_all_and_exit(data, 127);
 }
 
-void		is_a_directory_error(char *cmd, t_data *data)
+void	is_a_directory_error(char *cmd, t_data *data)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
@@ -48,7 +48,7 @@ void		is_a_directory_error(char *cmd, t_data *data)
 	free_all_and_exit(data, 126);
 }
 
-void		permission_denied_error(char *cmd, t_data *data, int flag)
+void	permission_denied_error(char *cmd, t_data *data, int flag)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
@@ -59,5 +59,3 @@ void		permission_denied_error(char *cmd, t_data *data, int flag)
 	else
 		free_all_and_exit(data, 126);
 }
-
-

@@ -86,9 +86,9 @@ void	wait_for_last_child(t_data *data)
 /*
 * Handles specific error cases for pathnames and exits the child process.
 */
-void		check_possible_errors(char *cmd, t_data *data, int flag)
+void	check_possible_errors(char *cmd, t_data *data, int flag)
 {
-	struct	stat st;
+	struct stat	st;
 
 	if (stat(cmd, &st) == -1)
 		no_such_file_or_directory_error(cmd, data, flag);
@@ -96,10 +96,9 @@ void		check_possible_errors(char *cmd, t_data *data, int flag)
 		is_a_directory_error(cmd, data);
 	if (access(cmd, X_OK) == -1)
 		permission_denied_error(cmd, data, flag);
-
 }
 
-int is_parent_builtin(char *str)
+int	is_parent_builtin(char *str)
 {
 	if (!str || !*str)
 		return (0);

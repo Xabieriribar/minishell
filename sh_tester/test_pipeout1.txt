@@ -5,6 +5,7 @@ archivo.txt
 a.txt
 daemon_info.txt
 isolated_creation.txt
+   leading_space
 out_chaos.txt
 out_space1.txt
 out_space2.txt

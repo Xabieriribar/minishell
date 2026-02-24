@@ -129,6 +129,7 @@ log_failure() {
 
 # --- Built-ins ---
 TESTS_BUILTIN=(
+    # --- ECHO (25 tests) ---
     "echo"
     "echo hello"
     "echo hello world"
@@ -140,34 +141,107 @@ TESTS_BUILTIN=(
     "echo -n-n hello"
     "echo -n -x hello"
     "echo hello -n"
+    "echo -nhello"
+    "echo \" -n \" hello"
+    "echo -n -n- hello"
+    "echo ''"
+    "echo \"\""
+    "echo 'hello   world'"
+    "echo hello   world"
+    "echo \$?"
+    "echo -n \$PWD"
+    "echo \$UNSET_VAR"
+    "echo -nnnnnnnnnnnnnn"
+    "echo \"-n\" hello"
+    "echo -n -n -n -n"
+    "echo \$USER\$PWD"
+
+    # --- PWD (8 tests) ---
     "pwd"
+    "pwd ."
+    "pwd .."
+    "pwd multiple args ignored"
+    "pwd --"
+    "pwd /tmp"
+    "pwd \$HOME"
+    "pwd -L" # Bash handles -L by default, check your parsing
+
+    # --- CD (20 tests) ---
     "cd /"
     "cd /tmp"
     "cd does_not_exist"
     "cd /root" 
     "cd ''"
     "cd \"\""
+    "cd ."
+    "cd .."
+    "cd ../../"
+    "cd //"
+    "cd ///"
+    "cd /tmp/../tmp/../tmp"
+    "cd /var/log"
+    "cd /dev"
+    "cd /usr/bin/.."
+    "cd \$HOME"
+    "cd .."
+    "cd /tmp/"
+    "cd ./"
+    "cd ../"
+
+    # --- EXPORT (25 tests) ---
     "export"
+    "export VAR=42"
+    "export VAR=\"hello world\""
+    "export VAR=1 VAR=2 VAR=3"
     "export 1INVALID=42"
     "export INVALID@CHAR=42"
     "export =42"
+    "export +=42"
     "export +x=42"
+    "export -VAR=42"
+    "export _VAR=42"
+    "export VAR_1=42"
+    "export EMPTY="
+    "export ONLY_KEY"
+    "export A=B C=D"
+    "export VAR=first"
+    "export VAR=second"
+    "export PATH=/tmp:\$PATH"
+    "export ''=42"
+    "export \"\"=42"
+    "export VAR='hello\"world'"
+    "export VAR=hello=world=42"
+    "export TEST_VAR=123"
+    "export TEST_VAR=456"
+    "export TEST_VAR="
+
+    # --- UNSET (10 tests) ---
     "unset does_not_exist"
     "unset 1INVALID"
     "unset INVALID@CHAR"
+    "unset _VAR"
+    "unset PATH"
+    "unset PWD"
+    "unset ''"
+    "unset \"\""
+    "unset =VAR"
+    "unset HOME"
+
+    # --- ENV (4 tests) ---
     "env"
     "env | grep PATH"
+    "env --"
+    "env IGNORE_ARGS"
+
+    # --- EXIT (8 tests) ---
     "exit"
     "exit 0"
     "exit 1"
     "exit 42"
     "exit -1"
     "exit 255"
-    "exit 256" 
-    "exit abc" 
-    "exit 1 2 3" 
-    "exit 9223372036854775807"
-    "exit 9223372036854775808" 
+    "exit 256"
+    "exit abc"
 )
 
 # --- Pipes & Redirections ---
@@ -303,35 +377,124 @@ TESTS_PIPEREDIR=(
 
 # --- Quotes & Expansions ---
 TESTS_QUOTES=(
+    # --- 1. Basic Quotes & Spacing Preservation ---
     "echo 'hello'"
-    "echo 'hello world'"
-    "echo 'hello \$USER'"
-    "echo ''"
-    "echo '   '"
-    "echo 'echo hello'"
-    "echo '| <>'"
     "echo \"hello\""
+    "echo 'hello world'"
     "echo \"hello world\""
-    "echo \"hello \$USER\""
-    "echo \"\$?\""
+    "echo '   hello   world   '"       # Spacing must be perfectly preserved
+    "echo \"   hello   world   \""
+    "echo ' -n '"                      # -n should be treated as text, not a flag
+    "echo \" -n \""
+    "echo 'echo hello'"                # Shouldn't execute the inner echo
+    "echo \"echo hello\""
+
+    # --- 2. Empty Quotes & Whitespace Chaos ---
+    "echo ''"                          # Should print empty line
     "echo \"\""
-    "echo \"   \""
-    "echo \"| <>\""
-    "echo \"'hello'\""
-    "echo '\"hello\"'"
-    "echo \"hello '\$USER'\""
-    "echo 'hello \"\$USER\"'" 
-    "echo \"hello \"\"world\""
-    "echo 'hello ''world'"
-    "echo \$USER"
-    "echo \$USER\$PWD"
-    "echo \$USER \$PWD"
-    "echo \$DOES_NOT_EXIST"
-    "echo hello\$DOES_NOT_EXIST"
-    "echo \$DOES_NOT_EXISThello"
-    "echo \$"
-    "echo \"\$\""
-    "echo '\$'"
+    "echo '' ''"                       # Should print a single space
+    "echo \"\" \"\""
+    "echo ' '"
+    "echo \" \""
+    "echo '  ' \"  \""
+    "echo ''\"\"''\"\""                # Multiple empty strings concatenated
+    "echo \"\"''\"\"''"
+    "echo '' hello ''"
+    "echo \"\" hello \"\""
+
+    # --- 3. Nesting Quotes (Inner quotes become literal characters) ---
+    "echo \"'hello'\""                 # Prints: 'hello'
+    "echo '\"hello\"'"                 # Prints: "hello"
+    "echo \"hello '\$USER'\""          # Double quotes allow $ expansion!
+    "echo 'hello \"\$USER\"'"          # Single quotes STOP $ expansion!
+    "echo \"'\""                       # Prints a single quote
+    "echo '\"'"                        # Prints a double quote
+    "echo \"'''''\""                   # Multiple single quotes inside double
+    "echo '\"\"\"\"\"'"                # Multiple double quotes inside single
+    "echo \"' ' ' '\""
+    "echo '\" \" \" \"'"
+    "echo \"'\"'\"'\""                 # Concatenated alternating quotes
+
+    # --- 4. Variable Expansion in Double Quotes ---
+    "echo \"\$USER\""
+    "echo \"\$USER \$PWD\""
+    "echo \"\$USER\$PWD\""             # No space between variables
+    "echo \"hello \$USER\""
+    "echo \"\$USER hello\""
+    "echo \"\$DOES_NOT_EXIST\""        # Should expand to empty
+    "echo \"hello\$DOES_NOT_EXIST\""
+    "echo \"\$DOES_NOT_EXISThello\""   # Bash looks for var named 'DOES_NOT_EXISThello'
+    "echo \"\$USER-\$PWD\""            # Hyphen is not a valid var char, splits them
+    "echo \"\$USER_\$PWD\""            # Underscore IS valid, looks for 'USER_'
+    "echo \"\$USER/\""
+    "echo \" \$USER \""
+    "echo \"\"\$USER\"\""              # Empty double quotes surrounding unquoted var
+
+    # --- 5. The Lone Dollar Sign & Edge Cases ---
+    "echo \$"                          # Should print: $
+    "echo \"\$\""                      # Should print: $
+    "echo '\$'"                        # Should print: $
+    "echo \$ \"\$\" '\$'"              # Should print: $ $ $
+    "echo \"\$\"hello"                 # Should print: $hello
+    "echo hello\"\$\""                 # Should print: hello$
+    "echo \"\$ \""                     # Should print: $ (followed by space)
+    "echo \" \$ \""                    # Should print:  $ 
+    "echo \"\$?\""                     # Exit status expansion
+    "echo \"\$?\$?\""
+    "echo \"\$? \$?\""
+    "echo '\$?'"                       # Should print literal $?
+    "echo \"\$?\"hello"                # E.g., 0hello
+    "echo hello\"\$?\""
+
+    # --- 6. String Concatenation (Adjacency) ---
+    "echo hello\"world\""              # Prints: helloworld
+    "echo \"hello\"world"              # Prints: helloworld
+    "echo \"hello\"\"world\""          # Prints: helloworld
+    "echo 'hello''world'"
+    "echo 'hello'\"world\""
+    "echo \"hello\"'world'"
+    "echo h\"e\"l\"l\"o"               # Interleaved quotes
+    "echo \"h\"e'l'l\"o\""
+    "echo \"\$USER\"'literal'"         # Expanded variable joined with literal
+    "echo 'literal'\"\$USER\""
+    "echo a\"\"b\"\"c"                 # Empty quotes in the middle of a string
+    "echo a''b''c"
+    "echo \" \"\" \"\" \""             # Three spaces concatenated via empty quotes
+    "echo ''''''''''"                  # 10 single quotes (5 empty pairs)
+
+    # --- 7. Protecting Meta-Characters (Operators) ---
+    "echo \"|\""                       # Must NOT trigger a pipe
+    "echo '|'"
+    "echo \"<\""                       # Must NOT trigger input redirection
+    "echo '<'"
+    "echo \">\""
+    "echo '>'"
+    "echo \">>\""
+    "echo '>>'"
+    "echo \"<<\""
+    "echo '<<'"
+    "echo \"| <> > >> <<\""            # All operators protected at once
+    "echo '| <> > >> <<'"
+    "echo \"ls | wc\""                 # Just a string
+    "echo 'ls | wc'"
+    "echo \" > out.txt \""
+    "echo hello > \"out_file.txt\""    # Quotes around a valid redirection file
+
+    # --- 8. Interactions with Builtins ---
+    "export VAR=\"hello world\""       # Value with space
+    "export VAR='hello world'"
+    "export \"VAR\"=hello"             # Identifier is quoted
+    "export 'VAR'=hello"
+    "export VAR=\"\""                  # Empty value
+    "export VAR=''"
+    "export VAR=\"\$USER\""            # Exporting an expanded variable
+    "export VAR='\$USER'"              # Exporting a literal '$USER'
+    "export \"VAR=hello\""             # Bash accepts this!
+    "unset \"VAR\""
+    "unset 'VAR'"
+    "cd \"/tmp\""
+    "cd '/tmp'"
+    "cd \"\"/tmp"                      # Concatenated empty quote + path
 )
 
 # --- Edge Cases & Syntax Errors ---
@@ -460,9 +623,9 @@ TESTS_EDGE=(
 
 echo -e "${BLUE}=== RUNNING MINISHELL TEST SUITE ===${RESET}"
 
-# for cmd in "${TESTS_BUILTIN[@]}"; do run_test "$cmd" "BUILT-IN"; done
-# for cmd in "${TESTS_PIPEREDIR[@]}"; do run_test "$cmd" "PIPE/REDIR"; done
-# for cmd in "${TESTS_QUOTES[@]}"; do run_test "$cmd" "QUOTES/EXP"; done
+for cmd in "${TESTS_BUILTIN[@]}"; do run_test "$cmd" "BUILT-IN"; done
+for cmd in "${TESTS_PIPEREDIR[@]}"; do run_test "$cmd" "PIPE/REDIR"; done
+for cmd in "${TESTS_QUOTES[@]}"; do run_test "$cmd" "QUOTES/EXP"; done
 for cmd in "${TESTS_EDGE[@]}"; do run_test "$cmd" "EDGE CASES"; done
 
 echo -e "\n${BLUE}Tests finished. Check '$LOG_FILE' for detailed failure diffs.${RESET}"

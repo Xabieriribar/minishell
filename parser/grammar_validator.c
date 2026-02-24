@@ -75,7 +75,8 @@ int	grammar_validator(t_token *head)
 {
 	if (!ft_strncmp(head->value, ".", 2))
 	{
-		ft_putstr_fd("minishell: .: filename argument required\n", STDERR_FILENO);
+		ft_putstr_fd("minishell: .: filename argument required\n",
+			STDERR_FILENO);
 		return (1);
 	}
 	if (ft_check_simple_commands(head) == 0)

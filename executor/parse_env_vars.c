@@ -13,24 +13,6 @@
 #include "minishell.h"
 
 /*
-* Frees a null-terminated array of strings up to a specific index.
-*/
-void	free_splits(char **strs, int index_allocated)
-{
-	int	index;
-
-	index = 0;
-	if (!strs)
-		return ;
-	while (index < index_allocated)
-	{
-		free(strs[index]);
-		index++;
-	}
-	free(strs);
-}
-
-/*
 * Iterates through the environment linked list to find the PATH variable.
 */
 t_env	*return_path(t_env *env_var)

@@ -1,6 +1,8 @@
+&&
 >
 $
 $? user ->$USER home -> $HOME
+000
 0 user ->$USER home -> $HOME
 a1.txt
 append_only.txt
@@ -8,14 +10,23 @@ append_test.txt
 archivo.txt
 a.txt
 b.txt
+cd
+chmod
 c.txt
 daemon_info.txt
 diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
 isolated_creation.txt
+   leading_space
 multi_redir.txt
 oufile
+out1
 out10.txt
 out11.txt
+out2
+out3
 out3.txt
 out4.txt
 out5.txt
@@ -23,8 +34,10 @@ out9.txt
 out_bonus1.txt
 out_chaos.txt
 outfile
+out_file.txt
 out_first.txt
 out_mid.txt
+out_pwd.txt
 out_space1.txt
 out_space2.txt
 out_space3.txt
@@ -47,6 +60,7 @@ test_app6.txt
 test_app7.txt
 test_app8.txt
 test_app9.txt
+test_dir
 tester.sh
 test_mix10.txt
 test_mix1.txt

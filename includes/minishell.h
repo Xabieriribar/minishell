@@ -204,7 +204,7 @@ t_redirs	*ft_lstnew_redirs(char *filename, t_type redir_type);
 
 /* ------------------------------- EXECUTION -------------------------------- */
 
-void		execute(t_node *tree, t_data *data);
+void		execute(t_data *data);
 void		execute_pipeline(t_node *t, int fd_in, int fd_out, t_data *data);
 void		open_temporary_heredocs(t_node *tree, int *heredoc_file_index);
 
@@ -236,6 +236,7 @@ void		free_data(t_data *data);
 void		free_tree(t_node *tree);
 void		free_env_vars(t_env **head);
 void		free_tokens(t_token **head);
+void		free_loop(t_node *tree, t_token **token_list, char *input);
 
 /* ---------------------------- UTILS / LIBFT ------------------------------- */
 
@@ -246,7 +247,7 @@ char		*ft_itoa(int n);
 void		ft_putnbr_fd(int n, int fd);
 void		ft_putchar_fd(char c, int fd);
 
-/* ---------------------------- ERRORS --------------------------------------- */
+/* ------------------------ ERRORS ------------------------------------- */
 
 void		command_not_found_error(char *cmd, t_data *data);
 void		no_such_file_or_directory_error(char *cmd, t_data *data, int flag);

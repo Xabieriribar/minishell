@@ -8,3 +8,4 @@ gmon.out
 launch.json
 main.c
 minishell_tester/
+sh_tester/
