@@ -80,14 +80,3 @@ void	close_if_not_stdin_or_stdout(int fd_in, int fd_out)
 	if (fd_out != STDOUT_FILENO && fd_out != -1)
 		close(fd_out);
 }
-
-/*
-* Checks if a specific file/path exists and has execution permissions.
-* If accessible, returns a duplicate of the command string; otherwise NULL.
-*/
-char	*can_access(char *command)
-{
-	if (access(command, F_OK | X_OK) == -1)
-		return (NULL);
-	return (ft_strdup(command));
-}

@@ -15,7 +15,7 @@
 /*
 * Iterates through PATH directories to find the executable binary.
 */
-char	*finds_directory(char *command, char *path)
+char	*finds_directory(char *command, char *path, t_data *data)
 {
 	char	**dirs;
 	int		i;
@@ -32,23 +32,34 @@ char	*finds_directory(char *command, char *path)
 		res = ft_strjoin(tmp, command);
 		free(tmp);
 		if (res && access(res, F_OK) != -1)
-			return (free_splits(dirs, -1), res);
+			return (free_splits(dirs, i), res);
 		free(res);
 		i++;
 	}
-	return (free_splits(dirs, -1), NULL);
+	free_splits(dirs, i);
+	return (command_not_found_error(command, data), NULL);
 }
 
 /*
 * Determines the full path of a command, handling absolute/relative paths.
 */
-char	*get_path(char *command, char *path)
+char	*get_path(char *command, char *path, t_data *data)
 {
+	char	*final_path;
+	int		flag;
+
+	flag = 0;
 	if (!path || !command)
 		return (NULL);
-	if (contains_slash(command))
-		return (can_access(command));
-	return (finds_directory(command, path));
+	if (!contains_slash(command))
+	{
+		final_path = finds_directory(command, path, data);
+		flag = 1;
+	}
+	else
+		final_path = command;
+	check_possible_errors(final_path, data, flag);
+	return (final_path);
 }
 
 /*
@@ -73,39 +84,17 @@ void	wait_for_last_child(t_data *data)
 /*
 * Handles specific error cases for pathnames and exits the child process.
 */
-void	check_path_errors(char *pathname, char *cmd, t_data *data)
+void		check_possible_errors(char *cmd, t_data *data, int flag)
 {
-	struct stat	st;
+	struct	stat st;
 
-	if (*cmd == '\0')
-		free_all_and_exit(data, EXIT_SUCCESS);
-	if ((!pathname && *cmd != '/') || (!pathname && *cmd != '.'))
-	{
-		write_error_message(cmd);
-		ft_putstr_fd(": command not found\n", STDERR_FILENO);
-		free_all_and_exit(data, 127);
-	}
-	// if (!pathname && *cmd == '/')
-	// {
-	// 	write_error_message(cmd);
-	// 	ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
-	// 	free_all_and_exit(data, 127);
-	// }
-	if (stat(pathname, &st) == 0)
-	{
-		if (S_ISDIR(st.st_mode) || ft_strncmp(cmd, "./", 3) == 0)
-		{
-			write_error_message(cmd);
-			ft_putstr_fd(": Is a directory\n", STDERR_FILENO);
-			free_all_and_exit(data, 126);
-		}
-		if (access(pathname, X_OK) == -1)
-		{
-			write_error_message(cmd);
-			ft_putstr_fd(": Permission denied\n", STDERR_FILENO);
-			free_all_and_exit(data, 126);
-		}
-	}
+	if (stat(cmd, &st) == -1)
+		no_such_file_or_directory_error(cmd, data, flag);
+	if (S_ISDIR(st.st_mode))
+		is_a_directory_error(cmd, data);
+	if (access(cmd, X_OK) == -1)
+		permission_denied_error(cmd, data);
+
 }
 
 int is_parent_builtin(char *str)

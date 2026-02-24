@@ -25,8 +25,7 @@ void	execute_command(t_node *tree, t_data *data, int fd_in, int fd_out)
 	path_env = return_path(data->env_var);
 	if (!path_env)
 		perror("minishell: PATH not set");
-	path = get_path(tree->args[0], path_env->value);
-	check_path_errors(path, tree->args[0], data);
+	path = get_path(tree->args[0], path_env->value, data);
 	env_arr = convert_env_var_to_array(data->env_var,
 			ft_env_var_lstsize(data->env_var));
 	if (execve(path, tree->args, env_arr) == -1)
@@ -55,7 +54,7 @@ static void	child_process(t_node *tree, int fd_in, int fd_out, t_data *data)
 	i = 3;
 	while (i < 1024)
 		close(i++);
-	if (!tree->args || !tree->args[0])
+	if (!tree->args || !tree->args[0] || !tree->args[0][0])
 		free_all_and_exit(data, EXIT_SUCCESS);
 	if (run_bultins(tree->args, &(data->env_var), &data, fd_out) != -1)
 		free_all_and_exit(data, data->exit_status);

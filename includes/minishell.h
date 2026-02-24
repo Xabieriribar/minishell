@@ -211,7 +211,6 @@ void		open_temporary_heredocs(t_node *tree, int *heredoc_file_index);
 char		**convert_env_var_to_array(t_env *env_var, int env_var_lstsize);
 int			ft_env_var_lstsize(t_env *env_var);
 t_env		*return_path(t_env *env_var);
-char		*can_access(char *command);
 int			contains_slash(char *suspect);
 
 int			update_fd(t_redirs *r, int *fd_in, int *fd_out, t_data *data);
@@ -221,8 +220,7 @@ int			contains_in_redirs(t_redirs *redirs);
 
 void		write_error_message(char *cmd);
 
-char		*get_path(char *command, char *path);
-void		check_path_errors(char *pathname, char *cmd, t_data *data);
+char		*get_path(char *command, char *path, t_data *data);
 void		wait_for_last_child(t_data *data);
 int			is_parent_builtin(char *str);
 
@@ -246,5 +244,13 @@ void		*ft_calloc(size_t nmemb, size_t size);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_itoa(int n);
 void		ft_putnbr_fd(int n, int fd);
+
+/* ---------------------------- ERRORS --------------------------------------- */
+
+void		command_not_found_error(char *cmd, t_data *data);
+void		no_such_file_or_directory_error(char *cmd, t_data *data, int flag);
+void		is_a_directory_error(char *cmd, t_data *data);
+void		permission_denied_error(char *cmd, t_data *data);
+void		check_possible_errors(char *cmd, t_data *data, int flag);
 
 #endif
