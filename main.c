@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-volatile sig_atomic_t	g_status = 0;
+volatile sig_atomic_t g_status = 0;
 
 /*This function mallocs the data struct it and initializes its values to NULL
 It returns the struct on success and 1 when somethings goes wrong*/
@@ -22,14 +22,13 @@ t_data	*init_data(char **env_variables)
 
 	data = malloc(sizeof(struct s_data));
 	if (!data)
-		return (ft_putstr_fd("Malloc failed\n", STDERR_FILENO), NULL);
+		return (perror("Malloc failed when initializing the data struct"), NULL);
 	data->env_var = init_env_list(env_variables);
 	data->exit_status = 0;
-	data->pid_count = 0;
+	data->pid_count  = 0;
 	data->recursive_call_counter = 0;
 	data->fd_in = 0;
 	data->fd_out = 0;
-	data->exit_true = 0;
 	data->pid_values = malloc(sizeof(int) * 1024);
 	return (data);
 }
@@ -74,13 +73,15 @@ int	main(int ac, char **av, char **ep)
 		free_data(data);
 		exit(exit_code);
 	}
+	/* --------------------------------------- */
 	while (1)
 	{
 		input = readline(PROMPT);
 		if (!input)
 		{
+			free_env_vars(&(data->env_var));
 			rl_clear_history();
-			free_all_and_exit(data, data->exit_status);
+			exit(0);
 		}
 		if (input && *input)
 		{
@@ -95,19 +96,25 @@ int	main(int ac, char **av, char **ep)
 			if (grammar_validator(token) != 0)
 			{
 				data->exit_status = 2;
-				free_loop(NULL, &temp_token, input);
+				free_tokens(&temp_token);
+				free(input);
 				continue ;
 			}
 			tree = init_tree(&token);
+			data->ast_head = tree;
 			data->token_head = temp_token;
-			execute(data);
-			free_loop(data->ast_head, &temp_token, NULL);
+			execute(tree, data);
+			free_tokens(&temp_token);
+			free_tree(tree);
 			if (data->exit_true == -42)
 				break ;
 		}
 		free(input);
 	}
-	free_loop(NULL, NULL, input);
+	if (input)
+		free(input);
 	rl_clear_history();
-	free_all_and_exit(data, data->exit_status);
+	exit_code = data->exit_status;
+	free_data(data);
+	return (exit_code);
 }

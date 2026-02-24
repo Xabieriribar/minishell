@@ -414,6 +414,15 @@ COMMAND: env IGNORE_ARGS
 ========================================
 
 ========================================
+COMMAND: cat /dev/urandom | head -c 100 | wc -c
+--- BASH STDOUT ---
+100
+--- MINI STDOUT ---
+
+--- BASH EXIT: 0 | MINI EXIT: 130 ---
+========================================
+
+========================================
 COMMAND: echo '' ''
 --- BASH STDOUT ---
  
@@ -472,6 +481,7 @@ COMMAND: cat << EOF > file\ncontent\nEOF
 --- MINI STDOUT ---
 [?2004h> ^C[?2004l
 > [?2004h[?2004l
+New filename /tmp/.heredoc_0
 --- BASH EXIT: 0 | MINI EXIT: 0 ---
 ========================================
 
@@ -1803,10 +1813,10 @@ COMMAND: echo \1 \2 \3
 ========================================
 COMMAND: cat /dev/urandom | head -c 100
 --- BASH STDOUT ---
-¬
-H–¢©tù√{`é|=NuúD≈ø7§	‚‚("ê•ùt5∞:ÀÑyïÕYØq€f˙úÆ‹wº>ŒœÈG¯à‡äo‚ºŸ,
- õΩïÀåz¯≤wm›	ÃS¬À3£--- MINI STDOUT ---
-*ø…∫=@‰}Ï6b ´\Üb”Öäl4ÄélXL\)1ı¥bû,Ê&êƒçZ°à•5≠Ï9ºNC
-ôe_Y˛è˙{…fh∫ö M∏’>¡_*5ﬂ2ﬂQ∂WôySØÒç*l!Nç--- BASH EXIT: 0 | MINI EXIT: 0 ---
+õe€/jFr¨¬ËZ∆ı≈HõxV“}ƒTGı<ÑÜgΩöËΩÂÂkü˙ Ω•H}ÀJ2Æ$,1¨°ØQ]‹äR·‘·ﬁVLàXs{3S—¨öèÌRûP‘ñôŸ£’•F–áXå¯ˆ--- MINI STDOUT ---
+D!è¬I+6$éM}≈‰q∑`Y∞æÎz≥ƒ.Å’(’9xë-E03)≈ä¢U
+∂Ézå0§ïº§k∞{:yE‘≈T(èL3≤êbôÆ)ß” J
+Ë|çZ∞=ÄÃEr<	
+--- BASH EXIT: 0 | MINI EXIT: 0 ---
 ========================================
 

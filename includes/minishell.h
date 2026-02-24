@@ -204,9 +204,10 @@ t_redirs	*ft_lstnew_redirs(char *filename, t_type redir_type);
 
 /* ------------------------------- EXECUTION -------------------------------- */
 
-void		execute(t_data *data);
+void		execute(t_node *tree, t_data *data);
 void		execute_pipeline(t_node *t, int fd_in, int fd_out, t_data *data);
 void		open_temporary_heredocs(t_node *tree, int *heredoc_file_index);
+void		unlink_heredoc_files(t_node *tree);
 
 char		**convert_env_var_to_array(t_env *env_var, int env_var_lstsize);
 int			ft_env_var_lstsize(t_env *env_var);

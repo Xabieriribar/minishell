@@ -56,13 +56,3 @@ void	free_splits(char **strs, int index_allocated)
 	}
 	free(strs);
 }
-
-void	free_loop(t_node *tree, t_token **token_list, char *input)
-{
-	if (tree)
-		free_tree(tree);
-	if (token_list)
-		free_tokens(token_list);
-	if (input)
-		free(input);
-}

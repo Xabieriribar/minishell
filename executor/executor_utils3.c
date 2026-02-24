@@ -59,3 +59,14 @@ void	permission_denied_error(char *cmd, t_data *data, int flag)
 	else
 		free_all_and_exit(data, 126);
 }
+
+void	unlink_heredoc_files(t_node *tree)
+{
+	if (!tree->left_child)
+	{
+		unlink(tree->redirs->filename);
+		return;
+	}
+	unlink(tree->right_child->redirs->filename);
+	unlink_heredoc_files(tree->left_child);
+}
