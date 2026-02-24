@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/24 23:17:20 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/24 23:25:30 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,37 @@ static void	shell_loop(t_data *data)
 		free(input);
 }
 
+/*
+~ TO ERRASE !!!!!!!!!!!!*/
+/*static void	run_tester(char *input, t_data *data)
+{
+	t_token	*token;
+	t_token	*temp;
+	t_node	*tree;
+
+	token = init_list(input, data);
+	if (!token)
+		free_all_and_exit(data, 0);
+	temp = token;
+	if (grammar_validator(token) != 0)
+	{
+		data->exit_status = 2;
+		free_tokens(&temp);
+	}
+	else
+	{
+		tree = init_tree(&token);
+		data->ast_head = tree;
+		data->token_head = temp;
+		execute(tree, data);
+		free_tokens(&temp);
+		data->token_head = NULL;
+		free_tree(tree);
+		data->ast_head = NULL;
+	}
+	free_all_and_exit(data, data->exit_status);
+}*/
+
 int	main(int ac, char **av, char **ep)
 {
 	t_data	*data;
@@ -111,6 +142,8 @@ int	main(int ac, char **av, char **ep)
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 	data = init_data(ep);
+//	if (ac >= 3 && ft_strncmp(av[1], "-c", 3) == 0)
+//		run_tester(av[2], data);
 	shell_loop(data);
 	exit_code = data->exit_status;
 	free_data(data);

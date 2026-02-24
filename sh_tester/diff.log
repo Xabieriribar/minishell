@@ -10,8 +10,8 @@ declare -x GDMSESSION="cinnamon"
 declare -x GDM_LANG="en_US"
 declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
 declare -x GNOME_KEYRING_CONTROL="/run/user/1000/keyring"
-declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/6ab5b3b1_2965_412b_9114_acf0d2c2d1a1"
-declare -x GNOME_TERMINAL_SERVICE=":1.74"
+declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/eae6e43c_1105_4ed7_8890_66a0331f2af2"
+declare -x GNOME_TERMINAL_SERVICE=":1.110"
 declare -x GPG_AGENT_INFO="/run/user/1000/gnupg/S.gpg-agent:0:1"
 declare -x GTK3_MODULES="xapp-gtk3-module"
 declare -x GTK_MODULES="gail:atk-bridge"
@@ -68,8 +68,8 @@ declare -x GDMSESSION="cinnamon"
 declare -x GDM_LANG="en_US"
 declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
 declare -x GNOME_KEYRING_CONTROL="/run/user/1000/keyring"
-declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/6ab5b3b1_2965_412b_9114_acf0d2c2d1a1"
-declare -x GNOME_TERMINAL_SERVICE=":1.74"
+declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/eae6e43c_1105_4ed7_8890_66a0331f2af2"
+declare -x GNOME_TERMINAL_SERVICE=":1.110"
 declare -x GPG_AGENT_INFO="/run/user/1000/gnupg/S.gpg-agent:0:1"
 declare -x GTK3_MODULES="xapp-gtk3-module"
 declare -x GTK_MODULES="gail:atk-bridge"
@@ -164,13 +164,13 @@ LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd
 XDG_CURRENT_DESKTOP=X-Cinnamon
 VTE_VERSION=7600
 XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
-GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/6ab5b3b1_2965_412b_9114_acf0d2c2d1a1
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/eae6e43c_1105_4ed7_8890_66a0331f2af2
 XDG_SESSION_CLASS=user
 LC_IDENTIFICATION=de_CH.UTF-8
 TERM=xterm-256color
 ZSH=/home/rick/.oh-my-zsh
 USER=rick
-GNOME_TERMINAL_SERVICE=:1.74
+GNOME_TERMINAL_SERVICE=:1.110
 DISPLAY=:0
 SHLVL=2
 PAGER=less
@@ -221,13 +221,13 @@ LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd
 XDG_CURRENT_DESKTOP=X-Cinnamon
 VTE_VERSION=7600
 XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
-GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/6ab5b3b1_2965_412b_9114_acf0d2c2d1a1
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/eae6e43c_1105_4ed7_8890_66a0331f2af2
 XDG_SESSION_CLASS=user
 TERM=xterm-256color
 LC_IDENTIFICATION=de_CH.UTF-8
 ZSH=/home/rick/.oh-my-zsh
 USER=rick
-GNOME_TERMINAL_SERVICE=:1.74
+GNOME_TERMINAL_SERVICE=:1.110
 DISPLAY=:0
 SHLVL=2
 PAGER=less
@@ -285,13 +285,13 @@ LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd
 XDG_CURRENT_DESKTOP=X-Cinnamon
 VTE_VERSION=7600
 XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
-GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/6ab5b3b1_2965_412b_9114_acf0d2c2d1a1
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/eae6e43c_1105_4ed7_8890_66a0331f2af2
 XDG_SESSION_CLASS=user
 LC_IDENTIFICATION=de_CH.UTF-8
 TERM=xterm-256color
 ZSH=/home/rick/.oh-my-zsh
 USER=rick
-GNOME_TERMINAL_SERVICE=:1.74
+GNOME_TERMINAL_SERVICE=:1.110
 DISPLAY=:0
 SHLVL=2
 PAGER=less
@@ -366,12 +366,7 @@ syntax error
 COMMAND: cat << EOF > file\ncontent\nEOF
 --- BASH STDOUT ---
 --- MINI STDOUT ---
-[?2004h> ^C[?2004l
-> [?2004h^C[?2004l
-> [?2004h^C[?2004l
-> [?2004h^C[?2004l
-> [?2004h^C[?2004l
-> [?2004h^C[?2004l
+[?2004h> w^C[?2004l
 > [?2004h[?2004l
 --- BASH EXIT: 0 | MINI EXIT: 0 ---
 ========================================
@@ -1689,8 +1684,7 @@ COMMAND: echo \1 \2 \3
 ========================================
 COMMAND: cat /dev/urandom | head -c 100
 --- BASH STDOUT ---
-K´¸c‚Ò⁄¯}ª˘ £m-Ch’õ£1…ßÜˇ«Ôè§îP gA>˘#PAéø¡~e3#iœÍå@‘xÈå›5ÖßÄ≠d=•çR¢E8»Ç<WbˆÁ7Ñôo≠ôﬂç--- MINI STDOUT ---
-ïèÉ¢ßÁ úüS0#Ù¢Ÿ–≤#[{ô_ˆPlﬂêo≠pπW>•£Êÿ'J?ÃS©‘†SnîFõƒ”<‡]!‚
-»˜€`ÁªØ*€	”∞œ°C?ﬁæ£ì∫jÛóŒÊ	A57∏	Ó--- BASH EXIT: 0 | MINI EXIT: 0 ---
+˚◊5üZí&çwä†ÅíõﬂÊò√CˇØú#w†•ë∞ÏG~ôA+ü‡‰m¯ÁØ∫€À*ﬁBèwc;’Ü3Ω°*µÜ)IN√W* ÕÎÄ)⁄∫nø<T˜{«¶© ”RXê§@--- MINI STDOUT ---
+√ﬁ±nO–|çÓÇîäêOì˙’Xu^ñ≈6Ïêô˝n,HõÔc´Úñ|˙HÚ¨»$>wC:c-ÛwÅ©>Uπ7¿Ç#≤éÒÙäºÚk∑oÓq·)ÃÀM∏À'4á©Ág˛UB--- BASH EXIT: 0 | MINI EXIT: 0 ---
 ========================================
 

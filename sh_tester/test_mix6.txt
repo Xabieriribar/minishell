@@ -197,3 +197,15 @@ avahi-autoipd:x:108:111:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/usr/sbin/
 avahi:x:110:112:Avahi mDNS daemon,,,:/run/avahi-daemon:/usr/sbin/nologin
 fwupd-refresh:x:988:988:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
 colord:x:120:124:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+usbmux:x:103:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+avahi-autoipd:x:108:111:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/usr/sbin/nologin
+avahi:x:110:112:Avahi mDNS daemon,,,:/run/avahi-daemon:/usr/sbin/nologin
+fwupd-refresh:x:988:988:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
+colord:x:120:124:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+usbmux:x:103:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+avahi-autoipd:x:108:111:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/usr/sbin/nologin
+avahi:x:110:112:Avahi mDNS daemon,,,:/run/avahi-daemon:/usr/sbin/nologin
+fwupd-refresh:x:988:988:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
+colord:x:120:124:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
