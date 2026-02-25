@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   maain.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 15:08:57 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/25 15:07:24 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,44 +31,30 @@ t_data	*init_data(char **env_variables)
 	data->fd_in = 0;
 	data->fd_out = 0;
 	data->pid_values = malloc(sizeof(int) * 1024);
-	data->exit_true = 0;
-	data->ast_head = NULL;
-	data->token_head = NULL;
-	data->heredoc_file_index = 0;
 	return (data);
 }
 
-/*
-* Function to run in case of having an input during the main loop
-- LOGIC:
-
-* Create the tokens out of that input.
-* Validate the tokens according to the expected shell grammar
-* Init the AST
-* Execute
-* Free*/
-static void	process_input(char *input, t_data *data)
+void	process_input(char *input, t_data *data)
 {
 	t_token	*token;
-	t_token	*temp_token;
+	t_token	*temp;
 	t_node	*tree;
 
-	add_history(input);
 	token = init_list(input, data);
 	if (!token)
 		return ;
-	temp_token = token;
+	temp = token;
 	if (grammar_validator(token) != 0)
 	{
 		data->exit_status = 2;
-		free_tokens(&temp_token);
+		free_tokens(&temp);
 		return ;
 	}
 	tree = init_tree(&token);
 	data->ast_head = tree;
-	data->token_head = temp_token;
+	data->token_head = temp;
 	execute(tree, data);
-	free_tokens(&temp_token);
+	free_tokens(&temp);
 	data->token_head = NULL;
 	free_tree(tree);
 	data->ast_head = NULL;
@@ -89,14 +75,12 @@ static void	shell_loop(t_data *data)
 		input = readline(PROMPT);
 		if (!input)
 		{
-			ft_putstr_fd("exit\n", STDOUT_FILENO);
 			free_env_vars(&(data->env_var));
 			rl_clear_history();
 			exit(0);
 		}
 		if (input && *input)
 		{
-			add_history(input);
 			process_input(input, data);
 			if (data->exit_true == -42)
 				break ;
@@ -105,6 +89,23 @@ static void	shell_loop(t_data *data)
 	}
 	if (input)
 		free(input);
+}
+
+static void	run_c_flag(char *arg, t_data *data)
+{
+	char	**arg_input;
+	int		i;
+
+	arg_input = ft_split(arg, ';');
+	if (!arg_input)
+		free_all_and_exit(data, 1);
+	i = 0;
+	while (arg_input[i])
+	{
+		process_input(arg_input[i], data);
+		i++;
+	}
+	free_splits(arg_input, -1);
 }
 
 int	main(int ac, char **av, char **ep)
@@ -117,7 +118,10 @@ int	main(int ac, char **av, char **ep)
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 	data = init_data(ep);
-	shell_loop(data);
+	if (ac == 3 && ft_strncmp(av[1], "-c", 3) == 0 && av[2])
+		run_c_flag(av[2], data);
+	else
+		shell_loop(data);
 	exit_code = data->exit_status;
 	free_data(data);
 	rl_clear_history();

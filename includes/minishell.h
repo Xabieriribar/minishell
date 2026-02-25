@@ -6,10 +6,10 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/17 13:48:09 by rick             ###   ########.fr       */
-/*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/02/24 23:15:54 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/25 14:59:15 by rick             ###   ########.fr       */
 /*                                                                            */
+/* ************************************************************************** */
+
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
@@ -26,6 +26,8 @@
 
 # define PROMPT			"Minishell>> "
 # define PIPE_ERR_MSG	"syntax error near unexpected token `|'\n"
+# define HDOC_ERR_MSG	"syntax error near unexpected token `>>'\n"
+# define REDIR_ERR_MSG	"syntax error near unexpected token `newline'\n"
 
 /* ------------------------------- INCLUDES --------------------------------- */
 
