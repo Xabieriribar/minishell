@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:48:02 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 14:39:39 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/25 15:00:21 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ int	b_exit(char **arr, t_data **data)
 	}
 	if (arr[2])
 	{
-		ft_putstr_fd("exit\nminishell: exit: too many arguments\n", STDERR_FILENO);
+		ft_putstr_fd("exit\n", STDERR_FILENO);
+		ft_putstr_fd("minishell: exit: too many arguments\n", STDERR_FILENO);
 		(*data)->exit_status = 1;
 		return (1);
 	}
