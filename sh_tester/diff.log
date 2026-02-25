@@ -94,149 +94,319 @@ test_pipeout9.txt
 test.txt
 valid_shells.txt
 --- MINI STDOUT ---
-[?2004hMinishell>> [?2004l
---- BASH EXIT: 0 | MINI EXIT: 0 ---
-========================================
-
-========================================
-COMMAND:    
---- BASH STDOUT ---
---- MINI STDOUT ---
-[?2004hMinishell>> ^C[?2004l
-Minishell>> [?2004h[?2004l
---- BASH EXIT: 0 | MINI EXIT: 0 ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
 ========================================
 
 ========================================
 COMMAND: \t
 --- BASH STDOUT ---
 --- MINI STDOUT ---
-[?2004hMinishell>> [?2004l
---- BASH EXIT: 127 | MINI EXIT: 0 ---
+--- BASH EXIT: 127 | MINI EXIT: 139 ---
 ========================================
 
 ========================================
 COMMAND:  \t \t 
 --- BASH STDOUT ---
 --- MINI STDOUT ---
-[?2004hMinishell>> [?2004l
---- BASH EXIT: 127 | MINI EXIT: 0 ---
+--- BASH EXIT: 127 | MINI EXIT: 139 ---
 ========================================
 
 ========================================
 COMMAND: /bin/ls -la
 --- BASH STDOUT ---
 total 2288
-drwxr-xr-x  2 xiribar 2025_lausanne   4096 Feb 25 14:21 .
-drwxr-xr-x 15 xiribar 2025_lausanne   4096 Feb 25 14:44 ..
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 >
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 $
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 $? user ->$USER home -> $HOME
--rw-r--r--  1 xiribar 2025_lausanne     12 Feb 25 14:21 0 user ->$USER home -> $HOME
--rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 14:21 a1.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 append_only.txt
--rw-r--r--  1 xiribar 2025_lausanne   7932 Feb 25 14:21 append_test.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 archivo.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 a.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 b.txt
--rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 14:21 c.txt
--rw-r--r--  1 xiribar 2025_lausanne     48 Feb 25 14:21 daemon_info.txt
--rw-r--r--  1 xiribar 2025_lausanne   2111 Feb 25 14:46 diff.log
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 file
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 file\ncontent\nEOF
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 filencontentnEOF
--rw-r--r--  1 xiribar 2025_lausanne   3131 Feb 25 14:21 isolated_creation.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21    leading_space
--rw-r--r--  1 xiribar 2025_lausanne   1438 Feb 25 14:21 multi_redir.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 oufile
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 out1
--rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 14:21 out10.txt
--rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 14:21 out11.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 out2
--rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 14:21 out3
--rw-r--r--  1 xiribar 2025_lausanne   2583 Feb 25 14:21 out3.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 out4.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 out5.txt
--rw-r--r--  1 xiribar 2025_lausanne   1438 Feb 25 14:21 out9.txt
--rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 14:21 out_bonus1.txt
--rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 14:21 out_chaos.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 outfile
--rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 14:21 out_file.txt
--rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 14:21 out_first.txt
--rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 14:21 out_mid.txt
--rw-r--r--  1 xiribar 2025_lausanne     33 Feb 25 14:21 out_pwd.txt
--rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 14:21 out_space1.txt
--rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 14:21 out_space2.txt
--rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 14:21 out_space3.txt
--rw-r--r--  1 xiribar 2025_lausanne  59075 Feb 25 14:21 out_space4.txt
--rw-r--r--  1 xiribar 2025_lausanne 140917 Feb 25 14:21 out_space5.txt
--rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 14:21 out_space6.txt
--rw-r--r--  1 xiribar 2025_lausanne   1860 Feb 25 14:21 out_space7.txt
--rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 14:21 out_weird.txt
--rw-r--r--  1 xiribar 2025_lausanne   1438 Feb 25 14:21 passwd_copy.txt
--rw-r--r--  1 xiribar 2025_lausanne    302 Feb 25 14:21 readline.supp
--rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 14:21 root_match.txt
--rw-r--r--  1 xiribar 2025_lausanne   1788 Feb 25 14:21 sorted_groups.txt
--rw-r--r--  1 xiribar 2025_lausanne    750 Feb 25 14:21 test_app10.txt
--rw-r--r--  1 xiribar 2025_lausanne  61771 Feb 25 14:21 test_app1.txt
--rw-r--r--  1 xiribar 2025_lausanne 336904 Feb 25 14:21 test_app2.txt
--rw-r--r--  1 xiribar 2025_lausanne  61827 Feb 25 14:21 test_app3.txt
--rw-r--r--  1 xiribar 2025_lausanne 337378 Feb 25 14:21 test_app4.txt
--rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 14:21 test_app5.txt
--rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 14:21 test_app6.txt
--rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 14:21 test_app7.txt
--rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 14:21 test_app8.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 test_app9.txt
--rwxr-xr-x  1 xiribar 2025_lausanne   8754 Feb 25 14:46 tester.sh
--rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 14:21 test_mix10.txt
--rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 14:21 test_mix1.txt
--rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 14:21 test_mix2.txt
--rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 14:21 test_mix3.txt
--rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 14:21 test_mix4.txt
--rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 14:21 test_mix5.txt
--rw-r--r--  1 xiribar 2025_lausanne  16582 Feb 25 14:21 test_mix6.txt
--rw-r--r--  1 xiribar 2025_lausanne      3 Feb 25 14:21 test_mix7.txt
--rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 14:21 test_mix8.txt
--rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 14:21 test_mix9.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 test_out10.txt
--rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 14:21 test_out1.txt
--rw-r--r--  1 xiribar 2025_lausanne   6913 Feb 25 14:21 test_out2.txt
--rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 14:21 test_out3.txt
--rw-r--r--  1 xiribar 2025_lausanne   6913 Feb 25 14:21 test_out4.txt
--rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 14:21 test_out5.txt
--rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 14:21 test_out6.txt
--rw-r--r--  1 xiribar 2025_lausanne   1319 Feb 25 14:21 test_out7.txt
--rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 14:21 test_out8.txt
--rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 14:21 test_out9.txt
--rw-r--r--  1 xiribar 2025_lausanne     39 Feb 25 14:21 test_pipeout10.txt
--rw-r--r--  1 xiribar 2025_lausanne     44 Feb 25 14:21 test_pipeout11.txt
--rw-r--r--  1 xiribar 2025_lausanne    434 Feb 25 14:21 test_pipeout1.txt
--rw-r--r--  1 xiribar 2025_lausanne   6913 Feb 25 14:21 test_pipeout2.txt
--rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 14:21 test_pipeout3.txt
--rw-r--r--  1 xiribar 2025_lausanne      2 Feb 25 14:21 test_pipeout4.txt
--rw-r--r--  1 xiribar 2025_lausanne   2226 Feb 25 14:21 test_pipeout5.txt
--rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 14:21 test_pipeout6.txt
--rw-r--r--  1 xiribar 2025_lausanne      3 Feb 25 14:21 test_pipeout7.txt
--rw-r--r--  1 xiribar 2025_lausanne    150 Feb 25 14:21 test_pipeout8.txt
--rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 14:21 test_pipeout9.txt
--rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 14:21 test.txt
--rw-r--r--  1 xiribar 2025_lausanne     68 Feb 25 14:21 .valgrindrc
--rw-r--r--  1 xiribar 2025_lausanne    133 Feb 25 14:21 valid_shells.txt
+drwxr-xr-x  2 xiribar 2025_lausanne   4096 Feb 25 17:10 .
+drwxr-xr-x 15 xiribar 2025_lausanne   4096 Feb 25 17:16 ..
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 >
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 $
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 $? user ->$USER home -> $HOME
+-rw-r--r--  1 xiribar 2025_lausanne     12 Feb 25 15:26 0 user ->$USER home -> $HOME
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 a1.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 append_only.txt
+-rw-r--r--  1 xiribar 2025_lausanne   7932 Feb 25 15:26 append_test.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 archivo.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 a.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 b.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 c.txt
+-rw-r--r--  1 xiribar 2025_lausanne     48 Feb 25 15:26 daemon_info.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3053 Feb 25 17:21 diff.log
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 file
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 file\ncontent\nEOF
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 filencontentnEOF
+-rw-r--r--  1 xiribar 2025_lausanne   3131 Feb 25 15:26 isolated_creation.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26    leading_space
+-rw-r--r--  1 xiribar 2025_lausanne   1438 Feb 25 15:26 multi_redir.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 oufile
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 out1
+-rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 15:26 out10.txt
+-rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 15:26 out11.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 out2
+-rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 15:26 out3
+-rw-r--r--  1 xiribar 2025_lausanne   2583 Feb 25 15:26 out3.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 out4.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 out5.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1438 Feb 25 15:26 out9.txt
+-rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 15:26 out_bonus1.txt
+-rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 15:26 out_chaos.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 outfile
+-rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 15:26 out_file.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 out_first.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 out_mid.txt
+-rw-r--r--  1 xiribar 2025_lausanne     33 Feb 25 15:26 out_pwd.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 out_space1.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 out_space2.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 out_space3.txt
+-rw-r--r--  1 xiribar 2025_lausanne  59075 Feb 25 15:26 out_space4.txt
+-rw-r--r--  1 xiribar 2025_lausanne 140917 Feb 25 15:26 out_space5.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 out_space6.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1860 Feb 25 15:26 out_space7.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 out_weird.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1438 Feb 25 15:26 passwd_copy.txt
+-rw-r--r--  1 xiribar 2025_lausanne    302 Feb 25 15:26 readline.supp
+-rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 15:26 root_match.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1788 Feb 25 15:26 sorted_groups.txt
+-rw-r--r--  1 xiribar 2025_lausanne    750 Feb 25 15:26 test_app10.txt
+-rw-r--r--  1 xiribar 2025_lausanne  61771 Feb 25 15:26 test_app1.txt
+-rw-r--r--  1 xiribar 2025_lausanne 336904 Feb 25 15:26 test_app2.txt
+-rw-r--r--  1 xiribar 2025_lausanne  61827 Feb 25 15:26 test_app3.txt
+-rw-r--r--  1 xiribar 2025_lausanne 337378 Feb 25 15:26 test_app4.txt
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_app5.txt
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_app6.txt
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_app7.txt
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_app8.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 test_app9.txt
+-rwxr-xr-x  1 xiribar 2025_lausanne   8754 Feb 25 17:10 tester.sh
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_mix10.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_mix1.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_mix2.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_mix3.txt
+-rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 15:26 test_mix4.txt
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_mix5.txt
+-rw-r--r--  1 xiribar 2025_lausanne  16582 Feb 25 15:26 test_mix6.txt
+-rw-r--r--  1 xiribar 2025_lausanne      3 Feb 25 15:26 test_mix7.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_mix8.txt
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_mix9.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 test_out10.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 test_out1.txt
+-rw-r--r--  1 xiribar 2025_lausanne   6913 Feb 25 15:26 test_out2.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 test_out3.txt
+-rw-r--r--  1 xiribar 2025_lausanne   6913 Feb 25 15:26 test_out4.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_out5.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_out6.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1319 Feb 25 15:26 test_out7.txt
+-rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 15:26 test_out8.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_out9.txt
+-rw-r--r--  1 xiribar 2025_lausanne     39 Feb 25 15:26 test_pipeout10.txt
+-rw-r--r--  1 xiribar 2025_lausanne     44 Feb 25 15:26 test_pipeout11.txt
+-rw-r--r--  1 xiribar 2025_lausanne    434 Feb 25 15:26 test_pipeout1.txt
+-rw-r--r--  1 xiribar 2025_lausanne   6913 Feb 25 15:26 test_pipeout2.txt
+-rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 15:26 test_pipeout3.txt
+-rw-r--r--  1 xiribar 2025_lausanne      2 Feb 25 15:26 test_pipeout4.txt
+-rw-r--r--  1 xiribar 2025_lausanne   2226 Feb 25 15:26 test_pipeout5.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_pipeout6.txt
+-rw-r--r--  1 xiribar 2025_lausanne      3 Feb 25 15:26 test_pipeout7.txt
+-rw-r--r--  1 xiribar 2025_lausanne    150 Feb 25 15:26 test_pipeout8.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_pipeout9.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 test.txt
+-rw-r--r--  1 xiribar 2025_lausanne     68 Feb 25 15:26 .valgrindrc
+-rw-r--r--  1 xiribar 2025_lausanne    133 Feb 25 15:26 valid_shells.txt
 --- MINI STDOUT ---
-[?2004hMinishell>> ^C[?2004l
-Minishell>> [?2004h[?2004l
---- BASH EXIT: 0 | MINI EXIT: 0 ---
+total 2288
+drwxr-xr-x  2 xiribar 2025_lausanne   4096 Feb 25 17:10 .
+drwxr-xr-x 15 xiribar 2025_lausanne   4096 Feb 25 17:16 ..
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 >
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 $
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 $? user ->$USER home -> $HOME
+-rw-r--r--  1 xiribar 2025_lausanne     12 Feb 25 15:26 0 user ->$USER home -> $HOME
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 a1.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 append_only.txt
+-rw-r--r--  1 xiribar 2025_lausanne   7932 Feb 25 15:26 append_test.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 archivo.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 a.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 b.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 c.txt
+-rw-r--r--  1 xiribar 2025_lausanne     48 Feb 25 15:26 daemon_info.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3053 Feb 25 17:21 diff.log
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 file
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 file\ncontent\nEOF
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 filencontentnEOF
+-rw-r--r--  1 xiribar 2025_lausanne   3131 Feb 25 15:26 isolated_creation.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26    leading_space
+-rw-r--r--  1 xiribar 2025_lausanne   1438 Feb 25 15:26 multi_redir.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 oufile
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 out1
+-rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 15:26 out10.txt
+-rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 15:26 out11.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 out2
+-rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 15:26 out3
+-rw-r--r--  1 xiribar 2025_lausanne   2583 Feb 25 15:26 out3.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 out4.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 out5.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1438 Feb 25 15:26 out9.txt
+-rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 15:26 out_bonus1.txt
+-rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 15:26 out_chaos.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 outfile
+-rw-r--r--  1 xiribar 2025_lausanne      6 Feb 25 15:26 out_file.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 out_first.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 out_mid.txt
+-rw-r--r--  1 xiribar 2025_lausanne     33 Feb 25 15:26 out_pwd.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 out_space1.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 out_space2.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 out_space3.txt
+-rw-r--r--  1 xiribar 2025_lausanne  59075 Feb 25 15:26 out_space4.txt
+-rw-r--r--  1 xiribar 2025_lausanne 140917 Feb 25 15:26 out_space5.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 out_space6.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1860 Feb 25 15:26 out_space7.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 out_weird.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1438 Feb 25 15:26 passwd_copy.txt
+-rw-r--r--  1 xiribar 2025_lausanne    302 Feb 25 15:26 readline.supp
+-rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 15:26 root_match.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1788 Feb 25 15:26 sorted_groups.txt
+-rw-r--r--  1 xiribar 2025_lausanne    750 Feb 25 15:26 test_app10.txt
+-rw-r--r--  1 xiribar 2025_lausanne  61771 Feb 25 15:26 test_app1.txt
+-rw-r--r--  1 xiribar 2025_lausanne 336904 Feb 25 15:26 test_app2.txt
+-rw-r--r--  1 xiribar 2025_lausanne  61827 Feb 25 15:26 test_app3.txt
+-rw-r--r--  1 xiribar 2025_lausanne 337378 Feb 25 15:26 test_app4.txt
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_app5.txt
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_app6.txt
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_app7.txt
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_app8.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 test_app9.txt
+-rwxr-xr-x  1 xiribar 2025_lausanne   8754 Feb 25 17:10 tester.sh
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_mix10.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_mix1.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_mix2.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_mix3.txt
+-rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 15:26 test_mix4.txt
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_mix5.txt
+-rw-r--r--  1 xiribar 2025_lausanne  16582 Feb 25 15:26 test_mix6.txt
+-rw-r--r--  1 xiribar 2025_lausanne      3 Feb 25 15:26 test_mix7.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_mix8.txt
+-rw-r--r--  1 xiribar 2025_lausanne 145231 Feb 25 15:26 test_mix9.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 test_out10.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 test_out1.txt
+-rw-r--r--  1 xiribar 2025_lausanne   6913 Feb 25 15:26 test_out2.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1285 Feb 25 15:26 test_out3.txt
+-rw-r--r--  1 xiribar 2025_lausanne   6913 Feb 25 15:26 test_out4.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_out5.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_out6.txt
+-rw-r--r--  1 xiribar 2025_lausanne   1319 Feb 25 15:26 test_out7.txt
+-rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 15:26 test_out8.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_out9.txt
+-rw-r--r--  1 xiribar 2025_lausanne     39 Feb 25 15:26 test_pipeout10.txt
+-rw-r--r--  1 xiribar 2025_lausanne     44 Feb 25 15:26 test_pipeout11.txt
+-rw-r--r--  1 xiribar 2025_lausanne    434 Feb 25 15:26 test_pipeout1.txt
+-rw-r--r--  1 xiribar 2025_lausanne   6913 Feb 25 15:26 test_pipeout2.txt
+-rw-r--r--  1 xiribar 2025_lausanne     32 Feb 25 15:26 test_pipeout3.txt
+-rw-r--r--  1 xiribar 2025_lausanne      2 Feb 25 15:26 test_pipeout4.txt
+-rw-r--r--  1 xiribar 2025_lausanne   2226 Feb 25 15:26 test_pipeout5.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_pipeout6.txt
+-rw-r--r--  1 xiribar 2025_lausanne      3 Feb 25 15:26 test_pipeout7.txt
+-rw-r--r--  1 xiribar 2025_lausanne    150 Feb 25 15:26 test_pipeout8.txt
+-rw-r--r--  1 xiribar 2025_lausanne   3485 Feb 25 15:26 test_pipeout9.txt
+-rw-r--r--  1 xiribar 2025_lausanne      0 Feb 25 15:26 test.txt
+-rw-r--r--  1 xiribar 2025_lausanne     68 Feb 25 15:26 .valgrindrc
+-rw-r--r--  1 xiribar 2025_lausanne    133 Feb 25 15:26 valid_shells.txt
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
 ========================================
 
 ========================================
 COMMAND: /bin/cat Makefile
 --- BASH STDOUT ---
 --- MINI STDOUT ---
-[?2004hMinishell>> ^C[?2004l
-Minishell>> [?2004h^C[?2004l
-Minishell>> [?2004h^C[?2004l
-Minishell>> [?2004h[?2004l
---- BASH EXIT: 1 | MINI EXIT: 0 ---
+--- BASH EXIT: 1 | MINI EXIT: 139 ---
 ========================================
 
 ========================================
@@ -244,8 +414,8 @@ COMMAND: /bin/echo hello args
 --- BASH STDOUT ---
 hello args
 --- MINI STDOUT ---
-[?2004hMinishell>> [?2004l
---- BASH EXIT: 0 | MINI EXIT: 0 ---
+hello args
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
 ========================================
 
 ========================================
@@ -253,9 +423,2025 @@ COMMAND: /bin/ls does_not_exist ; echo $?
 --- BASH STDOUT ---
 2
 --- MINI STDOUT ---
-[?2004hMinishell>> ^C[?2004l
-Minishell>> [?2004h^C[?2004l
-Minishell>> [?2004h[?2004l
---- BASH EXIT: 0 | MINI EXIT: 0 ---
+0
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: /bin/ls ; echo $?
+--- BASH STDOUT ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+0
+--- MINI STDOUT ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+0
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: expr $? + $?
+--- BASH STDOUT ---
+0
+--- MINI STDOUT ---
+0
+--- BASH EXIT: 1 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo $? ; echo $?
+--- BASH STDOUT ---
+0
+0
+--- MINI STDOUT ---
+0
+0
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: ../../../../../../../../../../bin/ls
+--- BASH STDOUT ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+--- MINI STDOUT ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: ./minishell -c 'echo nested'
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 127 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: unset PATH ; ls
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 127 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: export PATH=/bin ; ls
+--- BASH STDOUT ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+--- MINI STDOUT ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: export PATH=/does/not/exist:/bin ; ls
+--- BASH STDOUT ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+--- MINI STDOUT ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo "cat lol.c | cat > lol.c"
+--- BASH STDOUT ---
+cat lol.c | cat > lol.c
+--- MINI STDOUT ---
+cat lol.c | cat > lol.c
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo '$USER'
+--- BASH STDOUT ---
+$USER
+--- MINI STDOUT ---
+$USER
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo "$USER"
+--- BASH STDOUT ---
+xiribar
+--- MINI STDOUT ---
+
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cat | cat | ls
+--- BASH STDOUT ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+--- MINI STDOUT ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cat /dev/urandom | head -c 1000 | wc -c
+--- BASH STDOUT ---
+1000
+--- MINI STDOUT ---
+1000
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: dsbksdgbksdghsd
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 127 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo
+--- BASH STDOUT ---
+
+--- MINI STDOUT ---
+
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo hello
+--- BASH STDOUT ---
+hello
+--- MINI STDOUT ---
+hello
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo -n hello
+--- BASH STDOUT ---
+hello--- MINI STDOUT ---
+hello--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo -n -n -n hello
+--- BASH STDOUT ---
+hello--- MINI STDOUT ---
+hello--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo -n-n hello
+--- BASH STDOUT ---
+-n-n hello
+--- MINI STDOUT ---
+-n-n hello
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo " -n " hello
+--- BASH STDOUT ---
+ -n  hello
+--- MINI STDOUT ---
+ -n  hello
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo ''
+--- BASH STDOUT ---
+
+--- MINI STDOUT ---
+
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo ""
+--- BASH STDOUT ---
+
+--- MINI STDOUT ---
+
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo hello   world
+--- BASH STDOUT ---
+hello world
+--- MINI STDOUT ---
+hello world
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: pwd
+--- BASH STDOUT ---
+/home/xiribar/Desktop/mini/sh_tester
+--- MINI STDOUT ---
+/home/xiribar/Desktop/mini/sh_tester
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: pwd .
+--- BASH STDOUT ---
+/home/xiribar/Desktop/mini/sh_tester
+--- MINI STDOUT ---
+/home/xiribar/Desktop/mini/sh_tester
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: pwd ..
+--- BASH STDOUT ---
+/home/xiribar/Desktop/mini/sh_tester
+--- MINI STDOUT ---
+/home/xiribar/Desktop/mini/sh_tester
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cd /
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cd /tmp
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cd does_not_exist
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 1 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cd ..
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cd ../../
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cd $HOME
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: export VAR=42
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: export 1INVALID=42
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 1 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: export =42
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 1 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: export EMPTY=
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: export VAR="hello world"
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: export TEST_VAR=123
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: unset does_not_exist
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: unset PATH
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: unset PWD
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: env | grep PATH
+--- BASH STDOUT ---
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+FT_HOOK_PATHNAME=login-user.d
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+GEMINI_CLI_IDE_WORKSPACE_PATH=/home/xiribar/Desktop/mini
+PATH=/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/shims:/opt/pyenv/bin:/home/xiribar/bin:/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/bin:/home/xiribar/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/xiribar/.config/Code/User/globalStorage/github.copilot-chat/debugCommand
+--- MINI STDOUT ---
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+FT_HOOK_PATHNAME=login-user.d
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+GEMINI_CLI_IDE_WORKSPACE_PATH=/home/xiribar/Desktop/mini
+PATH=/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/shims:/opt/pyenv/bin:/home/xiribar/bin:/home/xiribar/.local/funcheck/host:/home/xiribar/.local/bin:/home/xiribar/.local/bin:/home/xiribar/.tfenv/bin:/home/xiribar/.tfenv/bin:/goinfre/xiribar/flutter/bin:/home/xiribar/goinfre/flutter/bin:/media/xiribar/T7/MelaBike/flutter/bin:/media/xiribar/T7/MelaBike/Deepresearch/flutter/bin:/opt/pyenv/bin:/home/xiribar/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/xiribar/.config/Code/User/globalStorage/github.copilot-chat/debugCommand
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: exit
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: exit 0
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: exit 42
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 42 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: exit -1
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 255 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: exit abc
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 2 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cat Makefile | grep a
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 1 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: ls -la | grep d | wc -l
+--- BASH STDOUT ---
+17
+--- MINI STDOUT ---
+17
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: ls | rev | sort | rev
+--- BASH STDOUT ---
+>
+$
+out1
+out2
+out3
+   leading_space
+file
+outfile
+oufile
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+file\ncontent\nEOF
+filencontentnEOF
+diff.log
+tester.sh
+readline.supp
+test_app10.txt
+out10.txt
+test_pipeout10.txt
+test_out10.txt
+test_mix10.txt
+out11.txt
+test_pipeout11.txt
+a1.txt
+out_space1.txt
+test_app1.txt
+out_bonus1.txt
+test_pipeout1.txt
+test_out1.txt
+test_mix1.txt
+out_space2.txt
+test_app2.txt
+test_pipeout2.txt
+test_out2.txt
+test_mix2.txt
+out_space3.txt
+test_app3.txt
+out3.txt
+test_pipeout3.txt
+test_out3.txt
+test_mix3.txt
+out_space4.txt
+test_app4.txt
+out4.txt
+test_pipeout4.txt
+test_out4.txt
+test_mix4.txt
+out_space5.txt
+test_app5.txt
+out5.txt
+test_pipeout5.txt
+test_out5.txt
+test_mix5.txt
+out_space6.txt
+test_app6.txt
+test_pipeout6.txt
+test_out6.txt
+test_mix6.txt
+out_space7.txt
+test_app7.txt
+test_pipeout7.txt
+test_out7.txt
+test_mix7.txt
+test_app8.txt
+test_pipeout8.txt
+test_out8.txt
+test_mix8.txt
+test_app9.txt
+out9.txt
+test_pipeout9.txt
+test_out9.txt
+test_mix9.txt
+a.txt
+b.txt
+c.txt
+out_mid.txt
+out_weird.txt
+out_pwd.txt
+out_file.txt
+root_match.txt
+isolated_creation.txt
+daemon_info.txt
+archivo.txt
+multi_redir.txt
+valid_shells.txt
+out_chaos.txt
+sorted_groups.txt
+test.txt
+append_test.txt
+out_first.txt
+append_only.txt
+passwd_copy.txt
+--- MINI STDOUT ---
+>
+$
+out1
+out2
+out3
+   leading_space
+file
+outfile
+oufile
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+file\ncontent\nEOF
+filencontentnEOF
+diff.log
+tester.sh
+readline.supp
+test_app10.txt
+out10.txt
+test_pipeout10.txt
+test_out10.txt
+test_mix10.txt
+out11.txt
+test_pipeout11.txt
+a1.txt
+out_space1.txt
+test_app1.txt
+out_bonus1.txt
+test_pipeout1.txt
+test_out1.txt
+test_mix1.txt
+out_space2.txt
+test_app2.txt
+test_pipeout2.txt
+test_out2.txt
+test_mix2.txt
+out_space3.txt
+test_app3.txt
+out3.txt
+test_pipeout3.txt
+test_out3.txt
+test_mix3.txt
+out_space4.txt
+test_app4.txt
+out4.txt
+test_pipeout4.txt
+test_out4.txt
+test_mix4.txt
+out_space5.txt
+test_app5.txt
+out5.txt
+test_pipeout5.txt
+test_out5.txt
+test_mix5.txt
+out_space6.txt
+test_app6.txt
+test_pipeout6.txt
+test_out6.txt
+test_mix6.txt
+out_space7.txt
+test_app7.txt
+test_pipeout7.txt
+test_out7.txt
+test_mix7.txt
+test_app8.txt
+test_pipeout8.txt
+test_out8.txt
+test_mix8.txt
+test_app9.txt
+out9.txt
+test_pipeout9.txt
+test_out9.txt
+test_mix9.txt
+a.txt
+b.txt
+c.txt
+out_mid.txt
+out_weird.txt
+out_pwd.txt
+out_file.txt
+root_match.txt
+isolated_creation.txt
+daemon_info.txt
+archivo.txt
+multi_redir.txt
+valid_shells.txt
+out_chaos.txt
+sorted_groups.txt
+test.txt
+append_test.txt
+out_first.txt
+append_only.txt
+passwd_copy.txt
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: ls > test_out1.txt
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: > test_out3.txt ls
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cat < /etc/passwd
+--- BASH STDOUT ---
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+systemd-network:x:101:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:102:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:104::/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:104:105:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+pollinate:x:105:1::/var/cache/pollinate:/bin/false
+sshd:x:106:65534::/run/sshd:/usr/sbin/nologin
+syslog:x:107:113::/home/syslog:/usr/sbin/nologin
+uuidd:x:108:114::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:109:115::/nonexistent:/usr/sbin/nologin
+tss:x:110:116:TPM software stack,,,:/var/lib/tpm:/bin/false
+landscape:x:111:117::/var/lib/landscape:/usr/sbin/nologin
+fwupd-refresh:x:112:118:fwupd-refresh user,,,:/run/systemd:/usr/sbin/nologin
+usbmux:x:113:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+rtkit:x:114:119:RealtimeKit,,,:/proc:/usr/sbin/nologin
+dnsmasq:x:115:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+cups-pk-helper:x:116:121:user for cups-pk-helper service,,,:/home/cups-pk-helper:/usr/sbin/nologin
+whoopsie:x:117:122::/nonexistent:/bin/false
+avahi:x:118:124:Avahi mDNS daemon,,,:/run/avahi-daemon:/usr/sbin/nologin
+saned:x:119:126::/var/lib/saned:/usr/sbin/nologin
+colord:x:120:127:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+geoclue:x:121:128::/var/lib/geoclue:/usr/sbin/nologin
+pulse:x:122:129:PulseAudio daemon,,,:/run/pulse:/usr/sbin/nologin
+gdm:x:123:131:Gnome Display Manager:/var/lib/gdm3:/bin/false
+lightdm:x:124:133:Light Display Manager:/var/lib/lightdm:/bin/false
+bocal:x:1000:1000:bocal:/home/bocal:/bin/bash
+lxd:x:999:100::/var/snap/lxd/common/lxd:/bin/false
+mysql:x:125:135:MySQL Server,,,:/nonexistent:/bin/false
+_rpc:x:126:65534::/run/rpcbind:/usr/sbin/nologin
+_flatpak:x:127:137:Flatpak system-wide installation helper,,,:/nonexistent:/usr/sbin/nologin
+nslcd:x:128:138:nslcd name service LDAP connection daemon,,,:/run/nslcd:/usr/sbin/nologin
+sssd:x:129:139:SSSD system user,,,:/var/lib/sss:/usr/sbin/nologin
+statd:x:130:65534::/var/lib/nfs:/usr/sbin/nologin
+redis:x:131:140::/var/lib/redis:/usr/sbin/nologin
+swtpm:x:132:141:virtual TPM software stack,,,:/var/lib/swtpm:/bin/false
+libvirt-qemu:x:64055:108:Libvirt Qemu,,,:/var/lib/libvirt:/usr/sbin/nologin
+libvirt-dnsmasq:x:133:143:Libvirt Dnsmasq,,,:/var/lib/libvirt/dnsmasq:/usr/sbin/nologin
+node_exporter:x:1001:1001::/home/node_exporter:/bin/sh
+speech-dispatcher:x:135:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+wazuh:x:136:146::/var/ossec:/sbin/nologin
+codam-web-greeter:x:134:145::/dev/null:/usr/sbin/nologin
+--- MINI STDOUT ---
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+systemd-network:x:101:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:102:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:104::/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:104:105:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+pollinate:x:105:1::/var/cache/pollinate:/bin/false
+sshd:x:106:65534::/run/sshd:/usr/sbin/nologin
+syslog:x:107:113::/home/syslog:/usr/sbin/nologin
+uuidd:x:108:114::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:109:115::/nonexistent:/usr/sbin/nologin
+tss:x:110:116:TPM software stack,,,:/var/lib/tpm:/bin/false
+landscape:x:111:117::/var/lib/landscape:/usr/sbin/nologin
+fwupd-refresh:x:112:118:fwupd-refresh user,,,:/run/systemd:/usr/sbin/nologin
+usbmux:x:113:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+rtkit:x:114:119:RealtimeKit,,,:/proc:/usr/sbin/nologin
+dnsmasq:x:115:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+cups-pk-helper:x:116:121:user for cups-pk-helper service,,,:/home/cups-pk-helper:/usr/sbin/nologin
+whoopsie:x:117:122::/nonexistent:/bin/false
+avahi:x:118:124:Avahi mDNS daemon,,,:/run/avahi-daemon:/usr/sbin/nologin
+saned:x:119:126::/var/lib/saned:/usr/sbin/nologin
+colord:x:120:127:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+geoclue:x:121:128::/var/lib/geoclue:/usr/sbin/nologin
+pulse:x:122:129:PulseAudio daemon,,,:/run/pulse:/usr/sbin/nologin
+gdm:x:123:131:Gnome Display Manager:/var/lib/gdm3:/bin/false
+lightdm:x:124:133:Light Display Manager:/var/lib/lightdm:/bin/false
+bocal:x:1000:1000:bocal:/home/bocal:/bin/bash
+lxd:x:999:100::/var/snap/lxd/common/lxd:/bin/false
+mysql:x:125:135:MySQL Server,,,:/nonexistent:/bin/false
+_rpc:x:126:65534::/run/rpcbind:/usr/sbin/nologin
+_flatpak:x:127:137:Flatpak system-wide installation helper,,,:/nonexistent:/usr/sbin/nologin
+nslcd:x:128:138:nslcd name service LDAP connection daemon,,,:/run/nslcd:/usr/sbin/nologin
+sssd:x:129:139:SSSD system user,,,:/var/lib/sss:/usr/sbin/nologin
+statd:x:130:65534::/var/lib/nfs:/usr/sbin/nologin
+redis:x:131:140::/var/lib/redis:/usr/sbin/nologin
+swtpm:x:132:141:virtual TPM software stack,,,:/var/lib/swtpm:/bin/false
+libvirt-qemu:x:64055:108:Libvirt Qemu,,,:/var/lib/libvirt:/usr/sbin/nologin
+libvirt-dnsmasq:x:133:143:Libvirt Dnsmasq,,,:/var/lib/libvirt/dnsmasq:/usr/sbin/nologin
+node_exporter:x:1001:1001::/home/node_exporter:/bin/sh
+speech-dispatcher:x:135:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+wazuh:x:136:146::/var/ossec:/sbin/nologin
+codam-web-greeter:x:134:145::/dev/null:/usr/sbin/nologin
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: ls >> test_app1.txt
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cat < /etc/passwd > test_mix1.txt
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: ls | grep a > test_pipeout1.txt
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cat < /etc/passwd | wc -l
+--- BASH STDOUT ---
+59
+--- MINI STDOUT ---
+59
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: ls | non_existent_cmd
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 127 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: ls>out_space1.txt
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: ls|cat
+--- BASH STDOUT ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+--- MINI STDOUT ---
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+append_only.txt
+append_test.txt
+archivo.txt
+a.txt
+b.txt
+c.txt
+daemon_info.txt
+diff.log
+file
+file\ncontent\nEOF
+filencontentnEOF
+isolated_creation.txt
+   leading_space
+multi_redir.txt
+oufile
+out1
+out10.txt
+out11.txt
+out2
+out3
+out3.txt
+out4.txt
+out5.txt
+out9.txt
+out_bonus1.txt
+out_chaos.txt
+outfile
+out_file.txt
+out_first.txt
+out_mid.txt
+out_pwd.txt
+out_space1.txt
+out_space2.txt
+out_space3.txt
+out_space4.txt
+out_space5.txt
+out_space6.txt
+out_space7.txt
+out_weird.txt
+passwd_copy.txt
+readline.supp
+root_match.txt
+sorted_groups.txt
+test_app10.txt
+test_app1.txt
+test_app2.txt
+test_app3.txt
+test_app4.txt
+test_app5.txt
+test_app6.txt
+test_app7.txt
+test_app8.txt
+test_app9.txt
+tester.sh
+test_mix10.txt
+test_mix1.txt
+test_mix2.txt
+test_mix3.txt
+test_mix4.txt
+test_mix5.txt
+test_mix6.txt
+test_mix7.txt
+test_mix8.txt
+test_mix9.txt
+test_out10.txt
+test_out1.txt
+test_out2.txt
+test_out3.txt
+test_out4.txt
+test_out5.txt
+test_out6.txt
+test_out7.txt
+test_out8.txt
+test_out9.txt
+test_pipeout10.txt
+test_pipeout11.txt
+test_pipeout1.txt
+test_pipeout2.txt
+test_pipeout3.txt
+test_pipeout4.txt
+test_pipeout5.txt
+test_pipeout6.txt
+test_pipeout7.txt
+test_pipeout8.txt
+test_pipeout9.txt
+test.txt
+valid_shells.txt
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: cat /dev/null | wc -l
+--- BASH STDOUT ---
+0
+--- MINI STDOUT ---
+0
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo 'hello'
+--- BASH STDOUT ---
+hello
+--- MINI STDOUT ---
+hello
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo "hello"
+--- BASH STDOUT ---
+hello
+--- MINI STDOUT ---
+hello
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo '   hello   world   '
+--- BASH STDOUT ---
+   hello   world   
+--- MINI STDOUT ---
+   hello   world   
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo "'hello'"
+--- BASH STDOUT ---
+'hello'
+--- MINI STDOUT ---
+'hello'
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo '"hello"'
+--- BASH STDOUT ---
+"hello"
+--- MINI STDOUT ---
+"hello"
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo "hello '$USER'"
+--- BASH STDOUT ---
+hello 'xiribar'
+--- MINI STDOUT ---
+hello ''
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo 'hello "$USER"'
+--- BASH STDOUT ---
+hello "$USER"
+--- MINI STDOUT ---
+hello "$USER"
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo "$USER"
+--- BASH STDOUT ---
+xiribar
+--- MINI STDOUT ---
+
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo "$DOES_NOT_EXIST"
+--- BASH STDOUT ---
+
+--- MINI STDOUT ---
+
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo $
+--- BASH STDOUT ---
+$
+--- MINI STDOUT ---
+$
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo "$"
+--- BASH STDOUT ---
+$
+--- MINI STDOUT ---
+$
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo hello"world"
+--- BASH STDOUT ---
+helloworld
+--- MINI STDOUT ---
+helloworld
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo "|"
+--- BASH STDOUT ---
+|
+--- MINI STDOUT ---
+|
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: echo '>'
+--- BASH STDOUT ---
+>
+--- MINI STDOUT ---
+>
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
+========================================
+
+========================================
+COMMAND: export VAR="hello world"
+--- BASH STDOUT ---
+--- MINI STDOUT ---
+--- BASH EXIT: 0 | MINI EXIT: 139 ---
 ========================================
 
