@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:34:13 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 11:02:48 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/25 14:34:18 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int	token_single_append(t_token *last, char *str)
 	last->dolar = -1;
 	return (i + 1);
 }
-
 
 /*
 * Creates and appends to the last node from the list.

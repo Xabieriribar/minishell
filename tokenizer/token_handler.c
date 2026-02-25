@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:26:07 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 11:02:29 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/25 14:30:38 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,40 +117,6 @@ static bool	valid_c(char c)
 * Creates and appends node in case of finding word.
 + Returns the length of the sring "value".
 + or a negative interger for error.*/
-/* int	token_word(t_token **head, char *str, int ix, t_data *data)
-{
-	int		i;
-	char	*buff;
-	t_token	*token;
-
-	token = ft_calloc(sizeof(t_token), 1);
-	if (!token)
-		return (perror("Err: Malloc"), -1);
-	set_init(token, str, ix, 2);
-	i = 0;
-	buff = ft_calloc(ft_strlen(str) + 1, sizeof(char));
-	if (!buff)
-		return (perror("Err: Malloc"), free(token), -1);
-	while (valid_c(str[i]))
-	{
-		buff[i] = str[i];
-		i++;
-	}
-	token->value = ft_strdup(buff);
-	if (!token->value)
-		return (perror("Err: Malloc"), free(token), free(buff), -1);
-	lst_add_back_token(head, token);
-	set_dolar(token);
-	i = (int)ft_strlen(token->value);
-	token->value = expander(token, data);
-	return (free(buff), i);
-}
- */
-
-/*
-* Creates and appends node in case of finding word.
-+ Returns the length of the sring "value".
-+ or a negative interger for error.*/
 int	token_word(t_token **head, char *str, int ix, t_data *data)
 {
 	int		i;
@@ -159,22 +125,23 @@ int	token_word(t_token **head, char *str, int ix, t_data *data)
 
 	token = ft_calloc(sizeof(t_token), 1);
 	if (!token)
-		return (perror("Err: Malloc"), -1);
+		return (-1);
 	set_init(token, str, ix, 2);
-	i = 0;
+	i = -1;
 	skip = 0;
-	while (valid_c(str[i]))
-	{
-		if (str[i] == '$' && (str[i + 1] == '\'' || str[i + 1] == '\"'))
-		{
-			skip = 1;
+	while (valid_c(str[++i]))
+		if (str[i] == '$' && (str[i + 1] == '\''
+				|| str[i + 1] == '\"') && ++skip)
 			break ;
-		}
-		i++;
-	}
 	token->value = ft_substr(str, 0, i);
-	lst_add_back_token(head, token);
 	set_dolar(token);
 	token->value = expander(token, data);
+	if (token->value && token->value[0])
+		lst_add_back_token(head, token);
+	else
+	{
+		free(token->value);
+		free(token);
+	}
 	return (i + skip);
 }

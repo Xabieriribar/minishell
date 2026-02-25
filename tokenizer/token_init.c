@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:40:25 by rick              #+#    #+#             */
-/*   Updated: 2026/02/24 20:10:40 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/25 13:50:49 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ t_token	*init_list(char *str, t_data *data)
 			break ;
 		len = init_add_token(&head, str, separated, data);
 		if (len < 0)
-			return (perror("Failed token creation"), free_tokens(&head), NULL);
+		{
+			data->exit_status = 2;
+			return (free_tokens(&head), NULL);
+		}
 		str += len;
 		token_number++;
 	}
