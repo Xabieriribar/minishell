@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:34:13 by rick              #+#    #+#             */
-/*   Updated: 2026/02/24 19:51:00 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/25 11:02:48 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 * Creates and appends to the last node from the list.
 + Returns i, being the length of the added part of the string to.
 + this last node of the list, or a negative interger for error.*/
-int	token_word_append(t_token *last, char *str, t_data *data)
+/* int	token_word_append(t_token *last, char *str, t_data *data)
 {
 	int		i;
 	char	*buff;
@@ -39,7 +39,7 @@ int	token_word_append(t_token *last, char *str, t_data *data)
 	free(last->value);
 	last->value = new;
 	return (i);
-}
+} */
 
 /*
 * Creates and appends to the last node from the list,
@@ -97,4 +97,37 @@ int	token_single_append(t_token *last, char *str)
 	last->value = new;
 	last->dolar = -1;
 	return (i + 1);
+}
+
+
+/*
+* Creates and appends to the last node from the list.
++ Returns i, being the length of the added part of the string to.
++ this last node of the list, or a negative interger for error.*/
+int	token_word_append(t_token *last, char *str, t_data *data)
+{
+	int		i;
+	int		skip;
+	char	*buff;
+	char	*new;
+
+	i = 0;
+	skip = 0;
+	while (str[i] && !is_space(str[i]) && !is_operator(str[i])
+		&& !is_single(str[i]) && !is_double(str[i]))
+	{
+		if (str[i] == '$' && (str[i + 1] == '\'' || str[i + 1] == '\"'))
+		{
+			skip = 1;
+			break ;
+		}
+		i++;
+	}
+	buff = ft_substr(str, 0, i);
+	buff = expand_buff(buff, data);
+	new = ft_strjoin(last->value, buff);
+	free(buff);
+	free(last->value);
+	last->value = new;
+	return (i + skip);
 }
