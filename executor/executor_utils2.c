@@ -73,6 +73,7 @@ void	wait_for_last_child(t_data *data)
 	int	status;
 
 	i = -1;
+	status = 0;
 	while (++i < data->pid_count)
 	{
 		waitpid(data->pid_values[i], &status, 0);

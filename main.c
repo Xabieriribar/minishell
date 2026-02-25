@@ -31,6 +31,10 @@ t_data	*init_data(char **env_variables)
 	data->fd_in = 0;
 	data->fd_out = 0;
 	data->pid_values = malloc(sizeof(int) * 1024);
+	data->exit_true = 0;
+	data->ast_head = NULL;
+	data->token_head = NULL;
+	data->heredoc_file_index = 0;
 	return (data);
 }
 
