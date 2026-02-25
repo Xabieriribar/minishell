@@ -1,117 +1,143 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   executor.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
+/*   Updated: 2026/02/25 09:09:11 by rick             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-/*THIS FUNCTION MUST BE CALLED BEFORE EXECUTE_PIPELINE IS CALLED. WHY? WE MUST FILL THE TEMPORARY
-FILE DESCRIPTOR OF HEREDOC WHEN FINDING IT, LIKE THIS, WE DONT OVERCOMPLICATE OUR LIFE ON THE MAIN
-EXECUTOR*/
-
-char    *finds_directory(char *command, char *path)
+/*
+* Main execution logic for a single command node.
+*/
+void	execute_command(t_node *tree, t_data *data, int fd_in, int fd_out)
 {
-    char **directories_to_check;
-    int index;
-    char *result;
+	t_env	*path_env;
+	char	**env_arr;
+	char	*path;
 
-    index = 0;
-    directories_to_check = ft_split(path, ":");
-    while (directories_to_check[index])
-    {
-        result = ft_strjoin(directories_to_check[index], "/");
-        if (!result)
-            return (free_splits(directories_to_check, index), NULL);
-        result = ft_strjoin(result, command);
-        if (!result)
-            return (free_splits(directories_to_check, index), NULL);
-        if (access(result, F_OK | X_OK) != -1)
-            return (result);
-        free(result);
-        index++;
-    }
-    return (free_splits(directories_to_check, index), NULL);
+	close_if_not_stdin_or_stdout(fd_in, fd_out);
+	path_env = return_path(data->env_var);
+	if (!path_env)
+		perror("minishell: PATH not set");
+	path = get_path(tree->args[0], path_env->value, data);
+	env_arr = convert_env_var_to_array(data->env_var,
+			ft_env_var_lstsize(data->env_var));
+	if (execve(path, tree->args, env_arr) == -1)
+	{
+		perror("minishell: execve");
+		free(path);
+		free_splits(env_arr, -1);
+		free_all_and_exit(data, 127);
+	}
 }
 
-char    *get_path(char *command, char *path)
+/*
+* Logic for a child process within the pipeline.
+*/
+static void	child_process(t_node *tree, int fd_in, int fd_out, t_data *data)
 {
-    char    *result;
-    int     index;
+	int	i;
 
-    index = 0;
-    if (!path || !command)
-        return (NULL);
-    if (contains_slash(command))
-    {
-        if (!can_access(command, result))
-            return (NULL);
-        return (result);
-    }
-    result = finds_directory(command, path);
-    if (!result)
-        return (NULL);
-    return (result);
+	if (tree->redirs != NULL)
+	{
+		data->flag = 0;
+		update_fd(tree->redirs, &fd_in, &fd_out, data);
+	}
+	dup2(fd_in, STDIN_FILENO);
+	dup2(fd_out, STDOUT_FILENO);
+	i = 3;
+	if (!tree->args || !tree->args[0])
+	{
+		while (i < 1024)
+			close(i++);
+		free_all_and_exit(data, EXIT_SUCCESS);
+	}
+	set_signals_child();
+	if (run_bultins(tree->args, &(data->env_var), &data, fd_out) != -1)
+	{
+		while (i < 1024)
+			close(i++);
+		free_all_and_exit(data, data->exit_status);
+	}
+	while (i < 1024)
+		close(i++);
+	execute_command(tree, data, fd_in, fd_out);
 }
 
-void    execute_command(t_node *tree, t_env *env_var, int fd_in, int fd_out)
+/*
+* Recursively executes the pipeline of commands.
+*/
+void	execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
 {
-    t_env   *path_env_var;
-    char    **env_var;
-    char    *pathname;
+	pid_t	pid;
+	int		pfd[2];
 
-    if (tree->redirs != NULL)
-        update_fd(tree->redirs, &fd_in, &fd_out);
-    dup2(fd_in, 0);
-    dup2(fd_out, 1);
-    close_if_not_stdin_or_stdout(fd_in, fd_out);
-    path_env_var = return_path_node(env_var);
-    if (!path_env_var)
-        perror("Environment variable path doesnt exist");
-    pathname = get_path(tree->args[0], path_env_var);
-    if (!pathname)
-        exit(127);
-    env_var = convert_env_var_to_array(data->env, ft_env_var_lstsize(env_var)); 
-    if (execve(pathname, tree->args, env_var) != -1)
-    {
-        free(pathname);
-        free_splits(env_var, ft_env_var_lstsize(env_var));
-        perrror("Execve failed to execute");
-    }
-    exit(1);
+	if (tree->node_type == COMMAND)
+	{
+		pid = fork();
+		if (pid == 0)
+			child_process(tree, fd_in, fd_out, data);
+		if (fd_in != STDIN_FILENO)
+			close(fd_in);
+		if (fd_out != STDOUT_FILENO)
+			close(fd_out);
+		data->pid_values[data->pid_count++] = pid;
+	}
+	else
+	{
+		if (pipe(pfd) < 0)
+			perror("minishell: pipe failed");
+		execute_pipeline(tree->left_child, fd_in, pfd[1], data);
+		execute_pipeline(tree->right_child, pfd[0], fd_out, data);
+		close(pfd[1]);
+		close(pfd[0]);
+	}
 }
 
-void    wait_for_last_child(t_data *data)
+/*
+* Executes a single command builtin in the parent process.
+*/
+void	execute_parent_builtin(t_node *tree, t_data *data)
 {
-    int index;
-
-    index = 0;
-    while (index < data->(*pid_count))
-    {
-        waitpid(data->pid_values[index], data->(&status), 0);
-        if (WIFEXITED(data->status))
-            data->status = WEXITSTATUS(data->status);
-        index++;
-    }
+	data->fd_in = STDIN_FILENO;
+	data->fd_out = STDOUT_FILENO;
+	if (tree->redirs != NULL)
+	{
+		data->flag = 1;
+		if (update_fd(tree->redirs, &(data->fd_in),
+				&(data->fd_out), data) == -1)
+		{
+			data->exit_status = 1;
+			return ;
+		}
+	}
+	data->exit_true = run_bultins(tree->args, &(data->env_var),
+			&data, data->fd_out);
+	close_if_not_stdin_or_stdout(data->fd_in, data->fd_out);
 }
-void    execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
-{
-    pid_t   process_id;
-    t_env   *env_linked_list;
-    int     pipefdes[2];
 
-    if (tree->node_type == COMMAND)
-    {
-        process_id = fork();
-        if (process_id == 0)
-            execute_command(tree, env_linked_list, fd_in, fd_out);
-        if (fd_in != 0)
-            close(fd_in);
-        if (fd_out != 1)
-            close(fd_out);
-        data->pid_values[data->(*pid_count++)] = process_id;
-        return ;
-    }
-    else
-    {
-        if (pipe(pipefdes) < 0)
-            perror("First pipe failed to execute");
-        exeucte_pipeline(tree->left_child, fd_in, pipefdes[1]);
-        execute_pipeline(tree->right_child, pipefdes[0], fd_out);
-        wait_for_last_child(data);
-    }
+/*
+* Root execution function. Handles heredocs, parent builtins, and pipelines.
+*/
+void	execute(t_node *tree, t_data *data)
+{
+	data->heredoc_file_index = 0;
+	open_temporary_heredocs(tree, &(data->heredoc_file_index));
+	if (!tree->left_child && is_parent_builtin(tree->args[0]))
+		execute_parent_builtin(tree, data);
+	else
+	{
+		execute_pipeline(tree, STDIN_FILENO, STDOUT_FILENO, data);
+		set_signals_noninteractive();
+		wait_for_last_child(data);
+		if (data->heredoc_file_index != 0)
+			unlink_heredoc_files(tree);
+	}
+	set_signals_interactive();
 }

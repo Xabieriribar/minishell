@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 23:40:47 by rick              #+#    #+#             */
-/*   Updated: 2025/10/03 15:44:50 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/23 14:54:00 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	while (*s)
+	while (s && *s)
 	{
 		ft_putchar_fd(*s, fd);
 		s++;

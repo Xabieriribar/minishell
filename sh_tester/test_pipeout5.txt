@@ -1,0 +1,250 @@
+$
+>
+Makefile
+TODO
+append_only.txt
+$
+>
+Makefile
+TODO
+append_only.txt
+$
+>
+Makefile
+TODO
+a.txt
+$
+>
+Makefile
+TODO
+a.txt
+$
+>
+Makefile
+TODO
+a.txt
+$
+>
+Makefile
+TODO
+a.txt
+$
+>
+Makefile
+TODO
+a.txt
+$
+>
+Makefile
+TODO
+a.txt
+$
+>
+Makefile
+TODO
+a.txt
+$
+>
+Makefile
+TODO
+a.txt
+$
+>
+Makefile
+TODO
+a.txt
+$
+>
+Makefile
+TODO
+a.txt
+$
+>
+Makefile
+TODO
+a.txt
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+>
+$
+$? user ->$USER home -> $HOME
+0 user ->$USER home -> $HOME
+a1.txt
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000
+&&
+>
+$
+$? user ->$USER home -> $HOME
+000

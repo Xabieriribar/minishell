@@ -6,12 +6,12 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:35:34 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 11:11:31 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/18 10:03:59 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*
 static char *join_tokens(t_token *token)
 {
 	char *result;
@@ -97,4 +97,4 @@ int expander_test(char *address)
 	percentage = percentage * 100 / n_tests;
 	printf("\n%sPASSED TESTS:%s  [%i%%]%s\n", YELLOW, GREEN, percentage, RESET);
 	return (0);
-}
+}*/

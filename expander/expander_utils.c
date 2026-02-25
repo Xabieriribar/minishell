@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:15:06 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 11:16:03 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/24 19:45:42 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,53 @@ char	*ft_strconcat(char *s1, char *s2)
 		res[j++] = s2[i++];
 	res[j] = 0;
 	return (free(s1), res);
+}
+
+/*
+* Helper function that will append char by char
+* allocating +1 byte and helping to copy one by one.*/
+char	*append_char(char *str, char c)
+{
+	char	*new;
+	int		i;
+
+	i = 0;
+	if (!str)
+		new = ft_calloc(sizeof(char), 2);
+	else
+		new = ft_calloc(sizeof(char), ft_strlen(str) + 2);
+	if (!new)
+	{
+		if (str)
+			free(str);
+		return (perror("Err: Malloc"), NULL);
+	}
+	while (str && str[i])
+	{
+		new[i] = str[i];
+		i++;
+	}
+	new[i] = c;
+	if (str)
+		free(str);
+	return (new);
+}
+
+/*
+* Function returns a string value matching with thechar *key
+* in case of not finding it, returns NULL.*/
+char	*get_env_value(t_env *env, char *key)
+{
+	t_env	*ptr;
+	size_t	len;
+
+	ptr = env;
+	len = ft_strlen(key);
+	while (ptr)
+	{
+		if (ft_strncmp(key, ptr->key, len) == 0 && ptr->key[len] == '\0')
+			return (ptr->value);
+		ptr = ptr->next;
+	}
+	return (NULL);
 }

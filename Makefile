@@ -1,5 +1,5 @@
 CC       = cc
-CFLAGS   = -Wall -Wextra -Werror -g -I/usr/local/opt/readline/include
+CFLAGS   = -Wall -Wextra -Werror -g -c -I/usr/local/opt/readline/include
 LDFLAGS  = -L/usr/local/opt/readline/lib -lreadline
 INCLUDES = ./includes ./libs/libft ./libs/gnl
 
@@ -21,19 +21,16 @@ SRCS = \
 	tokenizer/token_append.c \
 	expander/expander.c \
 	expander/expander_utils.c \
-	expander/test_exp.c \
 	signals/signals.c \
-	parser/grammar_tester.c \
-	parser/grammar_validator.c \
-	parser/parser_utils.c \
 	built_in/cd.c \
 	built_in/pwd.c \
 	parser/create_tree_utils.c \
 	parser/create_tree.c \
-	parser/test_trees.c \
 	parser/free_tree.c \
 	executor/executor.c \
 	executor/executor_utils.c \
+	executor/executor_utils2.c \
+	executor/executor_utils3.c \
 	executor/execute_heredocs.c \
 	executor/execute_redirs.c \
 	executor/parse_env_vars.c \
@@ -44,9 +41,10 @@ SRCS = \
 	built_in/unset.c \
 	built_in/exit.c \
 	built_in/export.c \
-	parser/grammar_tester.c \
 	parser/grammar_validator.c \
+	parser/grammar_utils.c \
 	parser/parser_utils.c \
+	free/free.c
 
 # ------------- COMPILING ----------------
 

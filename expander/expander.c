@@ -6,65 +6,19 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 09:49:03 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 11:24:41 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/25 10:45:44 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*
-* Helper function that will append char by char
-* allocating +1 byte and helping to copy one by one.*/
-static char	*append_char(char *str, char c)
-{
-	char	*new;
-	int		i;
-
-	i = 0;
-	if (!str)
-		new = ft_calloc(sizeof(char), 2);
-	else
-		new = ft_calloc(sizeof(char), ft_strlen(str) + 2);
-	if (!new)
-	{
-		if (str)
-			free(str);
-		return (perror("Err: Malloc"), NULL);
-	}
-	while (str && str[i])
-	{
-		new[i] = str[i];
-		i++;
-	}
-	new[i] = c;
-	if (str)
-		free(str);
-	return (new);
-}
-
-/*
-* Helper function to handle the "$?" case, where we
-* need to access to the previous exit status, stored in
-* our global variable g_status.
-- (getenv() doesn´t return this.)*/
-static int	append_status(int *i, char *value, char **result)
-{
-	char	*status_str;
-
-	if (value[*i] != '?')
-		return (0);
-	(*i)++;
-	status_str = ft_itoa(g_status);
-	*result = ft_strconcat(*result, status_str);
-	free(status_str);
-	return (1);
-}
-
-/*
-* Helper function to handle the getenv() case, where we
+* Helper function to handle the get environment case, where we
 * add to our result the evironment variable value returned
-* by the function getenv().*/
-static int	append_getenv(char *env, char **result)
+* by the function get_env_value()
+- get_env_value() is our own getenv(), that gets the value but
+- from the list of environment variables.*/
+static int	append_getenv(char *env, char **result, t_data *data)
 {
 	char	*getval;
 	char	*new_res;
@@ -77,7 +31,7 @@ static int	append_getenv(char *env, char **result)
 		*result = new_res;
 		return (1);
 	}
-	getval = getenv(env);
+	getval = get_env_value(data->env_var, env);
 	if (!getval)
 		getval = "";
 	new_res = ft_strconcat(*result, getval);
@@ -88,41 +42,93 @@ static int	append_getenv(char *env, char **result)
 }
 
 /*
-* Main logic to append evironment variables and also
-* previous exit status after a dollar sign ($).*/
-static char	*append_env(t_token *token, int *i, char *result)
+* Helper function to handle the $?, in this case we dont get the data
+* from the list of environment variables, but instead, we get it
+* from the data->exit_code.*/
+static char	*handle_exit(char *result, int *i, t_data *data, char **env)
+{
+	char	*tmp;
+
+	*env = ft_itoa(data->exit_status);
+	if (!*env)
+		return (perror("Err: Malloc"), NULL);
+	tmp = ft_strconcat(result, *env);
+	if (!tmp)
+		return (perror("Err: Malloc"), NULL);
+	(*i)++;
+	return (tmp);
+}
+
+/*
+* Function to append to our result the environment variables, this
+* will modify the result, adding the environment variables to the string
+* and errasing the "KEY", if not found, it wont keep the "KEY"*/
+static char	*append_env(char *value, int *i, char *result, t_data *data)
 {
 	char	*env;
-	char	*val;
 
-	val = token->value;
 	(*i)++;
-	if (val[*i] == '\0')
+	if (value[*i] == '\0')
 		return (ft_strconcat(result, "$"));
-	if (append_status(i, val, &result))
-		return (result);
 	env = NULL;
-	while (val[*i] && valid_chars(val[*i]))
+	if (value[*i] == '?')
+		result = handle_exit(result, i, data, &env);
+	else
 	{
-		env = append_char(env, val[*i]);
-		if (!env)
+		while (value[*i] && valid_chars(value[*i]))
+		{
+			env = append_char(env, value[*i]);
+			if (!env)
+				return (perror("Err: Malloc"), NULL);
+			(*i)++;
+		}
+		append_getenv(env, &result, data);
+		if (!result)
 			return (perror("Err: Malloc"), NULL);
-		(*i)++;
 	}
-	append_getenv(env, &result);
-	if (!result)
-		return (perror("Err: Malloc"), NULL);
 	return (free(env), result);
 }
 
-char	*expander(t_token *token)
+/*
+* Expander used when appending a string to a token.*/
+char	*expand_buff(char *str, t_data *data)
+{
+	int		i;
+	char	*result;
+	char	*val;
+
+	i = 0;
+	result = NULL;
+	while (str && str[i] && !is_dollar(str[i]))
+		i++;
+	if (str[i] == '\0')
+		return (str);
+	val = str;
+	while (val && val[i])
+	{
+		if (is_dollar(val[i]))
+			result = append_env(str, &i, result, data);
+		else
+		{
+			result = append_char(result, val[i]);
+			i++;
+		}
+		if (!result)
+			return (perror("Err: Malloc"), NULL);
+	}
+	return (free(str), result);
+}
+
+/*
+* Expander used when creating a token.*/
+char	*expander(t_token *token, t_data *data)
 {
 	int		i;
 	char	*result;
 	char	*val;
 
 	if (token->dolar != 1
-		|| ((token->value[0] == '$' && token->value[1] == '\0')))
+		|| (token->value[0] == '$' && token->value[1] == '\0'))
 		return (token->value);
 	i = 0;
 	result = NULL;
@@ -130,7 +136,7 @@ char	*expander(t_token *token)
 	while (val && val[i])
 	{
 		if (is_dollar(val[i]))
-			result = append_env(token, &i, result);
+			result = append_env(token->value, &i, result, data);
 		else
 		{
 			result = append_char(result, val[i]);

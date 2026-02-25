@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 11:40:25 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 11:20:53 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/24 20:10:40 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	skip_spaces(char **str, int *separated);
 * also setting up their indexes and value.
 + The return value is a pointer to the first element of the list */
 // --------- VER INDICES EN VEZ DE PUNTEROS EN STR ITERERATION ------/
-t_token	*init_list(char *str)
+t_token	*init_list(char *str, t_data *data)
 {
 	t_token	*head;
 	int		token_number;
@@ -49,7 +49,7 @@ t_token	*init_list(char *str)
 		skip_spaces(&str, &separated);
 		if (!*str)
 			break ;
-		len = init_add_token(&head, str, token_number, separated);
+		len = init_add_token(&head, str, separated, data);
 		if (len < 0)
 			return (perror("Failed token creation"), free_tokens(&head), NULL);
 		str += len;
@@ -70,34 +70,51 @@ static void	skip_spaces(char **str, int *separated)
 	}
 }
 
+static int	ft_t_lstsize(t_token *token)
+{
+	int		i;
+	t_token	*ptr;
+
+	if (!token)
+		return (0);
+	i = 1;
+	ptr = token;
+	while (ptr->next != NULL)
+	{
+		i++;
+		ptr = ptr->next;
+	}
+	return (i);
+}
+
 /*
 * Helper function, runs the token creation function for each case.
 + Returns the length of the sring "value" created in that node
 + or a negative interger for error.*/
-int	init_add_token(t_token **head, char *str, int ix, int separated)
+int	init_add_token(t_token **head, char *str, int sep, t_data *data)
 {
 	t_token	*last;
 
 	last = lstlast_token(*head);
 	if (is_operator(*str))
-		return (token_operator(head, str, ix));
-	if (!separated && last && last->type == T_WORD)
+		return (token_operator(head, str, ft_t_lstsize(*head)));
+	if (!sep && last && last->type == T_WORD)
 	{
 		if (is_double(*str))
-			return (token_double_append(last, str));
+			return (token_double_append(last, str, data));
 		else if (is_single(*str))
 			return (token_single_append(last, str));
 		else
-			return (token_word_append(last, str));
+			return (token_word_append(last, str, data));
 	}
 	else
 	{
 		if (is_double(*str))
-			return (token_double(head, str, ix));
+			return (token_double(head, str, ft_t_lstsize(*head), data));
 		else if (is_single(*str))
-			return (token_single(head, str, ix));
+			return (token_single(head, str, ft_t_lstsize(*head)));
 		else
-			return (token_word(head, str, ix));
+			return (token_word(head, str, ft_t_lstsize(*head), data));
 	}
 }
 

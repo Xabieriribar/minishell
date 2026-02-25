@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:48 by rick              #+#    #+#             */
-/*   Updated: 2026/02/16 14:52:12 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/24 19:57:12 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	is_n_flag(char *str)
 
 	if (!str || str[0] != '-')
 		return (false);
-	if (!str[1]) 
+	if (!str[1])
 		return (false);
 	i = 1;
 	while (str[i])
@@ -30,13 +30,18 @@ static bool	is_n_flag(char *str)
 	return (true);
 }
 
-int	b_echo(char **args)
+int	b_echo(char **args, int out_nmb)
 {
 	int		i;
 	bool	n_flag;
 
 	i = 1;
 	n_flag = false;
+	if (!args[1])
+	{
+		ft_putstr_fd("\n", out_nmb);
+		return (0);
+	}
 	while (args[i] && is_n_flag(args[i]))
 	{
 		n_flag = true;
@@ -44,12 +49,12 @@ int	b_echo(char **args)
 	}
 	while (args[i])
 	{
-		ft_putstr_fd(args[i], STDOUT_FILENO);
+		ft_putstr_fd(args[i], out_nmb);
 		if (args[i + 1])
-			write(STDOUT_FILENO, " ", 1);
+			write(out_nmb, " ", 1);
 		i++;
 	}
 	if (!n_flag)
-		write(STDOUT_FILENO, "\n", 1);
+		write(out_nmb, "\n", 1);
 	return (0);
 }

@@ -1,0 +1,120 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   executor_utils2.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/23 13:34:47 by rspinell          #+#    #+#             */
+/*   Updated: 2026/02/25 09:23:25 by rick             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+/*
+* Iterates through PATH directories to find the executable binary.
+*/
+char	*finds_directory(char *command, char *path, t_data *data)
+{
+	char	**dirs;
+	int		i;
+	char	*res;
+	char	*tmp;
+
+	i = 0;
+	if (!ft_strncmp(command, "..", 3) || !ft_strncmp(command, "", 2))
+		command_not_found_error(command, data);
+	dirs = ft_split(path, ':');
+	if (!dirs)
+		return (NULL);
+	while (dirs[i])
+	{
+		tmp = ft_strjoin(dirs[i], "/");
+		res = ft_strjoin(tmp, command);
+		free(tmp);
+		if (res && access(res, F_OK) != -1)
+			return (free_splits(dirs, i), res);
+		free(res);
+		i++;
+	}
+	free_splits(dirs, i);
+	return (command_not_found_error(command, data), NULL);
+}
+
+/*
+* Determines the full path of a command, handling absolute/relative paths.
+*/
+char	*get_path(char *command, char *path, t_data *data)
+{
+	char	*final_path;
+	int		flag;
+
+	flag = 0;
+	if (!path || !command)
+		return (NULL);
+	if (!contains_slash(command))
+	{
+		final_path = finds_directory(command, path, data);
+		flag = 1;
+	}
+	else
+		final_path = command;
+	check_possible_errors(final_path, data, flag);
+	return (final_path);
+}
+
+/*
+* Waits for all child processes in a pipeline and updates the exit status.
+*/
+void	wait_for_last_child(t_data *data)
+{
+	int	i;
+	int	status;
+
+	i = -1;
+	while (++i < data->pid_count)
+	{
+		waitpid(data->pid_values[i], &status, 0);
+		if (WIFEXITED(status))
+			data->exit_status = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status))
+		{
+			data->exit_status = 128 + WTERMSIG(status);
+			if (i == data->pid_count - 1 && WTERMSIG(status) == SIGINT)
+				write(STDOUT_FILENO, "\n", 1);
+			else if (i == data->pid_count - 1 && WTERMSIG(status) == SIGQUIT)
+				write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
+		}
+	}
+}
+
+/*
+* Handles specific error cases for pathnames and exits the child process.
+*/
+void	check_possible_errors(char *cmd, t_data *data, int flag)
+{
+	struct stat	st;
+
+	if (stat(cmd, &st) == -1)
+		no_such_file_or_directory_error(cmd, data, flag);
+	if (S_ISDIR(st.st_mode))
+		is_a_directory_error(cmd, data);
+	if (access(cmd, X_OK) == -1)
+		permission_denied_error(cmd, data, flag);
+}
+
+int	is_parent_builtin(char *str)
+{
+	if (!str || !*str)
+		return (0);
+	if (!ft_strncmp(str, "exit", 5))
+		return (1);
+	if (!ft_strncmp(str, "cd", 3))
+		return (1);
+	if (!ft_strncmp(str, "unset", 6))
+		return (1);
+	if (!ft_strncmp(str, "export", 7))
+		return (1);
+	return (0);
+}

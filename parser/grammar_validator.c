@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grammar_validator.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiribar <xiribar@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/12 19:28:36 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/23 13:42:25 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ int	ft_check_pipes(t_token *head)
 	lst_len = ft_token_lstsize(head);
 	lst_index = 1;
 	if (head->type == T_PIPE)
-		return (printf("parse error near '|'\n"), 1);
+		return (ft_putstr_fd(PIPE_ERR_MSG, 2), 1);
 	while (head)
 	{
 		if (head->type == T_PIPE)
 		{
 			if (lst_len == lst_index)
-				return (printf("parse error near '|'\n"), 1);
+				return (ft_putstr_fd(PIPE_ERR_MSG, 2), 1);
 			else if (head->next && head->next->type == T_PIPE)
-				return (printf("parse error near '|'\n"), 1);
+				return (ft_putstr_fd(PIPE_ERR_MSG, 2), 1);
 			else if (head->prev && head->prev->type == T_REDIR_IN)
-				return (printf("parse error near '|'\n"), 1);
+				return (ft_putstr_fd(PIPE_ERR_MSG, 2), 1);
 		}
 		lst_index++;
 		head = head->next;
@@ -73,6 +73,12 @@ int	ft_check_redirs(t_token *head)
 
 int	grammar_validator(t_token *head)
 {
+	if (!ft_strncmp(head->value, ".", 2))
+	{
+		ft_putstr_fd(".: usage: . filename [arguments]\n",
+			STDERR_FILENO);
+		return (1);
+	}
 	if (ft_check_simple_commands(head) == 0)
 		return (0);
 	else if (ft_check_pipes(head) != 0)
