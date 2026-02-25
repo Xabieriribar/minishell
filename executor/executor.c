@@ -111,6 +111,7 @@ void	execute_parent_builtin(t_node *tree, t_data *data)
 		if (update_fd(tree->redirs, &(data->fd_in),
 				&(data->fd_out), data) == -1)
 		{
+			no_such_file_or_directory_error(tree->redirs->filename, data, 1);
 			data->exit_status = 1;
 			return ;
 		}
