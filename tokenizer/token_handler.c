@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:26:07 by rick              #+#    #+#             */
-/*   Updated: 2026/02/24 19:50:28 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/25 11:02:29 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ static bool	valid_c(char c)
 * Creates and appends node in case of finding word.
 + Returns the length of the sring "value".
 + or a negative interger for error.*/
-int	token_word(t_token **head, char *str, int ix, t_data *data)
+/* int	token_word(t_token **head, char *str, int ix, t_data *data)
 {
 	int		i;
 	char	*buff;
@@ -144,4 +144,37 @@ int	token_word(t_token **head, char *str, int ix, t_data *data)
 	i = (int)ft_strlen(token->value);
 	token->value = expander(token, data);
 	return (free(buff), i);
+}
+ */
+
+/*
+* Creates and appends node in case of finding word.
++ Returns the length of the sring "value".
++ or a negative interger for error.*/
+int	token_word(t_token **head, char *str, int ix, t_data *data)
+{
+	int		i;
+	int		skip;
+	t_token	*token;
+
+	token = ft_calloc(sizeof(t_token), 1);
+	if (!token)
+		return (perror("Err: Malloc"), -1);
+	set_init(token, str, ix, 2);
+	i = 0;
+	skip = 0;
+	while (valid_c(str[i]))
+	{
+		if (str[i] == '$' && (str[i + 1] == '\'' || str[i + 1] == '\"'))
+		{
+			skip = 1;
+			break ;
+		}
+		i++;
+	}
+	token->value = ft_substr(str, 0, i);
+	lst_add_back_token(head, token);
+	set_dolar(token);
+	token->value = expander(token, data);
+	return (i + skip);
 }

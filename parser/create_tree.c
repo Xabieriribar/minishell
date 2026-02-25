@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_tree.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/23 17:18:11 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/25 10:30:15 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	create_multiple_args(t_node *node, t_token *token_list)
 			token_list = token_list->next->next;
 			continue ;
 		}
-		if (token_list->value && token_list->value[0] != '\0')
+		if (token_list->value)
 		{
 			node->args[index] = token_list->value;
 			token_list = token_list->next;
