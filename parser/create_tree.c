@@ -61,7 +61,7 @@ int	create_multiple_args(t_node *node, t_token *token_list)
 			token_list = token_list->next->next;
 			continue ;
 		}
-		if (token_list->value && token_list->value[0] != '\0')
+		if (token_list->value)
 		{
 			node->args[index] = token_list->value;
 			token_list = token_list->next;

@@ -27,6 +27,13 @@ static int	handle_in_redir(t_redirs *redir, int *fd_in, t_data *data)
 	{
 		if (data->flag)
 			return (-1);
+		if (!ft_strncmp(redir->filename, "", 2))
+		{
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(redir->filename, 2);
+			ft_putstr_fd("ambiguous redirect\n", 2);
+			free_all_and_exit(data, 1);
+		}
 		check_possible_errors(redir->filename, data, 1);
 	}
 	return (0);

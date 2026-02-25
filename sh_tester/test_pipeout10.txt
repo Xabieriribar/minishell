@@ -1,6 +1,6 @@
 daemon
 usbmux
-avahi-autoipd
 avahi
-fwupd-refresh
 colord
+pulse
+nslcd

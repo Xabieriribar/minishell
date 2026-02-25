@@ -23,7 +23,7 @@ char	*finds_directory(char *command, char *path, t_data *data)
 	char	*tmp;
 
 	i = 0;
-	if (!ft_strncmp(command, "..", 3))
+	if (!ft_strncmp(command, "..", 3) || !ft_strncmp(command, "", 2))
 		command_not_found_error(command, data);
 	dirs = ft_split(path, ':');
 	if (!dirs)

@@ -41,9 +41,9 @@ int	ft_is_append_or_heredoc(t_type type)
 int	ft_handle_error_message(t_type redir_type)
 {
 	if (redir_type == T_REDIR_APPEND)
-		return (ft_putstr_fd("parse error near '>>'\n", 2), 1);
+		return (ft_putstr_fd("syntax error near unexpected token `>>'\n", 2), 1);
 	else if (redir_type == T_HEREDOC)
-		return (ft_putstr_fd("parse error near '<<'\n", 2), 1);
+		return (ft_putstr_fd("syntax error near unexpected token `>>'\n", 2), 1);
 	else if (redir_type != T_HEREDOC && redir_type != T_REDIR_APPEND)
 		return (ft_putstr_fd("syntax error near unexpected token `|'\n", 2), 1);
 	return (0);
@@ -54,7 +54,7 @@ int	ft_handle_redirs(t_token *head, int lst_len, int lst_index)
 	if (ft_is_redir(head->type) == 0)
 	{
 		if (lst_len == lst_index)
-			return (ft_putstr_fd("parse error near 'newline'\n", 2), 1);
+			return (ft_putstr_fd("syntax error near unexpected token `newline'\n", 2), 1);
 		else if (head->next->type != T_WORD)
 		{
 			if (ft_handle_error_message(head->next->type) != 0)

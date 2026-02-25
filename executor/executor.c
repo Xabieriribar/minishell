@@ -52,7 +52,7 @@ static void	child_process(t_node *tree, int fd_in, int fd_out, t_data *data)
 	dup2(fd_in, STDIN_FILENO);
 	dup2(fd_out, STDOUT_FILENO);
 	i = 3;
-	if (!tree->args || !tree->args[0] || !tree->args[0][0])
+	if (!tree->args || !tree->args[0])
 	{
 		while (i < 1024)
 			close(i++);
