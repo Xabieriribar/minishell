@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/24 23:06:49 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/25 09:09:11 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	child_process(t_node *tree, int fd_in, int fd_out, t_data *data)
 			close(i++);
 		free_all_and_exit(data, EXIT_SUCCESS);
 	}
+	set_signals_child();
 	if (run_bultins(tree->args, &(data->env_var), &data, fd_out) != -1)
 	{
 		while (i < 1024)
@@ -133,8 +134,10 @@ void	execute(t_node *tree, t_data *data)
 	else
 	{
 		execute_pipeline(tree, STDIN_FILENO, STDOUT_FILENO, data);
+		set_signals_noninteractive();
 		wait_for_last_child(data);
 		if (data->heredoc_file_index != 0)
 			unlink_heredoc_files(tree);
 	}
+	set_signals_interactive();
 }

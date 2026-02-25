@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 13:34:47 by rspinell          #+#    #+#             */
-/*   Updated: 2026/02/23 17:44:24 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/02/25 09:19:01 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,26 @@ char	*get_path(char *command, char *path, t_data *data)
 /*
 * Waits for all child processes in a pipeline and updates the exit status.
 */
-void	wait_for_last_child(t_data *data)
+void    wait_for_last_child(t_data *data)
 {
-	int	i;
+    int i;
+    int status;
 
-	i = 0;
-	while (i < data->pid_count)
-	{
-		waitpid(data->pid_values[i], &(data->exit_status), 0);
-		if (WIFEXITED(data->exit_status))
-			data->exit_status = WEXITSTATUS(data->exit_status);
-		else if (WIFSIGNALED(data->exit_status))
-			data->exit_status = 128 + WTERMSIG(data->exit_status);
-		i++;
-	}
+    i = -1;
+    while (++i < data->pid_count)
+    {
+        waitpid(data->pid_values[i], &status, 0);
+        if (WIFEXITED(status))
+            data->exit_status = WEXITSTATUS(status);
+        else if (WIFSIGNALED(status))
+        {
+            data->exit_status = 128 + WTERMSIG(status);
+            if (i == data->pid_count - 1 && WTERMSIG(status) == SIGINT)
+                write(STDOUT_FILENO, "\n", 1);
+            else if (i == data->pid_count - 1 && WTERMSIG(status) == SIGQUIT)
+                write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
+        }
+    }
 }
 
 /*
