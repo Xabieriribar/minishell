@@ -24,7 +24,7 @@ void	execute_command(t_node *tree, t_data *data, int fd_in, int fd_out)
 	close_if_not_stdin_or_stdout(fd_in, fd_out);
 	path_env = return_path(data->env_var);
 	if (!path_env)
-		perror("minishell: PATH not set");
+		no_such_file_or_directory_error(tree->args[0], data, 0);
 	path = get_path(tree->args[0], path_env->value, data);
 	env_arr = convert_env_var_to_array(data->env_var,
 			ft_env_var_lstsize(data->env_var));

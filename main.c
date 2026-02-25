@@ -89,6 +89,7 @@ static void	shell_loop(t_data *data)
 		input = readline(PROMPT);
 		if (!input)
 		{
+			ft_putstr_fd("exit\n", STDOUT_FILENO);
 			free_env_vars(&(data->env_var));
 			rl_clear_history();
 			exit(0);

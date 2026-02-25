@@ -55,6 +55,7 @@ static int	handle_out_redir(t_redirs *redir, int *fd_out, t_data *data)
 	{
 		if (data->flag)
 			return (-1);
+		printf("HERE?");
 		check_possible_errors(redir->filename, data, 1);
 	}
 	return (0);
