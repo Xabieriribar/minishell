@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 15:08:57 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/25 17:53:32 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,7 @@ t_data	*init_data(char **env_variables)
 	data->recursive_call_counter = 0;
 	data->fd_in = 0;
 	data->fd_out = 0;
-	data->i = 0;
 	data->pid_values = malloc(sizeof(int) * 1024);
-	data->exit_true = 0;
-	data->ast_head = NULL;
-	data->token_head = NULL;
-	data->heredoc_file_index = 0;
 	return (data);
 }
 
