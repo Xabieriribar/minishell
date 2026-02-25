@@ -30,6 +30,7 @@ t_data	*init_data(char **env_variables)
 	data->recursive_call_counter = 0;
 	data->fd_in = 0;
 	data->fd_out = 0;
+	data->i = 0;
 	data->pid_values = malloc(sizeof(int) * 1024);
 	data->exit_true = 0;
 	data->ast_head = NULL;
