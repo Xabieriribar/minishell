@@ -105,6 +105,7 @@ typedef struct s_node
 
 typedef struct s_data
 {
+	int		i;
 	int		exit_status;
 	int		heredoc_file_index;
 	int		flag;
