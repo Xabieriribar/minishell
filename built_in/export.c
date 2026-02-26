@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:48:07 by rick              #+#    #+#             */
-/*   Updated: 2026/02/20 15:12:09 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/26 18:11:07 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	sort_and_print_export(t_env *env, int out_nmb)
 	int		i;
 
 	size = env_list_size(env);
-	arr = malloc(sizeof(t_env *) * size);
+	arr = ft_calloc(sizeof(t_env *), size);
 	if (!arr)
 		return ;
 	i = 0;

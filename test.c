@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maain.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 18:19:33 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/26 17:13:21 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ static void	run_c_flag(char *arg, t_data *data)
 	}
 	free_splits(arg_input, -1);
 }
-/* 
+
 int	main(int ac, char **av, char **ep)
 {
 	t_data	*data;
@@ -128,4 +128,3 @@ int	main(int ac, char **av, char **ep)
 	rl_clear_history();
 	return (exit_code);
 }
- */

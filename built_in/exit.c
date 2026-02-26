@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:48:02 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 15:00:21 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/26 18:04:21 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ static bool	off_limits(long long exit_code, char c, int sign)
 	return (false);
 }
 
+static int	set_sign(char *arg, int *ix)
+{
+	int	sign;
+
+	sign = 1;
+	if ((arg[*ix] == '+') || (arg[*ix] == '-'))
+	{
+		if (arg[*ix] == '-')
+			sign *= -1;
+		*ix = *ix + 1;
+	}
+	return (sign);
+}
+
 /*
 * The "atoi" of exit, works with a long long handling the respective
 * overflow, and modifing the exit_code value according to the
@@ -42,14 +56,10 @@ static bool	valid_number(char *arg, long long *exit_code)
 	int	ix;
 
 	ix = 0;
-	sign = 1;
 	skip_spaces(arg, &ix);
-	if ((arg[ix] == '+') || (arg[ix] == '-'))
-	{
-		if (arg[ix] == '-')
-			sign *= -1;
-		ix++;
-	}
+	sign = set_sign(arg, &ix);
+	if ((arg[ix] < '0') || (arg[ix] > '9'))
+		return (false);
 	while ((arg[ix] >= '0') && (arg[ix] <= '9'))
 	{
 		if (off_limits(*exit_code, arg[ix], sign))
@@ -76,10 +86,10 @@ int	b_exit(char **arr, t_data **data)
 
 	exit_code = 0;
 	if (!arr[1])
-		return (-42);
+		return (ft_putstr_fd("exit\n", STDERR_FILENO), -42);
 	if (!valid_number(arr[1], &exit_code))
 	{
-		ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
+		ft_putstr_fd("exit\nminishell: exit: ", STDERR_FILENO);
 		ft_putstr_fd(arr[1], STDERR_FILENO);
 		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
 		(*data)->exit_status = 2;

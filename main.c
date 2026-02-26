@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 17:53:32 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/26 18:09:02 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,17 @@ t_data	*init_data(char **env_variables)
 {
 	t_data	*data;
 
-	data = malloc(sizeof(struct s_data));
+	data = ft_calloc(sizeof(struct s_data), 1);
 	if (!data)
 		return (perror("Err: Malloc"), NULL);
 	data->env_var = init_env_list(env_variables);
 	data->exit_status = 0;
+	data->exit_true = 0;
 	data->pid_count = 0;
 	data->recursive_call_counter = 0;
 	data->fd_in = 0;
 	data->fd_out = 0;
-	data->pid_values = malloc(sizeof(int) * 1024);
+	data->pid_values = ft_calloc(sizeof(int), 1024);
 	return (data);
 }
 

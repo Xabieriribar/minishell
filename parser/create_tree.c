@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 10:30:15 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/26 18:13:53 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_node	*create_node(t_type node_type)
 
 	if (node_type == T_PIPE)
 	{
-		node = malloc(sizeof(struct s_node));
+		node = ft_calloc(sizeof(struct s_node), 1);
 		if (!node)
 			return (NULL);
 		node->node_type = PIPE;

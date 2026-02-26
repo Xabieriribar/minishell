@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:15:06 by rick              #+#    #+#             */
-/*   Updated: 2026/02/24 19:45:42 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/26 18:11:56 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strconcat(char *s1, char *s2)
 		return (s1);
 	if (!s1)
 		return (ft_strdup(s2));
-	res = (char *) malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	res = (char *) ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
 	if (!res)
 		return (NULL);
 	while (s1[i])

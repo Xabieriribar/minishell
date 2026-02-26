@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 14:59:15 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/26 17:08:50 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int			init_add_token(t_token **head, char *str, int sep, t_data *data);
 int			token_operator(t_token **head, char *str, int ix);
 int			token_single(t_token **head, char *str, int ix);
 int			token_double(t_token **head, char *str, int ix, t_data *data);
-int			token_word(t_token **head, char *str, int ix, t_data *data);
+int			token_word(t_token **head, char *s, int ix, t_data *data);
 
 int			token_single_append(t_token *last, char *str);
 int			token_double_append(t_token *last, char *str, t_data *data);
