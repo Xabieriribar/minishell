@@ -17,3 +17,148 @@ Tenemos leaks en el proceso? El cuarto paso, una vez tengamos comandos simples y
 del shell en todos los edge cases? El quinto paso es introducir los pipes. Funcionan comandos simples unidos por un pipe? Captura el exit code del ultimo child? Gestioan los errores igual que en el shell?
 Que pasa si el primer pipe el infile esta mal? Se reproduce el comando igual? Si el infile y el comando que viene esta mal pero el resto bien? Se sigue ejecutando la serie? Que pasa si el comando del ultimo pipe esta mal 
 
+
+RICK::
+
+[020]----------------------------------------
+command: echo $''USER
+stdout.................................. KO
+--> Bash stdout:
+USER
+--> Minishell stdout:
+
+stderr.................................. OK
+exit code............................... KO
+--> Bash exit code: 0
+--> Minishell exit code: 127
+
+[019]----------------------------------------
+command: echo $""USER
+stdout.................................. KO
+--> Bash stdout:
+USER
+--> Minishell stdout:
+
+stderr.................................. OK
+exit code............................... KO
+--> Bash exit code: 0
+--> Minishell exit code: 127
+
+[014]----------------------------------------
+command: echo $USE''R
+stdout.................................. KO
+--> Bash stdout:
+R
+--> Minishell stdout:
+
+stderr.................................. OK
+exit code............................... KO
+--> Bash exit code: 0
+--> Minishell exit code: 127
+
+[024]----------------------------------------
+command: exit ' '
+stdout.................................. OK
+stderr.................................. KO
+--> Bash stderr:
+bash: line 1: exit:  : numeric argument required
+
+--> Minishell stderr:
+
+exit code............................... KO
+--> Bash exit code: 2
+--> Minishell exit code: 0
+
+[017]----------------------------------------
+command: exit - 42
+stdout.................................. OK
+stderr.................................. KO
+--> Bash stderr:
+bash: line 1: exit: -: numeric argument required
+
+--> Minishell stderr:
+exit
+minishell: exit: too many arguments
+
+exit code............................... KO
+--> Bash exit code: 2
+--> Minishell exit code: 1
+
+[018]----------------------------------------
+command: exit + 42
+stdout.................................. OK
+stderr.................................. KO
+--> Bash stderr:
+bash: line 1: exit: +: numeric argument required
+
+--> Minishell stderr:
+exit
+minishell: exit: too many arguments
+
+exit code............................... KO
+--> Bash exit code: 2
+--> Minishell exit code: 1
+
+[019]----------------------------------------
+command: exit "0"
+stdout.................................. OK
+stderr.................................. OK
+exit code............................... OK
+
+[020]----------------------------------------
+command: exit '0'
+stdout.................................. OK
+stderr.................................. OK
+exit code............................... OK
+
+[021]----------------------------------------
+command: exit ""
+stdout.................................. OK
+stderr.................................. KO
+--> Bash stderr:
+bash: line 1: exit: : numeric argument required
+
+--> Minishell stderr:
+
+exit code............................... KO
+--> Bash exit code: 2
+--> Minishell exit code: 0
+
+[022]----------------------------------------
+command: exit ''
+stdout.................................. OK
+stderr.................................. KO
+--> Bash stderr:
+bash: line 1: exit: : numeric argument required
+
+--> Minishell stderr:
+
+exit code............................... KO
+--> Bash exit code: 2
+--> Minishell exit code: 0
+
+[023]----------------------------------------
+command: exit " "
+stdout.................................. OK
+stderr.................................. KO
+--> Bash stderr:
+bash: line 1: exit:  : numeric argument required
+
+--> Minishell stderr:
+
+exit code............................... KO
+--> Bash exit code: 2
+--> Minishell exit code: 0
+
+[024]----------------------------------------
+command: exit ' '
+stdout.................................. OK
+stderr.................................. KO
+--> Bash stderr:
+bash: line 1: exit:  : numeric argument required
+
+--> Minishell stderr:
+
+exit code............................... KO
+--> Bash exit code: 2
+--> Minishell exit code: 0

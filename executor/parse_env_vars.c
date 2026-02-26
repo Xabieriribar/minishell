@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_heredocs.c                                 :+:      :+:    :+:   */
+/*   parse_env_vars.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/20 15:01:11 by marvin           ###   ########.fr       */
+/*   Updated: 2026/02/26 18:11:45 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**convert_env_var_to_array(t_env *env_var, int lstsize)
 
 	if (!env_var)
 		return (NULL);
-	result = malloc(sizeof(char *) * (lstsize + 1));
+	result = ft_calloc(sizeof(char *), (lstsize + 1));
 	if (!result)
 		return (NULL);
 	i = 0;

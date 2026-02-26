@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 14:26:07 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 14:30:38 by rick             ###   ########.fr       */
+/*   Updated: 2026/02/26 17:08:08 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ static bool	valid_c(char c)
 * Creates and appends node in case of finding word.
 + Returns the length of the sring "value".
 + or a negative interger for error.*/
-int	token_word(t_token **head, char *str, int ix, t_data *data)
+int	token_word(t_token **head, char *s, int ix, t_data *data)
 {
 	int		i;
 	int		skip;
@@ -126,17 +126,17 @@ int	token_word(t_token **head, char *str, int ix, t_data *data)
 	token = ft_calloc(sizeof(t_token), 1);
 	if (!token)
 		return (-1);
-	set_init(token, str, ix, 2);
+	set_init(token, s, ix, 2);
 	i = -1;
 	skip = 0;
-	while (valid_c(str[++i]))
-		if (str[i] == '$' && (str[i + 1] == '\''
-				|| str[i + 1] == '\"') && ++skip)
+	while (valid_c(s[++i]))
+		if (s[i] == '$' && (s[i + 1] == '\'' || s[i + 1] == '\"') && ++skip)
 			break ;
-	token->value = ft_substr(str, 0, i);
+	token->value = ft_substr(s, 0, i);
 	set_dolar(token);
 	token->value = expander(token, data);
-	if (token->value && token->value[0])
+	if ((token->value && token->value[0]) || (s[i + skip]
+			&& !is_space(s[i + skip]) && !is_operator(s[i + skip])))
 		lst_add_back_token(head, token);
 	else
 	{
