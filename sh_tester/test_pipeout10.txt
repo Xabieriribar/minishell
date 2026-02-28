@@ -1,6 +1,0 @@
-daemon
-usbmux
-avahi
-colord
-pulse
-nslcd
