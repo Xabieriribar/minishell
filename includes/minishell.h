@@ -106,7 +106,7 @@ typedef struct s_node
 typedef struct s_data
 {
 	long	max_fd;
-	int		i;
+	long	i;
 	int		exit_status;
 	int		heredoc_file_index;
 	int		flag;
