@@ -28,6 +28,7 @@ t_data	*init_data(char **env_variables)
 	data->exit_status = 0;
 	data->exit_true = 0;
 	data->pid_count = 0;
+	data->max_fd = sysconf(_SC_OPEN_MAX);
 	data->recursive_call_counter = 0;
 	data->fd_in = 0;
 	data->fd_out = 0;
