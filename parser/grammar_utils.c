@@ -54,12 +54,7 @@ int	ft_handle_redirs(t_token *head, int lst_len, int lst_index)
 	if (ft_is_redir(head->type) == 0)
 	{
 		if (lst_len == lst_index)
-		{
-			if (!head->next)
-				return (ft_putstr_fd(REDIR_ERR_MSG, 2), 1);
-			if (head->next->was_expanded)
-				return (0);
-		}
+			return (ft_putstr_fd(REDIR_ERR_MSG, 2), 1);
 		else if (head->next->type != T_WORD)
 		{
 			if (ft_handle_error_message(head->next->type) != 0)

@@ -18,34 +18,31 @@
 * If a file cannot be opened, it either returns an error (parent) 
 * or exits cleanly (child).
 */
-static int	check_for_ambiguous_error(t_redirs *redir, t_data *data)
+static int	check_for_ambiguous_error(t_redirs *redir)
 {
 	if (!ft_strncmp(redir->filename, "", 2))
-	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(redir->filename, 2);
-		ft_putstr_fd("ambiguous redirect\n", 2);
-		free_all_and_exit(data, 1);
-	}
-	else if ()
-	return (0);
+		return (0);	
+	else if (ft_strchr(redir->filename, ' ') && redir->was_expanded)
+		return (0);
+	return (1);
 }
+
 static int	handle_in_redir(t_redirs *redir, int *fd_in, t_data *data)
 {
 	if (*fd_in != STDIN_FILENO)
 		close(*fd_in);
 	*fd_in = open(redir->filename, O_RDONLY, 0644);
+	if (!check_for_ambiguous_error(redir))
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(redir->filename, 2);
+		ft_putstr_fd(": ambiguous redirect\n", 2);
+		free_all_and_exit(data, 1);
+	}
 	if (*fd_in < 0)
 	{
 		if (data->flag)
 			return (-1);
-		if (!check_for_ambiguous_erorr(redir, data))
-		{
-			ft_putstr_fd("minishell: ", 2);
-			ft_putstr_fd(redir->filename, 2);
-			ft_putstr_fd("ambiguous redirect\n", 2);
-			free_all_and_exit(data, 1);
-		}
 		check_possible_errors(redir->filename, data, 1);
 	}
 	return (0);
@@ -63,6 +60,13 @@ static int	handle_out_redir(t_redirs *redir, int *fd_out, t_data *data)
 		*fd_out = open(redir->filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (redir->redir_type == T_REDIR_APPEND)
 		*fd_out = open(redir->filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	if (!check_for_ambiguous_error(redir))
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(redir->filename, 2);
+		ft_putstr_fd(": ambiguous redirect\n", 2);
+		free_all_and_exit(data, 1);
+	}
 	if (*fd_out < 0)
 	{
 		if (data->flag)

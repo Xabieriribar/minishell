@@ -36,12 +36,22 @@ void	create_redirs_list(t_node *node, t_token *pointer_to_redir_token)
 	t_redirs	*new_node;
 
 	if (!node->redirs)
+	{
 		node->redirs = ft_lstnew_redirs(pointer_to_redir_token->next->value,
 				pointer_to_redir_token->type);
+		if (pointer_to_redir_token->next->was_expanded)
+			node->redirs->was_expanded = 1;
+		else
+			node->redirs->was_expanded = 0;
+	}
 	else
 	{
 		new_node = ft_lstnew_redirs(pointer_to_redir_token->next->value,
 				pointer_to_redir_token->type);
+		if (pointer_to_redir_token->next->was_expanded)
+			new_node->was_expanded = 1;
+		else
+			new_node->was_expanded = 0;
 		ft_lstadd_back_redirs(&(node->redirs), new_node);
 	}
 }
@@ -63,9 +73,12 @@ int	create_multiple_args(t_node *node, t_token *token_list)
 		}
 		if (token_list->value)
 		{
-			node->args[index] = token_list->value;
+			if (token_list->is_ghost != 1)
+			{
+				node->args[index] = token_list->value;
+				index++;
+			}
 			token_list = token_list->next;
-			index++;
 		}
 		else
 			token_list = token_list->next;

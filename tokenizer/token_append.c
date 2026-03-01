@@ -13,35 +13,6 @@
 #include "minishell.h"
 
 /*
-* Creates and appends to the last node from the list.
-+ Returns i, being the length of the added part of the string to.
-+ this last node of the list, or a negative interger for error.*/
-/* int	token_word_append(t_token *last, char *str, t_data *data)
-{
-	int		i;
-	char	*buff;
-	char	*new;
-
-	i = 0;
-	while (str[i] && !is_space(str[i])
-		&& !is_operator(str[i])
-		&& !is_single(str[i])
-		&& !is_double(str[i]))
-		i++;
-	buff = ft_substr(str, 0, i);
-	if (!buff)
-		return (perror("Err: Malloc"), -1);
-	buff = expand_buff(buff, data);
-	new = ft_strjoin(last->value, buff);
-	free(buff);
-	if (!new)
-		return (perror("Err: Malloc"), -1);
-	free(last->value);
-	last->value = new;
-	return (i);
-} */
-
-/*
 * Creates and appends to the last node from the list,
 * in case of finding double quotes.
 + Returns i, being the length of the added part of the string to.
@@ -60,13 +31,15 @@ int	token_double_append(t_token *last, char *str, t_data *data)
 	buff = ft_substr(str, 1, i - 1);
 	if (!buff)
 		return (perror("Err: Malloc"), -1);
-	buff = expand_buff(buff, data);
+	buff = expand_buff(buff, data, last);
 	new = ft_strjoin(last->value, buff);
 	free(buff);
 	if (!new)
 		return (perror("Err: Malloc"), -1);
 	free(last->value);
 	last->value = new;
+	if (ft_strncmp(last->value, "", 2))
+		last->is_ghost = 0;
 	return (i + 1);
 }
 
@@ -96,6 +69,8 @@ int	token_single_append(t_token *last, char *str)
 	free(last->value);
 	last->value = new;
 	last->dolar = -1;
+	if (ft_strncmp(last->value, "", 2))
+		last->is_ghost = 0;
 	return (i + 1);
 }
 
@@ -123,10 +98,12 @@ int	token_word_append(t_token *last, char *str, t_data *data)
 		i++;
 	}
 	buff = ft_substr(str, 0, i);
-	buff = expand_buff(buff, data);
+	buff = expand_buff(buff, data, last);
 	new = ft_strjoin(last->value, buff);
 	free(buff);
 	free(last->value);
 	last->value = new;
+	if (ft_strncmp(last->value, "", 2))
+		last->is_ghost = 0;
 	return (i + skip);
 }

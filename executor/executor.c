@@ -52,18 +52,18 @@ static void	child_process(t_node *tree, int fd_in, int fd_out, t_data *data)
 	data->i = 3;
 	if (!tree->args || !tree->args[0])
 	{
-		while (data->i < data->max_fd)
+		while (data->i < 1024)
 			close(data->i++);
 		free_all_and_exit(data, EXIT_SUCCESS);
 	}
 	set_signals_child();
 	if (run_bultins(tree->args, &(data->env_var), &data, fd_out) != -1)
 	{
-		while (data->i < data->max_fd)
+		while (data->i < 1024)
 			close(data->i++);
 		free_all_and_exit(data, data->exit_status);
 	}
-	while (data->i < data->max_fd)
+	while (data->i < 1024)
 		close(data->i++);
 	execute_command(tree, data, fd_in, fd_out);
 }

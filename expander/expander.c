@@ -91,7 +91,7 @@ static char	*append_env(char *value, int *i, char *result, t_data *data)
 
 /*
 * Expander used when appending a string to a token.*/
-char	*expand_buff(char *str, t_data *data)
+char	*expand_buff(char *str, t_data *data, t_token *token)
 {
 	int		i;
 	char	*result;
@@ -116,6 +116,7 @@ char	*expand_buff(char *str, t_data *data)
 		if (!result)
 			return (perror("Err: Malloc"), NULL);
 	}
+	token->was_expanded = 1;
 	return (free(str), result);
 }
 
@@ -145,5 +146,8 @@ char	*expander(t_token *token, t_data *data)
 		if (!result)
 			return (perror("Err: Malloc"), NULL);
 	}
+	token->was_expanded = 1;
+	if (!ft_strncmp(result, "", 2))
+		token->is_ghost = 1;
 	return (free(token->value), result);
 }

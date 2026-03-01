@@ -152,4 +152,5 @@ void	set_init(t_token *token, char *str, int ix, int flag)
 		token->index = ix;
 		token->hdoc_expand = false;
 	}
+	token->was_expanded = 0;
 }

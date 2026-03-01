@@ -69,6 +69,8 @@ struct s_token
 	int		index;
 	int		dolar;
 	bool	hdoc_expand;
+	int		was_expanded;
+	int		is_ghost;
 	t_token	*next;
 	t_token	*prev;
 };
@@ -85,6 +87,7 @@ typedef struct s_redirs
 	t_type			redir_type;
 	char			*filename;
 	char			*temp_heredoc_filename;
+	int				was_expanded;
 	struct s_redirs	*next;
 }	t_redirs;
 
@@ -156,7 +159,7 @@ int			tokenizer_test(char *file_path);
 /* ------------------------------- EXPANDER --------------------------------- */
 
 char		*expander(t_token *token, t_data *data);
-char		*expand_buff(char *str, t_data *data);
+char		*expand_buff(char *str, t_data *data, t_token *token);
 char		*ft_strconcat(char *s1, char *s2);
 int			expander_test(char *address);
 bool		valid_chars(char c);

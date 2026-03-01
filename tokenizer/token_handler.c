@@ -135,7 +135,7 @@ int	token_word(t_token **head, char *s, int ix, t_data *data)
 	token->value = ft_substr(s, 0, i);
 	set_dolar(token);
 	token->value = expander(token, data);
-	if ((token->value && token->value[0]) || (s[i + skip]
+	if ((token->value) || (s[i + skip]
 			&& !is_space(s[i + skip]) && !is_operator(s[i + skip])))
 		lst_add_back_token(head, token);
 	else
