@@ -18,6 +18,18 @@
 * If a file cannot be opened, it either returns an error (parent) 
 * or exits cleanly (child).
 */
+static int	check_for_ambiguous_error(t_redirs *redir, t_data *data)
+{
+	if (!ft_strncmp(redir->filename, "", 2))
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(redir->filename, 2);
+		ft_putstr_fd("ambiguous redirect\n", 2);
+		free_all_and_exit(data, 1);
+	}
+	else if ()
+	return (0);
+}
 static int	handle_in_redir(t_redirs *redir, int *fd_in, t_data *data)
 {
 	if (*fd_in != STDIN_FILENO)
@@ -27,7 +39,7 @@ static int	handle_in_redir(t_redirs *redir, int *fd_in, t_data *data)
 	{
 		if (data->flag)
 			return (-1);
-		if (!ft_strncmp(redir->filename, "", 2))
+		if (!check_for_ambiguous_erorr(redir, data))
 		{
 			ft_putstr_fd("minishell: ", 2);
 			ft_putstr_fd(redir->filename, 2);
@@ -55,7 +67,6 @@ static int	handle_out_redir(t_redirs *redir, int *fd_out, t_data *data)
 	{
 		if (data->flag)
 			return (-1);
-		printf("HERE?");
 		check_possible_errors(redir->filename, data, 1);
 	}
 	return (0);
