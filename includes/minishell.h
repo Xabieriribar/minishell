@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/02/26 17:08:50 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/02 12:30:47 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define BLUE		"\033[34m"
 # define RED		"\033[31m"
 
-# define PROMPT			"Minishell>> "
 # define PIPE_ERR_MSG	"syntax error near unexpected token `|'\n"
 # define HDOC_ERR_MSG	"syntax error near unexpected token `>>'\n"
 # define REDIR_ERR_MSG	"syntax error near unexpected token `newline'\n"
@@ -202,6 +201,7 @@ int			ft_handle_redirs(t_token *head, int lst_len, int lst_index);
 int			test_tree(int fd_tree_tester);
 t_node		*init_tree(t_token **token_list);
 void		run_tree_test(char *input_line);
+void		add_value(t_node *node, t_token *token_list, int *index);
 
 void		fill_command_node(t_node *node);
 int			ft_tokens_before_pipe(t_token *token_list);

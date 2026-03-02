@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/02/24 20:12:02 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/02 11:58:28 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,6 @@ int	run_bultins(char **args, t_env **list, t_data **data, int out_nmb)
 	return (ret);
 }
 
-/* 
-* Returns a pointer to the last element of the list of
-* environment variables.*/
-t_env	*lstlast_env(t_env *lst)
-{
-	t_env	*ptr;
-
-	ptr = lst;
-	if (!lst)
-		return (NULL);
-	while (ptr->next != NULL)
-		ptr = ptr->next;
-	return (ptr);
-}
-
 /*
 * Adds a env variable node to the last position of the list*/
 int	lst_add_back_env(t_env **lst, t_env *new)
@@ -92,6 +77,19 @@ int	lst_add_back_env(t_env **lst, t_env *new)
 	}
 	ptr->next = new;
 	return (0);
+}
+
+static char	*increment_sh(char *str)
+{
+	int		ret;
+	char	*new;
+
+	ret = ft_atoi(str);
+	new = ft_itoa(ret + 1);
+	if (!new)
+		return (str);
+	free(str);
+	return (new);
 }
 
 /*
@@ -116,6 +114,8 @@ t_env	*init_env(char *str)
 		env->value = ft_strdup(eq_ptr + 1);
 		if (!env->value)
 			return (perror("Malloc"), free(env->key), free(env), NULL);
+		if (!ft_strncmp("SHLVL", env->key, 6))
+			env->value = increment_sh(env->value);
 	}
 	else
 		env->value = NULL;

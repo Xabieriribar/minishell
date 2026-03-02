@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:55 by rick              #+#    #+#             */
-/*   Updated: 2026/02/24 22:50:57 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/02 11:58:00 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*
+* Function returns a pointer to the node matching
+* with the value key.*/
+t_env	*find_env(t_env **env, char *key)
+{
+	t_env	*ptr;
+	size_t	len;
+
+	ptr = *env;
+	len = ft_strlen(key);
+	while (ptr)
+	{
+		if (ft_strncmp(key, ptr->key, len) == 0
+			&& ptr->key[len] == '\0')
+			return (ptr);
+		ptr = ptr->next;
+	}
+	return (NULL);
+}
 
 /*
 * Function to print the environment variable linked list*/

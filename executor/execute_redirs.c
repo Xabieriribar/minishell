@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_redirs.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/26 17:53:57 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/02 12:09:37 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 static int	check_for_ambiguous_error(t_redirs *redir)
 {
 	if (!ft_strncmp(redir->filename, "", 2))
-		return (0);	
+		return (0);
 	else if (ft_strchr(redir->filename, ' ') && redir->was_expanded)
 		return (0);
 	return (1);
@@ -101,4 +101,3 @@ int	update_fd(t_redirs *redirs, int *fd_in, int *fd_out, t_data *data)
 	}
 	return (0);
 }
-

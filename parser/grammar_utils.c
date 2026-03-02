@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grammar_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 15:00:03 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/02 12:29:58 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,10 @@ int	ft_handle_redirs(t_token *head, int lst_len, int lst_index)
 		}
 	}
 	return (0);
+}
+
+void	add_value(t_node *node, t_token *token_list, int *index)
+{
+	node->args[*index] = token_list->value;
+	*index = *index + 1;
 }

@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:56 by rick              #+#    #+#             */
-/*   Updated: 2026/02/20 14:49:18 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/02 11:58:25 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-* Function returns a pointer to the node matching
-* with the value key.*/
-t_env	*find_env(t_env **env, char *key)
-{
-	t_env	*ptr;
-	size_t	len;
-
-	ptr = *env;
-	len = ft_strlen(key);
-	while (ptr)
-	{
-		if (ft_strncmp(key, ptr->key, len) == 0
-			&& ptr->key[len] == '\0')
-			return (ptr);
-		ptr = ptr->next;
-	}
-	return (NULL);
-}
 
 /*
 * Helper function to get size of array of t_env.
@@ -46,6 +26,21 @@ int	env_list_size(t_env *env)
 		env = env->next;
 	}
 	return (count);
+}
+
+/* 
+* Returns a pointer to the last element of the list of
+* environment variables.*/
+t_env	*lstlast_env(t_env *lst)
+{
+	t_env	*ptr;
+
+	ptr = lst;
+	if (!lst)
+		return (NULL);
+	while (ptr->next != NULL)
+		ptr = ptr->next;
+	return (ptr);
 }
 
 /*

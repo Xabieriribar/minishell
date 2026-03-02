@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_append.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 12:34:13 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 14:34:18 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/02 12:14:17 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,9 @@ int	token_word_append(t_token *last, char *str, t_data *data)
 	buff = ft_substr(str, 0, i);
 	buff = expand_buff(buff, data, last);
 	new = ft_strjoin(last->value, buff);
-	free(buff);
 	free(last->value);
 	last->value = new;
 	if (ft_strncmp(last->value, "", 2))
 		last->is_ghost = 0;
-	return (i + skip);
+	return (free(buff), i + skip);
 }

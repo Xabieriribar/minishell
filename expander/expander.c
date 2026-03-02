@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 09:49:03 by rick              #+#    #+#             */
-/*   Updated: 2026/02/25 10:45:44 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/02 12:15:59 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,10 +139,7 @@ char	*expander(t_token *token, t_data *data)
 		if (is_dollar(val[i]))
 			result = append_env(token->value, &i, result, data);
 		else
-		{
-			result = append_char(result, val[i]);
-			i++;
-		}
+			result = append_char(result, val[i++]);
 		if (!result)
 			return (perror("Err: Malloc"), NULL);
 	}
