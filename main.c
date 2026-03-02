@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/03/02 12:05:29 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/03/02 14:27:44 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static void	shell_loop(t_data *data)
 			ft_putstr_fd("exit\n", STDOUT_FILENO);
 			free_env_vars(&(data->env_var));
 			rl_clear_history();
+			free_data(data);
 			exit(0);
 		}
 		if (input && *input)
