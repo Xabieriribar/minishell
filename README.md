@@ -29,3 +29,7 @@ Run after compilation:
 ```bash
 valgrind --leak-check=full --show-leak-kinds=all --suppressions=readline.supp ./minishell
 ```
+
+### Run tester:
+
+Use the main-test.c file instead, just change its name temporarly. 
