@@ -1,7 +1,9 @@
 CC       = cc
 CFLAGS   = -Wall -Wextra -Werror -g -c -I/usr/local/opt/readline/include
 LDFLAGS  = -L/usr/local/opt/readline/lib -lreadline
-INCLUDES = ./includes ./libs/libft ./libs/gnl
+INC_MINI = ./includes
+INC_LIBFT = ./libs/libft
+INC_GNL = ./libs/gnl
 
 # ---------------- LIBRARY ----------------
 LIBFT_DIR = libs/libft
@@ -64,7 +66,7 @@ $(NAME): $(OBJS)
 	$(CC) $(OBJS) $(LIBFT) $(GNL) $(LDFLAGS) -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(addprefix -I, $(INCLUDES)) $(LFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(INC_MINI) -I $(INC_GNL) -I $(INC_LIBFT) -c $< -o $@
 
 # ------------ CLEAN RULES --------------
 
