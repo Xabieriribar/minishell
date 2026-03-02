@@ -32,6 +32,7 @@ t_data	*init_data(char **env_variables)
 	if (data->max_fd < 0)
 		data->max_fd = 1024;
 	data->recursive_call_counter = 0;
+	data->number_of_pipes = 3;
 	data->fd_in = 0;
 	data->fd_out = 0;
 	data->pid_values = ft_calloc(sizeof(int), 1024);

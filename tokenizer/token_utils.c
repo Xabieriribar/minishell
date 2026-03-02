@@ -85,3 +85,13 @@ void	set_dolar(t_token *token)
 	else
 		token->dolar = 0;
 }
+
+void	count_number_of_pipes(t_token *head, int number_of_pipes)
+{
+	while (head)
+	{
+		if (head->type == T_PIPE)
+			number_of_pipes++;
+		head = head->next;
+	}
+}

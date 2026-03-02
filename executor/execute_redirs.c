@@ -101,3 +101,4 @@ int	update_fd(t_redirs *redirs, int *fd_in, int *fd_out, t_data *data)
 	}
 	return (0);
 }
+

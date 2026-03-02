@@ -58,6 +58,7 @@ t_token	*init_list(char *str, t_data *data)
 		str += len;
 		token_number++;
 	}
+	count_number_of_pipes(head, data->number_of_pipes);
 	return (head);
 }
 

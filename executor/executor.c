@@ -52,18 +52,18 @@ static void	child_process(t_node *tree, int fd_in, int fd_out, t_data *data)
 	data->i = 3;
 	if (!tree->args || !tree->args[0])
 	{
-		while (data->i < 1024)
+		while (data->i < (data->number_of_pipes * 2))
 			close(data->i++);
 		free_all_and_exit(data, EXIT_SUCCESS);
 	}
 	set_signals_child();
 	if (run_bultins(tree->args, &(data->env_var), &data, fd_out) != -1)
 	{
-		while (data->i < 1024)
+		while (data->i < (data->number_of_pipes * 2))
 			close(data->i++);
 		free_all_and_exit(data, data->exit_status);
 	}
-	while (data->i < 1024)
+	while (data->i < (data->number_of_pipes * 2))
 		close(data->i++);
 	execute_command(tree, data, fd_in, fd_out);
 }
@@ -89,6 +89,7 @@ void	execute_pipeline(t_node *tree, int fd_in, int fd_out, t_data *data)
 	}
 	else
 	{
+		data->number_of_pipes++;
 		if (pipe(pfd) < 0)
 			perror("minishell: pipe failed");
 		execute_pipeline(tree->left_child, fd_in, pfd[1], data);

@@ -109,7 +109,8 @@ typedef struct s_node
 typedef struct s_data
 {
 	long	max_fd;
-	long	i;
+	int		number_of_pipes;
+	int		i;
 	int		exit_status;
 	int		heredoc_file_index;
 	int		flag;
@@ -135,6 +136,7 @@ t_token		*lstlast_token(t_token *lst);
 void		set_type(t_token *token, char *str);
 void		set_dolar(t_token *token);
 void		set_init(t_token *token, char *str, int ix, int flag);
+void		count_number_of_pipes(t_token *head, int number_of_pipes);
 
 bool		is_single(char c);
 bool		is_double(char c);
