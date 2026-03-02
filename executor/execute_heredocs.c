@@ -26,6 +26,7 @@ int	execute_heredoc(int fd_heredoc, char *delimiter)
 	while (1)
 	{
 		line = readline("> ");
+		set_signals_child();
 		if (line == NULL)
 			break ;
 		if (!ft_strncmp(line, delimiter, len))
