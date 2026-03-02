@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 09:49:03 by rick              #+#    #+#             */
-/*   Updated: 2026/03/02 12:15:59 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/03/02 14:14:53 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ static char	*append_env(char *value, int *i, char *result, t_data *data)
 		result = handle_exit(result, i, data, &env);
 	else
 	{
+		if (ft_isdigit(value[*i]))
+			return ((*i)++, append_char(result, '\0'));
 		while (value[*i] && valid_chars(value[*i]))
 		{
 			env = append_char(env, value[*i]);
