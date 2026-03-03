@@ -24,6 +24,7 @@ SRCS = \
 	expander/expander.c \
 	expander/expander_utils.c \
 	signals/signals.c \
+	signals/signals_heredoc.c \
 	built_in/cd.c \
 	built_in/pwd.c \
 	parser/create_tree_utils.c \

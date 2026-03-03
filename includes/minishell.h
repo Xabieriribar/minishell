@@ -219,7 +219,8 @@ t_redirs	*ft_lstnew_redirs(char *filename, t_type redir_type);
 
 void		execute(t_node *tree, t_data *data);
 void		execute_pipeline(t_node *t, int fd_in, int fd_out, t_data *data);
-void		open_temporary_heredocs(t_node *tree, int *heredoc_file_index);
+void		open_temporary_heredocs(t_node *tree, int *heredoc_file_index,
+									t_data *data);
 void		unlink_heredoc_files(t_node *tree);
 
 char		**convert_env_var_to_array(t_env *env_var, int env_var_lstsize);
@@ -244,6 +245,9 @@ void		sigint_handler(int sig);
 void		set_signals_interactive(void);
 void		set_signals_noninteractive(void);
 void		set_signals_child(void);
+void		set_heredoc_signals(void);
+void		sigint_heredoc_handler(int sig);
+void		restore_stdin(int stdin_backup);
 
 /* ---------------------------- FREE FUNCTIONS ------------------------------ */
 

@@ -25,7 +25,7 @@ void	free_redirs(t_redirs *redirs)
 	while (redirs)
 	{
 		tmp = redirs->next;
-		if (redirs->temp_heredoc_filename)
+		if (ft_strncmp(redirs->temp_heredoc_filename, "-1", 3))
 			free(redirs->temp_heredoc_filename);
 		free(redirs);
 		redirs = tmp;

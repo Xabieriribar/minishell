@@ -66,6 +66,7 @@ t_redirs	*ft_lstnew_redirs(char *filename, t_type redir_type)
 	if (!li)
 		return (NULL);
 	li->filename = filename;
+	li->temp_heredoc_filename = "-1";
 	li->redir_type = redir_type;
 	li->next = NULL;
 	return (li);
