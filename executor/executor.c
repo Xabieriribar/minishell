@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/03/04 15:33:16 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/04 15:47:22 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void	execute_command(t_node *tree, t_data *data, int fd_in, int fd_out)
 	char	*path;
 
 	close_if_not_stdin_or_stdout(fd_in, fd_out);
- 	// --- ATENCION XAVI ---
 	if (tree->args && make_temp_var(data, tree->args))
-		free_all_and_exit(data, EXIT_SUCCESS); 
-    // ------------------- 
+		free_all_and_exit(data, EXIT_SUCCESS);
 	path_env = return_path(data->env_var);
 	if (!path_env)
 		no_such_file_or_directory_error(tree->args[0], data, 0);
@@ -135,10 +133,8 @@ void	execute(t_node *tree, t_data *data)
 	open_temporary_heredocs(tree, &(data->heredoc_file_index), data);
 	if (data->heredoc_file_index != 0 && data->exit_status == 130)
 		return ;
- 	// --- ATENCION XAVI ---
 	if (!tree->left_child && tree->args && make_temp_var(data, tree->args))
-			return ;
-    // ------------------- 
+		return ;
 	if (!tree->left_child && is_parent_builtin(tree->args[0]))
 		execute_parent_builtin(tree, data);
 	else
