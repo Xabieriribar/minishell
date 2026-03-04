@@ -129,7 +129,7 @@ void	execute(t_node *tree, t_data *data)
 {
 	data->heredoc_file_index = 0;
 	open_temporary_heredocs(tree, &(data->heredoc_file_index), data);
-	if (data->exit_status == 130)
+	if (data->heredoc_file_index != 0 && data->exit_status == 130)
 		return ;
 	if (!tree->left_child && is_parent_builtin(tree->args[0]))
 		execute_parent_builtin(tree, data);
