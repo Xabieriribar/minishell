@@ -6,49 +6,49 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 13:38:46 by rspinell          #+#    #+#             */
-/*   Updated: 2026/03/04 16:21:45 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/04 16:29:08 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    free_all_and_exit(t_data *data, int exit_status)
+void	free_all_and_exit(t_data *data, int exit_status)
 {
-    if (data)
-    {
-        if (data->token_head)
-            free_tokens(&(data->token_head));
-        if (data->ast_head)
-        {
-            free_tree(data->ast_head);
-            data->ast_head = NULL;
-        }
-        if (data->env_var)
-            free_env_vars(&(data->env_var));
-        free_data(data);
-    }
-    exit(exit_status);
+	if (data)
+	{
+		if (data->token_head)
+			free_tokens(&(data->token_head));
+		if (data->ast_head)
+		{
+			free_tree(data->ast_head);
+			data->ast_head = NULL;
+		}
+		if (data->env_var)
+			free_env_vars(&(data->env_var));
+		free_data(data);
+	}
+	exit(exit_status);
 }
 
-void    free_data(t_data *data)
+void	free_data(t_data *data)
 {
-    if (!data)
-        return ;
-    if (data->token_head)
-        free_tokens(&(data->token_head));
-    if (data->ast_head)
-    {
-        free_tree(data->ast_head);
-        data->ast_head = NULL;
-    }
-    if (data->env_var)
-        free_env_vars(&(data->env_var));
-    if (data->pid_values)
-    {
-        free(data->pid_values);
-        data->pid_values = NULL;
-    }
-    free(data);
+	if (!data)
+		return ;
+	if (data->token_head)
+		free_tokens(&(data->token_head));
+	if (data->ast_head)
+	{
+		free_tree(data->ast_head);
+		data->ast_head = NULL;
+	}
+	if (data->env_var)
+		free_env_vars(&(data->env_var));
+	if (data->pid_values)
+	{
+		free(data->pid_values);
+		data->pid_values = NULL;
+	}
+	free(data);
 }
 
 /*
