@@ -16,19 +16,19 @@
 * Reads line by line from standard input using readline until the exact 
 * delimiter is entered. The input is written to the provided file descriptor.
 */
-int	execute_heredoc(int fd_heredoc, char *delimiter)
+int	execute_heredoc(int fd_heredoc, char *delimiter, t_data *data,
+					int stdin_backup)
 {
 	char	*line;
-	size_t	len;
 
 	line = NULL;
-	len = ft_strlen(delimiter) + 1;
+	set_heredoc_signals();
 	while (1)
 	{
 		line = readline("> ");
 		if (line == NULL)
 			break ;
-		if (!ft_strncmp(line, delimiter, len))
+		if (!ft_strncmp(line, delimiter, ft_strlen(delimiter) + 1))
 		{
 			free(line);
 			break ;
@@ -37,7 +37,11 @@ int	execute_heredoc(int fd_heredoc, char *delimiter)
 		write(fd_heredoc, "\n", 1);
 		free(line);
 	}
+	restore_stdin(stdin_backup);
+	set_signals_interactive();
 	close(fd_heredoc);
+	if (g_signal == SIGINT)
+		data->exit_status = 130;
 	return (0);
 }
 
@@ -46,11 +50,13 @@ int	execute_heredoc(int fd_heredoc, char *delimiter)
 * in /tmp, opens it with secure 0644 permissions, and runs the input loop.
 * The original filename in the redir node is replaced with the temp path.
 */
-static void	process_single_heredoc(t_redirs *redir, int *index)
+static void	process_single_heredoc(t_redirs *redir, int *index, t_data *data)
 {
 	int		fd;
+	int		stdin_backup;
 	char	*num_str;
 
+	stdin_backup = dup(STDIN_FILENO);
 	num_str = ft_itoa(*index);
 	redir->temp_heredoc_filename = ft_strjoin("/tmp/.heredoc_", num_str);
 	free(num_str);
@@ -58,7 +64,7 @@ static void	process_single_heredoc(t_redirs *redir, int *index)
 			O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 		perror("minishell: heredoc: open failed");
-	execute_heredoc(fd, redir->filename);
+	execute_heredoc(fd, redir->filename, data, stdin_backup);
 	redir->filename = redir->temp_heredoc_filename;
 	*index += 1;
 }
@@ -67,7 +73,7 @@ static void	process_single_heredoc(t_redirs *redir, int *index)
 * Iterates through the redirection list of a command node to find 
 * and process any Heredoc tokens.
 */
-void	search_and_execute_heredoc(t_redirs *redirs, int *index)
+void	search_and_execute_heredoc(t_redirs *redirs, int *index, t_data *data)
 {
 	t_redirs	*temp;
 
@@ -75,7 +81,7 @@ void	search_and_execute_heredoc(t_redirs *redirs, int *index)
 	while (temp)
 	{
 		if (temp->redir_type == T_HEREDOC)
-			process_single_heredoc(temp, index);
+			process_single_heredoc(temp, index, data);
 		temp = temp->next;
 	}
 }
@@ -101,16 +107,17 @@ int	contains_heredoc_redirs(t_redirs *redirs)
 * Recursively traverses the AST to open all Heredocs before execution begins.
 * This ensures user interaction happens in the correct order for pipes.
 */
-void	open_temporary_heredocs(t_node *tree, int *heredoc_file_index)
+void	open_temporary_heredocs(t_node *tree, int *heredoc_file_index,
+								t_data *data)
 {
 	if (!tree)
 		return ;
 	if (tree->node_type == COMMAND)
 	{
 		if (tree->redirs != NULL && contains_heredoc_redirs(tree->redirs))
-			search_and_execute_heredoc(tree->redirs, heredoc_file_index);
+			search_and_execute_heredoc(tree->redirs, heredoc_file_index, data);
 		return ;
 	}
-	open_temporary_heredocs(tree->left_child, heredoc_file_index);
-	open_temporary_heredocs(tree->right_child, heredoc_file_index);
+	open_temporary_heredocs(tree->left_child, heredoc_file_index, data);
+	open_temporary_heredocs(tree->right_child, heredoc_file_index, data);
 }

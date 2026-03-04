@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/03/04 15:23:54 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/04 15:32:00 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,9 @@ void	execute_parent_builtin(t_node *tree, t_data *data)
 void	execute(t_node *tree, t_data *data)
 {
 	data->heredoc_file_index = 0;
+	open_temporary_heredocs(tree, &(data->heredoc_file_index), data);
+	if (data->heredoc_file_index != 0 && data->exit_status == 130)
+		return ;
 	open_temporary_heredocs(tree, &(data->heredoc_file_index));
  	// --- ATENCION XAVI ---
 	if (!tree->left_child && tree->args && make_temp_var(data, tree->args))

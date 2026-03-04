@@ -10,3 +10,4 @@ minishell_tester/
 sh_tester/
 test/
 main-test.c
+minitester/
