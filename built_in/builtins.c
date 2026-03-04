@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/03/03 19:05:35 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/04 13:06:18 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,6 @@ int	run_bultins(char **args, t_env **list, t_data **data, int out_nmb)
 		return (-1);
 	(*data)->exit_status = ret;
 	return (ret);
-}
-
-/*
-* Adds a env variable node to the last position of the list*/
-int	lst_add_back_env(t_env **lst, t_env *new)
-{
-	t_env	*ptr;
-
-	if (!new)
-		return (1);
-	new->next = NULL;
-	new->temp = false;
-	ptr = lstlast_env(*lst);
-	if (!ptr)
-	{
-		*lst = new;
-		return (0);
-	}
-	ptr->next = new;
-	return (0);
 }
 
 static char	*increment_sh(char *str)

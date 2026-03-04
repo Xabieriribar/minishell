@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/03/03 19:47:53 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/04 13:08:15 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,22 +170,27 @@ bool		valid_chars(char c);
 char		*get_env_value(t_env *env, char *key);
 char		*append_char(char *str, char c);
 
-/* ------------------------------- BUILTINS --------------------------------- */
+/* --------------------------- ENV VARIABLES ----------------------------- */
 
-int			run_bultins(char **args, t_env **lst, t_data **data, int out_nmb);
 t_env		*init_env_list(char **envp);
 t_env		*init_env(char *str);
 t_env		*lstlast_env(t_env *lst);
 t_env		*find_env(t_env **env, char *key);
+t_env		*init_env_list_default(void);
 int			lst_add_back_env(t_env **lst, t_env *new);
 void		print_env_list(t_env **head, int out_nmb);
 int			env_list_size(t_env *env);
 void		print_arr(t_env **arr, int size, int out_nmb);
 void		sort_env_arr(t_env **arr, int size);
+
 char		*get_key(char *str);
 bool		valid_key(char *str);
 int			update_or_add(t_env **env, char *arg, char *key, int type);
 int			make_temp_var(t_data *data, char **arr);
+
+/* ------------------------------- BUILTINS --------------------------------- */
+
+int			run_bultins(char **args, t_env **lst, t_data **data, int out_nmb);
 
 int			b_pwd(int out_nbr);
 int			b_cd(t_env *env, char **args);

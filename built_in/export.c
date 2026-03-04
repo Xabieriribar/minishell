@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:48:07 by rick              #+#    #+#             */
-/*   Updated: 2026/03/04 12:26:21 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/04 13:17:29 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,6 @@ int	b_export(char **arr, t_env **env, int out_nmb)
 
 	i = 0;
 	status = 0;
-	/*
-	if (!(*env)) 
-	~ SI EP LLEGA VACIO DE LA EJECUCION, USAMOS GETENV? COMO ESESO?
-		*env = init_env_list(data->ep)
-	*/
 	if (!arr[1])
 		return (sort_and_print_export(*env, out_nmb), 0);
 	while (arr[++i])

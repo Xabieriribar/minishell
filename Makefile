@@ -44,6 +44,7 @@ SRCS = \
 	built_in/exit.c \
 	built_in/export.c \
 	built_in/handle_vars.c \
+	built_in/handle_empty_envp.c \
 	parser/grammar_validator.c \
 	parser/grammar_utils.c \
 	parser/parser_utils.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:56 by rick              #+#    #+#             */
-/*   Updated: 2026/03/02 11:58:25 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/03/04 12:34:04 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,26 @@ int	env_list_size(t_env *env)
 		env = env->next;
 	}
 	return (count);
+}
+
+/*
+* Adds a env variable node to the last position of the list*/
+int	lst_add_back_env(t_env **lst, t_env *new)
+{
+	t_env	*ptr;
+
+	if (!new)
+		return (1);
+	new->next = NULL;
+	new->temp = false;
+	ptr = lstlast_env(*lst);
+	if (!ptr)
+	{
+		*lst = new;
+		return (0);
+	}
+	ptr->next = new;
+	return (0);
 }
 
 /* 
@@ -93,18 +113,4 @@ void	print_arr(t_env **arr, int size, int out_nmb)
 		ft_putstr_fd("\n", out_nmb);
 		i++;
 	}
-}
-
-/*
-* Helper function for b_export that will return a newly 
-* allocated string from the begining of the argument until
-* finding the "=" or the end of the string argument.*/
-char	*get_key(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] != '=')
-		i++;
-	return (ft_substr(str, 0, i));
 }

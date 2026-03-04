@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 18:10:23 by rick              #+#    #+#             */
-/*   Updated: 2026/03/04 12:25:14 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/04 12:33:47 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,18 @@ int	update_or_add(t_env **env, char *arg, char *key, int type)
 	if (type == TEMP_VAR)
 		ptr->temp = true;
 	return (0);
+}
+
+/*
+* Helper function for b_export that will return a newly 
+* allocated string from the begining of the argument until
+* finding the "=" or the end of the string argument.*/
+char	*get_key(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != '=')
+		i++;
+	return (ft_substr(str, 0, i));
 }
