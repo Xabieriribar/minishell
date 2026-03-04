@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/02/26 18:11:45 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/03 19:47:03 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,14 @@ char	**convert_env_var_to_array(t_env *env_var, int lstsize)
 	i = 0;
 	while (env_var)
 	{
+		if (env_var->temp == true || env_var->value == NULL)
+		{
+			env_var = env_var->next;
+			continue ;
+		}
 		result[i] = join_env_entry(env_var);
 		if (!result[i])
-		{
-			free_splits(result, i);
-			return (NULL);
-		}
+			return (free_splits(result, i), NULL);
 		env_var = env_var->next;
 		i++;
 	}

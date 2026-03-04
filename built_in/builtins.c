@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 16:40:12 by rick              #+#    #+#             */
-/*   Updated: 2026/03/02 11:58:28 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:05:35 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	lst_add_back_env(t_env **lst, t_env *new)
 	if (!new)
 		return (1);
 	new->next = NULL;
+	new->temp = false;
 	ptr = lstlast_env(*lst);
 	if (!ptr)
 	{

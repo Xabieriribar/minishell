@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 11:56:33 by rick              #+#    #+#             */
-/*   Updated: 2026/03/02 14:27:44 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/03/04 11:58:50 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static void	process_input(char *input, t_data *data)
 	t_token	*temp_token;
 	t_node	*tree;
 
-	add_history(input);
 	token = init_list(input, data);
 	if (!token)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2026/03/02 18:21:43 by rick             ###   ########.fr       */
+/*   Updated: 2026/03/03 19:47:53 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define PIPE_ERR_MSG	"syntax error near unexpected token `|'\n"
 # define HDOC_ERR_MSG	"syntax error near unexpected token `>>'\n"
 # define REDIR_ERR_MSG	"syntax error near unexpected token `newline'\n"
+# define TEMP_VAR 1
+# define EXP_VAR 2
 
 /* ------------------------------- INCLUDES --------------------------------- */
 
@@ -181,6 +183,9 @@ int			env_list_size(t_env *env);
 void		print_arr(t_env **arr, int size, int out_nmb);
 void		sort_env_arr(t_env **arr, int size);
 char		*get_key(char *str);
+bool		valid_key(char *str);
+int			update_or_add(t_env **env, char *arg, char *key, int type);
+int			make_temp_var(t_data *data, char **arr);
 
 int			b_pwd(int out_nbr);
 int			b_cd(t_env *env, char **args);

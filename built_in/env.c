@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:47:55 by rick              #+#    #+#             */
-/*   Updated: 2026/03/02 11:58:00 by rspinell         ###   ########.fr       */
+/*   Updated: 2026/03/04 11:19:24 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	print_env_list(t_env **head, int out_nmb)
 	tmp = *head;
 	while (tmp)
 	{
-		if (tmp->value == NULL)
+		if (tmp->value == NULL || tmp->temp == true)
 		{
 			tmp = tmp->next;
 			continue ;
